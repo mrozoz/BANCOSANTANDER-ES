@@ -1,0 +1,124 @@
+
+
+
+/*110613*/
+function Globales_Bhtcs_Internet_AT_Sub_CabSimple_m (id,parent,l,s,m) {	
+this.main=parent.main;this.dom=this.main.dom;this.dom.setLocation(this,l);	
+this._M1='Globales_Bhtcs_Internet_AT_Sub_CabSimple';this.jsVarName = id;	
+this.parent = parent;	
+this.text = new Array();this.setText = this.base.setText;this.getFullVarName = this.base.getFullVarName;this.getId = this.base.getId;this.getDataText = this.base.getDataText;this.getMain = this.base.getMain;this.openWindowPopup = this.base.openWindowPopup;this.dom.getLinks(['Globales_Styles_BancaOnline_Banesto_css','Globales_Styles_Internet_Banesto_css'],'Globales_Bhtcs_Internet_AT_Sub_CabSimple'+id,true);	
+this._CVSRevision = '$Revision: 1.20.2.18 $';	
+this.styleResources = this.dom.getRPath(this._M1,id,'css');	
+this.printMode = 'pr';	
+this.xmltree = 'root';	
+this.xpathbutton = '';	
+this.xpathbuttonvalue = '';	
+this.xpathbuttonid = '';	
+this.xpathbuttontooltip = '';	
+this.type = 'default';	
+this.title = 'Título';	
+this.subtitle = 'Subtítulo';	
+this.TxtEnlace = '';	
+this.TitleEnlace = '';	
+this.Href = '';	
+this.Target = '';	
+this._target = null;	
+this.estructura = 'auto';	
+this.buttons = [['','','']];	
+this.ev_click = dom.getInstanceBase().nullEventRaiser;
+}
+Globales_Bhtcs_Internet_AT_Sub_CabSimple_m.prototype = { base: dom.getInstanceBase(),			
+		
+// ---------- onload   method ------------------------------------------------		
+onload: function () {},			
+		
+// ---------- onclick   method ------------------------------------------------		
+onclick: function (obj){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var ev = this.dom.getInstanceEvent(this,"ev_click");
+	ev.id=obj.id;
+	ev.value=(obj.value)?obj.value:'';
+	ev.raise();
+			
+},			
+		
+// ---------- register   method ------------------------------------------------		
+register: function (target){
+	target.header=this;
+			
+},			
+		
+// ---------- createButtons   method ------------------------------------------------		
+createButtons: function (){
+	var o='';
+	if(!!this.buttons[0][0]){
+		for(var i=0;i<this.buttons.length;i++){
+			o+='<div class="boton-cabSimple"><button type="button" title="'+this.buttons[i][2]+'" value="'+this.buttons[i][1]+'" name="'+this.buttons[i][0]+'" id="'+this.buttons[i][0]+'" onclick="'+this.getFullVarName()+'.onclick(this);"><span>'+this.buttons[i][1]+'</span></button></div>';
+		}
+	}
+	return o;
+			
+},			
+		
+// ---------- load   method ------------------------------------------------		
+load: function (){
+
+if(this.xpathbutton!=""){
+	var buttons=[];
+	var fea_Root246 = this.dom.getXmlNodes(this.dom.xmlNodes[this.xmltree],this.xpathbutton);			
+for(var i=0;i<fea_Root246.length;i++) {			
+var fea_Node246 = fea_Root246[i];			
+
+		buttons[i]=[];
+		buttons[i][0]=this.dom.getXmlValueAtName(fea_Node246, this.xpathbuttonid)			
+;
+		buttons[i][1]=this.dom.getXmlValueAtName(fea_Node246, this.xpathbuttonvalue)			
+;
+		buttons[i][2]=this.dom.getXmlValueAtName(fea_Node246, this.xpathbuttontooltip)			
+;
+	}			
+
+	if(buttons.length>0)this.buttons=buttons;
+}
+			
+},			
+		
+// ---------- initialize   method ------------------------------------------------		
+initialize: function (){
+	
+	this.load();
+			
+},			
+		
+// ---------- repaint   method ------------------------------------------------		
+repaint: function (){
+	this.paint(true,false);
+			
+},			
+// ---------- drawHeader   method ------------------------------------------------		
+drawHeader: function () {			
+var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};			
+this.setText('Globales_Bhtcs_Internet_AT_Sub_CabSimple');			
+			
+var s = new Array();			
+this.initialize();			
+
+return s.join(' ');			
+},			
+		
+// ---------- drawBody   method ------------------------------------------------		
+drawBody: function (d,l) {return this.dom.getBodyValue(d,l,this);},		
+// ---------- paint   method ------------------------------------------------		
+paint: function (draw,init) {var s = new Array();
+		this.etiquetaH=(this.estructura=="auto")? "h2" : this.estructura.toLowerCase();
+		if(this.type=='default') { s.push("			<div id=\"");s.push( this.getId('CabSimple') );s.push("\" class=\"InternetAtSubCabSimple ");s.push( this.printMode );s.push("\">"); } else if(this.type=='section') { s.push("			<div id=\"");s.push( this.getId('CabSimple') );s.push("\" class=\"InternetAtSubCabSimple ");s.push( this.printMode );s.push("\">"); } s.push("		<");s.push(this.etiquetaH);s.push(">");
+				var _title =(this.title!='')?'<span class="title">'+this.title+'</span>':''; 
+				var _subtitle =(this.subtitle!='')?'<span class="subtitle">'+this.subtitle+'</span>':'';
+				var strHref=(this.Href!=null && this.Href!='#' && this.Href!='')?' href="'+this.Href+'"':'';
+				var _link =(this.TxtEnlace != '' &&  this.TxtEnlace!='undefined' && this.TxtEnlace!=null)?'<span class="enlace_cabSimple"> <a '+strHref+' target="'+ this.Target+'" title="'+ this.TitleEnlace +'">'+ this.TxtEnlace+'</a></span>':'';
+				var _grupoBotones = (this.buttons)?'<span class="grupo-botones-cabSimple">'+this.createButtons()+'</span>':'';
+			s.push( _title );s.push( _subtitle );s.push("			<div class=\"acciones-cabSimple\">");s.push( _link );s.push( _grupoBotones );s.push("			</div>");s.push("		</");s.push(this.etiquetaH);s.push(">");s.push("		</div>");return this.dom.paint(draw,init,this,s.join(''));			
+}			
+
+}
+
+;dom.onLoaded('Globales_Bhtcs_Internet_AT_Sub_CabSimple');

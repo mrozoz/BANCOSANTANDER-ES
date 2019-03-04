@@ -1,0 +1,328 @@
+
+
+
+/*110613*/
+function Globales_Bhtcs_Info_Texto_m (id,parent,l,s,m) {	
+this.main=parent.main;this.dom=this.main.dom;this.dom.setLocation(this,l);	
+this._M1='Globales_Bhtcs_Info_Texto';this.jsVarName = id;	
+this.parent = parent;	
+this.text = new Array();this.setText = this.base.setText;this.getFullVarName = this.base.getFullVarName;this.getId = this.base.getId;this.getDataText = this.base.getDataText;this.getMain = this.base.getMain;this.openWindowPopup = this.base.openWindowPopup;this.dom.getLinks(['Globales_Styles_Intranet_13_Css_BancaOnline_css','Globales_Styles_Intranet_13_Css_Master_css'],'Globales_Bhtcs_Info_Texto'+id,true);	
+this._CVSRevision = '$Revision: 1.3.2.38 $';	
+this.styleResources = this.dom.getRPath(this._M1,id,'css');	
+this.bodyTexto = '';	
+this.bodyTextoLength = 540;	
+this.Tooltip = '';	
+this.renderMode = 'simplemarco';	
+this.className = '';	
+this.show = true;	
+this.xmltree = 'root';	
+this.xmlTexto = 'texto';	
+this.printMode = 'pr';	
+this.OnClick = dom.getInstanceBase().nullEventRaiser;
+}
+Globales_Bhtcs_Info_Texto_m.prototype = { base: dom.getInstanceBase(),			
+		
+// ---------- onload   method ------------------------------------------------		
+onload: function () {},			
+		
+// ---------- mouseOver   method ------------------------------------------------		
+mouseOver: function (obj){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	if(obj==null)return;
+	if (obj.className == null || obj.className == "") {		
+		obj.className += "over";			
+	}
+			
+},			
+		
+// ---------- mouseOut   method ------------------------------------------------		
+mouseOut: function (obj){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	if (obj.className != null || obj.className == "") {
+		var clase = obj.className;		
+	    str = "over";
+		if(clase.indexOf("over")>=0){		   	
+			obj.className = clase.replace(str, '');
+		} 
+	}
+			
+},			
+		
+// ---------- clearText   method ------------------------------------------------		
+clearText: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	this.bodyTexto = '';
+			
+},			
+		
+// ---------- setTexto   method ------------------------------------------------		
+setTexto: function (texto){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	this.bodyTexto = texto;
+			
+},			
+		
+// ---------- setVisibility   method ------------------------------------------------		
+setVisibility: function (visibility){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	this.show = visibility;
+	this.paint(true,false);
+			
+},			
+		
+// ---------- repaint   method ------------------------------------------------		
+repaint: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+this.formatBodyTexto();
+this.paint(true,false);
+			
+},			
+		
+// ---------- getSelectedId   method ------------------------------------------------		
+getSelectedId: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+return this.selectedId;
+			
+},			
+		
+// ---------- raiseOnClick   method ------------------------------------------------		
+raiseOnClick: function (id){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var e=this.dom.getInstanceEvent(this,"OnClick");
+	e.id=id;
+	e.raise();
+			
+},			
+		
+// ---------- initialize   method ------------------------------------------------		
+initialize: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	
+	this._boldCode=/\*\*([^\*~]*((\*(?!\*)|~(.|(?=\n)|$))[^\*~]*)*)(\*\*)/g; //negrita
+	this._italicCode=/\/\/([^\/~]*((\/(?!\/)|~(.|(?=\n)|$))[^\/~]*)*)(\/\/)/g; //italic
+	this._supCode=/\^\^([^\^~]*((\^(?!\^)|~(.|(?=\n)|$))[^\^~]*)*)(\^\^)/g; //superIndice
+	this._subCode=/\,\,([^\,~]*((\,(?!\,)|~(.|(?=\n)|$))[^\,~]*)*)(\,\,)/g; //subIndice
+	this.JumpCode=/\|\|/g; //salto de linea
+	this.StyleCode=/\[{3}([^\[\|~]*)\|(([^\[\]~]*)|((\[{2})[^\]~]*(\]{2}))|([^\[~]*))\]{3}/g;//Estilos
+	this.LinkCode=/\[{2}([^\[~]*)\|([^\]~]*)\]{2}/g;//links
+	this.InternalLinkCode=/\{\{([^\{~]*)\|([^\}~]*)(\}\})/g;//Internal links
+	this.LinkCodeTarget=/\[\[([^\[~]*)\|([^\]~]*)\|([^\]~]*)(\]\])/g;//links con target
+	this._scapeCode=/\_\_([^\_~]*)(\_\_)/g;//Sustituir las dos '__' por '··'
+	this._barraCode=/:\/\/([^:\/\/=~]*)/g;//sustituir '://' del link por '#\\#'
+	this._barraAuxCode=/\#:\#([^\#:\#=~]*)/g;//sustituir '#\\#' por '://' del link
+
+	
+	this._boldHTML='<strong>$1</strong>';
+    this._italicHTML='<em>$1</em>';
+	this._supHTML='<sup>$1</sup>'
+	this._subHTML='<sub>$1</sub>'
+	this.LinkHTML='<a href="$1">$2</a>';
+	this.InternalLinkHTML='<a id="$1" onclick="'+this.getFullVarName()+'.selectedId=\'$1\';'+this.getFullVarName()+'.raiseOnClick(\'$1\');">$2</a>';
+	this.LinkHTMLTarget='<a href="$1" target="$3">$2</a>';
+	this.StyleHTML='<span class="$1">$2</span>';
+	this.JumpHTML='<br/>';
+	this._scapeHTML='$1';
+	this._barraHTML='#:#$1';//barra 
+	this._barraAuxHTML='://$1';//barra auxiliar
+	
+	this.bodyTexto=this.dom.getXmlValueAtName(this.dom.xmlNodes[this.xmltree],this.xmlTexto)?this.dom.getXmlValueAtName(this.dom.xmlNodes[this.xmltree],this.xmlTexto):this.bodyTexto;
+	this.bodyTexto= (this.bodyTextoLength!=0)?this.bodyTexto.substring(0,this.bodyTextoLength):this.bodyTexto;
+	if (this.bodyTexto!='') this.formatBodyTexto();
+			
+},			
+		
+// ---------- formatBodyTexto   method ------------------------------------------------		
+formatBodyTexto: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+
+	var _escWord=new Array();
+	_escWord=this.bodyTexto.match(this._scapeCode);
+	this.bodyTexto=this.bodyTexto.replace(this._scapeCode,'#ESC#');
+	
+
+	
+	this.etiquetaInicio=true;
+	this.bodyTexto=this.crearListas(this.bodyTexto.replace(/\+\s+\+/g,"++"),0,'');
+	
+	
+	this.bodyTexto=this.bodyTexto.replace(this.JumpCode,this.JumpHTML);//salto de linea
+	this.bodyTexto=this.bodyTexto.replace(this.StyleCode,this.StyleHTML);//Estilos
+	this.bodyTexto=this.bodyTexto.replace(this.LinkCodeTarget,this.LinkHTMLTarget);//link con target
+	this.bodyTexto=this.bodyTexto.replace(this.LinkCode,this.LinkHTML);//link sin target
+	
+	this.bodyTexto = this.bodyTexto.split('<a');
+	for(var i=1;i<this.bodyTexto.length;i++){
+		if(this.bodyTexto[i].indexOf(' href="#"')!=-1){
+			this.bodyTexto[i]=this.bodyTexto[i].replace('href="#"','');
+		} else if(this.bodyTexto[i].indexOf(" href='#'")!=-1){
+			this.bodyTexto[i]=this.bodyTexto[i].replace("href='#'",'');
+		} else if(this.bodyTexto[i].indexOf(' href=""')!=-1){
+			this.bodyTexto[i]=this.bodyTexto[i].replace('href=""','');
+		} else if(this.bodyTexto[i].indexOf(" href=''")!=-1){
+			this.bodyTexto[i]=this.bodyTexto[i].replace("href=''",'');
+		}
+		var strHref ='onmouseover="'+this.getFullVarName()+'.mouseOver(this)" onmouseout="'+this.getFullVarName()+'.mouseOut(this)"';
+		this.bodyTexto[i]='<a '+strHref+' class="" id="'+ this.getId("enlace_")+i+'"'+this.bodyTexto[i];
+	}
+	this.bodyTexto=this.bodyTexto.join('');
+	this.bodyTexto=this.bodyTexto.replace(this.InternalLinkCode,this.InternalLinkHTML);//Internal link
+	if(this.bodyTexto.indexOf('://')!=-1){//Evita que la cursiva modifique la barra url
+		this.bodyTexto=this.bodyTexto.replace(this._barraCode,this._barraHTML);
+	}
+	this.bodyTexto=this.bodyTexto.replace(this._boldCode,this._boldHTML);//negrita
+	this.bodyTexto=this.bodyTexto.replace(this._italicCode,this._italicHTML);//cursiva
+	this.bodyTexto=this.bodyTexto.replace(this._supCode,this._supHTML);//Superindice
+	this.bodyTexto=this.bodyTexto.replace(this._subCode,this._subHTML);//Subindice
+	
+	if(this.bodyTexto.indexOf('#:#')!=-1){//Vuelve la barra url a su forma.
+		this.bodyTexto=this.bodyTexto.replace(this._barraAuxCode,this._barraAuxHTML);
+	}		
+		
+	
+	if(_escWord!=null){
+		for(var pos=0;pos<_escWord.length;pos++){
+			this.bodyTexto=this.bodyTexto.replace('#ESC#',_escWord[pos].replace(this._scapeCode,this._scapeHTML));
+		}
+	}	
+			
+},			
+		
+// ---------- crearListas   method ------------------------------------------------		
+crearListas: function (cadena,closeList,result){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var stringLeft=stringRight=numMases=null;
+	var tagIni=tagFin=_auxMases='';
+	
+	var patron=new RegExp("[\+]+");//buscamos las cadenas de mases
+	var ok=patron.test(cadena);
+	
+	if(ok==false && result!=""){
+		return result+RegExp.rightContext;//el ultimo RightContext con exito
+	}else if(ok==false){
+		return cadena;//no se encontraron listas
+	}else{
+		stringLeft=RegExp.leftContext;
+		stringRight=RegExp.rightContext;
+		numMases=RegExp.lastMatch;
+	}
+	
+	
+	if (RegExp.rightContext==""){
+		//Faltan mases para cerrar correctamente la lista o llegan los esperados
+		if((numMases.length < closeList)||(numMases.length == closeList)){
+			for(var i=0;i<closeList;i++){
+				tagFin+='</li></ul>';//Cierra automaticamente para realizar una estructura correcta
+			}
+			result+=stringLeft+tagFin;
+		}else{//Sobran mases
+			if(closeList==0){
+				for(var i=0;i<numMases.length;i++){
+					_auxMases+='+';
+				}
+			}else{
+				for(var i=0;i<closeList;i++){
+					tagFin+='</li></ul>';
+				}
+				for(var i=0;i<numMases.length-closeList;i++)
+					_auxMases+='+';
+			}
+			result+=stringLeft+tagFin+_auxMases;
+		}
+		return result;
+	}
+	
+	
+	if(this.etiquetaInicio && !patron.test(stringRight)){//Si no se cierra
+		this.etiquetaInicio=!this.etiquetaInicio;
+		if(closeList!=0){//Si se abrió una lista se cierra
+			for(var i=0;i<closeList;i++){
+				tagFin+='</li></ul>';
+			}
+		}
+		for(var i=0;i<numMases.length-closeList;i++){
+			_auxMases+='+';
+		}
+		return result+stringLeft+tagFin+_auxMases+stringRight;
+	}else{//Se cierra correctamente
+		this.etiquetaInicio=!this.etiquetaInicio;
+		if((numMases.length < closeList)||(numMases.length == closeList)){//Si faltan mases
+			for(var i=0;i<closeList;i++){
+				tagFin+='</li></ul>';
+			}
+			result+=stringLeft+tagFin;
+			return this.crearListas(stringRight,0,result);
+		}else{
+			if(closeList==0){
+				for(var i=0;i<numMases.length;i++){
+					tagIni+='<ul><li>';
+				}
+				result+=stringLeft+tagIni;
+				return this.crearListas(stringRight,numMases.length,result);
+			}else{
+				var auxMases=closeList;
+				closeList=numMases.length-closeList; 
+				if(closeList==auxMases){
+					if(!patron.test(stringRight)){
+						for(var i=0;i<closeList;i++){
+							tagFin+='</li></ul>';
+							tagIni+='+';
+						}
+					}else{
+						tagIni='<li>'; 
+						tagFin='</li>';
+					}
+					
+				}else if(closeList>auxMases){
+					for(var i=0;i<closeList-auxMases;i++){
+						tagIni+='<ul><li>';
+					}
+					tagFin=''; 
+				}else{
+					for(var i=0;i<auxMases-closeList;i++){
+						tagFin+='</li></ul>';
+					}
+					tagIni='<li>';
+				}
+				result+=stringLeft+tagFin+tagIni;
+				return this.crearListas(stringRight,closeList,result);
+			}
+			
+		}
+	}
+			
+},			
+		
+// ---------- pintar_componente   method ------------------------------------------------		
+pintar_componente: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var output = [];
+	var claseL = (this.layoutContenedor!=null || this.layoutGrid!=null)?' padding0':'';
+	var id1024=(this.bancaOnline1024!=null)? '':'marco'
+	var titulo = (this.Tooltip!='')?' title="'+this.Tooltip+'" ':'';
+	if(!/\<ul\>/.test(this.bodyTexto)){
+		output.push('<p class="'+id1024+' '+this.renderMode+' '+this.className+claseL+'"'+titulo+'>');
+		if (this.renderMode=='etiquetamarco')
+			output.push('<img src="'+URI+'/Globales/Images/clear.png" />');
+		if (this.show){
+			output.push(this.bodyTexto);
+		}
+		output.push('</p>');
+	}else{
+		output.push('<div class="'+id1024+' '+this.renderMode+' '+this.className+claseL+'"'+titulo+'>');
+		if (this.show){
+			output.push(this.bodyTexto);
+		}	
+		output.push('</div>');
+	}
+	
+	return output.join('');
+			
+},			
+// ---------- drawHeader   method ------------------------------------------------		
+drawHeader: function () {			
+var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};			
+this.setText('Globales_Bhtcs_Info_Texto');			
+			
+var s = new Array();			
+this.initialize();			
+
+return s.join(' ');			
+},			
+		
+// ---------- drawBody   method ------------------------------------------------		
+drawBody: function (d,l) {return this.dom.getBodyValue(d,l,this);},		
+// ---------- paint   method ------------------------------------------------		
+paint: function (draw,init) {var s = new Array();s.push((this.layoutv2!=null || this.layoutGrid!=null )?'<div class="':'' );s.push((this.layoutv2!=null)?'lyTexto':(this.layoutGrid!=null&&this.bancaOnline1024==null)?'lygTexto':'');s.push(((this.layoutGrid!=null||this.layoutGrid!=null) && this.bancaOnline1024!=null)?' BancaOnline1024Texto':'' );s.push((this.layoutv2!=null || this.layoutGrid!=null )?'">':'' );s.push( this.pintar_componente() );s.push((this.layoutv2!=null)?"</div>":((this.layoutGrid!=null)?"</div>":"") );return this.dom.paint(draw,init,this,s.join(''));			
+}			
+
+}
+
+;dom.onLoaded('Globales_Bhtcs_Info_Texto');

@@ -1,0 +1,420 @@
+
+dom.getImports(['Globales_Bhtcs_Util_Label','Globales_Bhtcs_Info_Texto','Globales_Bhtcs_ObjForms_Input'],'ALP_AREPER_Tfno_MulticanalPres_E_Bhtcs_Default_formModTfnoMulticanal_V01');
+
+/*110613*/
+function ALP_AREPER_Tfno_MulticanalPres_E_Bhtcs_Default_formModTfnoMulticanal_V01_m (id,parent,l,s,m) {	
+this.main=parent.main;this.dom=this.main.dom;this.dom.setLocation(this,l);	
+this._M1='ALP_AREPER_Tfno_MulticanalPres_E_Bhtcs_Default_formModTfnoMulticanal_V01';this.jsVarName = id;	
+this.parent = parent;	
+this.text = new Array();this.setText = this.base.setText;this.getFullVarName = this.base.getFullVarName;this.getId = this.base.getId;this.getDataText = this.base.getDataText;this.getMain = this.base.getMain;this.openWindowPopup = this.base.openWindowPopup;	
+this.styleResources = [];	
+this.dimension = [589,177];	
+this.scrResFixed = true;	
+this.rdbOperActEsp___inputradio = [false,''];	
+this.rdbOperActInt___inputradio = [false,''];	
+this.lblLitOperActEsp___xpathtext = '';	
+this.lblLitOperActEsp___xpathhref = '';	
+this.lblLitOperActEsp___xpathtooltip = '';	
+this.lblLitOperActEsp___xpathfor = '';	
+this.lblLitOperActEsp___xpathid = '';	
+this.lblLitOperActEsp___xpathtarget = '';	
+this.lblLitOperActInt___xpathtext = '';	
+this.lblLitOperActInt___xpathhref = '';	
+this.lblLitOperActInt___xpathtooltip = '';	
+this.lblLitOperActInt___xpathfor = '';	
+this.lblLitOperActInt___xpathid = '';	
+this.lblLitOperActInt___xpathtarget = '';	
+this.lblLitMovilAct___xpathtext = '';	
+this.lblLitMovilAct___xpathhref = '';	
+this.lblLitMovilAct___xpathtooltip = '';	
+this.lblLitMovilAct___xpathfor = '';	
+this.lblLitMovilAct___xpathid = '';	
+this.lblLitMovilAct___xpathtarget = '';	
+this.inputMovilAct___inputtext = [false,''];	
+this.lblLitOperNuvEsp___xpathtext = '';	
+this.lblLitOperNuvEsp___xpathhref = '';	
+this.lblLitOperNuvEsp___xpathtooltip = '';	
+this.lblLitOperNuvEsp___xpathfor = '';	
+this.lblLitOperNuvEsp___xpathid = '';	
+this.lblLitOperNuvEsp___xpathtarget = '';	
+this.rdbOperNuvEsp___inputradio = [false,''];	
+this.rdbOperNuvInt___inputradio = [false,''];	
+this.lblLitOperNuvInt___xpathtext = '';	
+this.lblLitOperNuvInt___xpathhref = '';	
+this.lblLitOperNuvInt___xpathtooltip = '';	
+this.lblLitOperNuvInt___xpathfor = '';	
+this.lblLitOperNuvInt___xpathid = '';	
+this.lblLitOperNuvInt___xpathtarget = '';	
+this.lblLitMovilNuv___xpathtext = '';	
+this.lblLitMovilNuv___xpathhref = '';	
+this.lblLitMovilNuv___xpathtooltip = '';	
+this.lblLitMovilNuv___xpathfor = '';	
+this.lblLitMovilNuv___xpathid = '';	
+this.lblLitMovilNuv___xpathtarget = '';	
+this.lblLitMovilConf___xpathtext = '';	
+this.lblLitMovilConf___xpathhref = '';	
+this.lblLitMovilConf___xpathtooltip = '';	
+this.lblLitMovilConf___xpathfor = '';	
+this.lblLitMovilConf___xpathid = '';	
+this.lblLitMovilConf___xpathtarget = '';	
+this.inputMovilNuv___inputtext = [false,''];	
+this.inputMovilConf___inputtext = [false,''];	
+this.txtInfo___xmlTexto = 'texto';	
+this.rdbOperActEsp__onClick = dom.getInstanceBase().nullEventRaiser;
+this.rdbOperActInt__onClick = dom.getInstanceBase().nullEventRaiser;
+this.rdbOperNuvInt__onClick = dom.getInstanceBase().nullEventRaiser;
+this.rdbOperNuvEsp__onClick = dom.getInstanceBase().nullEventRaiser;
+}
+ALP_AREPER_Tfno_MulticanalPres_E_Bhtcs_Default_formModTfnoMulticanal_V01_m.prototype = { base: dom.getInstanceBase(),			
+		
+// ---------- initialize   method ------------------------------------------------		
+initialize: function (){},			
+		
+// ---------- onload   method ------------------------------------------------		
+onload: function () {this.txtInfo.onload();this.rdbOperActEsp.onload();this.rdbOperActInt.onload();this.lblLitOperActEsp.onload();this.lblLitOperActInt.onload();this.inputMovilAct.onload();this.lblLitMovilAct.onload();this.rdbOperNuvEsp.onload();this.rdbOperNuvInt.onload();this.lblLitOperNuvEsp.onload();this.lblLitOperNuvInt.onload();this.inputMovilNuv.onload();this.lblLitMovilNuv.onload();this.inputMovilConf.onload();this.lblLitMovilConf.onload();	
+},			
+		
+// ---------- onClickrdbOperActEsp   method ------------------------------------------------		
+onClickrdbOperActEsp: function (event){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+  
+	var evt = this.dom.getInstanceEvent(this.parent,"rdbOperActEsp__onClick");
+	evt.raise();
+			
+},			
+		
+// ---------- onClickrdbOperActInt   method ------------------------------------------------		
+onClickrdbOperActInt: function (event){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+  
+	var evt = this.dom.getInstanceEvent(this.parent,"rdbOperActInt__onClick");
+	evt.raise();
+			
+},			
+		
+// ---------- onClickrdbOperNuvEsp   method ------------------------------------------------		
+onClickrdbOperNuvEsp: function (event){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+  
+	var evt = this.dom.getInstanceEvent(this.parent,"rdbOperNuvEsp__onClick");
+	evt.raise();
+			
+},			
+		
+// ---------- onClickrdbOperNuvInt   method ------------------------------------------------		
+onClickrdbOperNuvInt: function (event){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+  
+	var evt = this.dom.getInstanceEvent(this.parent,"rdbOperNuvInt__onClick");
+	evt.raise();
+			
+},			
+		
+// ---------- display   method ------------------------------------------------		
+display: function (id,action){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){}; 
+var elem = this.getElementById( id );
+if( elem != null ){
+  elem.style.display = action;
+  if( elem.children != null )
+    for( var i = 0 ; i < elem.children.length; i++){
+      var currId = elem.children.item(i).id;
+      if( typeof currId != 'undefined' && currId.length != 0 )
+         this.display( currId , action );
+    }
+}
+			
+},			
+		
+// ---------- printHidden   method ------------------------------------------------		
+printHidden: function (id){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+ return '';
+			
+},			
+		
+// ---------- getElementByAlias   method ------------------------------------------------		
+getElementByAlias: function (alias){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	return this.getElementById( id );
+			
+},			
+		
+// ---------- getElementById   method ------------------------------------------------		
+getElementById: function (element){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var parent = this.dom.getOut().getElementById( 'div' + this.jsVarName );
+	switch( element ){case 'lblLitMovilConf': element='l_1401203913757_16'; break;case 'lblLitMovilNuv': element='l_1401203881437_11'; break;case 'lblLitOperActEsp': element='l_1401201669450_20'; break;case 'lblLitMovilAct': element='l_1401201872878_31'; break;case 'lblLitOperNuvInt': element='l_1401203834701_2'; break;case 'lblLitOperActInt': element='l_1401201723142_22'; break;case 'lblLitOperNuvEsp': element='l_1401202793524_31'; break;}
+	return (parent != null ? this.dom.getInnerElement( element , parent ) : null );
+			
+},			
+		
+// ---------- setOK   method ------------------------------------------------		
+setOK: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+    var subComps = this.getSubComponents();
+    for (var i=0;i<subComps.length;i++){
+        if (subComps[i].setOK instanceof Function ){
+            subComps[i].setOK();
+        }
+    }
+			
+},			
+		
+// ---------- getSubComponents   method ------------------------------------------------		
+getSubComponents: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+  return  [this.rdbOperActEsp,this.rdbOperActInt,this.lblLitOperActEsp,this.lblLitOperActInt,this.lblLitMovilAct,this.inputMovilAct,this.lblLitOperNuvEsp,this.rdbOperNuvEsp,this.rdbOperNuvInt,this.lblLitOperNuvInt,this.lblLitMovilNuv,this.lblLitMovilConf,this.inputMovilNuv,this.inputMovilConf,this.txtInfo];
+			
+},			
+// ---------- drawHeader   method ------------------------------------------------		
+drawHeader: function () {			
+var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};			
+this.setText('ALP_AREPER_Tfno_MulticanalPres_E_Bhtcs_Default_formModTfnoMulticanal_V01');			
+			
+var s = new Array();			
+	
+	
+this.txtInfo = new Globales_Bhtcs_Info_Texto_m("txtInfo",this,[11,6,559,20,0],s,[]);	
+	
+	
+	
+	
+	
+	
+	
+this.rdbOperActEsp = new Globales_Bhtcs_ObjForms_Input_m("rdbOperActEsp",this,[7,39,20,20,0],s,[]);	
+	
+	
+	
+	
+	
+	
+this.rdbOperActInt = new Globales_Bhtcs_ObjForms_Input_m("rdbOperActInt",this,[170,39,20,20,0],s,[]);	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+this.lblLitOperActEsp = new Globales_Bhtcs_Util_Label_m("lblLitOperActEsp",this,[32,42,113,20,0],s,[]);	
+this.lblLitOperActEsp.tooltip = this.getDataText('lblLitOperActEsp_tooltip_0',this.lblLitOperActEsp);	
+	
+	
+	
+	
+	
+	
+	
+	
+this.lblLitOperActInt = new Globales_Bhtcs_Util_Label_m("lblLitOperActInt",this,[194,42,143,20,0],s,[]);	
+this.lblLitOperActInt.tooltip = this.getDataText('lblLitOperActInt_tooltip_0',this.lblLitOperActInt);	
+	
+	
+	
+this.inputMovilAct = new Globales_Bhtcs_ObjForms_Input_m("inputMovilAct",this,[207,66,132,20,0],s,[]);	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+this.lblLitMovilAct = new Globales_Bhtcs_Util_Label_m("lblLitMovilAct",this,[13,67,190,20,0],s,[]);	
+	
+	
+	
+	
+	
+	
+	
+this.rdbOperNuvEsp = new Globales_Bhtcs_ObjForms_Input_m("rdbOperNuvEsp",this,[7,92,20,20,0],s,[]);	
+	
+	
+	
+	
+	
+	
+this.rdbOperNuvInt = new Globales_Bhtcs_ObjForms_Input_m("rdbOperNuvInt",this,[172,92,20,20,0],s,[]);	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+this.lblLitOperNuvEsp = new Globales_Bhtcs_Util_Label_m("lblLitOperNuvEsp",this,[31,95,113,20,0],s,[]);	
+this.lblLitOperNuvEsp.tooltip = this.getDataText('lblLitOperNuvEsp_tooltip_0',this.lblLitOperNuvEsp);	
+	
+	
+	
+	
+	
+	
+	
+	
+this.lblLitOperNuvInt = new Globales_Bhtcs_Util_Label_m("lblLitOperNuvInt",this,[198,95,143,20,0],s,[]);	
+this.lblLitOperNuvInt.tooltip = this.getDataText('lblLitOperNuvInt_tooltip_0',this.lblLitOperNuvInt);	
+	
+	
+	
+this.inputMovilNuv = new Globales_Bhtcs_ObjForms_Input_m("inputMovilNuv",this,[207,119,132,20,0],s,[]);	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+this.lblLitMovilNuv = new Globales_Bhtcs_Util_Label_m("lblLitMovilNuv",this,[13,120,190,20,0],s,[]);	
+	
+	
+	
+	
+this.inputMovilConf = new Globales_Bhtcs_ObjForms_Input_m("inputMovilConf",this,[207,143,132,20,0],s,[]);	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+this.lblLitMovilConf = new Globales_Bhtcs_Util_Label_m("lblLitMovilConf",this,[13,144,190,20,0],s,[]);	
+this.txtInfo.bodyTexto = this.getDataText('txtInfo_bodyTexto_0',this.txtInfo);this.txtInfo.xmlTexto = this.txtInfo___xmlTexto;
+s.push(this.txtInfo.drawHeader());this.rdbOperActEsp.inputRoot = 'root';
+this.rdbOperActEsp.input = this.rdbOperActEsp___inputradio;
+this.rdbOperActEsp.name = 'rdbOperAct';
+this.rdbOperActEsp.type = 'radio';
+this.rdbOperActEsp.tabindex = '5';
+this.rdbOperActEsp.checked = true;
+this.rdbOperActEsp.id = 'idRdbOperActEsp';
+s.push(this.rdbOperActEsp.drawHeader());this.rdbOperActInt.inputRoot = 'root';
+this.rdbOperActInt.input = this.rdbOperActInt___inputradio;
+this.rdbOperActInt.name = 'rdbOperAct';
+this.rdbOperActInt.type = 'radio';
+this.rdbOperActInt.tabindex = '10';
+this.rdbOperActInt.id = 'idRdbOperActInt';
+s.push(this.rdbOperActInt.drawHeader());this.lblLitOperActEsp.xpathhref = this.lblLitOperActEsp___xpathhref;
+this.lblLitOperActEsp.width = '113';
+this.lblLitOperActEsp.xpathtooltip = this.lblLitOperActEsp___xpathtooltip;
+this.lblLitOperActEsp.xpathfor = this.lblLitOperActEsp___xpathfor;
+this.lblLitOperActEsp.xpathid = this.lblLitOperActEsp___xpathid;
+this.lblLitOperActEsp.xpathtarget = this.lblLitOperActEsp___xpathtarget;
+this.lblLitOperActEsp.xpathtext = this.lblLitOperActEsp___xpathtext;
+this.lblLitOperActEsp.text = this.getDataText('l_1401201669450_20',this.lblLitOperActEsp);this.lblLitOperActEsp.height = '20';
+s.push(this.lblLitOperActEsp.drawHeader());this.lblLitOperActInt.xpathhref = this.lblLitOperActInt___xpathhref;
+this.lblLitOperActInt.width = '143';
+this.lblLitOperActInt.xpathtooltip = this.lblLitOperActInt___xpathtooltip;
+this.lblLitOperActInt.xpathfor = this.lblLitOperActInt___xpathfor;
+this.lblLitOperActInt.xpathid = this.lblLitOperActInt___xpathid;
+this.lblLitOperActInt.xpathtarget = this.lblLitOperActInt___xpathtarget;
+this.lblLitOperActInt.xpathtext = this.lblLitOperActInt___xpathtext;
+this.lblLitOperActInt.text = this.getDataText('l_1401201723142_22',this.lblLitOperActInt);this.lblLitOperActInt.height = '20';
+s.push(this.lblLitOperActInt.drawHeader());this.inputMovilAct.maxLength = '14';
+this.inputMovilAct.inputRoot = 'root';
+this.inputMovilAct.input = this.inputMovilAct___inputtext;
+this.inputMovilAct.tabindex = '15';
+s.push(this.inputMovilAct.drawHeader());this.lblLitMovilAct.xpathhref = this.lblLitMovilAct___xpathhref;
+this.lblLitMovilAct.width = '190';
+this.lblLitMovilAct.xpathtooltip = this.lblLitMovilAct___xpathtooltip;
+this.lblLitMovilAct.xpathfor = this.lblLitMovilAct___xpathfor;
+this.lblLitMovilAct.xpathid = this.lblLitMovilAct___xpathid;
+this.lblLitMovilAct.xpathtarget = this.lblLitMovilAct___xpathtarget;
+this.lblLitMovilAct.xpathtext = this.lblLitMovilAct___xpathtext;
+this.lblLitMovilAct.tclass = 'labelForm';
+this.lblLitMovilAct.text = this.getDataText('l_1401201872878_31',this.lblLitMovilAct);this.lblLitMovilAct.height = '20';
+this.lblLitMovilAct.tooltip = this.main.text['lblLitMovilAct_tooltip_0'];s.push(this.lblLitMovilAct.drawHeader());this.rdbOperNuvEsp.inputRoot = 'root';
+this.rdbOperNuvEsp.input = this.rdbOperNuvEsp___inputradio;
+this.rdbOperNuvEsp.name = 'rdbOperNuv';
+this.rdbOperNuvEsp.type = 'radio';
+this.rdbOperNuvEsp.tabindex = '20';
+this.rdbOperNuvEsp.checked = true;
+this.rdbOperNuvEsp.id = 'idRdbOperNuvEsp';
+s.push(this.rdbOperNuvEsp.drawHeader());this.rdbOperNuvInt.inputRoot = 'root';
+this.rdbOperNuvInt.input = this.rdbOperNuvInt___inputradio;
+this.rdbOperNuvInt.name = 'rdbOperNuv';
+this.rdbOperNuvInt.type = 'radio';
+this.rdbOperNuvInt.tabindex = '25';
+this.rdbOperNuvInt.id = 'idRdbOperNuvInt';
+s.push(this.rdbOperNuvInt.drawHeader());this.lblLitOperNuvEsp.xpathhref = this.lblLitOperNuvEsp___xpathhref;
+this.lblLitOperNuvEsp.width = '113';
+this.lblLitOperNuvEsp.xpathtooltip = this.lblLitOperNuvEsp___xpathtooltip;
+this.lblLitOperNuvEsp.xpathfor = this.lblLitOperNuvEsp___xpathfor;
+this.lblLitOperNuvEsp.xpathid = this.lblLitOperNuvEsp___xpathid;
+this.lblLitOperNuvEsp.xpathtarget = this.lblLitOperNuvEsp___xpathtarget;
+this.lblLitOperNuvEsp.xpathtext = this.lblLitOperNuvEsp___xpathtext;
+this.lblLitOperNuvEsp.text = this.getDataText('l_1401202793524_31',this.lblLitOperNuvEsp);this.lblLitOperNuvEsp.height = '20';
+s.push(this.lblLitOperNuvEsp.drawHeader());this.lblLitOperNuvInt.xpathhref = this.lblLitOperNuvInt___xpathhref;
+this.lblLitOperNuvInt.width = '143';
+this.lblLitOperNuvInt.xpathtooltip = this.lblLitOperNuvInt___xpathtooltip;
+this.lblLitOperNuvInt.xpathfor = this.lblLitOperNuvInt___xpathfor;
+this.lblLitOperNuvInt.xpathid = this.lblLitOperNuvInt___xpathid;
+this.lblLitOperNuvInt.xpathtarget = this.lblLitOperNuvInt___xpathtarget;
+this.lblLitOperNuvInt.xpathtext = this.lblLitOperNuvInt___xpathtext;
+this.lblLitOperNuvInt.text = this.getDataText('l_1401203834701_2',this.lblLitOperNuvInt);this.lblLitOperNuvInt.height = '20';
+s.push(this.lblLitOperNuvInt.drawHeader());this.inputMovilNuv.maxLength = '14';
+this.inputMovilNuv.inputRoot = 'root';
+this.inputMovilNuv.input = this.inputMovilNuv___inputtext;
+this.inputMovilNuv.tabindex = '30';
+s.push(this.inputMovilNuv.drawHeader());this.lblLitMovilNuv.xpathhref = this.lblLitMovilNuv___xpathhref;
+this.lblLitMovilNuv.width = '190';
+this.lblLitMovilNuv.xpathtooltip = this.lblLitMovilNuv___xpathtooltip;
+this.lblLitMovilNuv.xpathfor = this.lblLitMovilNuv___xpathfor;
+this.lblLitMovilNuv.xpathid = this.lblLitMovilNuv___xpathid;
+this.lblLitMovilNuv.xpathtarget = this.lblLitMovilNuv___xpathtarget;
+this.lblLitMovilNuv.xpathtext = this.lblLitMovilNuv___xpathtext;
+this.lblLitMovilNuv.tclass = 'labelForm';
+this.lblLitMovilNuv.text = this.getDataText('l_1401203881437_11',this.lblLitMovilNuv);this.lblLitMovilNuv.height = '20';
+this.lblLitMovilNuv.tooltip = this.main.text['lblLitMovilNuv_tooltip_0'];s.push(this.lblLitMovilNuv.drawHeader());this.inputMovilConf.maxLength = '14';
+this.inputMovilConf.inputRoot = 'root';
+this.inputMovilConf.input = this.inputMovilConf___inputtext;
+this.inputMovilConf.tabindex = '35';
+s.push(this.inputMovilConf.drawHeader());this.lblLitMovilConf.xpathhref = this.lblLitMovilConf___xpathhref;
+this.lblLitMovilConf.width = '190';
+this.lblLitMovilConf.xpathtooltip = this.lblLitMovilConf___xpathtooltip;
+this.lblLitMovilConf.xpathfor = this.lblLitMovilConf___xpathfor;
+this.lblLitMovilConf.xpathid = this.lblLitMovilConf___xpathid;
+this.lblLitMovilConf.xpathtarget = this.lblLitMovilConf___xpathtarget;
+this.lblLitMovilConf.xpathtext = this.lblLitMovilConf___xpathtext;
+this.lblLitMovilConf.tclass = 'labelForm';
+this.lblLitMovilConf.text = this.getDataText('l_1401203913757_16',this.lblLitMovilConf);this.lblLitMovilConf.height = '20';
+this.lblLitMovilConf.tooltip = this.main.text['lblLitMovilConf_tooltip_0'];s.push(this.lblLitMovilConf.drawHeader());this.initialize();			
+
+return s.join(' ');			
+},			
+		
+// ---------- drawBody   method ------------------------------------------------		
+drawBody: function (d,l) {return this.dom.getBodyValue(d,l,this);},		
+// ---------- paint   method ------------------------------------------------		
+paint: function (draw,init) {var s = new Array();s.push("<div id=\"div");s.push( this.jsVarName );s.push("\"  style=\"position:relative;width:589px;height:177px;\" onresize=\"var object = ");s.push( this.getFullVarName());s.push("; if( object && object.postPaint ) object.postPaint();\" >");s.push(this.txtInfo.drawBody(true,true));		
+this.rdbOperActEsp.onClick = this.onClickrdbOperActEsp;			
+s.push(this.rdbOperActEsp.drawBody(true,true));		
+this.rdbOperActInt.onClick = this.onClickrdbOperActInt;			
+s.push(this.rdbOperActInt.drawBody(true,true));		
+s.push(this.lblLitOperActEsp.drawBody(true,true));		
+s.push(this.lblLitOperActInt.drawBody(true,true));		
+s.push(this.inputMovilAct.drawBody(true,true));		
+s.push(this.lblLitMovilAct.drawBody(true,true));		
+this.rdbOperNuvEsp.onClick = this.onClickrdbOperNuvEsp;			
+s.push(this.rdbOperNuvEsp.drawBody(true,true));		
+this.rdbOperNuvInt.onClick = this.onClickrdbOperNuvInt;			
+s.push(this.rdbOperNuvInt.drawBody(true,true));		
+s.push(this.lblLitOperNuvEsp.drawBody(true,true));		
+s.push(this.lblLitOperNuvInt.drawBody(true,true));		
+s.push(this.inputMovilNuv.drawBody(true,true));		
+s.push(this.lblLitMovilNuv.drawBody(true,true));		
+s.push(this.inputMovilConf.drawBody(true,true));		
+s.push(this.lblLitMovilConf.drawBody(true,true));		
+s.push("</div>");return this.dom.paint(draw,init,this,s.join(''));			
+}			
+
+}
+
+;dom.onLoaded('ALP_AREPER_Tfno_MulticanalPres_E_Bhtcs_Default_formModTfnoMulticanal_V01');

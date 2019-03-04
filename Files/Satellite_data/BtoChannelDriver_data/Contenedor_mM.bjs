@@ -1,0 +1,189 @@
+
+
+
+/*130611*/
+function Globales_Bhtcs_Internet_AT_Contenedor_m (id,parent,l,s,m) {	
+this.main=parent.main;this.dom=this.main.dom;this.dom.setLocation(this,l);	
+this._M1='Globales_Bhtcs_Internet_AT_Contenedor';this.jsVarName = id;	
+this.parent = parent;	
+this.text = new Array();this.setText = this.base.setText;this.getFullVarName = this.base.getFullVarName;this.getId = this.base.getId;this.getDataText = this.base.getDataText;this.getMain = this.base.getMain;this.openWindowPopup = this.base.openWindowPopup;this.dom.getLinks(['Globales_Styles_Internet_Banesto_css'],'Globales_Bhtcs_Internet_AT_Contenedor'+id,true);	
+this._CVSRevision = '$Revision: 1.51.2.53 $';	
+this.printMode = 'pr';	
+this.respectContentCipping = true;	
+this.styleResources = this.dom.getRPath(this._M1,id,'css');	
+this.plugins = [];	
+this.colorFondo = 'bodyColorDefault';	
+this.header = null;	
+this.content = null;	
+this.foot = null;	
+this.foot2 = null;	
+this.mode = 0;	
+this.className = ['modoContenedor','modoAgrupador','modoFicha','modoOpciones','ContenedorImagen'];	
+this.height = 'auto';	
+this.width = '100%';	
+this.scroll = 'overflow:hidden;';	
+this.layoutCenter = false;	
+}
+Globales_Bhtcs_Internet_AT_Contenedor_m.prototype = { base: dom.getInstanceBase(),			
+		
+// ---------- initialize   method ------------------------------------------------		
+initialize: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var contentWidth=0;
+	this.emconstant = 11;
+	this.display={head:"block",content:"block",foot:"block",foot2:"block"};
+		for (var i=0;this.plugins && i<this.plugins.length;i++) {
+		this.plugins[i].register(this);			
+		this.plugins[i].printMode=this.printMode;
+		}
+ 	if (this.content && this.content.width){
+		if (this.content.width.length>1){
+ 			contentWidth='100%';
+ 		}else{
+ 			if (this.content.width[0] && this.content.width[0].length>1){
+ 				contentWidth='100%';
+ 			}else{
+	 			contentWidth=this.content.width;
+	 		}
+ 		}
+	}
+	this.auxWidth = this.width;
+	if (this.width=='auto' || this.width=='' || this.width==null) this.width='100%';
+	if(this.content) {
+		if((this.width=='100%' || this.width<this.content.width) && this.content.width && this.content.width!="auto") this.width=contentWidth;
+	}
+	if (this.height.indexOf("%")!=-1) this.height='auto';
+			
+},			
+		
+// ---------- emround   method ------------------------------------------------		
+emround: function (numero){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var n = (Math.round(numero * Math.pow(10, 2)) / Math.pow(10, 2)).toString();
+	var point = n.indexOf('.');
+	if (point == -1) {
+		len = 0;
+		n += 2 > 0 ? '.' : '';
+	}
+	else {
+		len = n.length - point - 1;
+	}
+	var pad = 2 - len;
+	if (pad > 0) {
+		for (var counter = 1; counter <= pad; counter++) {
+			n += '0';
+		}
+	}
+	return n;
+			
+},			
+		
+// ---------- postPaint   method ------------------------------------------------		
+postPaint: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	if (this.header) this.header._container=this;
+	if (this.content) this.content._container=this;
+	if (this.foot) this.foot._container=this;
+	if (this.foot2) this.foot2._container=this;
+	for (var i=0;this.plugins && i<this.plugins.length;i++) this.plugins[i].register(this);		
+	var hh=this.dom.getOut().getElementById(this.getId('HEAD'));
+	if (hh) hh.style.display=this.display.head;
+	var hc=this.dom.getOut().getElementById(this.getId('CONTENT'));
+	if (hc) hc.style.display=this.display.content;
+	var hf=this.dom.getOut().getElementById(this.getId('FOOT'));
+	var hf2=this.dom.getOut().getElementById(this.getId('FOOT2'));
+	if (hf) hf.style.display=this.display.foot;	
+	if (hf2) hf2.style.display=this.display.foot2;	
+	var layer = this.dom.getOut().getElementById(this.getId('CONTAINER'));		
+	if (!isNaN(parseInt(this.height,10))){	
+		var hHead = (hh)?hh.offsetHeight:0;
+//		var hContent = hc.offsetHeight;
+		var hFoot = (hf)?hf.offsetHeight:0;
+		var hFoot2 = (hf2)?hf2.offsetHeight:0;
+		var aux=this.height-hHead-hFoot-hFoot2;
+		if (aux>0 && hc!=null)
+			hc.style.height=aux;
+	}
+			
+},			
+		
+// ---------- EvalScripts   method ------------------------------------------------		
+EvalScripts: function (element){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var scriptTags = element.getElementsByTagName("script");
+	for (var i=0;scriptTags && i<scriptTags.length;i++) eval(scriptTags[i].text);
+			
+},			
+		
+// ---------- repaint   method ------------------------------------------------		
+repaint: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	if(!this.dom.getOut().getElementById(this.getId('REPAINT'))) return false;
+	var dest = this.dom.getOut().getElementById(this.getId('REPAINT')).parentNode;
+	if (dest){
+		dest.innerHTML=this.paint(true,true);
+		this.EvalScripts(dest);			
+	}		
+			
+},			
+		
+// ---------- onload   method ------------------------------------------------		
+onload: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+this.postPaint();
+var head=this.dom.getOut().getElementById(this.getId("HEAD"));
+var content=this.dom.getOut().getElementById(this.getId("CONTENT"));
+var foot=this.dom.getOut().getElementById(this.getId("FOOT"));
+var foot2=this.dom.getOut().getElementById(this.getId("FOOT2"));
+
+if (this.collapsed){ this.dom.getOut().getElementById(this.getId('CONTENT')).style.height='auto';
+	if (content) content.style.display="none";
+	if (foot) foot.style.display="none";
+	if (foot2) foot2.style.display="none";
+	if (this.display) this.display.content=this.display.foot="none";
+	if (this.display) this.display.content=this.display.foot2="none";
+}
+			
+},			
+// ---------- drawHeader   method ------------------------------------------------		
+drawHeader: function () {			
+var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};			
+this.setText('Globales_Bhtcs_Internet_AT_Contenedor');			
+			
+var s = new Array();			
+this.initialize();			
+
+return s.join(' ');			
+},			
+		
+// ---------- drawBody   method ------------------------------------------------		
+drawBody: function (d,l) {return this.dom.getBodyValue(d,l,this);},		
+// ---------- paint   method ------------------------------------------------		
+paint: function (draw,init) {var s = new Array(); 
+	var tipoCabSimple='default';
+	var bS1 = (this.respectContentCipping)? '': ' noClip';
+	var aS = 'InternetAtContenedor ' + this.className[this.mode] + ' ' + this.printMode+bS1;
+	this.colorFondo=(this.colorFondo=='bodyColorWhite' || this.colorFondo=='white')? 'white' : '';
+	var bS = 'contenido' + bS1 + ' ' + this.colorFondo;
+	var clippingFix ="";
+	if (!this.respectContentCipping){
+		
+		clippingFix="";
+	}
+	var reDim = (this.respectContentCipping)? "": " autoH autoW";
+	aS += reDim;
+	bS += reDim;
+	
+if(this.plugins.length>0) { for (var i=0;this.plugins && i<this.plugins.length;i++) {  if ( (this.header)&&(this.plugins[i].type=='section') ) {  var tipoCabSimple="section";  }  }  } 
+var calcem1 = (isNaN(this.width))? this.width : this.emround(this.width/this.emconstant)+'em' ;
+if(this.height==0 || !this.height){this.height="auto";}
+var calcem2 = (isNaN(this.height))? this.height : this.emround(this.height/this.emconstant)+'em';
+var _style='';
+var _styleContainer='';
+ if(this.auxWidth==null || this.auxWidth=='auto'){
+		_style='';
+		_styleContainer='width:100%;';
+	}else{
+		_style='width:auto;';
+		_styleContainer='width:'+calcem1+';height:'+calcem2+';';
+	}
+if(tipoCabSimple=="section") { s.push("		<div id=\"");s.push( this.getId("REPAINT") );s.push("\" class=\"InternetAtContenedor ");s.push( this.printMode );s.push((this.layoutv2)?" InternetAtContenedorLayoutContent":"" );s.push("\" style=\"width:");s.push( calcem1 );s.push(";");s.push( (this.layoutCenter==true)?'margin-right:auto;margin-left:auto;':'');s.push("\">"); if (this.header && this.mode!=4) { s.push("				<div class=\"cabecera ");s.push( this.colorFondo );s.push("\" id=\"");s.push( this.getId('HEAD') );s.push("\">");s.push( this.header.paint(true,true) );s.push("</div>"); } s.push("			<div id=\"");s.push( this.getId('CONTENT') );s.push("\" class=\"contenido\" style=\"height:");s.push( calcem2 );s.push(";");s.push( this.scroll );s.push("\">");s.push( (this.content)?this.content.paint(true,true):'&nbsp;' );s.push("</div>"); if (this.foot2 && this.mode!=4) { s.push("				<div id=\"");s.push( this.getId('FOOT2') );s.push("\" class=\"pie\">");s.push( this.foot2.paint(true,true) );s.push("</div>"); }  if (this.foot && this.mode!=4) { s.push("				<div id=\"");s.push( this.getId('FOOT') );s.push("\" class=\"pie\">");s.push( this.foot.paint(true,true) );s.push("</div>"); } s.push("		</div>"); } else {s.push("		<div id=\"");s.push( this.getId("REPAINT") );s.push("\" class=\"");s.push( aS );s.push((this.layoutv2)?" InternetAtContenedorLayoutContent":"" );s.push("\" style=\"width:");s.push( calcem1 );s.push(";");s.push( (this.layoutCenter==true)?'margin-right:auto;margin-left:auto;':'');s.push("\">"); if (this.header && this.mode!=4) { s.push("				<div class=\"cabecera ");s.push( this.colorFondo );s.push("\" id=\"");s.push( this.getId('HEAD') );s.push("\">");s.push( this.header.paint(true,true) );s.push("</div>"); } s.push("			<div id=\"");s.push( this.getId('CONTENT') );s.push("\" class=\"");s.push( bS );s.push("\" style=\"height:");s.push( calcem2 );s.push(";");s.push( this.scroll );s.push("\">");s.push( (this.content)?this.content.paint(true,true):'&nbsp;' );s.push("</div>"); if (this.foot2 && this.mode!=4) { s.push("				<div id=\"");s.push( this.getId('FOOT2') );s.push("\" class=\"pie\">");s.push( this.foot2.paint(true,true) );s.push("</div>"); }  if (this.foot && this.mode!=4) { s.push("				<div id=\"");s.push( this.getId('FOOT') );s.push("\" class=\"pie\">");s.push( this.foot.paint(true,true) );s.push("</div>"); } s.push("		</div>"); } return this.dom.paint(draw,init,this,s.join(''));			
+}			
+
+}
+
+;dom.onLoaded('Globales_Bhtcs_Internet_AT_Contenedor');

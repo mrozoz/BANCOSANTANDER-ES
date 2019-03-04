@@ -1,0 +1,253 @@
+
+
+
+/*110613*/
+function Globales_Bhtcs_Util_Label_m (id,parent,l,s,m) {	
+this.main=parent.main;this.dom=this.main.dom;this.dom.setLocation(this,l);	
+this._M1='Globales_Bhtcs_Util_Label';this.jsVarName = id;	
+this.parent = parent;	
+this.text = new Array();this.setText = this.base.setText;this.getFullVarName = this.base.getFullVarName;this.getId = this.base.getId;this.getDataText = this.base.getDataText;this.getMain = this.base.getMain;this.openWindowPopup = this.base.openWindowPopup;	
+this._CVSRevision = '$Revision: 1.7.2.23 $';	
+this.text = '';	
+this.tooltip = '';	
+this.id = null;	
+this.width = null;	
+this.height = null;	
+this.type = null;	
+this.style = null;	
+this.weight = null;	
+this.color = null;	
+this.font = null;	
+this.halign = null;	
+this.valign = null;	
+this.attrfor = '';	
+this.tclass = null;	
+this.tstyle = null;	
+this.xpathtext = '';	
+this.xpathhref = '';	
+this.xpathtooltip = '';	
+this.xpathfor = '';	
+this.xpathid = '';	
+this.xpathtarget = '';	
+this.xmltree = 'Globales.Bhtcs.Util.Label';	
+this.regexp = [new RegExp('&lt;','g'),new RegExp('&gt;','g'),new RegExp('&quot;','g'),new RegExp('&apos;','g'),new RegExp('&nbsp;','g'),new RegExp('&amp;','g')];	
+this.target = null;	
+this.href = '';	
+this.RenderAs = '';	
+this.evonClick = dom.getInstanceBase().nullEventRaiser;
+}
+Globales_Bhtcs_Util_Label_m.prototype = { base: dom.getInstanceBase(),			
+		
+// ---------- onload   method ------------------------------------------------		
+onload: function () {},			
+		
+// ---------- getLink   method ------------------------------------------------		
+getLink: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var a=new Array();
+	a.push('<a');
+    if(this.href!='#'){
+      a.push(' href="'+this.href+'"');
+    } else {
+		a.push(' onmouseover="'+this.getFullVarName()+'.mouseOver(this)"');
+		a.push(' onmouseout="'+this.getFullVarName()+'.mouseOut(this)"');
+	}
+	a.push(' id="');
+	a.push(this.id);
+	a.push('"');
+	if(this.href!='#'){
+		if(this.target && this.target!='' && this.target!='null'){
+			a.push(' target="' + this.target + '"');
+		}
+	}	
+	if(this.tooltip && this.tooltip!=''){
+		a.push(' title="' + this.tooltip + '"');
+	}
+	if(this.tstyle && this.tstyle!=''){
+		a.push(' style="' + this.tstyle + '"');	
+	}
+	if(this.tclass && this.tclass!=''){
+		a.push(' class="'+this.tclass+'"');
+    }
+    a.push('"');
+	try{
+		if (dom.main.miraDocType != 'standard'){a.push(' hidefocus="hidefocus"');}
+	}
+	catch(e){
+	}
+	a.push(' onclick="'+this.getFullVarName()+'.raiseOnClick(this);">');
+    
+    this.text=(this.value)?this.value:this.text;
+	this.text=this.unescape(this.text);
+	a.push(unescape(this.text));
+	a.push('</a>');
+	return a.join('');
+			
+},			
+		
+// ---------- mouseOver   method ------------------------------------------------		
+mouseOver: function (obj){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+   if(obj==null)return;
+   if (obj.className == null || obj.className == "") {
+      obj.className = "over";
+   }else {
+      obj.className += " over";
+   }
+			
+},			
+		
+// ---------- mouseOut   method ------------------------------------------------		
+mouseOut: function (obj){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+   if (obj.className != null || obj.className == "") {
+      var clase = obj.className;
+      if(clase.indexOf(" over")>=0){
+         obj.className = clase.replace(/ over/gi, '');
+      } else if(clase.indexOf("over")>=0){
+         obj.className = clase.replace(/over/gi, '');
+      }
+   }
+			
+},			
+		
+// ---------- raiseOnClick   method ------------------------------------------------		
+raiseOnClick: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};	
+	var e = this.dom.getInstanceEvent(this,"evonClick");
+	e.id=this.id
+	e.raise();
+			
+},			
+		
+// ---------- repaint   method ------------------------------------------------		
+repaint: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var e = this.dom.getOut().getElementById(this.getId('repaint'));
+	e.innerHTML  = this.paintLabel();
+			
+},			
+		
+// ---------- load   method ------------------------------------------------		
+load: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	if(this.xpathtext!=''&& this.xpathtext!=null){
+		try{ 
+			
+			this.value= this.dom.getXmlValueAtName(this.dom.xmlNodes[this.xmltree],this.xpathtext); 
+		}catch(e){
+			
+			this.value = this.dom.getXmlValueAtName(this.dom.xmlNodes[this.xmltree],this.xpathtext + '[' + 0 + ']');
+		}
+	}else{
+		if(typeof this.base.getMain().text[this.id]!='undefined')
+			this.value = this.base.getMain().text[this.id];
+	}
+	if (this.xpathhref && this.xpathhref!=''){
+		this.href = this.dom.getXmlValueAtName(this.dom.xmlNodes[this.xmltree],this.xpathhref + '[' + 0 + ']');
+	}
+	if (this.xpathfor && this.xpathfor!=''){
+		this.attrfor = this.dom.getXmlValueAtName(this.dom.xmlNodes[this.xmltree],this.xpathfor + '[' + 0 + ']');
+	}
+	if (this.xpathtooltip != '' && this.xpathtooltip != null){
+		this.tooltip = this.dom.getXmlValueAtName(this.dom.xmlNodes[this.xmltree],this.xpathtooltip + '[' + 0 + ']');
+	}
+	if (this.xpathid && this.xpathid!=''){
+		this.id = this.dom.getXmlValueAtName(this.dom.xmlNodes[this.xmltree],this.xpathid + '[' + 0 + ']');
+	}
+	if (this.xpathtarget && this.xpathtarget!=''){
+		this.target = this.dom.getXmlValueAtName(this.dom.xmlNodes[this.xmltree],this.xpathtarget + '[' + 0 + ']');
+	}
+	return;
+			
+},			
+		
+// ---------- initialize   method ------------------------------------------------		
+initialize: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	this.tokens = ['<','>','"','\'',' ','&'];
+	this.load();
+	return;
+			
+},			
+		
+// ---------- unescape   method ------------------------------------------------		
+unescape: function (text){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	if(!!text){
+		for(var i=0;i< this.regexp.length;i++){
+			text=text.replace(this.regexp[i],this.tokens[i]);
+		}
+	}
+	return text;
+			
+},			
+		
+// ---------- paintLabel   method ------------------------------------------------		
+paintLabel: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+		var l = new Array();	
+		
+		if(this.href && this.href!=''){
+			l.push(this.getLink());
+		}else{
+			if(this.attrfor==""){
+				l.push("<span id=\"");
+			}else{
+				l.push("<label id=\"");
+			}
+				if(this.id!="" || this.id==null){
+					l.push(this.id);
+				}else{
+					l.push(this.getId('lab'));
+				}
+				l.push("\" ");
+				
+				if(this.attrfor!=""){
+					l.push(' for="');
+					l.push(this.attrfor);
+					l.push("\" ");
+				}
+				
+				if(this.tooltip && this.tooltip!=''){
+					l.push(' title="');
+					l.push(this.tooltip);
+					l.push("\" ");
+				}	
+
+				if(this.tstyle){
+				l.push(" style=\"");
+				l.push(this.tstyle);
+				l.push("\" ");		
+				}		
+
+				if(this.tclass){
+					l.push(" class=\"");
+					l.push(this.tclass);
+					l.push("\" ");
+				}
+				l.push(">");
+				this.text=(this.value)?this.value:this.text;
+				this.text=this.unescape(this.text);
+				l.push(unescape(this.text));
+				
+				if(this.attrfor==""){
+					l.push("</span>");
+				}else{
+					l.push("</label>");
+				}				
+		}
+		return l.join(''); 
+			
+},			
+// ---------- drawHeader   method ------------------------------------------------		
+drawHeader: function () {			
+var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};			
+this.setText('Globales_Bhtcs_Util_Label');			
+			
+var s = new Array();			
+this.initialize();			
+
+return s.join(' ');			
+},			
+		
+// ---------- drawBody   method ------------------------------------------------		
+drawBody: function (d,l) {return this.dom.getBodyValue(d,l,this);},		
+// ---------- paint   method ------------------------------------------------		
+paint: function (draw,init) {var s = new Array();s.push("<div id=\"");s.push( this.getId('repaint') );s.push("\" class=\"UtilLabel");s.push((this.layoutv2)?" UtilLabelLayoutContent":"" );s.push((this.bancaOnline1024!=null)?' BancaOnline1024Label':'' );s.push("\">");s.push(this.paintLabel());s.push("</div>");return this.dom.paint(draw,init,this,s.join(''));			
+}			
+
+}
+
+;dom.onLoaded('Globales_Bhtcs_Util_Label');

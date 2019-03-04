@@ -1,0 +1,348 @@
+
+
+
+/*110613*/
+function Globales_Bhtcs_Arq_FormArqMira_V01_m (id,parent,l,s,m) {	
+this.main=parent.main;this.dom=this.main.dom;this.dom.setLocation(this,l);	
+this._M1='Globales_Bhtcs_Arq_FormArqMira_V01';this.jsVarName = id;	
+this.parent = parent;	
+this.text = new Array();this.setText = this.base.setText;this.getFullVarName = this.base.getFullVarName;this.getId = this.base.getId;this.getDataText = this.base.getDataText;this.getMain = this.base.getMain;this.openWindowPopup = this.base.openWindowPopup;	
+this._CVSRevision = '$Revision: 1.14 $';	
+this.name = 'HiddenForm';	
+this.style = null;	
+this.event = '';	
+this.target = '_self';	
+this.action = 'ChannelDriver.bto';	
+this.params = [];	
+this.inputvalues = [];	
+this.errorPage = '';	
+this.button = null;	
+this.link = null;	
+this.obj = null;	
+this.dse_operationName = null;	
+this.dse_threadId = '';	
+this.xpaths = [];	
+this.atmRequestType = 'default';	
+this.arrayNodes = [];	
+this.typeInputs = [];	
+this.updateComponents = [];	
+this.icollActionType = [];	
+}
+Globales_Bhtcs_Arq_FormArqMira_V01_m.prototype = { base: dom.getInstanceBase(),			
+		
+// ---------- onload   method ------------------------------------------------		
+onload: function () {},			
+		
+// ---------- getRuta   method ------------------------------------------------		
+getRuta: function (xpath){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var aPath = xpath.split("/");
+	var ruta="";
+	for(i=0;i<aPath.length;i++)
+	{
+		if(aPath[i].indexOf('[',0)!=-1)
+			{
+			var Path=aPath[i].substring(aPath[i].indexOf('[',0)+1,aPath[i].length);
+			  ruta+=Path;
+			}
+			else{
+			 ruta+=aPath[i];
+			}
+		if(i!=aPath.length-1)
+		{
+		   ruta+=".";
+		}
+	}
+	ruta=ruta.replace(/]/gi,'');
+	return ruta.substring(1);
+			
+},			
+		
+// ---------- setParam   method ------------------------------------------------		
+setParam: function (inputName, inputValue){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var encontrado=false;
+	if(this.params.length!=0){
+		var i = 0;
+		while (!encontrado && i<this.params.length){ 
+			if(this.params[i][0]==inputName){
+				this.params[i]=[inputName,inputValue];
+				encontrado=true;
+			}
+			i++;
+		}
+	}
+	if (!encontrado||this.params.length==0){
+		this.params[this.params.length]=[inputName,inputValue];
+	}
+			
+},			
+		
+// ---------- resolvePath   method ------------------------------------------------		
+resolvePath: function (node,aPath,xPath,findChilds){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var arrayXPaths = new Array();
+	var nextNodeName = aPath.shift();
+	var index = null;
+	if (nextNodeName.indexOf('[',0)!=-1){
+		index = nextNodeName.substring(nextNodeName.indexOf('[',0)+1,nextNodeName.length-1);
+	}
+	xPath = xPath+"/"+nextNodeName;
+	var	nextNode     = dom.getXmlNode(node,xPath);
+	var nextNodeType = this.dom.getDataType(nextNode);
+	if( nextNodeType==this.dom.domTypeKcoll && typeof nextNode.value != 'undefined'){
+		arrayXPaths.push(xPath);
+		return arrayXPaths;
+	}
+	
+	var childs = this.dom.getDataNumChildren(nextNode);
+	var nextIndex = null;
+	if( childs > 0 && !(!findChilds && aPath.length<=0)){
+		if (aPath.length>0 && aPath[aPath.length-1].indexOf('[',0)!=-1){
+			nextIndex = aPath[aPath.length-1].substring(aPath[aPath.length-1].indexOf('[',0)+1,aPath[aPath.length-1].length-1);
+		}
+		if (aPath.length>0 && (nextIndex != null || nextNodeType!=this.dom.domTypeIcoll )){
+			arrayXPaths = arrayXPaths.concat (this.resolvePath(node,aPath,xPath,findChilds));
+		}else{
+			for (var i=0;i<childs;i++){
+				var nextPath = aPath.slice(0,aPath.length);
+				var nextXPath = xPath;
+				if (aPath.length==0){
+					nextPath[0] =this.dom.getDataName(this.dom.getDataNodeAtIndex(nextNode,i));
+				}
+				if (nextNodeType==this.dom.domTypeIcoll){
+					nextPath[0] = nextPath[0]+"["+i+"]";
+				}
+				arrayXPaths = arrayXPaths.concat (this.resolvePath(node,nextPath,nextXPath,findChilds));
+			}
+		}
+	}else{
+		arrayXPaths.push (xPath);
+	}
+	return arrayXPaths;
+			
+},			
+		
+// ---------- inputPaths   method ------------------------------------------------		
+inputPaths: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	if(this.xpaths.length!=0){
+		for(var j=0;j< this.xpaths.length;j++) {
+			var xpath = this.xpaths[j];
+			if (xpath.charAt(0)=='/'){
+				xpath = xpath.substring(1,xpath.length);
+			}
+			var aPath = xpath.split("/");
+			var rootNode = this.dom.xmlNodes['root'];
+			var arrayPaths = this.resolvePath(rootNode,aPath,"",true);
+			for (var i=0;i< arrayPaths.length;i++){
+				var node = this.dom.getXmlNode (rootNode,arrayPaths[i]);
+				var type = this.dom.getDataType(node);
+				var value = null;
+				if ( type == this.dom.domTypeDato ){
+					value = this.dom.getXmlValueAtName(rootNode,arrayPaths[i]);
+				} else if( type == this.dom.domTypeKcoll ){
+					value = node.value;
+				}
+				if( value != null )
+					this.setParam(this.getRuta(arrayPaths[i]),value);
+			}
+			
+		}	
+	}
+			
+},			
+		
+// ---------- updateContext   method ------------------------------------------------		
+updateContext: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	this.typeInputs=dom.updateContext(true);
+	for (var i=0;i<this.updateComponents.length;i++){
+		if (this.updateComponents[i].setOK instanceof Function ){
+			this.updateComponents[i].setOK();
+		}
+	}
+			
+},			
+		
+// ---------- getInputsFile   method ------------------------------------------------		
+getInputsFile: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var inputsFile = new Array();
+	for (var i=0;i<this.typeInputs.length;i++){
+		if (this.typeInputs[i][1]=='inputfile'){
+			if (this.typeInputs[i][3]!=null){
+				inputsFile[this.typeInputs[i][0]] = inputsFile[this.typeInputs[i][0]];
+			}else {
+				inputsFile[this.typeInputs[i][0]] = this.dom.getOut().getElementById(this.typeInputs[i][2]);
+			}
+		}
+	}
+	for (var i=0;i<this.updateComponents.length;i++){
+		if (this.updateComponents[i].getSubComponents instanceof Function){		
+			var subComponents = this.updateComponents[i].getSubComponents();
+			if (subComponents != null){
+				for (var e=0;e<subComponents.length;e++){
+					var subComponent = subComponents[e];
+					if (subComponent.parent.parent==main && typeof subComponent.input != 'undefined' && subComponent.type == 'file' ){
+						inputsFile[this.getRuta(subComponent.input[1])] = this.updateComponents[i].getElementById(subComponent.id);
+					}
+				}
+			}
+		}
+	}
+	return inputsFile;
+			
+},			
+		
+// ---------- createInputElement   method ------------------------------------------------		
+createInputElement: function (campo, valor){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var inputElement = this.dom.getOut().createElement('input');
+	inputElement.type = 'hidden';
+	inputElement.name = campo;
+	inputElement.value = valor;
+	return inputElement;
+			
+},			
+		
+// ---------- createArchitecturalInputs   method ------------------------------------------------		
+createArchitecturalInputs: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var value="";
+	for (var i=0;i< this.icollActionType.length;i++){
+		if (this.icollActionType[i][1] == "RW"){
+			var xpath = this.icollActionType[i][0];
+			if (xpath.charAt(0)=='/'){
+				xpath = xpath.substring(1,xpath.length);
+			}
+			var aPath = xpath.split("/");
+			var rootNode = this.dom.xmlNodes['root'];
+			var arrayPaths = this.resolvePath(rootNode,aPath,"",false);
+			for (var j=0;j< arrayPaths.length;j++){
+				if ( value.length >0) value = value+",";
+				value = value+ this.getRuta(arrayPaths[j]);
+			}
+		}
+	}
+	if (value.length >0 ){
+		this.getForm(this.getFullVarName()+'form').appendChild( this.createInputElement(  "dse_userIcollParam" , value));
+	}
+			
+},			
+		
+// ---------- createInputsForm   method ------------------------------------------------		
+createInputsForm: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var inputsFile = this.getInputsFile();
+	var moveInputsFile = [];
+	var myForm = this.getForm (this.getFullVarName()+'form');
+	for(var i=0;i < this.params.length;i++){
+		if (inputsFile[this.params[i][0]]!= null){
+			var inputFileElement=inputsFile[this.params[i][0]];
+			moveInputsFile[moveInputsFile.length]= [inputFileElement.parentNode,inputFileElement];
+			myForm.encoding = "multipart/form-data";
+			inputFileElement.name = this.params[i][0];
+			inputFileElement.style.visibilty = "hidden !important";
+			myForm.appendChild( inputFileElement );
+			
+		}
+		else{
+			var val=this.params[i][1];
+			myForm.appendChild( this.createInputElement(  this.params[i][0] , val));
+		}
+	}
+	return moveInputsFile;
+			
+},			
+		
+// ---------- getForm   method ------------------------------------------------		
+getForm: function (name){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var myForm = this.dom.getOut().forms[name];
+
+	
+	if ( myForm != null )
+		return myForm;
+
+	
+	var src = this.paint(true,true);
+	
+	
+    var start = src.indexOf('name="', 0) + 6;
+    var stop = src.indexOf('"', start);
+    src = src.substring(0,start) + name + src.substring(stop);
+
+	
+	var newDiv = this.dom.getOut().createElement( 'div' );
+	newDiv.style.visibility = 'hidden';
+	newDiv.id = this.getFullVarName();    
+	newDiv.innerHTML = src;
+    
+     this.dom.getOut().getElementsByTagName('BODY')[0].appendChild( newDiv );
+
+    return this.dom.getOut().forms[name];
+			
+},			
+		
+// ---------- appendInputsFile   method ------------------------------------------------		
+appendInputsFile: function (moveInputsFile){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	for ( var i=0; i< moveInputsFile.length; i++ ){
+		moveInputsFile[i][0].appendChild(moveInputsFile [i][1]);
+	}	
+			
+},			
+		
+// ---------- submit   method ------------------------------------------------		
+submit: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	this.updateContext();
+	this.inputPaths();
+	this.paint(true,false);
+	this.createArchitecturalInputs();
+	var moveInputsFile = this.createInputsForm();
+	this.getForm(this.getFullVarName()+'form').submit();	
+	this.appendInputsFile(moveInputsFile);
+			
+},			
+		
+// ---------- initialize   method ------------------------------------------------		
+initialize: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+ with( this ){
+	this.attrTarget =( target != '' && target != null)?' target="'+ target +'"':'';
+	this.attrStyle =( style != '' && style != null)?' style="'+ style +'"':'';
+ }
+  this.dse_threadId = this.dom.getXmlValueAtName(this.dom.xmlNodes['sesion'],'dse_threadId');
+			
+},			
+		
+// ---------- setTarget   method ------------------------------------------------		
+setTarget: function (destino){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	this.attrTarget =" target='"+destino+"'";
+			
+},			
+// ---------- drawHeader   method ------------------------------------------------		
+drawHeader: function () {			
+var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};			
+this.setText('Globales_Bhtcs_Arq_FormArqMira_V01');			
+			
+var s = new Array();			
+this.initialize();			
+
+return s.join(' ');			
+},			
+		
+// ---------- drawBody   method ------------------------------------------------		
+drawBody: function (d,l) {return this.dom.getBodyValue(d,l,this);},		
+// ---------- paint   method ------------------------------------------------		
+paint: function (draw,init) {var s = new Array();s.push("	<form method=\"post\" action=\"");s.push(this.action);			
+ if ((this.action != null) && (this.action.indexOf("?")!= -1)){ s.push("&dse_contextRoot=true&");} else {s.push("?dse_contextRoot=true&");}s.push("\" name=\"");s.push( this.getFullVarName());s.push("form\" id=\"");s.push( this.getFullVarName() );s.push("form\" ");s.push( this.attrTarget );s.push( this.attrStyle );s.push("  >");s.push("		<fieldset style=\"visibility:hidden;\">"); if(this.dse_operationName==null){ s.push("				<input type=\"hidden\" name=\"dse_operationName\" value= \"");s.push(this.dom.getXmlValueAtName(this.dom.xmlNodes['sesion'],'dse_operationName'));			
+s.push("\" />"); }else{ s.push("				<input type=\"hidden\" name=\"dse_operationName\" value= \"");s.push( this.dse_operationName );s.push("\" />"); } s.push("			<input type=\"hidden\" name=\"dse_pageId\" value= \"");s.push(this.dom.getXmlValueAtName(this.dom.xmlNodes['sesion'],'dse_pageId'));			
+s.push("\" />");s.push("			<input type=\"hidden\" name=\"dse_sessionId\" value= \"");s.push(this.dom.getXmlValueAtName(this.dom.xmlNodes['sesion'],'dse_sessionId'));			
+s.push("\" />");s.push("			<input type=\"hidden\" name=\"dse_processorState\" value= \"");s.push(this.dom.getXmlValueAtName(this.dom.xmlNodes['sesion'],'dse_processorState'));			
+s.push("\" />");s.push("			<input type=\"hidden\" name=\"dse_processorId\" value= \"");s.push(this.dom.getXmlValueAtName(this.dom.xmlNodes['sesion'],'dse_processorId'));			
+s.push("\" />");s.push("			<input type=\"hidden\" name=\"dse_errorPage\" value=\"");s.push(this.errorPage);			
+s.push("\" />");s.push("			<input type=\"hidden\" name=\"dse_nextEventName\" value=\"");s.push(this.event);			
+s.push("\" />");s.push("			<input type=\"hidden\" name=\"dse_threadId\" value=\"");s.push(this.dse_threadId);			
+s.push("\" />"); try{
+				if(ATMJSBridgeInstance){ s.push("				<input type=\"hidden\" name=\"dse_workstationId\" value= \"");s.push( ATMJSBridgeInstance.getWorkstationId() );s.push("\"/>");s.push("				<input type=\"hidden\" name=\"ATMRequestType\" value= \"");s.push(this.atmRequestType);			
+s.push("\"/>"); 	}
+			   }catch(e){}  
+			if(this.obj!=null){
+		    s.push( this.obj );	}
+		        if(this.button!=null){ s.push("				<input type=\"submit\" value=\"");s.push(this.button);			
+s.push("\">"); } 	if(this.link!=null){ s.push("				<a href=\"javascript:");s.push( this.getFullVarName()+".submit()" );s.push("\" >");s.push( this.link );s.push("</a>"); }s.push("		</fieldset>");s.push("	</form>");return this.dom.paint(draw,init,this,s.join(''));			
+}			
+
+}
+
+;dom.onLoaded('Globales_Bhtcs_Arq_FormArqMira_V01');

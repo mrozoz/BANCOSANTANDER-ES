@@ -1,0 +1,174 @@
+BODY{background:none repeat scroll 0 0 white;font:11.2px verdana,arial,helvetica,sans-serif;margin:0;padding:0;}
+
+A{text-decoration:none;}
+A:hover{text-decoration:underline;}
+
+a img{border:0;}
+H1,H2,H3,H4{font-family:'trebuchet ms',helvetica,sans-serif;}
+.rompefloat{height:auto}
+.rompefloat:after {content: ".";display: block;height:0;clear:both;visibility: hidden;}
+
+DIV#global{position:absolute;min-width:777px;background-color:#e4e4e4;font-size:11px !important;top:1px;}
+
+
+H2.titulomenu{font-size:1.3em;font-family:'trebuchet ms',helvetica,sans-serif;padding:14px 10px 8px 12px;margin:0}
+
+
+DIV#cabecera{background:#fff url(https://particulares.gruposantander.es/Estatico/CE_VentanaOperativa_Pres/Images/Cabecera_fondoCabeceraSANv0.gif);font-family:verdana,arial,helvetica,sans-serif;font-size:11px;text-align:left;width:1003px;height:65px;}
+DIV#cabecera H1{float:left;font-size:1em;font-weight:normal;margin:6px 0 0;}
+DIV#cabecera UL{list-style-type:none;margin:0;padding:0 }
+DIV#cabecera .alojamenus{float:left;}
+
+.logo{background:#fff;width:195px;padding:5px 5px 5px 5px;float:left;}
+TABLE#TableTelefono {width:120px;border:0;align:right;height:30px;position:absolute;float:right;right:10px;}
+
+.telefono{font-family:'Trebuchet MS';font-size:16px;text-decoration:none;font-weight:bold;font-color:#333;}
+
+/* scripting comercial*/
+#alojascripting{width:380px;height:35px;position:absolute;top:5px;left:177px;left:177px;border:1px solid #DADADA;background:#FAFAFA;z-index:0;}
+
+/* sin oferta comercial */
+#sinoferta{width: 380px;height: 35px;position: absolute;top: 5px;left: 177px;left:177px;border: 0;background:transparent;z-index:0;}
+
+/* Campana publicitaria */
+#campana_publicitaria{width: 380px;height: 35px;position: absolute;top: 5px; left:206px;border: 0;background:transparent;z-index:0;}
+
+.icoScripting{margin:3px 6px 4px 2px;padding:0 12px 0 0;}
+DIV#scripting{font:.9em verdana,arial,helvetica,sans-serif;margin:4px 6px 4px 28px;padding-left:0;}
+
+/*fin scripting comercial*/
+
+/* Menu utilidades */
+
+.utilidades{text-align:right;width:100px;height:45px;position:relative;top:5px;right:12px;float:right;}
+.utilidades ul {list-style:none; margin-right:0;}
+.utilidades ul li{display:inline;}
+
+.utilidades ul li.ultimo{padding-right:0; border-right:0 solid #000;} 
+
+.menusup_secundario{padding-top:42px;padding-left:205px;}
+
+/* CHANGE LOG 
+	padding-top:38px;*/
+
+.menusup_secundario ul{margin-top:0;margin-bottom:0;}
+
+.menusup_secundario li{float:left;list-style:none outside none;margin-right:2px;}
+
+.menusup_secundario li a{color:#666;float:left;font-weight:bold;font-size:1.1em;padding:3px 0 6px;text-align:center;text-decoration:none;width:115px;background:url("https://particulares.gruposantander.es/Estatico/CE_VentanaOperativa_Pres/Images/Cabecera_icoPestana_reposo.gif");}
+/* CHANGE LOG 
+	padding:5px 0 7px;*/
+
+.menusup_secundario li a:hover{color:#F00;padding-bottom:6px;background:url("https://particulares.gruposantander.es/Estatico/CE_VentanaOperativa_Pres/Images/Cabecera_icoPestana_select.gif");}
+/* CHANGE LOG 
+	padding-bottom:10px;*/
+.menusup_secundario li.activo a{color:#F00;background:url("https://particulares.gruposantander.es/Estatico/CE_VentanaOperativa_Pres/Images/Cabecera_icoPestana_select.gif");}
+
+
+
+/* nombre de usuario */
+.usuario{padding:0;	margin:0 6px 0 0;position:absolute;	right:5px;top:45px;	top:56px;_top:56px;	font-family:verdana; font-size:10px;}
+.usuario p{color:#6D6B65;}
+
+a.desconectar{background:transparent url(https://particulares.gruposantander.es/Estatico/CE_VentanaOperativa_Pres/Images/ico_desconectar.gif) no-repeat left center;padding-left:10px;}
+
+/*menu*/
+
+DIV#menu{background-color:#E4E4E4;font-family:verdana,arial,helvetica,sans-serif;width:17.1em;text-align:left;}
+
+UL#menuvert{margin-top:0;margin-left:0;padding-top:0;padding-left:0;padding-bottom:2em;}
+
+UL#menuvert, UL{padding-top:0;padding-left:0;margin-left:0;}
+
+UL#menuvert LI{font-size:1.05em;list-style:none outside none;width:100%;}
+
+
+/*Menu en reposo*/
+UL#menuvert LI A{background:#E4E4E4 url(https://particulares.gruposantander.es/Estatico/CE_VentanaOperativa_Pres/Images/sanV0_images.gif) no-repeat -22.1em -36.2em;border-bottom:1px solid #C8C8C8;border-left:1px solid #939393;color:#333;display:block;padding:0.6em 1.09em 0.8em 1.30em;text-decoration:none;margin-left:13px;}
+
+/*Marca el color de la flecha cuando un enlace tiene hijos y está cerrado*/
+UL#menuvert LI A.conhijos, UL#menuvert LI.cerrado A{background:#E4E4E4 url(https://particulares.gruposantander.es/Estatico/CE_VentanaOperativa_Pres/Images/sanV0_images.gif) no-repeat -22.1em -44.5em;}
+
+/*Marca el color de los enlaces cuando pasas por encima con el ratón*/
+UL#menuvert LI A:hover{color:#f00;}
+
+/*Marca el color de la flecha cuando pasas por encima con el ratón sobre un enlace que tiene hijos y está cerrado*/
+UL#menuvert LI.conhijos, UL#menuvert LI.cerrado A:hover{background:#E4E4E4 url(https://particulares.gruposantander.es/Estatico/CE_VentanaOperativa_Pres/Images/sanV0_images.gif) no-repeat -22.1em -52.2em;}
+
+/*Marca como deben ser los botones hijos al clicar en los enlaces padres*/
+UL#menuvert LI.cerrado UL{display:none;background:white url(https://particulares.gruposantander.es/Estatico/CE_VentanaOperativa_Pres/Images/sanV0_images.gif) no-repeat scroll -263px bottom;}
+
+
+/*Fin de menu en reposo*/
+
+
+/* Menu abierto*/
+
+
+UL#menuvert LI.abierto UL{display:block;}
+/* Primera modificacion */
+ul#menuvert li.abierto a {background:url("https://particulares.gruposantander.es/Estatico/CE_VentanaOperativa_Pres/Images/sanV0_images.gif") no-repeat scroll -22.5em -67.1em #E4E4E4;border-bottom:1px solid #E5E5E5;color:#000;font-weight:bold;margin-left:0;padding:1.1em 0 1.7em 1.7em;}
+
+
+
+/* Tercera modificacion */
+ul#menuvert li.abierto a.conhijos, ul#menuvert li.abierto a.conhijos:hover {background:url("https://particulares.gruposantander.es/Estatico/CE_VentanaOperativa_Pres/Images/sanV0_images.gif") no-repeat scroll -22.5em -60.2em #E4E4E4;border-bottom:1px solid #E5E5E5;color:#000;font-weight:bold;margin-left:0;padding:11px 0 12px 1.45em;}
+
+UL#menuvert LI.abierto A.conhijos:hover{background:#E4E4E4 url(https://particulares.gruposantander.es/Estatico/CE_VentanaOperativa_Pres/Images/sanV0_images.gif) no-repeat scroll -22.5em -65.9em;border-bottom:1px solid #E5E5E5;color:#f00;padding:11px 0 12px 1.45em;font-weight:bold;margin-left:0em;}
+
+UL#menuvert LI.abierto A.conhijosActivo,UL#menuvert LI.abierto A.conhijosActivo:hover{background:#E4E4E4 url(https://particulares.gruposantander.es/Estatico/CE_VentanaOperativa_Pres/Images/sanV0_images.gif) no-repeat scroll -22.5em -65.9em;border-bottom:1px solid #E5E5E5;color:#f00;padding:11px 0 12px 1.45em;font-weight:bold;margin-left:0em;}
+
+UL#menuvert LI.abierto A, UL#menuvert LI UL LI.childActive A {background:none white;border-bottom:1px solid #E5E5E5;color:#000;padding:6px 0 7px 28px;margin-left:0em;font-weight:normal;}
+ 
+/* Segunda modificacion */
+ul#menuvert li.abierto a:hover, ul#menuvert li ul li.childActive a:hover{background:none repeat scroll 0 0 white;border-bottom:1px solid #E5E5E5;color:#F00;font-weight:normal;margin-left:0;padding:6px 0 7px 28px;}
+ 
+  
+UL#menuvert LI.abierto UL LI.enabled A{background:none white;border-bottom:1px solid #E5E5E5;color:#f00;padding:6px 0 7px 28px;margin-left:0em;font-weight:normal;}
+
+/* Fin del menu abierto*/
+
+
+/*Menu sin Hijos Seleccionado*/
+
+
+
+UL#menuvert LI.enabled A{background:transparent url(https://particulares.gruposantander.es/Estatico/CE_VentanaOperativa_Pres/Images/sanV0_images.gif) no-repeat -262px bottom;border:0;color:#f00;padding:1.1em 0 1.7em 1.7em;font-weight:bold;margin-left:0em;}
+
+
+UL#menuvert LI.enabled{	background:#E4E4E4 url(https://particulares.gruposantander.es/Estatico/CE_VentanaOperativa_Pres/Images/sanV0_images.gif) no-repeat -22.7em -682px;padding:0;margin-left:0em;}
+
+
+
+/*Fin del menu sin hijos seleccionado*/
+/*fin menu*/
+
+
+/*************************** CABECERA ************************/
+div#header{	background:#fff url(https://particulares.gruposantander.es/Estatico/CE_VentanaOperativa_Pres/Images/Cabecera_fondoCabeceraSANv0.gif);font-family:verdana,arial,helvetica,sans-serif;font-size:11px;text-align:left;width:1010px;height:65px;border-bottom: 1px #f2f2f2 solid;}
+div#header h1{float:left;font-size:1em;font-weight:normal;margin:6px 0 0;}
+
+div#header h1 img{float:left;border:1px solid white;border-width:1px 6px 6px 5px;}
+
+div#header h1 span{display:none;}
+
+
+/* Boton Desconectar*/
+
+.auxActions .actions .logoff{margin-top:8px;margin-bottom:5px;}
+
+.auxActions .actions .logoff a{background:transparent url("https://particulares.gruposantander.es/Estatico/CE_VentanaOperativa_Pres/Images/icoBotonDesconectar.gif") no-repeat;color:#FFF;float:left;font-weight:bold;padding:0.4em 1em 0.8em 2.7em;text-decoration:none;}
+
+.auxActions .actions .logoff a:hover{background:transparent url("https://particulares.gruposantander.es/Estatico/CE_VentanaOperativa_Pres/Images/icoBotonDesconectar_over.gif") no-repeat;color:#FFF;}
+
+
+/* Pestanas */
+
+#pestanaOperativa {
+    position: relative;
+    z-index: 1;
+}
+#pestanaContratacion {
+    position: relative;
+    z-index: 1;
+}

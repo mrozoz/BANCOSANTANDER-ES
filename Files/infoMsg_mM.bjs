@@ -1,0 +1,277 @@
+
+dom.getImports(['Globales_Bhtcs_Info_Texto'],'Globales_Bhtcs_Info_infoMsg');
+
+/*110613*/
+function Globales_Bhtcs_Info_infoMsg_m (id,parent,l,s,m) {	
+this.main=parent.main;this.dom=this.main.dom;this.dom.setLocation(this,l);	
+this._M1='Globales_Bhtcs_Info_infoMsg';this.jsVarName = id;	
+this.parent = parent;	
+this.text = new Array();this.setText = this.base.setText;this.getFullVarName = this.base.getFullVarName;this.getId = this.base.getId;this.getDataText = this.base.getDataText;this.getMain = this.base.getMain;this.openWindowPopup = this.base.openWindowPopup;this.dom.getLinks(['Globales_Styles_Intranet_13_Css_BancaOnline_css','Globales_Styles_Intranet_13_Css_Master_css'],'Globales_Bhtcs_Info_infoMsg'+id,true);	
+this._CVSRevision = '$Revision: 1.1.2.27 $';	
+this.styleResources = this.dom.getRPath(this._M1,id,'css');	
+this.Content = [];	
+this.foot = null;	
+this.xpathMainTitle = '';	
+this.xpathSubtitle = '';	
+this.xpathBody = '';	
+this.xpathTipomsg = '';	
+this.xpathBodyText = '';	
+this.tooltip = '';	
+this.mainTitle = '';	
+this.subTitle = '';	
+this.bodyText = [];	
+this.renderMode = 'int';	
+this.printMode = 'pr';	
+this.visible = false;	
+this.show = false;	
+this.xmlTree = 'root';	
+this.buttonTitle = 'Aceptar';	
+this.tipoMsg = 1;	
+this.evOnClick = dom.getInstanceBase().nullEventRaiser;
+}
+Globales_Bhtcs_Info_infoMsg_m.prototype = { base: dom.getInstanceBase(),			
+		
+// ---------- onload   method ------------------------------------------------		
+onload: function () {},			
+		
+// ---------- doClick   method ------------------------------------------------		
+doClick: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var ev=new BHTCEvent(this,'evOnClick');
+	ev.raise();
+			
+},			
+		
+// ---------- setVisibility   method ------------------------------------------------		
+setVisibility: function (visibilidad){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	this.visible=visibilidad;
+	this.paint(true,false);
+			
+},			
+		
+// ---------- addText   method ------------------------------------------------		
+addText: function (text){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	this.bodyText.push(text);
+	this.paint(true,false);	
+			
+},			
+		
+// ---------- clearText   method ------------------------------------------------		
+clearText: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	this.bodyText.splice(0,this.bodyText.length);
+	this.visible=false;
+	this.paint(true,false);	
+			
+},			
+		
+// ---------- setTexto   method ------------------------------------------------		
+setTexto: function (pos,texto){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	this.bodyText.splice(pos,0,texto);
+	this.paint(true,false);	
+			
+},			
+		
+// ---------- removeText   method ------------------------------------------------		
+removeText: function (pos){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	this.bodyText.splice(pos,1);
+	this.paint(true,false);	
+			
+},			
+		
+// ---------- load   method ------------------------------------------------		
+load: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var tipoMSG;
+	if(this.dom.getXmlValueAtName(this.dom.xmlNodes[this.xmlTree],this.xpathMainTitle)&&this.xpathMainTitle!=''){
+		this.mainTitle=this.dom.getXmlValueAtName(this.dom.xmlNodes[this.xmlTree],this.xpathMainTitle);
+	}
+	if(this.dom.getXmlValueAtName(this.dom.xmlNodes[this.xmlTree],this.xpathSubtitle)&&this.xpathSubtitle!=''){
+		this.subTitle=this.dom.getXmlValueAtName(this.dom.xmlNodes[this.xmlTree],this.xpathSubtitle);
+	}
+	if(this.dom.getXmlValueAtName(this.dom.xmlNodes[this.xmlTree],this.xpathTipomsg)&&this.xpathTipomsg!=''){
+		tipoMSG=this.dom.getXmlValueAtName(this.dom.xmlNodes[this.xmlTree],this.xpathTipomsg);
+	}
+	switch (tipoMSG){
+		case 'Error': this.tipoMsg=0;break;
+		case 'Alerta': this.tipoMsg=1;break;
+		case 'Ayuda': this.tipoMsg=2;break;
+		case 'Corfimation': this.tipoMsg=3;break;
+		case 'Information': this.tipoMsg=4;break;
+		default:break;
+	}
+	if (this.show==false){
+		this.visible=false;
+	}else{
+		if (this.xpathBodyText==''){
+			this.visible=true;
+		}else{
+			var contText=this.dom.getXmlNumChildrenAtName(this.dom.xmlNodes[this.xmlTree],this.xpathBody);
+			if(contText>0||this.xpathBody!=''){
+				this.visible=true;
+				this.bodyText=[];
+				var fea_Root3371 = this.dom.getXmlNodes(this.dom.xmlNodes[this.xmlTree],this.xpathBody);			
+for(var i=0;i<fea_Root3371.length;i++) {			
+var fea_Node3371 = fea_Root3371[i];			
+					
+					if (this.dom.getXmlValueAtName(fea_Node3371, './' + this.xpathBodyText + '')			
+!=''&&this.dom.getXmlValueAtName(fea_Node3371, './' + this.xpathBodyText + '')			
+!=null){
+						this.bodyText.push(this.dom.getXmlValueAtName(fea_Node3371, './' + this.xpathBodyText + '')			
+);
+					}else{
+						this.visible=false;
+					}
+				}			
+
+			}else{
+				if (this.dom.getXmlValueAtName(this.dom.xmlNodes[this.xmlTree],this.xpathBodyText)!=''&&this.dom.getXmlValueAtName(this.dom.xmlNodes[this.xmlTree],this.xpathBodyText)!=null){
+					this.visible=true;
+					this.bodyText.push(this.dom.getXmlValueAtName(this.dom.xmlNodes[this.xmlTree],this.xpathBodyText));
+				}else{
+					this.visible=false;
+				}
+			}	
+		}
+	}
+			
+},			
+		
+// ---------- rePaint   method ------------------------------------------------		
+rePaint: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var s=[];
+	var clases=['error','alerta','ayuda','confirmacion','informacion'];
+	var encontradoInt, encontradoVent=false;
+	var layout=(this.layoutv2)?" InfoInfoMsgLayoutContent":"";
+		if(this.visible==true){
+		switch(this.renderMode){
+			case 'int':
+				//var claseInformation=(clases[this.tipoMsg]=="informacion")?" information":"";
+				var claseInformation=(clases[this.tipoMsg]=="informacion")?" information":(clases[this.tipoMsg]=="confirmacion")?" confirmation":(clases[this.tipoMsg]=="error")?" errorBor":(clases[this.tipoMsg]=="ayuda")?" help":"";
+				s.push('<div class="InfoInfoMsg'+layout+claseInformation+' '+this.printMode+'">');
+				s.push('<div class="intLeft">');
+					//s.push('<img class="'+clases[this.tipoMsg]+'" alt="'+this.tooltip+'" title="'+this.tooltip+'" src="'+URI+'/Globales/Images/clear.png"/>');
+					s.push('<span class="'+clases[this.tipoMsg]+'" alt="'+this.tooltip+'" title="'+this.tooltip+'"/>');
+					s.push('</span>');
+				s.push('</div>');
+				s.push('<div class="intRight">');
+					if((this.mainTitle!=''&&this.mainTitle!=null)||(this.subTitle!=''&&this.subTitle!=null)){
+						s.push('<div class="heading">');
+							if(this.mainTitle!=''&&this.mainTitle!=null){
+								s.push('<p><span class="title">');
+									s.push(this.mainTitle);
+									if(this.subTitle!=''&&this.subTitle!=null){
+										s.push('</span><span class="subtitle">'+this.subTitle+'</span>');
+									}else{
+										s.push('</span>');//fin title
+									}							
+								s.push('</p>');
+							}
+						s.push('</div>');
+					}
+					if(this.Content.length || this.bodyText.length){
+						s.push('<div class="cuerpo">');
+							s.push('<div class="mensaje">');
+								if(this.Content.length){
+									for (var n=0;n<this.Content.length;n++){
+										if(this.Content[n]){
+											s.push(this.Content[n].paint(true,true));
+										}
+									}
+								}else{
+									if (this.bodyText.length>1){
+										s.push('<ul>');
+											for (var n=0;n<this.bodyText.length;n++){
+												s.push('<li>'+this.bodyText[n]+'</li>');
+											}
+										s.push('</ul>');
+									}else{
+										s.push('<p class="contenido">'+this.bodyText.join(' ')+'</p>');
+									}
+								}
+						s.push('</div></div>');
+					}
+				s.push('</div>');
+				s.push('</div>');
+				if (this.foot) {
+					s.push('<div id="'+this.getId('FOOT')+'">');
+					s.push(this.foot.paint(true,true));
+					s.push('</div>');
+				}				
+				break;
+			case 'ven':
+				s.push('<div class="InfoInfoMsg ventana">');
+				s.push('<div class="heading"><p class="'+clases[this.tipoMsg]+'"><span class="title">');
+				if (this.mainTitle!=''&&this.mainTitle!=null){				
+					s.push(this.mainTitle);
+				}else{
+					s.push('&nbsp');
+				}
+				s.push('</span></p></div>');
+				s.push('<div class="cuerpo" title="'+this.tooltip+'">');
+				//s.push('<img class="'+clases[this.tipoMsg]+'" alt="'+this.tooltip+'" title="'+this.tooltip+'" src="'+URI+'/Globales/Images/clear.png"/>');				
+				s.push('<span class="'+clases[this.tipoMsg]+'" alt="'+this.tooltip+'" title="'+this.tooltip+'"/>');				
+				s.push('</span>');
+				s.push('<div class="mensaje">');
+				if (this.subTitle!=''&&this.subTitle!=null){
+					s.push('<p class="subtitle">'+this.subTitle+'</p>');
+				}
+				if(this.Content.length){
+					for (var n=0;n<this.Content.length;n++){
+						if(this.Content[n])
+							s.push('<div class="componente">'+this.Content[n].paint(true,true)+'</div>');
+					}
+				}
+				if (this.bodyText.length>1){
+					s.push('<ul>');
+					for (var n=0;n<this.bodyText.length;n++){
+						s.push('<li>'+this.bodyText[n]+'</li>');
+					}
+					s.push('</ul>');
+				}else{
+						s.push('<p>'+this.bodyText.join(' ')+'</p>');
+				}
+				s.push('</div>');
+				if (this.foot) {
+					s.push('<div class="pieComp" id="'+this.getId('FOOT')+'">');
+					s.push(this.foot.paint(true,true));
+					s.push('</div>');
+							
+				}else{
+					s.push('<div class="pie">');
+					s.push('<span class="botonBorder">');
+					s.push('<button onclick="'+this.getFullVarName()+'.doClick();">'+this.buttonTitle+'</button>');
+					s.push('</span>');
+					s.push('</div>');
+				}
+				s.push('</div>');
+				s.push('</div>');
+				break;
+			}
+		}
+	return s.join('');
+			
+},			
+		
+// ---------- initialize   method ------------------------------------------------		
+initialize: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	this.load();
+			
+},			
+// ---------- drawHeader   method ------------------------------------------------		
+drawHeader: function () {			
+var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};			
+this.setText('Globales_Bhtcs_Info_infoMsg');			
+			
+var s = new Array();			
+this.initialize();			
+
+return s.join(' ');			
+},			
+		
+// ---------- drawBody   method ------------------------------------------------		
+drawBody: function (d,l) {return this.dom.getBodyValue(d,l,this);},		
+// ---------- paint   method ------------------------------------------------		
+paint: function (draw,init) {var s = new Array();s.push(this.rePaint());return this.dom.paint(draw,init,this,s.join(''));			
+}			
+
+}
+
+;dom.onLoaded('Globales_Bhtcs_Info_infoMsg');

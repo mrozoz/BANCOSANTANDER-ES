@@ -1,0 +1,282 @@
+
+
+
+/*110613*/
+function Globales_Bhtcs_Nav_FormNavegacion_m (id,parent,l,s,m) {	
+this.main=parent.main;this.dom=this.main.dom;this.dom.setLocation(this,l);	
+this._M1='Globales_Bhtcs_Nav_FormNavegacion';this.jsVarName = id;	
+this.parent = parent;	
+this.text = new Array();this.setText = this.base.setText;this.getFullVarName = this.base.getFullVarName;this.getId = this.base.getId;this.getDataText = this.base.getDataText;this.getMain = this.base.getMain;this.openWindowPopup = this.base.openWindowPopup;	
+this._CVSRevision = '$Revision: 1.7.2.11 $';	
+this.COMMON_Xmltree = 'root';	
+this.Xmltree = 'root';	
+this.XPATH_Top = '';	
+this.XPATH_Left = '';	
+this.XPATH_Width = '';	
+this.XPATH_Height = '';	
+this.XPATH_Destino_Seleccionado = '';	
+this.XPATH_Destino = '';	
+this.XPATH_Destino_ID = '';	
+this.XPATH_Destino_URL = '';	
+this.XPATH_Destino_Param = '';	
+this.XPATH_Destino_Param_Nombre = '';	
+this.XPATH_Destino_Param_Alias = '';	
+this.name = 'HiddenForm';	
+this.style = null;	
+this.width = 0;	
+this.height = 0;	
+this.top = 0;	
+this.left = 0;	
+this.event = '';	
+this.target = '_self';	
+this.metodoEnvio = 'get';	
+this.aliasCTX = [];	
+this.Destinos = [];	
+this.params = [];	
+this.inputvalues = [];	
+this.errorPage = '';	
+this.button = null;	
+this.link = null;	
+this.obj = null;	
+this.xpaths = [];	
+this.arrayNodes = [];	
+this.typeInputs = [];	
+}
+Globales_Bhtcs_Nav_FormNavegacion_m.prototype = { base: dom.getInstanceBase(),			
+		
+// ---------- onload   method ------------------------------------------------		
+onload: function () {},			
+		
+// ---------- getRuta   method ------------------------------------------------		
+getRuta: function (xpath){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var aPath = xpath.split("/");
+	var ruta="";
+	for(i=0;i<aPath.length;i++)
+	{
+		if(aPath[i].indexOf('[',0)!=-1)
+			{
+			var Path=aPath[i].substring(aPath[i].indexOf('[',0)+1,aPath[i].length);
+			  ruta+=Path;
+			}
+			else{
+			 ruta+=aPath[i];
+			}
+		if(i!=aPath.length-1)
+		{
+		   ruta+=".";
+		}
+	}
+	ruta=ruta.replace(/]/gi,'');
+	return ruta.substring(1);
+			
+},			
+		
+// ---------- submitForm   method ------------------------------------------------		
+submitForm: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var src=this.paint(true,true);
+	src=src.substring(src.indexOf("<input"),src.indexOf("</form")); this.dom.getOut().forms[ this.name ].innerHTML="<div id='div1' style='position:absolute;z-index:-1;visibility:hidden'>"+src+"</div>"; this.dom.getOut().forms[ this.name ].submit();				
+			
+},			
+		
+// ---------- data   method ------------------------------------------------		
+data: function (dat1,dat2,doc){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+		var regStr=eval("/"+dat1+"/gi");
+		doc=doc.replace(regStr,dat2);	
+		return doc;
+			
+},			
+		
+// ---------- createInputElement   method ------------------------------------------------		
+createInputElement: function (campo, valor){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var inputElement = this.dom.getOut().createElement('input');
+	inputElement.type = 'hidden';
+	inputElement.name = campo;
+	inputElement.value = valor;
+	inputElement.id=campo;
+	return inputElement;
+			
+},			
+		
+// ---------- submit   method ------------------------------------------------		
+submit: function (id){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	this.paint(true,true);
+	this.typeInputs=dom.updateContext();
+	this.params=[];
+	this.creaRuta(id);
+	var inputsFile = [];
+	for(var i=0;i < this.params.length;i++){
+		var isInputFile = false;
+		for(var j=0;j < this.typeInputs.length;j++){		
+			if(this.params[i][0]==this.getRuta(this.typeInputs[j][0]) && this.typeInputs[j][1]=='inputfile' ){	 
+				var inputFileElement=null;
+				if (this.typeInputs[j][3]!= null){
+					inputFileElement= this.typeInputs[j][3];
+				}else{
+					inputFileElement = this.dom.getOut().getElementById(this.typeInputs[j][2]);
+				}
+				inputsFile[inputsFile.length]= [inputFileElement.parentNode,inputFileElement]; this.dom.getOut().forms[ this.getFullVarName()+"formulario" ].encoding = "multipart/form-data";
+				inputFileElement.name = this.params[i][0];
+				inputFileElement.style.visibilty = "hidden !important"; this.dom.getOut().forms[ this.getFullVarName()+"formulario" ].appendChild( inputFileElement );
+				isInputFile = true;
+				break;
+			}
+		}
+		if (this.dom.getOut().getElementById(this.params[i][0])!=null){
+			try {if (this.dom.getOut().getElementById(this.params[i][0]))document.forms[ this.getFullVarName()+"formulario" ].removeChild(this.dom.getOut().getElementById(this.params[i][0]));} catch(e){}
+		}
+		if (isInputFile== false){
+			var datParse=[['á','&aacute;'],['é','&eacute;'],['í','&iacute;'],['ó','&oacute;'],['ú','&uacute;'],['Á','&Aacute;'],['É','&Eacute;'],['Í','&Iacute;'],['Ó','&Oacute;'],['Ú','&Uacute;'],['ü','&uuml;'],['Ü','&Uuml;'],['ñ','&ntilde;'],['Ñ','&Ntilde;']];	
+			var val=this.params[i][1]; this.dom.getOut().forms[ this.getFullVarName()+"formulario" ].appendChild( this.createInputElement(  this.params[i][0] , val));
+		}
+	}
+	if (this.params.length==0)
+		if (this.width!=0&&this.height!=0){
+			var param= "top="+this.top+", left="+this.left+", width="+this.width+", height="+this.height;
+			window.open(this.XPATH_Destino_URL,this.target,param);
+		}else{
+			window.open(this.XPATH_Destino_URL,this.target);
+		}
+	else{
+		if (this.width!=0&&this.height!=0){
+			var param= "top="+this.top+", left="+this.left+", width="+this.width+", height="+this.height;
+			window.open("about:blank","ventana_navegacion",param);
+		}else{
+			window.open("about:blank","ventana_navegacion");
+		} this.dom.getOut().forms[this.getFullVarName()+"formulario" ].target="ventana_navegacion"; this.dom.getOut().forms[this.getFullVarName()+"formulario" ].action=this.XPATH_Destino_URL; this.dom.getOut().forms[this.getFullVarName()+"formulario" ].submit();	
+	}
+			
+},			
+		
+// ---------- creaRuta   method ------------------------------------------------		
+creaRuta: function (id){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+ var resultado = false;
+ var constan=0;
+ var origen = "";
+ var ruta="";
+ var literal="";
+ var dato = "";
+ var resultado = false;	
+ this.params=[];
+if (id!=null && id!=undefined)
+ 	 var valor=id;
+ else{
+ 	if(dom.getValueNode(this.Xmltree,this.XPATH_Destino_Seleccionado)) var valor=dom.getValueNode(this.Xmltree,this.XPATH_Destino_Seleccionado);
+ }
+	if (valor!=null){
+			for (var i=0;i<this.Destinos.length;i++){ 
+ 				if (valor==this.Destinos[i][0]){
+ 					this.XPATH_Destino_URL=this.Destinos[i][1]; 
+ 					if (resultado){ //id destino repetido;
+ 						resultado=false;
+ 						this.params=[];
+ 					}else resultado=true; // Fin de id destino repetido;
+ 					for (var j=0;j<this.aliasCTX.length;j++){ 
+  						for(var k=0; k<this.Destinos[i][2].length;k++){
+  							if(this.Destinos[i][2][k][1]==this.aliasCTX[j][0] && resultado){
+  								origen=this.aliasCTX[j][1];
+  								ruta=this.aliasCTX[j][2];
+  								literal=this.aliasCTX[j][3];
+  								this.params[this.params.length]=[];
+  								constan=this.params.length-1;
+  								if(origen==null || origen=="" ||ruta==null || ruta==""){
+  									this.params[constan][0]=this.Destinos[i][2][k][0];
+  									this.params[constan][1]=literal;
+  								}
+  								else{
+  									this.params[constan][0]=this.Destinos[i][2][k][0];
+  									this.params[constan][1]=dom.getValueNode(this.aliasCTX[j][1],this.aliasCTX[j][2]);
+  								}
+  							}
+  						 }
+ 					 }
+ 				 }  
+ 			 }
+ 	}else {this.XPATH_Destino_URL=this.errorPage;}
+ 	
+ 	if (!resultado)this.XPATH_Destino_URL=this.errorPage;
+			
+},			
+		
+// ---------- map   method ------------------------------------------------		
+map: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var Top=(this.XPATH_Top!='')?this.dom.getXmlValueAtName(this.dom.xmlNodes[this.COMMON_Xmltree],this.XPATH_Top):'';
+	if (!!Top) this.top=Top;
+	var Left=(this.XPATH_Left!='')?this.dom.getXmlValueAtName(this.dom.xmlNodes[this.COMMON_Xmltree],this.XPATH_Left):'';
+	if (!!Left) this.left=Left;
+	var Width=(this.XPATH_Width!='')?this.dom.getXmlValueAtName(this.dom.xmlNodes[this.COMMON_Xmltree],this.XPATH_Width):'';
+	if (!!Width) this.width=Width;
+	var Height=(this.XPATH_Height!='')?this.dom.getXmlValueAtName(this.dom.xmlNodes[this.COMMON_Xmltree],this.XPATH_Height):'';
+	if (!!Height) this.height=Height;
+	if (this.XPATH_Destino!= null &&  this.XPATH_Destino !=undefined && this.XPATH_Destino!=''){	
+		this.Destinos=[];
+		var fea_Root119 = this.dom.getXmlNodes(this.dom.xmlNodes[this.COMMON_Xmltree],this.XPATH_Destino);			
+for(var i=0;i<fea_Root119.length;i++) {			
+var fea_Node119 = fea_Root119[i];			
+
+			this.Destinos[i]=this.dom.getXmlValueAtName(fea_Node119, this.XPATH_Destino)			
+
+			this.Destinos[i]=[];
+			if (this.dom.getXmlValueAtName(fea_Node119, this.XPATH_Destino_ID)			
+ != null &&
+			this.dom.getXmlValueAtName(fea_Node119, this.XPATH_Destino_ID)			
+ !=undefined){
+				this.Destinos[i][0]=this.dom.getXmlValueAtName(fea_Node119, this.XPATH_Destino_ID)			
+;
+			}
+			if (this.dom.getXmlValueAtName(fea_Node119, this.XPATH_Destino_URL)			
+ != null &&
+			this.dom.getXmlValueAtName(fea_Node119, this.XPATH_Destino_URL)			
+ !=undefined){
+				this.Destinos[i][1]=this.dom.getXmlValueAtName(fea_Node119, this.XPATH_Destino_URL)			
+;
+			}
+			this.Destinos[i][2]=[];
+			if (this.dom.getXmlValueAtName(fea_Node119, this.XPATH_Destino_Param)			
+ != null &&
+			this.dom.getXmlValueAtName(fea_Node119, this.XPATH_Destino_Param)			
+ !=undefined){
+				var fea_Root120 = this.dom.getXmlNodes(fea_Node119,this.XPATH_Destino_Param);			
+for(var j=0;j<fea_Root120.length;j++) {			
+var fea_Node120 = fea_Root120[j];			
+	
+					this.Destinos[i][2][j]=[];		
+					this.Destinos[i][2][j][0]=this.dom.getXmlValueAtName(fea_Node120, this.XPATH_Destino_Param_Nombre)			
+;
+					this.Destinos[i][2][j][1]=this.dom.getXmlValueAtName(fea_Node120, this.XPATH_Destino_Param_Alias)			
+;
+				}			
+
+			}
+	}			
+
+	}
+			
+},			
+		
+// ---------- initialize   method ------------------------------------------------		
+initialize: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+ with( this ){this.attrTarget =( target != '' && target != null)?' target="'+ target +'"':'';
+	this.attrStyle =( style != '' && style != null)?' style="'+ style +'"':'';}
+this.map();
+			
+},			
+// ---------- drawHeader   method ------------------------------------------------		
+drawHeader: function () {			
+var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};			
+this.setText('Globales_Bhtcs_Nav_FormNavegacion');			
+			
+var s = new Array();			
+this.initialize();			
+
+return s.join(' ');			
+},			
+		
+// ---------- drawBody   method ------------------------------------------------		
+drawBody: function (d,l) {return this.dom.getBodyValue(d,l,this);},		
+// ---------- paint   method ------------------------------------------------		
+paint: function (draw,init) {var s = new Array();s.push("	<form method=\"");s.push(this.metodoEnvio);s.push("\" action=\"");s.push(this.XPATH_Destino_URL);s.push("\" name=\"");s.push( this.getFullVarName() );s.push("formulario\"  id=\"");s.push( this.getFullVarName() );s.push("formulario\" ");s.push( this.attrTarget );s.push( this.attrStyle );s.push("  >");s.push("	</form>");return this.dom.paint(draw,init,this,s.join(''));			
+}			
+
+}
+
+;dom.onLoaded('Globales_Bhtcs_Nav_FormNavegacion');

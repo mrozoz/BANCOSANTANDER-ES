@@ -1,0 +1,375 @@
+
+var _M1 ='ALP_AREPER_Tfno_MulticanalPres_E_Bhtcs_cambioTfnoMulticanal_modTlfnMulticanal';
+dom.getImports(['Globales_Bhtcs_Util_Layout_v2','Globales_Bhtcs_Nav_FormNavegacion','Globales_Bhtcs_Internet_Nav_Barra','Globales_Bhtcs_Info_Texto','Globales_Bhtcs_Info_infoMsg','ALP_AREPER_Tfno_MulticanalPres_E_Bhtcs_Default_formModTfnoMulticanal_V01','Globales_Bhtcs_Util_BPG','Globales_Bhtcs_Internet_AT_TituloPagina','Globales_Bhtcs_Arq_FormArqMira_V01','Globales_Bhtcs_Internet_AT_Contenedor','Globales_Bhtcs_Internet_AT_Sub_CabSimple','Globales_Bhtcs_Internet_Nav_PiePaginaV2'],this._M1,false);
+/*110613*/
+
+function ALP_AREPER_Tfno_MulticanalPres_E_Bhtcs_cambioTfnoMulticanal_modTlfnMulticanal_m(id,parent) {	
+this.main=this;this.dom = 	getMainDom(_M1);			
+this._M1=_M1;	
+this.jsVarName = id;	
+this.parent = parent;	
+this.text = new Array();this.setText = this.base.setText;this.getFullVarName = this.base.getFullVarName;this.getId = this.base.getId;this.getDataText = this.base.getDataText;this.getMain = this.base.getMain;this.openWindowPopup = this.base.openWindowPopup;	
+	
+this.res = [1024,768];	
+this.resizeAllowed = true;	
+this.miraLang = 'spa';	
+this.miraDirLang = 'ltr';}
+ALP_AREPER_Tfno_MulticanalPres_E_Bhtcs_cambioTfnoMulticanal_modTlfnMulticanal_m.prototype = { base: dom.getInstanceBase(),	
+		
+// ---------- loadCtx   method ------------------------------------------------		
+loadCtx: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+var a = ['$error',['codigoError'],'$datosInternos',['indTlfNac','tlfMovilNuevo','tlfMovilActual']];this.dom.parseArray(a,"root");
+			
+},			
+		
+// ---------- initialize   method ------------------------------------------------		
+initialize: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+			
+},			
+		
+// ---------- rdbOperActInt__onClickformModTfnoMulticanal   method ------------------------------------------------		
+rdbOperActInt__onClickformModTfnoMulticanal: function (event){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+
+var movilActualInt = main.formModTfnoMulticanal.rdbOperActInt.isChecked();
+if(movilActualInt){
+	main.formModTfnoMulticanal.inputMovilAct.maxLength='14';
+	main.formModTfnoMulticanal.inputMovilAct.value = '';
+	main.formModTfnoMulticanal.inputMovilAct.repaint();
+}
+			
+},			
+		
+// ---------- rdbOperNuvInt__onClickformModTfnoMulticanal   method ------------------------------------------------		
+rdbOperNuvInt__onClickformModTfnoMulticanal: function (event){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+
+
+var movilNuevoInt = main.formModTfnoMulticanal.rdbOperNuvInt.isChecked();
+if(movilNuevoInt){
+	main.formModTfnoMulticanal.inputMovilNuv.maxLength='14';
+	main.formModTfnoMulticanal.inputMovilConf.maxLength='14';
+	main.formModTfnoMulticanal.inputMovilNuv.value='';
+	main.formModTfnoMulticanal.inputMovilConf.value='';
+	main.formModTfnoMulticanal.inputMovilNuv.repaint();
+	main.formModTfnoMulticanal.inputMovilConf.repaint();
+}
+
+			
+},			
+		
+// ---------- rdbOperActEsp__onClickformModTfnoMulticanal   method ------------------------------------------------		
+rdbOperActEsp__onClickformModTfnoMulticanal: function (event){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+
+var movilActualNac = main.formModTfnoMulticanal.rdbOperActEsp.isChecked();
+if(movilActualNac){
+	main.formModTfnoMulticanal.inputMovilAct.maxLength='9';
+	main.formModTfnoMulticanal.inputMovilAct.value = '';
+	main.formModTfnoMulticanal.inputMovilAct.repaint();
+}
+
+
+			
+},			
+		
+// ---------- rdbOperNuvEsp__onClickformModTfnoMulticanal   method ------------------------------------------------		
+rdbOperNuvEsp__onClickformModTfnoMulticanal: function (event){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+
+
+var movilNuevoNac = main.formModTfnoMulticanal.rdbOperNuvEsp.isChecked();
+if(movilNuevoNac){
+	main.formModTfnoMulticanal.inputMovilNuv.maxLength='9';
+	main.formModTfnoMulticanal.inputMovilConf.maxLength='9';
+	main.formModTfnoMulticanal.inputMovilNuv.value='';
+	main.formModTfnoMulticanal.inputMovilConf.value='';
+	main.formModTfnoMulticanal.inputMovilNuv.repaint();
+	main.formModTfnoMulticanal.inputMovilConf.repaint();
+}
+
+			
+},			
+		
+// ---------- evButtonClickpiePrincipal   method ------------------------------------------------		
+evButtonClickpiePrincipal: function (event){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+switch( event.id)
+{
+	case 'idAceptar':
+		var indNacTRX = dom.getValueNode('root', '/datosInternos[0]/indTlfNac');
+		var movilActualNac = main.formModTfnoMulticanal.rdbOperActEsp.isChecked();
+		var movilNuevoNac = main.formModTfnoMulticanal.rdbOperNuvEsp.isChecked();
+		var movilActual = main.formModTfnoMulticanal.inputMovilAct.value;
+		var movilNuevo = main.formModTfnoMulticanal.inputMovilNuv.value;
+		var movilNuevoConf = main.formModTfnoMulticanal.inputMovilConf.value;
+	main.infoMsg.Content=[];
+	main.infoMsg.clearText();
+		if(movilActualNac && movilNuevoNac)
+		{
+			if(movilActual.length!=9 || movilNuevo.length!=9 || movilNuevoConf.length!=9)
+			{
+				main.infoMsg.setVisibility(true);
+				main.infoMsg.Content.push(main.txtErrorLongEsp); 
+				main.lytInfoMsg.repaint();
+				return;
+			}
+		}
+		else if(!movilActualNac && movilNuevoNac)
+		{
+			if(movilActual.length<10)
+			{
+				main.infoMsg.setVisibility(true);
+				main.infoMsg.Content.push(main.txtErrorLonInt); 
+				main.lytInfoMsg.repaint();
+				return;
+			}
+			if(movilNuevo.length!=9 || movilNuevoConf.length!=9)
+			{
+				main.infoMsg.setVisibility(true);
+				main.infoMsg.Content.push(main.txtErrorLongEsp); 
+				main.lytInfoMsg.repaint();
+				return;
+			}
+		}
+		else if(movilActualNac && !movilNuevoNac)
+		{
+			if(movilActual.length!=9)
+			{
+				main.infoMsg.setVisibility(true);
+				main.infoMsg.Content.push(main.txtErrorLongEsp); 
+				main.lytInfoMsg.repaint();
+				return;
+			}
+			if(movilNuevo.length<10 || movilNuevoConf.length<10)
+			{
+				main.infoMsg.setVisibility(true);
+				main.infoMsg.Content.push(main.txtErrorLonInt); 
+				main.lytInfoMsg.repaint();
+				return;
+			}
+		}
+		else if(!movilActualNac && !movilNuevoNac)
+		{
+			if(movilActual.length<10 || movilNuevo.length<10 || movilNuevoConf.length<10)
+			{
+				main.infoMsg.setVisibility(true);
+				main.infoMsg.Content.push(main.txtErrorLonInt); 
+				main.lytInfoMsg.repaint();
+				return;
+			}
+		}
+		if(!(/^\d+$/.test(movilActual)) || !(/^\d+$/.test(movilNuevo)) || !(/^\d+$/.test(movilNuevoConf)))
+		{
+			main.infoMsg.setVisibility(true);
+			main.infoMsg.Content.push(main.txtErrorFormatoTlfn); 
+			main.lytInfoMsg.repaint();
+			return;
+		}
+		else
+		{
+			if(movilActualNac)
+			{
+				if((movilActual.substr(0,1)!='6') && (movilActual.substr(0,1)!='7'))
+				{
+					main.infoMsg.setVisibility(true);
+					main.infoMsg.Content.push(main.txtErrorFormatoTlfn); 
+					main.lytInfoMsg.repaint();
+					return;
+				}
+			}
+			if(movilNuevoNac)
+			{
+				if(((movilNuevo.substr(0,1)!='6') && (movilNuevo.substr(0,1)!='7')) || ((movilNuevoConf.substr(0,1)!='6') && (movilNuevoConf.substr(0,1)!='7')))
+				{
+					main.infoMsg.setVisibility(true);
+					main.infoMsg.Content.push(main.txtErrorFormatoTlfn); 
+					main.lytInfoMsg.repaint();
+					return;
+				}
+			}
+		}
+		if(movilNuevo!=movilNuevoConf)
+		{
+			main.infoMsg.setVisibility(true);
+			main.infoMsg.Content.push(main.txtErrorConfTlfn); 
+			main.lytInfoMsg.repaint();
+			return;
+		}
+
+	if(movilNuevoNac){
+		dom.setValueNode('root', '/datosInternos[0]/indTlfNac', 'S');
+
+	}else{
+		movilNuevo = parseInt(movilNuevo,10);
+		dom.setValueNode('root', '/datosInternos[0]/indTlfNac', 'N');
+	}
+	dom.setValueNode('root', '/datosInternos[0]/tlfMovilActual', movilActual);
+	dom.setValueNode('root', '/datosInternos[0]/tlfMovilNuevo', movilNuevo);
+	main.formArqMira_V01_1.event='aceptar';
+	main.formArqMira_V01_1.submit(); 
+	break; 
+}
+
+
+
+
+			
+},			
+		
+// ---------- onload   method ------------------------------------------------		
+onload: function (event){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	
+
+var movilActualNac = main.formModTfnoMulticanal.rdbOperActEsp.isChecked();
+var movilNuevoNac = main.formModTfnoMulticanal.rdbOperNuvEsp.isChecked();
+
+if(movilActualNac){
+	main.formModTfnoMulticanal.inputMovilAct.maxLength='9';	main.cntDatosTelefono.repaint();
+}
+
+if(movilNuevoNac){
+	main.formModTfnoMulticanal.inputMovilNuv.maxLength='9';
+	main.formModTfnoMulticanal.inputMovilConf.maxLength='9';
+	main.cntDatosTelefono.repaint();
+}
+
+
+var codError = dom.getValueNode('root', '/error[0]/codigoError');
+
+codError = codError.replace(/^\s+|\s+$/g, ''); 
+if(codError == 'AREPER_INCORRECTO')
+{
+	main.infoMsg.setVisibility(true);
+	main.infoMsg.addText('El número de telefono móvil actual introducido no es correcto.'); 
+	main.lytInfoMsg.repaint();
+	dom.setValueNode('root', '/error[0]/codigoError', '');
+	return;
+}
+
+	main.cabSimple_1.onload();
+	main.bPG_1.onload();
+	main.formModTfnoMulticanal.onload();
+	main.barra_1.onload();
+	main.piePrincipal.onload();
+	main.lytPrincipal.onload();
+	main.cntDatosTelefono.onload();
+	main.lytInfoMsg.onload();
+	main.infoMsg.onload();
+	main.tituloPagina_1.onload();
+	main.cntInfo.onload();
+	main.txtInformacion.onload();
+	main.txtErrorLongEsp.onload();
+	main.txtErrorLonInt.onload();
+	main.txtErrorConfTlfn.onload();
+	main.txtErrorFormatoTlfn.onload();
+	main.formNavegacion_1.onload();
+	main.formArqMira_V01_1.onload();
+			
+},			
+// ---------- drawHeader   method ------------------------------------------------		
+drawHeader: function () {			
+var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};			
+this.setText(this._M1);			
+			
+var s = new Array();			
+	
+	
+this.cabSimple_1 = new Globales_Bhtcs_Internet_AT_Sub_CabSimple_m("cabSimple_1",this,[0,0,631,200,1],s,[]);	
+this.cabSimple_1.TxtEnlace = this.getDataText('cabSimple_1_TxtEnlace_0',this.cabSimple_1);this.cabSimple_1.TitleEnlace = this.getDataText('cabSimple_1_TitleEnlace_1',this.cabSimple_1);this.cabSimple_1.buttons = [['',this.main.text['cabSimple_1_buttons_0'],this.main.text['cabSimple_1_buttons_1']]];	
+s['scrXMLPlantilla']=true;	
+this.bPG_1 = new Globales_Bhtcs_Util_BPG_m("bPG_1",this,[,,631,200,5],s,['scrXMLPlantilla']);	
+this.bPG_1.errorTexts = [this.main.text['bPG_1_errorTexts_0'],this.main.text['bPG_1_errorTexts_1'],this.main.text['bPG_1_errorTexts_2'],this.main.text['bPG_1_errorTexts_3']];this.formModTfnoMulticanal = new ALP_AREPER_Tfno_MulticanalPres_E_Bhtcs_Default_formModTfnoMulticanal_V01_m("formModTfnoMulticanal",this,[0,0,60,60,1],s,[]);	
+	
+	
+	
+this.barra_1 = new Globales_Bhtcs_Internet_Nav_Barra_m("barra_1",this,[0,0,591,17,1],s,[]);	
+	
+	
+this.piePrincipal = new Globales_Bhtcs_Internet_Nav_PiePaginaV2_m("piePrincipal",this,[0,0,500,22,1],s,[]);	
+	
+	
+this.lytPrincipal = new Globales_Bhtcs_Util_Layout_v2_m("lytPrincipal",this,[0,0,400,200,1],s,[]);	
+	
+	
+	
+this.cntDatosTelefono = new Globales_Bhtcs_Internet_AT_Contenedor_m("cntDatosTelefono",this,[0,0,60,60,1],s,[]);	
+	
+	
+	
+this.lytInfoMsg = new Globales_Bhtcs_Util_Layout_v2_m("lytInfoMsg",this,[0,0,400,200,1],s,[]);	
+this.infoMsg = new Globales_Bhtcs_Info_infoMsg_m("infoMsg",this,[0,0,60,60,1],s,[]);	
+this.infoMsg.subTitle = this.getDataText('infoMsg_subTitle_0',this.infoMsg);this.infoMsg.mainTitle = this.getDataText('infoMsg_mainTitle_1',this.infoMsg);	
+	
+this.tituloPagina_1 = new Globales_Bhtcs_Internet_AT_TituloPagina_m("tituloPagina_1",this,[0,0,60,60,1],s,[]);	
+	
+	
+	
+this.cntInfo = new Globales_Bhtcs_Internet_AT_Contenedor_m("cntInfo",this,[0,0,60,60,1],s,[]);	
+	
+this.txtInformacion = new Globales_Bhtcs_Info_Texto_m("txtInformacion",this,[0,0,60,60,1],s,[]);	
+	
+this.txtErrorLongEsp = new Globales_Bhtcs_Info_Texto_m("txtErrorLongEsp",this,[0,0,60,60,1],s,[]);	
+	
+this.txtErrorLonInt = new Globales_Bhtcs_Info_Texto_m("txtErrorLonInt",this,[0,0,60,60,1],s,[]);	
+	
+this.txtErrorConfTlfn = new Globales_Bhtcs_Info_Texto_m("txtErrorConfTlfn",this,[0,0,60,60,1],s,[]);	
+	
+this.txtErrorFormatoTlfn = new Globales_Bhtcs_Info_Texto_m("txtErrorFormatoTlfn",this,[0,0,60,60,1],s,[]);	
+this.formNavegacion_1 = new Globales_Bhtcs_Nav_FormNavegacion_m("formNavegacion_1",this,[0,0,60,60,1],s,[]);	
+	
+	
+this.formArqMira_V01_1 = new Globales_Bhtcs_Arq_FormArqMira_V01_m("formArqMira_V01_1",this,[,,60,60,5],s,[]);	
+this.cabSimple_1.subtitle = this.main.text['cabSimple_1_subtitle_0'];this.cabSimple_1.title = this.main.text['cabSimple_1_title_0'];s.push(this.cabSimple_1.drawHeader());this.bPG_1.numWorkArea = [main.lytPrincipal];
+	
+this.bPG_1.scrXMLPlantilla = dom.getRPath('ALP_AREPER_Tfno_MulticanalPres_E_Html_Plantilla01_Supernet_xml',this._M1,'url');s.push(this.bPG_1.drawHeader());s.push(this.formModTfnoMulticanal.drawHeader());this.barra_1.options = [];
+this.barra_1.optionsTxt = [];this.barra_1.optionsUrl = [];s.push(this.barra_1.drawHeader());this.piePrincipal.buttonsTxt = [[this.main.text['piePrincipal_buttonsTxt_0'],this.main.text['piePrincipal_buttonsTxt_1'],]];this.piePrincipal.buttons = [['idAceptar',true,0,'']];
+s.push(this.piePrincipal.drawHeader());this.lytPrincipal.type = 'V';
+this.lytPrincipal.contents = [[0,main.barra_1,'',true],[0,main.tituloPagina_1,'',true],[0,main.lytInfoMsg,'',true],[0,main.cntInfo,'',true],[0,main.cntDatosTelefono,'',true],[0,main.piePrincipal,'',true]];
+s.push(this.lytPrincipal.drawHeader());this.cntDatosTelefono.colorFondo = 'bodyColorWhite';
+this.cntDatosTelefono.plugins = [main.cabSimple_1];
+this.cntDatosTelefono.content = main.formModTfnoMulticanal;
+s.push(this.cntDatosTelefono.drawHeader());this.lytInfoMsg.contents = [[0,main.infoMsg,'',true]];
+this.lytInfoMsg.rows = 1;
+this.lytInfoMsg.cols = 1;
+s.push(this.lytInfoMsg.drawHeader());s.push(this.infoMsg.drawHeader());this.tituloPagina_1.subtitle = '';this.tituloPagina_1.title = this.getDataText('tituloPagina_1_title_0',this.tituloPagina_1);s.push(this.tituloPagina_1.drawHeader());this.cntInfo.colorFondo = 'bodyColorWhite';
+this.cntInfo.content = main.txtInformacion;
+this.cntInfo.mode = 1;
+s.push(this.cntInfo.drawHeader());this.txtInformacion.bodyTexto = this.getDataText('txtInformacion_bodyTexto_0',this.txtInformacion);s.push(this.txtInformacion.drawHeader());this.txtErrorLongEsp.bodyTexto = this.getDataText('txtErrorLongEsp_bodyTexto_0',this.txtErrorLongEsp);s.push(this.txtErrorLongEsp.drawHeader());this.txtErrorLonInt.bodyTexto = this.getDataText('txtErrorLonInt_bodyTexto_0',this.txtErrorLonInt);s.push(this.txtErrorLonInt.drawHeader());this.txtErrorConfTlfn.bodyTexto = this.getDataText('txtErrorConfTlfn_bodyTexto_0',this.txtErrorConfTlfn);s.push(this.txtErrorConfTlfn.drawHeader());this.txtErrorFormatoTlfn.bodyTexto = this.getDataText('txtErrorFormatoTlfn_bodyTexto_0',this.txtErrorFormatoTlfn);s.push(this.txtErrorFormatoTlfn.drawHeader());s.push(this.formNavegacion_1.drawHeader());this.formArqMira_V01_1.xpaths = ['/datosInternos/tlfMovilNuevo','/datosInternos/indTlfNac','/datosInternos/tlfMovilActual','/error/codigoError'];
+this.formArqMira_V01_1.icollActionType = [];
+s.push(this.formArqMira_V01_1.drawHeader());this.initialize();			
+
+this.dom.getLinks([],null,false);return s.join(' ');			
+},			
+		
+// ---------- drawBody   method ------------------------------------------------		
+drawBody: function () {			
+s = new Array();this.dom.nTopLeft=null;var j =this.paint().join('');			
+return j;},			
+		
+// ---------- paint   method ------------------------------------------------		
+paint: function () {var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};			
+var t = new Array();t.push("<body scroll=\"auto\" onload=\"main.onload();\">");			
+s.push(this.cabSimple_1.drawBody(false,true));		
+s.push(this.bPG_1.drawBody(true,true));		
+this.formModTfnoMulticanal.rdbOperActInt__onClick = this.rdbOperActInt__onClickformModTfnoMulticanal;			
+this.formModTfnoMulticanal.rdbOperNuvInt__onClick = this.rdbOperNuvInt__onClickformModTfnoMulticanal;			
+this.formModTfnoMulticanal.rdbOperActEsp__onClick = this.rdbOperActEsp__onClickformModTfnoMulticanal;			
+this.formModTfnoMulticanal.rdbOperNuvEsp__onClick = this.rdbOperNuvEsp__onClickformModTfnoMulticanal;			
+s.push(this.formModTfnoMulticanal.drawBody(false,false));		
+s.push(this.barra_1.drawBody(false,false));		
+this.piePrincipal.evButtonClick = this.evButtonClickpiePrincipal;			
+s.push(this.piePrincipal.drawBody(false,false));		
+s.push(this.lytPrincipal.drawBody(false,false));		
+s.push(this.cntDatosTelefono.drawBody(false,false));		
+s.push(this.lytInfoMsg.drawBody(false,false));		
+s.push(this.infoMsg.drawBody(false,false));		
+s.push(this.tituloPagina_1.drawBody(false,false));		
+s.push(this.cntInfo.drawBody(false,false));		
+s.push(this.txtInformacion.drawBody(false,false));		
+s.push(this.txtErrorLongEsp.drawBody(false,false));		
+s.push(this.txtErrorLonInt.drawBody(false,false));		
+s.push(this.txtErrorConfTlfn.drawBody(false,false));		
+s.push(this.txtErrorFormatoTlfn.drawBody(false,false));		
+s.push(this.formNavegacion_1.drawBody(false,false));		
+s.push(this.formArqMira_V01_1.drawBody(true,true));		
+t.push(s.join(''));t.push("</body>");			
+return t;			
+}			
+};
+if(typeof dom.getObjById(_M1)=='undefined'){dom.setObjById(_M1 , eval('new '+_M1+"_m('main')"));dom.onLoaded(_M1);}	

@@ -1,0 +1,299 @@
+
+
+
+/*130611*/
+function Globales_Bhtcs_Internet_Nav_Barra_m (id,parent,l,s,m) {	
+this.main=parent.main;this.dom=this.main.dom;this.dom.setLocation(this,l);	
+this._M1='Globales_Bhtcs_Internet_Nav_Barra';this.jsVarName = id;	
+this.parent = parent;	
+this.text = new Array();this.setText = this.base.setText;this.getFullVarName = this.base.getFullVarName;this.getId = this.base.getId;this.getDataText = this.base.getDataText;this.getMain = this.base.getMain;this.openWindowPopup = this.base.openWindowPopup;this.dom.getLinks(['Globales_Styles_Internet_Banesto_css'],'Globales_Bhtcs_Internet_Nav_Barra'+id,true);	
+this._CVSRevision = '$Revision: 1.45.2.11 $';	
+this.styleResources = this.dom.getRPath(this._M1,id,'css');	
+this.printMode = 'pr';	
+this.xmltree = 'Globales.Bhtcs.Internet.Nav.Barra';	
+this.xpathoptions = 'options';	
+this.xpathoptsec = 'optsec';	
+this.xpathitems = 'item';	
+this.xpathid = 'id';	
+this.xpathtext = 'text';	
+this.xpathhref = 'href';	
+this.xpathtarget = 'target';	
+this.xpathtipo = 'tipo';	
+this.xpathtabindex = 'tabindex';	
+this.xpathdisabled = 'disabled';	
+this.xpathselected = 'selected';	
+this.xpathpopup = 'popup';	
+this.fixedWidth = 0;	
+this.optSec = [];	
+this.optSecTxt = [];	
+this.optSecUrl = [];	
+this.options = [['id1','_self',false,true,0,2,false],['id2','_self',false,false,1,1,false]];	
+this.optionsTxt = [['Aceptar'],['Cancelar']];	
+this.optionsUrl = [['#'],['#']];	
+this.styleOptions = ['principal','secundaria'];	
+this.idgen = 0;	
+this.align = 'right';	
+this.mode = '';	
+this.onclick = dom.getInstanceBase().nullEventRaiser;
+}
+Globales_Bhtcs_Internet_Nav_Barra_m.prototype = { base: dom.getInstanceBase(),			
+		
+// ---------- onload   method ------------------------------------------------		
+onload: function () {},			
+		
+// ---------- selected   method ------------------------------------------------		
+selected: function (id){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	for (var i=0;i<this.options.length;i++){
+		this.options[i][3]=(id==this.options[i][0])?true:false;
+	}
+	for (var i=0;i<this.optSec.length;i++){
+		this.optSec[i][3]=(id==this.optSec[i][0])?true:false;
+	}	
+	this.repaint();
+			
+},			
+		
+// ---------- repaint   method ------------------------------------------------		
+repaint: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	this.paint(true,false);
+			
+},			
+		
+// ---------- createMenu   method ------------------------------------------------		
+createMenu: function (opt,optTxt,optUrl){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var s = "",item,id,text,href,target,clase,tindex,claseDisabled,popup,onclick;
+	opt=(opt==null)?[]:opt;
+	optTxt=(optTxt==null)?[]:optTxt;
+	optUrl=(optUrl==null)?[]:optUrl;			
+	for (var i=0;opt && i<opt.length && optTxt && i<optTxt.length && optUrl && i<optUrl.length;i++){
+		item=opt[i];
+		itemTxt=optTxt[i];
+		itemUrl=optUrl[i];
+		id=item[0];
+		dis=item[2];
+		text=(itemTxt && itemTxt[0] )?itemTxt[0]:'';
+		href=(itemUrl && itemUrl[0])?itemUrl[0]:'';
+		target=item[1];
+		tindex=item[5];
+		popup=item[6];
+		clase=' class="'+this.styleOptions[item[4]];
+		if(item[4]==0){
+			if(item[3]) clase+=' selected';
+		}else if(item[4]==1){
+			if(item[3]) clase+=' selected';
+		}
+		clase=(popup)? clase +' popup' : clase;
+		clase = clase +'"';
+		item[0]=id=(id)?id:this.getId("item_"+this.idgen++);
+		//href=(href)?' href="'+href+'"':' href="#"';
+		var strHref='';
+		if(href && href!='#'){
+			strHref=' href="'+href+'"';
+		}else{
+			strHref =' href="javascript:void(0);"';
+			strHref +=' onmouseover="'+this.getFullVarName()+'.mouseOver(this)"';
+			strHref +=' onmouseout="'+this.getFullVarName()+'.mouseOut(this)"';
+		}
+		
+		onclick=(href)?' onclick="'+this.getFullVarName()+'.raiseOnClick(event);'+this.getFullVarName()+'.selected(this.id);return false;"':' onclick="'+this.getFullVarName()+'.raiseOnClick(event);return false;"';
+		target=(target)?' target="'+target+'"':'';
+		tindex=(tindex)?' tabindex="'+tindex+'"':'';
+		if(dis){
+			s+='<span id="' + id + '" class="disabled">' + text + '</span>';
+		} else if(popup){
+			s+='<a id="' + id + '"'+ onclick + strHref + target + clase + tindex;
+			try{
+				if (dom.main.miraDocType != 'standard'){s+=' hidefocus="hidefocus"';}
+			}
+			catch(e){
+			}
+			s+='>' + text + '<img src="' + URI + '/Globales/Images/clear.png" alt="' + text + '" /></a>';
+		}else{
+			s+='<a id="' + id + '"'+ onclick + strHref + target + clase + tindex;
+			try{
+				if (dom.main.miraDocType != 'standard'){s+=' hidefocus="hidefocus"';}
+			}
+			catch(e){
+			}
+			s+='>' + text + '</a>';
+		}
+	}
+	return (s)? s:'&nbsp'; 
+			
+},			
+		
+// ---------- raiseOnClick   method ------------------------------------------------		
+raiseOnClick: function (event){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var htmlEvent = event || window.event; // W3C || IE
+	var target = event.target || event.srcElement; // W3C || IE 
+	var e = this.dom.getInstanceEvent(this,"onclick");
+	e.htmlEvent = htmlEvent;
+	e.preventDefault = this.preventDefault;
+	e.id=target.id;
+	e.raise();
+	if( /#$/.test(target.href) ) e.preventDefault();
+			
+},			
+		
+// ---------- preventDefault   method ------------------------------------------------		
+preventDefault: function (){
+	if(this.htmlEvent.preventDefault) this.htmlEvent.preventDefault(); //W3C
+	else this.htmlEvent.returnValue = false; // IE
+			
+},			
+		
+// ---------- load   method ------------------------------------------------		
+load: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	
+	var xpath=this.xpathoptions+"/"+this.xpathitems;
+	this.options=(!this.options)?[]:this.options;
+	var o=[];
+	var oTxt=[];
+	var oUrl=[];
+	var fea_Root198 = this.dom.getXmlNodes(this.dom.xmlNodes[this.xmltree],xpath);			
+for(var i=0;i<fea_Root198.length;i++) {			
+var fea_Node198 = fea_Root198[i];			
+
+		o[i]=[];
+		oTxt[i]=[];
+		oUrl[i]=[];
+		o[i][0]=this.dom.getXmlValueAtName(fea_Node198, this.xpathid)			
+;
+		o[i][1]=this.dom.getXmlValueAtName(fea_Node198, this.xpathtarget)			
+;
+		o[i][2]=(this.dom.getXmlValueAtName(fea_Node198, this.xpathdisabled)			
+ && this.dom.getXmlValueAtName(fea_Node198, this.xpathdisabled)			
+.toLowerCase()=='true')?true:false;
+		o[i][3]=(this.dom.getXmlValueAtName(fea_Node198, this.xpathselected)			
+ && this.dom.getXmlValueAtName(fea_Node198, this.xpathselected)			
+.toLowerCase()=='true')?true:false;
+		o[i][4]=this.dom.getXmlValueAtName(fea_Node198, this.xpathtipo)			
+;
+		if(o[i][4]!=0||o[i][4]!=1)o[i][4]=0;
+		o[i][5]=this.dom.getXmlValueAtName(fea_Node198, this.xpathtabindex)			
+;
+		o[i][6]=(this.dom.getXmlValueAtName(fea_Node198, this.xpathpopup)			
+ && this.dom.getXmlValueAtName(fea_Node198, this.xpathpopup)			
+.toLowerCase()=='true')?true:false;
+		oTxt[i][0]=this.dom.getXmlValueAtName(fea_Node198, this.xpathtext)			
+;
+		oUrl[i][0]=this.dom.getXmlValueAtName(fea_Node198, this.xpathhref)			
+;
+	}			
+
+	if(o.length>0)this.options=o;
+	if(oTxt.length>0)this.optionsTxt=oTxt;
+	if(oUrl.length>0)this.optionsUrl=oUrl;
+	
+	var xpathSec=this.xpathoptsec+"/"+this.xpathitems; 
+	this.optSec=(!this.optSec)?[]:this.optSec;
+	var oSec=[];
+	var oSecTxt=[];
+	var oSecUrl=[];
+	var fea_Root199 = this.dom.getXmlNodes(this.dom.xmlNodes[this.xmltree],xpathSec);			
+for(var i=0;i<fea_Root199.length;i++) {			
+var fea_Node199 = fea_Root199[i];			
+
+		oSec[i]=[];
+		oSecTxt[i]=[];
+		oSecUrl[i]=[];
+		oSec[i][0]=this.dom.getXmlValueAtName(fea_Node199, this.xpathid)			
+;
+		oSec[i][1]=this.dom.getXmlValueAtName(fea_Node199, this.xpathtarget)			
+;
+		oSec[i][2]=(this.dom.getXmlValueAtName(fea_Node199, this.xpathdisabled)			
+ && this.dom.getXmlValueAtName(fea_Node199, this.xpathdisabled)			
+.toLowerCase()=='true')?true:false;
+		oSec[i][3]=(this.dom.getXmlValueAtName(fea_Node199, this.xpathselected)			
+ && this.dom.getXmlValueAtName(fea_Node199, this.xpathselected)			
+.toLowerCase()=='true')?true:false;
+		oSec[i][4]=this.dom.getXmlValueAtName(fea_Node199, this.xpathtipo)			
+;
+		if(oSec[i][4]!=0||oSec[i][4]!=1)oSec[i][4]=0;
+		oSec[i][5]=this.dom.getXmlValueAtName(fea_Node199, this.xpathtabindex)			
+;
+		oSec[i][6]=(this.dom.getXmlValueAtName(fea_Node199, this.xpathpopup)			
+ && this.dom.getXmlValueAtName(fea_Node199, this.xpathpopup)			
+.toLowerCase()=='true')?true:false;
+		oSecTxt[i][0]=this.dom.getXmlValueAtName(fea_Node199, this.xpathtext)			
+;
+		oSecUrl[i][0]=this.dom.getXmlValueAtName(fea_Node199, this.xpathhref)			
+;
+	}			
+
+	if(oSec.length>0)this.optSec=oSec;
+	if(oSecTxt.length>0)this.optSecTxt=oSecTxt;
+	if(oSecUrl.length>0)this.optSecUrl=oSecUrl;	
+			
+},			
+		
+// ---------- mouseOver   method ------------------------------------------------		
+mouseOver: function (obj){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	if(obj==null)return;
+	var clase = obj.className;
+	if (clase == null || clase == "") {
+		obj.className = "over ovrPrinc";
+	}else {
+		if(clase.indexOf("principal")>=0){
+			obj.className += " over ovrPrinc";
+		} else {
+			obj.className += " over ovrSec";
+		}
+	}
+	
+			
+},			
+		
+// ---------- mouseOut   method ------------------------------------------------		
+mouseOut: function (obj){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	if(obj==null)return;
+	var clase = obj.className;
+	
+	if(clase.indexOf("principal")>=0){
+		obj.className = clase.replace(/ over ovrPrinc/gi, '');
+	}else{
+		obj.className = clase.replace(/ over ovrSec/gi, '');
+	}
+			
+},			
+		
+// ---------- initialize   method ------------------------------------------------		
+initialize: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	this.load();
+			
+},			
+// ---------- drawHeader   method ------------------------------------------------		
+drawHeader: function () {			
+var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};			
+this.setText('Globales_Bhtcs_Internet_Nav_Barra');			
+			
+var s = new Array();			
+this.initialize();			
+
+return s.join(' ');			
+},			
+		
+// ---------- drawBody   method ------------------------------------------------		
+drawBody: function (d,l) {return this.dom.getBodyValue(d,l,this);},		
+// ---------- paint   method ------------------------------------------------		
+paint: function (draw,init) {var s = new Array();
+		var align1,align2;
+		switch (this.align){
+			case 'left':
+				align1='left';
+				align2='right';
+				break;
+			case 'right':
+				align1='right';
+				align2='left';
+				break;
+		}
+				
+		var cN='InternetNavBarra'+' '+this.printMode;
+		if(this.mode=='A')cN+=' auxiliar';
+	s.push("	<div class=\"");s.push( cN );s.push((this.layoutv2)?" InternetNavBarraLayoutContent":"" );s.push("\" style=\"width:auto\">"); if (this.fixedWidth!=0){ s.push("			<div style=\"width:");s.push( this.fixedWidth );s.push("px;\">"); } s.push("			<span class=\"");s.push( align1 );s.push("\">");s.push( this.createMenu(this.options,this.optionsTxt,this.optionsUrl,align1) );s.push("</span>"); if (this.optSec!=0 && this.optSec!=null && this.optSec!=""){ s.push("				<span class=\"");s.push( align2 );s.push("\">");s.push( this.createMenu(this.optSec,this.optSecTxt,this.optSecUrl,align2) );s.push("</span>"); }  if (this.fixedWidth!=0){ s.push("			</div>"); } s.push("	</div>");return this.dom.paint(draw,init,this,s.join(''));			
+}			
+
+}
+
+;dom.onLoaded('Globales_Bhtcs_Internet_Nav_Barra');

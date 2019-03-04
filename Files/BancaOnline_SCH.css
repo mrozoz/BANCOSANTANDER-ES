@@ -1,0 +1,747 @@
+	/* Estilos de generales de pagina */
+	body{
+		background-color:#FFFFFF;
+		color:#000;
+		margin:0;
+		scrollbar-3dlight-color:#C90212;
+		scrollbar-arrow-color:#5A5A5A;
+		scrollbar-darkshadow-color:#C90212;
+		scrollbar-face-color:#EFE5E5;
+		scrollbar-highlight-color:#FDFDFE;
+		scrollbar-shadow-color:#DCC6C8;
+		scrollbar-track-color:#EBEBEB;
+		font-family:verdana, Arial, Helvetica, sans-serif;
+		/*font-size:0.69em !important;*/
+		font-size:69%;
+	}
+
+a{Cursor:pointer;text-decoration:underline}
+
+/* Para el componente Texto */
+.Texto{}
+
+.Texto A{cursor:pointer;cursor:hand}
+
+.marco {
+	line-height:1.64em;
+	margin:5px;
+}
+
+P.marco A {text-decoration:underline;cursor:pointer;}
+
+.simplemarco {
+	color:black;
+}
+.alertamarco {
+	color:red;
+}
+.resaltadomarco {
+	font-weight: bold;
+}
+
+.etiquetamarco{	
+	color:black;
+	line-height:1.63em;
+}
+.etiquetamarco img{	
+	height:12px;
+	width:12px;
+	background: url(https://particulares.gruposantander.es/CE_VOperativa_SANINT_ENS/EarEstatico/CE_VOperativa_SANINT_ENS/CE_VentanaOperativa_Pres/Images/BancaOnlineEtiquetaInformativa.gif) no-repeat 0 0;
+	margin-left: 7px;
+	margin-right: 5px;
+	position:relative;
+	top:1px;
+}
+
+/* infoMsg */
+ 
+ .mensaje{
+  border:1px solid #f00;background-color:#FFFFCC !important;	
+  width:100%;
+}
+
+.mensaje p{color:#000;
+	margin:0!important;
+}
+
+.mensaje strong{
+	font-weight:bold;
+	color:#000;
+	font-size:1em;
+	font-family:verdana, Arial, Helvetica, sans-serif;
+	padding:0;
+	margin:0;	
+}
+
+.error{
+	background-image:url(https://particulares.gruposantander.es/CE_VOperativa_SANINT_ENS/EarEstatico/CE_VOperativa_SANINT_ENS/CE_VentanaOperativa_Pres/Images/BancaOnlineError.gif);
+	background-repeat: no-repeat;
+    float: left;
+    height: 20px;
+    margin: 8px;
+    width: 20px;
+}
+
+.alerta{
+	background-image: url(https://particulares.gruposantander.es/CE_VOperativa_SANINT_ENS/EarEstatico/CE_VOperativa_SANINT_ENS/CE_VentanaOperativa_Pres/Images/BancaOnlineAlerta.gif);
+    background-repeat: no-repeat;
+    float: left;
+    height: 20px;
+    margin: 8px;
+    width: 20px;
+}
+
+.ayuda{
+	background-image:url(https://particulares.gruposantander.es/CE_VOperativa_SANINT_ENS/EarEstatico/CE_VOperativa_SANINT_ENS/CE_VentanaOperativa_Pres/Images/BancaOnlineAyuda.gif);
+	background-repeat: no-repeat;
+    float: left;
+    height: 20px;
+    margin: 8px;
+    width: 20px;
+}
+.informacion{
+	background-image:url(https://particulares.gruposantander.es/CE_VOperativa_SANINT_ENS/EarEstatico/CE_VOperativa_SANINT_ENS/CE_VentanaOperativa_Pres/Images/BancaOnlineIinformacion.gif);
+	background-repeat: no-repeat;
+    float: left;
+    height: 20px;
+    margin: 8px;
+    width: 20px;
+}
+.confirmacion{
+	background-image:url(https://particulares.gruposantander.es/CE_VOperativa_SANINT_ENS/EarEstatico/CE_VOperativa_SANINT_ENS/CE_VentanaOperativa_Pres/Images/BancaOnlineConfirmacion.gif);
+	background-repeat: no-repeat;
+    float: left;
+    height: 20px;
+    margin: 8px;
+    width: 20px;
+}
+DIV.InfoInfoMsg.ventana .alerta,
+DIV.InfoInfoMsg.ventana .alerta,
+DIV.InfoInfoMsg.ventana .ayuda,
+DIV.InfoInfoMsg.ventana .informacion,
+DIV.InfoInfoMsg.ventana .confirmacion {margin: 0 0 0 8px;}
+
+.infor{
+	background:url(https://particulares.gruposantander.es/CE_VOperativa_SANINT_ENS/EarEstatico/CE_VOperativa_SANINT_ENS/CE_VentanaOperativa_Pres/Images/BancaOnlineIinformacion.gif) no-repeat 8px 8px;
+}
+
+.user{
+	background:url(https://particulares.gruposantander.es/CE_VOperativa_SANINT_ENS/EarEstatico/CE_VOperativa_SANINT_ENS/CE_VentanaOperativa_Pres/Images/BancaOnlineConfirmacion.gif) no-repeat 8px 8px;
+}
+
+.conFondo {background-color:#FFFFCC!important;}
+.sinFondo {background-color:#ffffff!important;}
+
+.conBorde {border:1px solid red;}
+.sinBorde {border:0px;}
+
+/* Para el componente Enlaces */
+.enlaces {
+font-size:1em;
+}
+
+.enlaces ul {
+list-style-type: none;
+margin: 0;
+padding: 0;
+}
+
+.enlaces li {
+display:inline;
+}
+
+.enlaces a {
+color:#FF0000;
+text-decoration:none;
+}
+.enlaces a:hover {
+text-decoration:underline;
+}
+.enlaces a.under {
+text-decoration:underline;
+}
+.enlaces a.bold {
+font-weight: bold;
+}
+.enlaces img {
+border:0px;
+margin-right:5px;
+text-decoration:none;
+}
+
+.intRight{padding:8px 8px 8px 29px;}
+.intLeft{float:left;width:2.73em;height:2.73em}
+/* NEW	*/
+.infoMsg {width:auto;padding:0em;height:100%;margin-left:7px;}
+.infoMsg .bordeGris {padding:1px;}
+*html .infoMsg .bordeGris{border-top-width:1em;border-bottom-width:1.09em;}
+.infoMsg .imgTopLeft {height:1em;width:1em;position:relative;top:-0.5em;left:-0.5em;float:left;background:url(https://particulares.gruposantander.es/CE_VOperativa_SANINT_ENS/EarEstatico/CE_VOperativa_SANINT_ENS/CE_VentanaOperativa_Pres/Images/BancaOnlineBorderCross.gif) center center;}
+.infoMsg .imgTopRight {height:1em;width:1em;position:relative;top:-0.5em;right:-0.5em;text-align:right;float:right;background:url(https://particulares.gruposantander.es/CE_VOperativa_SANINT_ENS/EarEstatico/CE_VOperativa_SANINT_ENS/CE_VentanaOperativa_Pres/Images/BancaOnlineBorderCross.gif) center center;}
+.infoMsg .imgBottomLeft {height:1em;width:1em;position:relative;top:-0.5em;left:-0.5em;float:left;background:url(https://particulares.gruposantander.es/CE_VOperativa_SANINT_ENS/EarEstatico/CE_VOperativa_SANINT_ENS/CE_VentanaOperativa_Pres/Images/BancaOnlineBorderCross.gif) center center;}
+.infoMsg .imgBottomRight {height:1em;width:1em;position:relative;top:-0.5em;right:-0.5em;text-align:right;float:right;background:url(https://particulares.gruposantander.es/CE_VOperativa_SANINT_ENS/EarEstatico/CE_VOperativa_SANINT_ENS/CE_VentanaOperativa_Pres/Images/BancaOnlineBorderCross.gif) center center ;}
+.infoMsg .head .fondoGris {height:1em;}
+.infoMsg .head .texto {height:auto;padding:0.36em 0.55em 0.55em 0.55em;font-weight:bold;margin-left:6.27em}
+.infoMsg .body {padding-left:6.27em;}
+.infoMsg .body .texto {padding:0.4em 1.09em;min-height:8em;}
+*html .infoMsg .body .texto {padding:1.09em;height:8.8em;}
+*html .infoMsg .body {height:9em;}
+
+.infoMsg .foot {width:auto;height:2.25em;padding:1px 0px;text-align:center;}
+.infoMsg .footCont {background:#F1F1F1;}
+.infoMsg .foot input{width:auto;height:1.9em;text-align:center;margin:0 auto 0 auto;padding-left:1em;padding-right:1em;font-weight:bold;font-size:1em;margin-top:-1px;}
+
+/*tipos de infoMensaje*/
+.infoMsg.error1 .body {background: url(https://particulares.gruposantander.es/CE_VOperativa_SANINT_ENS/EarEstatico/CE_VOperativa_SANINT_ENS/CE_VentanaOperativa_Pres/Images/OnlineBanestoMensajeLogoError.gif) no-repeat 0px 0px}
+.infoMsg.alerta .body {background: url(https://particulares.gruposantander.es/CE_VOperativa_SANINT_ENS/EarEstatico/CE_VOperativa_SANINT_ENS/CE_VentanaOperativa_Pres/Images/OnlineBanestoMensajeLogoAlerta.gif) no-repeat 0px 0px}
+.infoMsg.ayuda1 .body {background: url(https://particulares.gruposantander.es/CE_VOperativa_SANINT_ENS/EarEstatico/CE_VOperativa_SANINT_ENS/CE_VentanaOperativa_Pres/Images/OnlineBanestoMensajeLogoAyuda.gif) no-repeat 0px 0px}
+.infoMsg.user1 .body {background: url(https://particulares.gruposantander.es/CE_VOperativa_SANINT_ENS/EarEstatico/CE_VOperativa_SANINT_ENS/CE_VentanaOperativa_Pres/Images/icoDialogoConfimacion.gif) no-repeat 0px 0px}
+.infoMsg.infor .body {background: url(https://particulares.gruposantander.es/CE_VOperativa_SANINT_ENS/EarEstatico/CE_VOperativa_SANINT_ENS/CE_VentanaOperativa_Pres/Images/OnlineBanestoMensajeLogoInfo.gif) no-repeat 0px 0px}
+
+/*GAMAS*/
+.infoMsg .bordeGris {border:solid #F0F0F0;border-width:1em 1.27em 1.09em 1.27em ;background-color:#FFFFFF;}
+.infoMsg .head {background-color:#BFBFBF;padding-top:2.09em}
+.infoMsg .head .fondoGris {display:none;background-color:#C6C3C6;}
+.infoMsg .head .texto {background-color:#FFFFFF;}
+.infoMsg .head .bottom {background-color:#F4F6F7;border-bottom:1px solid #D6D6D6;border-top:1px solid #ffffff}
+.infoMsg .body {background-color:#FFFFFF;border-bottom:1px solid #BFBFBF;border-top: 1px solid #FFFFFF;}
+.infoMsg .body .texto {background-color:#F4F6F7;/*border-top:1px solid #F0F0F0;border-bottom:1px solid #F0F0F0;*/}
+
+.infoMsg .foot {background-color:#BFBFBF;border-top:1px solid #FFFFFF;border-bottom:1px solid #BFCBD9;}
+.infoMsg .foot input{border:none;background-color:#FFFFFF;color:#FF0000;margin-top:1px;padding-left:0em;padding-right:0em;/*border:2px solid #FFFFFF;color:#FFFFFF;border-left:3em solid #FFFFFF;border-right:3em solid #FFFFFF;*/}
+/*tipos de infoMensaje*/
+.infoMsg.error .head .texto {color:#FF0000}
+.infoMsg.alerta .head .texto {color:#DAA12A}
+.infoMsg.ayuda .head .texto {color:#46B8B3}
+.infoMsg.user .head .texto {}
+.infoMsg.infor .head .texto {color:#0081C3}
+
+ 
+/* Para el componente TituloPagina de Internet.AT */
+
+H1.tpagina, H2.tpagina,
+H3.tpagina, H4.tpagina,
+H5.tpagina, H6.tpagina{
+margin-bottom:0;
+font-weight:bold;
+font-size: 1em;
+color:#000;
+background-image:url(https://particulares.gruposantander.es/CE_VOperativa_SANINT_ENS/EarEstatico/CE_VOperativa_SANINT_ENS/CE_VentanaOperativa_Pres/Images/SCH_webGlobal.gif);
+background-repeat:no-repeat;
+background-position: 0px -349px;
+}
+.tpagina SPAN.title{
+font-size: 1.09em  !important;
+margin:0 -0.08em 0 2.73em;
+padding:0 0 0 0;
+}
+.tpagina SPAN.subtitle {
+font-weight:normal;
+font-size: 1em  !important;
+padding:0 0.3em 0 0;
+}
+H1.subt, H2.subt,
+H3.subt,H4.subt,
+H5.subt,H6.subt{
+color:#000;
+font-size: 1em;
+background-image:url(https://particulares.gruposantander.es/CE_VOperativa_SANINT_ENS/EarEstatico/CE_VOperativa_SANINT_ENS/CE_VentanaOperativa_Pres/Images/SCH_webGlobal.gif);
+background-repeat:no-repeat;
+background-position: 0px -429px;
+}
+.subt SPAN.title{
+font-size: 1em !important;
+margin:0 -0.1em 0 0.9em;
+padding:0 0 0 0;
+background-color:#FFF;
+}
+.subt SPAN.subtitle{
+font-size: 1em !important;
+/*margin:0 0 0 0;*/
+padding:0 0.3em 0 0.3em;
+background-color:#FFF;
+}
+.bodyColorDefault .subt SPAN.title, .bodyColorDefault .subt SPAN.subtitle{
+	background-color:#ebebeb;
+}
+H1.form, H2.form,
+H3.form,H4.form,
+H5.form,H6.form{
+color:#000;
+font-size: 1em;
+background-image:url(https://particulares.gruposantander.es/CE_VOperativa_SANINT_ENS/EarEstatico/CE_VOperativa_SANINT_ENS/CE_VentanaOperativa_Pres/Images/SCH_webGlobal.gif);
+background-repeat:no-repeat;
+background-position: 0px -466px;
+/*background-color:#FFF;*/
+}
+.bodyColorDefault .form SPAN.title, .bodyColorDefault .form SPAN.subtitle{
+	background-color:#ebebeb;
+}
+.form SPAN.title{
+font-size: 1.0em !important;
+margin:0 -0.1em 0 0.9em;
+padding:0 0 0 0;
+background-color:#FFF;
+}
+.form SPAN.subtitle{
+font-size: 1em !important;
+/*margin:0 0 0 0;*/
+padding:0 0.3em 0 0.3em;
+background-color:#FFF;
+}
+H1.libre,H2.libre,
+H3.libre,H4.libre,
+H5.libre,H6.libre{
+color:#000;
+font-size: 1em;
+background-image:none;
+padding-top:12px;
+padding-bottom:15px;
+}
+
+.libre SPAN.title{
+font-weight:bold;
+font-size: 1.55em !important;
+margin:0 -0.08em 0 0;
+padding:0 0 0 0;
+}
+
+.libre SPAN.subtitle {
+font-weight:bold;
+font-size:1.36em !important;
+padding:0 0.3em 0 0;
+}
+.libre IMG{
+	vertical-align:middle;
+}
+/************************TituloPagina Internet FormSimple***********************/
+.formSimple .title {float: left;font:bold 1em verdana;color:#CC0000;padding-bottom:4px;margin-top:8px;padding-right:2px;background-color:#ebebeb;}
+.formSimple .subtitle {float: left;font:normal 1em verdana;color:#CC0000;margin-top:8px;padding-bottom:4px;padding-right:2px;background-color:#ebebeb;}
+html> body .formSimple .title, html> body .formSimple .subtitle {margin-top:0;}
+/*html> body .TituloPaginaFormSimple .subtitle{padding-top:8px;padding-right:2px;}*/
+.formSimple .resto{border-bottom:1px dotted #000;height:11px;font-size:1px;margin-right:5px;margin-top:8px;}
+/***********************FIN de TituloPagina FormSimple**************/
+/*****************CTI Texto.bhtc************************/
+	.TextByDefault {
+		color:#000000;
+		background-image: url(https://particulares.gruposantander.es/CE_VOperativa_SANINT_ENS/EarEstatico/CE_VOperativa_SANINT_ENS/CE_VentanaOperativa_Pres/Images/icoBulletScriptCIC.gif);
+		background-repeat: no-repeat;
+		background-position: 0 16;
+		padding:8px 5px 4px 14px;
+		background-color:#FFF;
+		font:normal 1em Verdana,Arial,Helvetica,sans-serif;
+		width:185px;
+		margin-left:3px;
+		margin-bottom:6px;
+		display:block;
+		line-height:18px;
+	}
+	html>body .TextByDefault{
+    width:166px;
+  }
+.TextHighlight{
+		padding:8px 5px 4px 14px;
+		color:#0074B5;
+		background-image: url(https://particulares.gruposantander.es/CE_VOperativa_SANINT_ENS/EarEstatico/CE_VOperativa_SANINT_ENS/CE_VentanaOperativa_Pres/Images/icoBocadilloScriptCIC.gif) ;
+		background-repeat: no-repeat;
+		background-position: 0 0;
+		font:normal 1em Verdana,Arial,Helvetica,sans-serif;
+		width:185px;
+		background-color:#FFF;
+		margin-left:3px;
+		margin-bottom:6px;
+		display:block;
+		border:1px solid #E1E9F0;
+		line-height:18px;
+	}
+	html>body .TextHighlight{
+    width:166px;
+  }
+/*****************FIN CTI Texto.bhtc************************/
+/* Clase Cabecera Simple tipo Section */
+
+.CabSimpleSection{overflow:hidden;height:3.82em;text-align:left;font-weight:bold;color:#0C0000;background-color:transparent;font-size:1.09em;font-family: verdana;border-top:0px;border-bottom:0px;padding-top:18px;padding-bottom:12px;}
+.CabSimpleSection H1, .CabSimpleSection H2, .CabSimpleSection H3, .CabSimpleSection H4,
+.CabSimpleSection H5, .CabSimpleSection H6 {font-size:1.09em;font-family: verdana;display:inline;}
+.CabSimpleSection .Titulo {font-size:1.09em;font-family: verdana;margin-right:6px;font-weight:bold;}
+.CabSimpleSection .Subtitulo {font-size:1.09em;font-family: verdana;white-space:nowrap;overflow:hidden;font-weight:normal;}
+
+/* Para el componente Paginador de Internet.AT */
+#Componente_paginador{
+	border:1px solid #BFBFBF;
+	padding: 0 11px 0 11px;
+	height: 2.09em;
+	background:#E8E8E8;
+	position: relative;
+}
+/*Si el paginador está integrado como funcionalidad del contenedor eliminamos su borde*/
+.Contenedor .foot .Paginador{
+	border:0pt !important;
+	font-size:1em!important;/*0.69em*/
+}
+#Componente_paginador .center{
+    /*position: absolute;*/
+    line-height:1.2em;
+    vertical-align: middle;
+    }
+#Componente_paginador .numeros{
+	float:left;
+	position: relative;
+}
+#Componente_paginador .enlaces_paginador {
+	float:right;
+	color:#F00;
+	position: relative;
+}
+#Componente_paginador .enlaces_paginador a{cursor:pointer;cursor:hand;
+	text-decoration:none;
+}
+#Componente_paginador .enlaces_paginador a:hover, #Componente_paginador .enlaces_paginador a.pgOver{
+	text-decoration:underline;
+}
+#Componente_paginador span.separador {
+	color:black;
+}
+
+/***************************NavGuia***************************/
+	/*.guia{font-family:verdana;font-size:1em;height:1.64em;}*/
+	.guia{font-family:verdana;font-size:1em;}
+	/*.guia .completado{background:#E8EAF0;float:left;padding:3px 6px 3px 6px;height:1.64em;margin:6px 0px;white-space:nowrap;}*/
+	.guia .completado{background:#E8EAF0;padding:3px 6px 3px 6px;height:1.64em;margin:6px 0px;white-space:nowrap;}	 
+	.guia .completado a{text-decoration:none;color:#333333;font-weight:bold;cursor:default;}
+	/*.guia .seleccionado{background:#FF0000;float:left;padding:3px 6px 3px 6px;height:1.64em;margin:6px 0px;white-space:nowrap;}*/
+	.guia .seleccionado{height:1.64em;background:#FF0000;padding:3px 6px 3px 6px;margin:6px 0px;white-space:nowrap;}	
+  	.guia .seleccionado a{text-decoration:none;color:#FFFFFF;font-weight:bold;cursor:default;}
+	/*.guia .incompleto{background:#F4F4F4;float:left;padding:3px 6px 3px 6px;height:1.64em;margin:6px 0px;white-space:nowrap;}*/
+	.guia .incompleto{height:1.64em;background:#F4F4F4;padding:3px 6px 3px 6px;margin:6px 0px;white-space:nowrap;}
+	.guia .incompleto a{text-decoration:none;color:#333333;font-weight:bold;cursor:default;}
+	/*.guia .flecha{float:left;height:1em;font-weight:bold;margin:5px;font-family:Times New Roman;font-family:Times New Roman;font-size:2.45em;line-height:0.7em;color:#000;margin-top:0px;margin-bottom:-12px}*/
+	.guia .flecha{height:1em;font-weight:bold;margin:5px;margin-top:0px;margin-bottom:8px;font-family:Times New Roman;font-size:1.75em;line-height:100%;color:#000;}
+	.guia .completado, .guia .seleccionado, .guia .incompleto{margin-top:0px;padding-bottom:3px;}
+	/*html>body .guia .completado, .guia .seleccionado, .guia .incompleto{padding-bottom:0px;}*/
+	html>body .guia .flecha{margin-top:1px}
+	.guia .completado span{text-decoration:none;color:#333333;font-weight:bold;}
+	.guia .incompleto span{text-decoration:none;color:#333333;font-weight:bold;}
+    .guia .seleccionado span{text-decoration:none;color:#FFFFFF;font-weight:bold;}
+/***************************FIN NavGuia***********************/
+
+/****************ComboAccion y BotonesAccion******************/
+	.ComboAccion{height:20px;font-size:1em;text-align:right;}
+	.ComboAccion label{margin-right:4px;font-family:verdana}
+	.ComboAccion select{color:#000000;font-family:verdana;font-size:1em;margin-top:1px;margin-bottom:-1px}
+	.ComboAccion .botonBorder{margin-left:4px;padding-left:0px!important;padding-right:0px!important;background-color:#FF0000;cursor:pointer;cursor:hand;}
+	.ComboAccion input{font-family:verdana;font-size:1em;font-weight: bold;height:17px;padding-top:1px;padding-bottom:2px;cursor:pointer;cursor:hand;}
+	html>body .ComboAccion .botonBorder{font-size:1.3em;padding-bottom:1px;cursor:pointer;cursor:hand;}
+	html>body .ComboAccion .botonBorder input{font-size:0.8em;padding-top:1px;padding-bottom:2px;cursor:pointer;cursor:hand;}
+	.BotonesAccion{height:20px;font-size:11px;text-align:right}
+
+/****************ComboAccion y BotonesAccion 1024******************/
+	.BancaOnline1024ComboAccion{height:20px;font-size:1em;margin:6px;}
+	.BancaOnline1024ComboAccion label{margin-right:4;font-family:verdana}
+	.BancaOnline1024ComboAccion select{color:#000000;font-family:verdana;font-size:1em;margin-top:1px;margin-bottom:-1px;font-size:1em}
+	.BancaOnline1024ComboAccion .botonBorder{background-color:#FF0000;cursor:pointer;margin-left:6px;padding-left:0px !important;padding-right:0px !important;}
+	.BancaOnline1024ComboAccion input{font-family:verdana;font-size:1em;font-weight: bold;height:17px;padding-top:1px;padding-bottom:2px;cursor:pointer;cursor:hand;}
+	.BancaOnline1024ComboAccion select{width:131px;}
+	html>body .BancaOnline1024ComboAccion .botonBorder{font-size:1.3em;padding-bottom:1px;cursor:pointer;cursor:hand;}
+	html>body .BancaOnline1024ComboAccion .botonBorder input{font-size:0.8em;padding-top:2px;padding-bottom:2px;cursor:pointer;cursor:hand;}
+
+
+	.BotonesAccion .botonBorder{margin-left:4px;margin-top:0px;height:20px;cursor:pointer;cursor:hand;}
+	.BotonesAccion .botonBorder.first{margin-left:0px;cursor:pointer;cursor:hand;}
+	.BotonesAccion input{font-family:verdana;font-size:1em;font-weight: bold;height:18px;padding-top:1px !important;cursor:pointer;cursor:hand;}
+	html>body .BotonesAccion .botonBorder{height:20px;line-height:20px;font-size:1.3em;position:relative;top:-1px;border-bottom:2px solid #FFFFFF;cursor:pointer;cursor:hand;}
+	html>body .BotonesAccion .botonBorder input{font-size:0.8em;padding-top:1px;padding-bottom:2px;cursor:pointer;cursor:hand;}
+	/*colores*/
+	.BotonesAccion .botonBorder, .BancaOnline1024ComboAccion .botonBorder, .ComboAccion .botonBorder{border:1px solid #FFFFFF;cursor:pointer;cursor:hand;}
+	.BotonesAccion input, .ComboAccion input{color:#FFFFFF;padding-left:2px!important;padding-right:2px!important;background-color:#FF0000;cursor:pointer;cursor:hand;border:none}
+	.BancaOnline1024ComboAccion input{color:#FFFFFF;padding-left:2px!important;padding-right:1px!important;background-color:#FF0000;cursor:pointer;cursor:hand;border:none}
+	.botonBorder .boton{width:auto !important;display:inline;padding-left:12px!important;padding-right:12px!important;background-color:#FF0000;cursor:pointer;cursor:hand;}
+	.BancaOnline1024boton .botonBorder{width:auto !important;display:inline;padding-left:0px!important;padding-right:0px!important;background-color:#FF0000;cursor:pointer;cursor:hand;}
+	html>body .botonBorder .boton{margin-left:3px;margin-right:4px;}
+/**************FIN ComboAccion y BotonesAccion****************/
+
+/*************BarraAccion-100*************/
+	.BarraAccionFaldon{background-color:#E8E8E8;height:38px;}
+	.BarraAccionFaldon .posicionamiento{float:right;margin:0px;width:auto;}
+	.BarraAccionFaldon .posicionamiento DIV{float:left;width:auto!important;}
+	.BarraAccionFaldon .BarraAccionAgrupacion{margin-left:0px;margin-right:0px;padding:9px 12px 9px 0px;}
+	.BarraAccionFaldon .notFirst{border-left:1px solid #FFFFFF;padding-left:12px;}
+/*************BarraAccion-100*************/
+/*Estilos plugin SubmenuTabla*/
+.subMenuTabla{margin:0;padding:0;}
+.subMenuTabla .divA{z-index:100;position:absolute;border:1px solid #999;background-color:#fff;margin:-1px 0 0 20px;padding:0;width:10%;}
+html>body .subMenuTabla .divA{width:auto;}
+.subMenuTabla ul{z-index:101;list-style:none;margin:0;padding:0;padding-top:6px;}
+html>body .subMenuTabla ul{}
+.subMenuTabla ul li{list-style:none;padding:0px 6px 6px 6px;text-align:left;white-space:nowrap}
+.subMenuTabla ul li a{background:url("https://particulares.gruposantander.es/CE_VOperativa_SANINT_ENS/EarEstatico/CE_VOperativa_SANINT_ENS/CE_VentanaOperativa_Pres/Images/SubMenuIco1.gif") no-repeat center left;z-index:102;margin:0;padding:0;padding-left:10px;}
+.subMenuTabla a{z-index:40;text-decoration:none;color:#f00;width:100%;}
+.subMenuTabla a:hover{text-decoration:underline;color:#f00;}
+.subMenuTabla .divA{display:none}
+.subMenuTabla:hover .divA,.subMenuTabla.over .divA{display:block;}
+.subMenuTabla .IconoMenu{background:url("https://particulares.gruposantander.es/CE_VOperativa_SANINT_ENS/EarEstatico/CE_VOperativa_SANINT_ENS/CE_VentanaOperativa_Pres/Images/SubMenuIco2.gif") no-repeat bottom left;height:8px;width:10px;padding:0;margin-left:6px;}
+
+/*Clases margenes Layuot*/
+.lyNavGuia{margin-top:12px;margin-bottom:12px;padding-left:0px;padding-right:0px;}
+.lyInfoMsg{margin-top:12px;margin-bottom:12px;padding-left:0px;padding-right:0px;}
+.lyTexto{margin-top:9px;margin-bottom:10px;padding-left:0px;padding-right:0px;}
+.lyEnlaceV2Utilidades{text-align:right;margin-top:12px;margin-bottom:12px;margin-left:0px;margin-right:0px;}
+.lyEnlaceV2Pie{text-align:center;margin-top:34px;margin-bottom:12px;margin-left:0px;margin-right:0px;}
+.lyEnlaceV2Solo{text-align:right;margin-top:9px;margin-bottom:9px;margin-left:0px;margin-right:0px;}
+.lygEnlaceV2Solo{text-align:right;margin-left:0px;margin-right:0px;}
+.lyEnlaceV2Operaciones{text-align:left;margin-top:5px;margin-bottom:12px;margin-left:0px;margin-right:0px;}
+.lyEnlaceV2Cabecera{text-align:right;margin-top:5px;margin-bottom:10px;margin-left:0px;margin-right:0px;}
+.BancaOnline1024EnlacesV2{margin:6px;}
+.BancaOnline1024EnlacesV2 IMG{border:0px;margin-right:4px;}
+
+.lygTexto{margin-top:2px;margin-bottom:2px;padding-left:2px;padding-right:2px;}
+.padding0{padding:0!important}
+
+.lyLayout_v2 .lyEnlaceV2Cabecera{text-align:right!important;margin-top:12px;margin-bottom:12px;margin-left:0px;margin-right:0px;}
+.lyLayout_v2 .lyTexto #marco {margin:0px}
+
+.lyLayout_v2 .comboAccion{text-align:left;margin-top:4px;margin-bottom:18px;}
+ html>body .lyLayout_v2 .comboAccion .botonBorder input{border:1px solid red;}
+.lyLayout_v2 .BotonesAccion input, .ComboAccion input{color:#FFFFFF;padding-left:3px!important;padding-right:4px!important;background-color:#FF0000;cursor:pointer;cursor:hand;border:none}
+.lyLayout_v2 .comboAccion .botonBorder input{border:none;}
+.lyLayout_v2 .BarraAccionAgrupacion .comboAccion{margin-top:0px;margin-bottom:0px;}
+.lyLayoutV2 #marco{margin:0px;}
+.lyLayout_v2 h1,.lyLayout_v2 h2,.lyLayout_v2 h3,.lyLayout_v2 h4,.lyLayout_v2 h5,.lyLayout_v2 h6 {margin:0px;}
+
+.lyNavGuia .completado, .lyNavGuia .seleccionado, .lyNavGuia .incompleto{margin:0}
+.lyNavGuia .flecha {margin-top:0px;margin-bottom:1px;}
+
+/* Nav.BarraAccion  nuevos estilos para QUIRKS MODE */
+	DIV.NavBarraAccion{background-color:#E8E8E8;height:38px;}
+	DIV.NavBarraAccion DIV.BarraAccionGrupo{width:auto;float:right;}
+	DIV.NavBarraAccion DIV.BarraAccionItem{float:left;width:auto;margin:0;padding:0.81em 1.09em;border-left:1px solid #fff;}
+	DIV.NavBarraAccion DIV.first{padding-left:0;border-left-width:0;}
+/* Nav.BarraAccion */
+
+/* Nav.BotonesAccion y NavComboAccion */
+	DIV.NavBotonesAccion,DIV.NavComboAccion {height:auto;text-align:right;padding:0;margin:0;/*position:relative;left:0;top:0;*/font-size:1em;}
+	DIV.NavComboAccion LABEL{margin-right:0.4em;}
+	DIV.NavBotonesAccion INPUT.first,
+	DIV.NavComboAccion INPUT.first,DIV.NavComboAccion BUTTON.first{margin-left:0px;}
+	DIV.NavBotonesAccion INPUT.boton,DIV.NavComboAccion INPUT.boton{display:inline;font-family:Verdana,Arial,Helvetica,sans-serif;font-weight:bold;font-size:1em;margin:0 0 0 0.45em;font-size:1em;width:auto;height:auto;padding:0.18em 0.36em;overflow:visble;cursor:pointer;border-width:1px;border-style:solid;color:#FFF;background-color:#f00;border-color:#fff #fff #b17676 #fff;background-image:none;}	
+	DIV.NavBotonesAccion BUTTON.boton,DIV.NavComboAccion BUTTON.boton{display:inline;font-family:Verdana,Arial,Helvetica,sans-serif;font-weight:bold;font-size:1em;margin:0 0 0 0.45em;font-size:1em;width:auto;height:auto;padding:0.18em 0.36em;cursor:pointer;border-width:1px;border-style:solid;color:#FFF;background-color:#f00;border-color:#fff #fff #b17676 #fff;background-image:none;}	
+	DIV.NavBotonesAccion INPUT.boton:hover,DIV.NavBotonesAccion INPUT.boton:active,DIV.NavBotonesAccion INPUT.boton.over,
+	DIV.NavComboAccion INPUT.boton:hover,DIV.NavComboAccion INPUT.boton:active,DIV.NavComboAccion INPUT.boton.over{background-color:#ec0000;border-color:#965d5d #fff #fff #fff;}
+	DIV.NavBotonesAccion BUTTON.boton:hover,DIV.NavBotonesAccion BUTTON.boton:active,DIV.NavBotonesAccion BUTTON.boton.over,
+	DIV.NavComboAccion BUTTON.boton:hover,DIV.NavComboAccion BUTTON.boton:active,DIV.NavComboAccion BUTTON.boton.over{background-color:#ec0000;border-color:#965d5d #fff #fff #fff;}
+	*html DIV.NavBotonesAccion INPUT.boton,*html DIV.NavComboAccion INPUT.boton, *html DIV.NavBotonesAccion BUTTON.boton, *html DIV.NavComboAccion BUTTON.boton{padding:0.05em 0.36em;}
+	DIV.NavComboAccion SELECT,DIV.NavComboAccion SELECT OPTION, DIV.NavComboAccion SELECT OPTGROUP{font-family:Verdana,Arial,Helvetica,sans-serif;font-size:1em;cursor:pointer!important;}
+	DIV.NavComboAccion SELECT OPTGROUP{font-style:normal;}
+/*	ends Nav.BotonesAccion y NavComboAccion */
+
+	/* Nav.Enlace_v2 en quirks mode */
+		/* corrige las declaraciones de esta misma hoja basadas en identificador #enlaces */
+	DIV.enlaces {font-size:1em;}
+DIV.enlaces UL {list-style: none;margin: 0;padding:0;}
+DIV.enlaces UL LI {display:inline;}
+DIV.enlaces A,DIV.enlaces A:link,DIV.enlaces A:visited {color:#F00;text-decoration:none;}
+DIV.enlaces A IMG,DIV.enlaces A:link IMG,DIV.enlaces A:visited IMG,DIV.enlaces A:hover IMG,DIV.enlaces A:active IMG {border:0;}
+DIV.enlaces A:hover,DIV.enlaces A:active {text-decoration:underline;}
+DIV.enlaces A.under,DIV.enlaces A.under:link,DIV.enlaces A.under:visited {text-decoration:underline;}
+DIV.enlaces A.bold,DIV.enlaces A.bold:link,DIV.enlaces A.bold:visited {font-weight: bold;}
+DIV.enlaces  IMG {border:0;margin-right:5px;text-decoration:none;}
+/* ends corrección de #enlaces*/
+
+/* Nav.Enlace_v2 */
+DIV.NavEnlace_v2 {font-size:1em;text-align:center;}
+DIV.NavEnlace_v2.left {text-align:left;}
+DIV.NavEnlace_v2.right {text-align:right;}
+DIV.NavEnlace_v2.center {text-align:center;}
+DIV.NavEnlace_v2.solo{text-align:left;}
+DIV.NavEnlace_v2 UL,DIV.NavEnlace_v2 UL LI{display:inline;list-style: none;margin: 0;padding:0;}
+DIV.NavEnlace_v2 UL {position:relative;}
+DIV.NavEnlace_v2 UL LI A,DIV.NavEnlace_v2 UL LI A:link,DIV.NavEnlace_v2 UL LI A:visited {margin:0 0.55em;color:#F00;font-weight:normal;text-decoration:none;}
+DIV.NavEnlace_v2 UL LI A:hover,DIV.NavEnlace_v2 UL LI A:active {text-decoration:underline;}
+DIV.NavEnlace_v2 UL LI.underline A,DIV.NavEnlace_v2 UL LI.underline A:link,DIV.NavEnlace_v2 UL LI.underline A:visited{text-decoration:underline;}
+DIV.NavEnlace_v2 UL LI.strong A,DIV.NavEnlace_v2 UL LI.strong A:link,DIV.NavEnlace_v2 UL LI.strong A:visited{font-weight:bold;}
+DIV.NavEnlace_v2 UL LI A IMG,DIV.NavEnlace_v2 UL LI A IMG:link{/*height:10px;width:9px;*/border:0;margin-right:0.55em;}
+DIV.NavEnlace_v2 UL LI.link A ,DIV.NavEnlace_v2 UL LI.download A ,DIV.NavEnlace_v2 UL LI.popup A {margin-top:5px;padding-left:15px; background-repeat:no-repeat;background-image:url("./Internet/100/Img/xhtml_Global.gif");}
+DIV.NavEnlace_v2 UL LI.link A{background-repeat:no-repeat;background-position:0 -249px;}
+DIV.NavEnlace_v2 UL LI.download A{background-position:0 -289px;}
+DIV.NavEnlace_v2 UL LI.popup A{background-position:0 -269px;}
+DIV.NavEnlace_v2 UL LI.imagen A{height:auto;width:auto;background-image:none;}
+
+
+
+DIV.lyEnlaceV2Cabecera, DIV.EnlCabecera{margin-bottom:7px;text-align:right;}
+  DIV.lyEnlaceV2Operaciones, DIV.operaciones{margin:5px 0 12px;text-align:left}
+  DIV.lyEnlaceV2Pie, DIV.piepg{margin-bottom:12px;text-align:center}
+  DIV.lyEnlaceV2Solo, DIV.solo{margin-bottom:12px;text-align:right;}
+  DIV.lyEnlaceV2Utilidades, DIV.utilidades{margin-bottom:12px;text-align:right;}
+  
+/* ends Nav.Enlace_v2 */
+
+/*	Nav.Paginador */
+
+    /* Para el componente Paginador de Internet.AT */
+  DIV.NavPaginador{border:1px solid #BFBFBF;padding: 0 11px 0 11px;height: 2.09em;background:#E8E8E8;position: relative;}
+  /*Si el paginador está integrado como funcionalidad del contenedor eliminamos su borde*/
+  .Contenedor .foot .NavPaginador{border:0pt !important;font-size:1em!important;}
+  DIV.NavPaginador .center{line-height:1.2em;vertical-align: middle;}
+  DIV.NavPaginador .numeros{float:left;position: relative;}
+  DIV.NavPaginador .enlaces_paginador {float:right;color:#F00;position: relative;}
+  DIV.NavPaginador .enlaces_paginador a{text-decoration:none;}
+  DIV.NavPaginador .enlaces_paginador a:hover{text-decoration:underline;}
+  DIV.NavPaginador span.separador {color:black;}
+
+		/* antiguos corrige declaraciones antiguas de más arriba, línea 288, basadas en #Componente_paginador, selector basado en Id que se sustituye por selector de clase CSS */
+		DIV.NavPaginador{position:static;font-size:1em;border:1px solid #BFBFBF;padding: 0 11px 0 11px;background:#E8E8E8;}
+			/*Si el paginador está integrado como funcionalidad del contenedor eliminamos su borde*/
+		DIV.Contenedor DIV.foot DIV.NavPaginador{border:0;font-size:1em;}
+		DIV.NavPaginador DIV.center{position:static;vertical-align:auto;height:1.09em;}
+		DIV.NavPaginador DIV.numeros{position:relative;top:0.5em;float:left;}
+		DIV.NavPaginador DIV.enlaces_paginador{position:relative;top:0.5em;float:right;color:#F00;}
+		DIV.NavPaginador DIV.enlaces_paginador A{display:inline;text-decoration:none;color:#F00;}
+		DIV.NavPaginador DIV.enlaces_paginador A:hover{text-decoration:underline;}
+		DIV.NavPaginador SPAN.separador {	color:black;}
+		DIV.NavPaginador{position:static;font-size:1em;border:1px solid #BFBFBF;padding: 0 11px 0 11px;background:#E8E8E8;}
+		/* ends antiguos*/
+	/*Si el paginador está integrado como funcionalidad del contenedor eliminamos su borde*/
+	DIV.NavPaginador{position:static;font-size:1em;border:1px solid #BFBFBF;width:auto;background:#E8E8E8;}
+	/*Si el paginador está integrado como funcionalidad del contenedor eliminamos su borde*/
+	DIV.InternetAtContenedor DIV.pie DIV.NavPaginador{border:0;font-size:1em;}
+	DIV.NavPaginador DIV.center{position:static;vertical-align:auto;height:2.09em;width:100%;padding:0;border-top:1px solid #fff;}
+	DIV.NavPaginador DIV.numeros{position:relative;top:0.45em;left:0;float:left;}
+	DIV.NavPaginador DIV.numeros SPAN{margin:0;}
+	DIV.NavPaginador DIV.enlaces{position:relative;top:0.45em;right:1.09em;float:right;background-color:transparent;}
+	*html DIV.NavPaginador DIV.enlaces{padding:0}
+	/* apariencia y comportamiento de enlaces en el paginador */
+	DIV.NavPaginador DIV.enlaces A,DIV.NavPaginador DIV.enlaces A:link,DIV.NavPaginador DIV.enlaces A:visited{background-color:transparent;display:inline;text-decoration:none;color:#F00;}
+	DIV.NavPaginador DIV.enlaces A:hover,DIV.NavPaginador DIV.enlaces A:active{text-decoration:underline;}
+	DIV.NavPaginador DIV.enlaces A,DIV.NavPaginador DIV.enlaces A:link,DIV.NavPaginador DIV.enlaces A:visited{background-color:transparent;background-image:url("./Internet/100/Img/xhtml_Global.gif");background-repeat:no-repeat;}
+	/*particulariza cada caso*/
+	DIV.NavPaginador DIV.enlaces A{margin:0;margin-right:0.91em;border:0;padding:0;}
+	DIV.NavPaginador DIV.enlaces A.primero,DIV.NavPaginador DIV.enlaces A.primero:link,DIV.NavPaginador DIV.enlaces A.primero:visited{background-position: 0 -1655px;padding-left:00.90em;}
+	DIV.NavPaginador DIV.enlaces A.anterior,DIV.NavPaginador DIV.enlaces A.anterior:link,DIV.NavPaginador DIV.enlaces A.anterior:visited{background-position: 0 -1595px;padding-left:0.90em; }
+	DIV.NavPaginador DIV.enlaces A.separador,DIV.NavPaginador DIV.enlaces A.separador:link,DIV.NavPaginador DIV.enlaces A.separador:visited{margin-right:1.0em;padding-right:1.45em;border-right:1px solid #000;}
+	DIV.NavPaginador DIV.enlaces A.siguiente,DIV.NavPaginador DIV.enlaces A.siguiente:link,DIV.NavPaginador DIV.enlaces A.siguiente:visited{background-position: right -1595px;padding-right:0.90em;}
+	DIV.NavPaginador DIV.enlaces A.ultimo,DIV.NavPaginador DIV.enlaces A.ultimo:link,DIV.NavPaginador DIV.enlaces A.ultimo:visited{background-position: right -1655px;padding-right:0.90em;margin-right:0;}
+/* ends Nav.Paginador*/
+/* InfoTexto*/
+	DIV.InfoTexto P{color:#000;font-size:1em;line-height:1.64em;font-weight:normal;margin:0;padding:0;}
+	DIV.InfoTexto P.alerta{color:#f00;background-image:none;background-color:transparent;}
+	DIV.InfoTexto P.alerta IMG{float:left;height:21px;width:21px;background-position: 0 -308px;background-repeat:no-repeat;margin:0 0.55em 0 0;background-image:url("./Internet/100/Img/xhtml_Global.gif");}
+	DIV.InfoTexto P.etiqueta{margin:0.91em 1.09em;line-height:normal;}
+	DIV.InfoTexto P.etiqueta IMG{float:left;position:relative;top:0.27em;height:12px;width:12px;background-position: -150px -310px;background-repeat:no-repeat;margin:0 0.55em 0 0;background-image:url("./Internet/100/Img/xhtml_Global.gif");background-color:#fff;}
+	DIV.InfoTexto P.resaltado{font-weight: bold;}
+/* ends Info.Texto*/
+
+/* Info.Infomsg */
+	/*antiguos*/ 
+	/*corrige la altura para mostrar en la maqueta antigua frente a la nueva XHTML en quirks mode*/
+	.infoMsg{height:auto;}
+		/*corrige la llamada a la imagen de las esquinas de infomsg en modo ventana para la antigüa maqueta frente a la nueva XHTML en quirks mode*/
+	.infoMsg .imgTopLeft,.infoMsg .imgTopRight,.infoMsg .imgBottomLeft,.infoMsg .imgBottomRight {background:url("https://particulares.gruposantander.es/CE_VOperativa_SANINT_ENS/EarEstatico/CE_VOperativa_SANINT_ENS/CE_VentanaOperativa_Pres/Images/BancaOnlineBorderCross.gif") center center;}
+	/* ends antiguos*/
+	
+	
+/* Info.Infomsg */
+	/*integrado (default)*/
+	DIV.InfoInfoMsg{padding:0;overflow:hidden;border-width:1px;border-style:solid;border-color:#f00;background-color:#FFFFCC;background-image:none;}
+
+  DIV.InfoInfoMsg DIV.intLeft{width:2.73em;height:2.73em}
+  DIV.InfoInfoMsg DIV.intLeft IMG{display:block;width:30px;height:30px;margin:8px 0 0 8px;background-image:url("./Internet/100/Img/xhtml_Global.gif");}
+	DIV.InfoInfoMsg DIV.intLeft IMG.alerta{background-position: 0 -310px;}
+	DIV.InfoInfoMsg DIV.intLeft IMG.confirmacion{background-position: 0 -350px;}
+	DIV.InfoInfoMsg DIV.intLeft IMG.error{background-position: 0 -390px;}
+	DIV.InfoInfoMsg DIV.intLeft IMG.informacion{background-position: 0 -430px;}
+	DIV.InfoInfoMsg DIV.intLeft IMG.ayuda{background-position: 0 -470px;}
+	DIV.InfoInfoMsg DIV.intRight{padding:8px 8px 8px 29px}
+	DIV.InfoInfoMsg DIV.intRight DIV.heading P,DIV.InfoInfoMsg DIV.intRight DIV.cuerpo P{margin:0;} 
+	DIV.InfoInfoMsg DIV.intRight DIV.heading P{font-weight:bold;}
+	DIV.InfoInfoMsg DIV.intRight DIV.cuerpo DIV.mensaje{border:0;}
+	DIV.InfoInfoMsg DIV.heading P SPAN {margin-right:5px;}
+	/* ends integrado*/
+	/*ventana*/
+	DIV.InfoInfoMsg.ventana,DIV.InfoInfoMsg.ventana DIV,DIV.InfoInfoMsg.ventana DIV.cuerpo DIV.mensaje{border:0;margin:0;padding:0;}
+	DIV.InfoInfoMsg.ventana {background-position:left top;overflow:hidden;background-repeat:no-repeat;background-image:url("./Internet/100/Img/xhtml_Fondo_InfoInfoMsg.gif");background-color: #FFFFFF;width: 100%;}
+	DIV.InfoInfoMsg.ventana DIV.heading{float:right;width:80%;height:71px;background-position: right 0;background-repeat:no-repeat;background-image:url("./Internet/100/Img/xhtml_Fondo_InfoInfoMsg.gif");}
+	DIV.InfoInfoMsg.ventana DIV.heading P{margin:10px 0 0 4px;background-image:none;position:absolute;top:40px;left:115px;width:auto;text-align:left;font-weight:bold;padding:0;white-space:nowrap;}
+	DIV.InfoInfoMsg.ventana DIV.heading P SPAN{white-space:nowrap;}
+	DIV.InfoInfoMsg.ventana DIV.cuerpo {float:right;width:100%;height:auto;background-position:left bottom;background-repeat:no-repeat;background-image:url("./Internet/100/Img/xhtml_Fondo_InfoInfoMsg.gif");}
+	DIV.InfoInfoMsg.ventana DIV.cuerpo SPAN.alerta,
+	DIV.InfoInfoMsg.ventana DIV.cuerpo SPAN.confirmacion,
+	DIV.InfoInfoMsg.ventana DIV.cuerpo SPAN.error,
+	DIV.InfoInfoMsg.ventana DIV.cuerpo SPAN.informacion,
+	DIV.InfoInfoMsg.ventana DIV.cuerpo SPAN.ayuda{float:left;position:relative;left:12px;top:0;width:69px;height:70px;margin-right:20px;padding:0;border:0;background-color:#FBFCFC;background-image:url("./Internet/100/Img/xhtml_Global.gif");background-repeat:no-repeat;}
+	DIV.InfoInfoMsg.ventana DIV.cuerpo DIV.mensaje {background-color: #FFFFFF !important;min-height:47px;float:none;width:auto;margin-left:95px;padding:13px 25px 18px 10px;max-width:95%;background-position:right -100px;background-repeat:no-repeat;background-image:url("./Internet/100/Img/xhtml_Fondo_InfoInfoMsg.gif");}
+	html>body DIV.InfoInfoMsg.ventana DIV.cuerpo DIV.mensaje{margin-left:100px;}
+	DIV.InfoInfoMsg.ventana DIV.cuerpo DIV.mensaje P{margin:0;padding:0 25px 0 0;width:100%;text-align:left;}
+	DIV.InfoInfoMsg.ventana DIV.cuerpo DIV.mensaje P.subtitle{font-weight:bold;margin-bottom:1.18em!important;}
+	DIV.InfoInfoMsg.ventana DIV.cuerpo DIV.mensaje DIV.componente{width:100%;margin-bottom:1.18em !important;}
+	DIV.InfoInfoMsg.ventana DIV.cuerpo DIV.mensaje UL{ /*display:list-item;*/margin:0 12px;padding:0 !important;width:auto;}
+	DIV.InfoInfoMsg.ventana DIV.cuerpo DIV.mensaje UL LI{display:list-item;list-style-type:disc;list-style-position:outside;position:relative;left:20px;padding-left:auto;}
+	DIV.InfoInfoMsg.ventana DIV.cuerpo DIV.mensaje DIV{background-image:none;}
+	
+	DIV.InfoInfoMsg.ventana DIV.cuerpo DIV.pie {display:block;height:50px;float:right;width:95%;text-align:center;background-position:right bottom;background-repeat:no-repeat;background-image:url("./Internet/100/Img/xhtml_Fondo_InfoInfoMsg.gif");}
+  DIV.InfoInfoMsg.ventana DIV.cuerpo DIV.pie BUTTON{font:1em Verdana,Arial,Helvetica,sans-serif;background-color:#FFF;color:#F00;padding:0.36em 0 0.27em 0;margin-top:7px;margin-right:15px;border:0;font-size:1em;font-weight:bold;text-align:center;width:auto;cursor:pointer}
+  *DIV.InfoInfoMsg.ventana DIV.cuerpo DIV.mensaje{height:8em;}
+  
+	/* FOOT COMO BHTC EXTERNO*/
+	DIV.InfoInfoMsg.ventana DIV.pieComp{display:block;height:50px;text-align:center;float:right;width:95%;background-position:right bottom;background-repeat:no-repeat;background-image:url("./Internet/100/Img/xhtml_Fondo_InfoInfoMsg.gif");}
+	/*DIV.InfoInfoMsg.ventana DIV.pieComp DIV{background-image:none;display:block;width:100%;margin:0!important;border:0;padding-top:4px;}*/
+	DIV.InfoInfoMsg.ventana DIV.pieComp DIV.InternetNavPiePaginaV2{padding-top:8px;}
+  DIV.InfoInfoMsg.ventana DIV.pieComp DIV.InternetNavPiePaginaV2 span{padding:0.55em 1em 0.6em;}
+	DIV.InfoInfoMsg.ventana DIV.pieComp DIV.InternetNavPiePaginaV2 span span{padding:0;}
+	DIV.InfoInfoMsg.ventana DIV.pieComp DIV.InternetNavPiePaginaV2{background-color:transparent;}
+	*DIV.InfoInfoMsg.ventana DIV.pieComp DIV.InternetNavPiePaginaV2{padding-top:4px;}
+	*DIV.InfoInfoMsg.ventana DIV.pieComp DIV.InternetNavPiePaginaV2 span{padding:0.25em 1em;}
+	/* imagen de cabecera */
+	DIV.InfoInfoMsg.ventana DIV.cuerpo SPAN.alerta {background-position:13px -500px;}
+	DIV.InfoInfoMsg.ventana DIV.heading P.alerta{color:#DAA12A;}
+	DIV.InfoInfoMsg.ventana DIV.cuerpo SPAN.confirmacion {background-position:13px -578px;}
+	DIV.InfoInfoMsg.ventana DIV.heading P.confirmacion{color:#000;}
+	DIV.InfoInfoMsg.ventana DIV.cuerpo SPAN.error {background-position:13px -768px;}
+	DIV.InfoInfoMsg.ventana DIV.heading P.error{color:#F00;}
+	DIV.InfoInfoMsg.ventana DIV.cuerpo SPAN.informacion {background-position:13px -870px;}
+	DIV.InfoInfoMsg.ventana DIV.heading P.informacion{color:#0081C3;}
+	DIV.InfoInfoMsg.ventana DIV.cuerpo SPAN.ayuda {background-position:13px -669px;}
+	DIV.InfoInfoMsg.ventana DIV.heading P.ayuda{color:#46b8b3;}
+	 /* ends ventana*/
+/* ends infoMsg */
+
+/* InternetNavNavGuia */
+	DIV.InternetNavNavGuia{padding:0;margin:0;font-size:1em;}
+	DIV.InternetNavNavGuia OL,DIV.InternetNavNavGuia OL LI{list-style-type:none;margin:0;padding:0;}
+	DIV.InternetNavNavGuia OL{display:block;height:1.8em;}
+	DIV.InternetNavNavGuia OL LI{float:left;width:auto;height:1.9em;background-color:#FFF}
+	*html DIV.InternetNavNavGuia OL LI{height:1.9em}
+	DIV.InternetNavNavGuia OL LI IMG,DIV.InternetNavNavGuia OL LI SPAN.arrow{float:left;position:relative;top:0.36em;height:11px;width:25px;padding:0;margin:0 0.27em;cursor:default;background-repeat:no-repeat;background-position:-1px -1275px;background-color:transparent;background-image:url("./Internet/100/Img/xhtml_Global.gif");}
+	DIV.InternetNavNavGuia LI SPAN{float:left;width:auto;cursor:default;padding:0.27em 0.55em;margin:0!important;font-weight:bold;background-color:#F4F4F4;}
+	DIV.InternetNavNavGuia LI SPAN{cursor:default;}
+	*html DIV.InternetNavNavGuia LI SPAN{padding-right:0.5em}
+	DIV.InternetNavNavGuia LI A SPAN{cursor:pointer;margin:0;background-color:#F4F4F4;color:#000;}
+	DIV.InternetNavNavGuia LI A IMG, DIV.InternetNavNavGuia LI A SPAN.arrow{cursor:pointer;border:0;margin:0 0.36em;background-color:transparent;}
+	DIV.InternetNavNavGuia LI A,DIV.InternetNavNavGuia LI A:link,DIV.InternetNavNavGuia LI A:visited,
+	DIV.InternetNavNavGuia LI A:hover,DIV.InternetNavNavGuia LI A:active{cursor:pointer;text-decoration:none;}
+	DIV.InternetNavNavGuia LI.hecho SPAN,DIV.InternetNavNavGuia LI.hecho A SPAN{background-color:#e8e8e8;}
+	DIV.InternetNavNavGuia LI.activo SPAN,DIV.InternetNavNavGuia LI.activo A SPAN{background-color:#F00;}
+	DIV.InternetNavNavGuia LI.activo SPAN{color:#fff;}
+/* ends InternetNavNavGuia */
+/* Cabecera simple modo section */
+	DIV.InternetAtContenedor DIV.InternetAtSubCabSimpleSection{overflow:hidden;height:3.82em;text-align:left;font-weight:bold;color:#0C0000;background-color:transparent;font-size:1.09em;font-family: verdana;border-top:0px;border-bottom:0px;padding-top:18px;padding-bottom:12px;}
+	DIV.InternetAtContenedor DIV.InternetAtSubCabSimpleSection H1, DIV.InternetAtContenedor DIV.InternetAtSubCabSimpleSection H2,DIV.InternetAtContenedor DIV.InternetAtSubCabSimpleSection H3, DIV.InternetAtContenedor DIV.InternetAtSubCabSimpleSection H4,
+DIV.InternetAtContenedor DIV.InternetAtSubCabSimpleSection H5, DIV.InternetAtContenedor DIV.InternetAtSubCabSimpleSection H6 {font-size:1.09em;font-family: verdana;display:inline;}
+	DIV.InternetAtContenedor DIV.InternetAtSubCabSimpleSection SPAN.title{font-size:1.09em;font-family: verdana;margin-right:6px;font-weight:bold;}
+	DIV.InternetAtContenedor DIV.InternetAtSubCabSimpleSection SPAN.subtitle {font-size:1.09em;font-family: verdana;white-space:nowrap;overflow:hidden;font-weight:normal;}
+/* ends Cabecera simple modo section */
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+	DIV.InternetNavNavGuia LI SPAN{
+		padding:0.275em 0.55em;
+	}
+	
+	DIV.NavBotonesAccion INPUT.boton{
+		padding:0.24em 3.6em !important;
+	}
+	
+	DIV.NavComboAccion INPUT.boton{
+		padding-top:0.24em;
+		padding-bottom:0.24em;
+	}
+}
+

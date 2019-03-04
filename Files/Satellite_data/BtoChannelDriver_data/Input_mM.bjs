@@ -1,0 +1,701 @@
+
+
+
+/*110613*/
+function Globales_Bhtcs_ObjForms_Input_m (id,parent,l,s,m) {	
+this.main=parent.main;this.dom=this.main.dom;this.dom.setLocation(this,l);	
+this._M1='Globales_Bhtcs_ObjForms_Input';this.jsVarName = id;	
+this.parent = parent;	
+this.text = new Array();this.setText = this.base.setText;this.getFullVarName = this.base.getFullVarName;this.getId = this.base.getId;this.getDataText = this.base.getDataText;this.getMain = this.base.getMain;this.openWindowPopup = this.base.openWindowPopup;this.dom.getLinks(['Globales_Styles_Intranet_13_Css_ObjForms_css'],'Globales_Bhtcs_ObjForms_Input'+id,true);	
+this._CVSRevision = '$Revision: 1.11.2.81 $';	
+this.plugins = [];	
+this.inputRoot = 'root';	
+this.input = [false,''];	
+this.id = '';	
+this.value = '';	
+this.style = '';	
+this.type = 'text';	
+this.styleResources = this.dom.getRPath(this._M1,id,'css');	
+this.tclass = '';	
+this.maxLength = '';	
+this.name = '';	
+this.tabindex = '';	
+this.accesskey = '';	
+this.viewMandatory = null;	
+this.disabled = false;	
+this.origDisabled = false;	
+this.origValue = '';	
+this.required = false;	
+this.Validation = [];	
+this.Texts = ['El campo es requerido'];	
+this.checked = false;	
+this.readonly = false;	
+this.readOnlyStyle = false;	
+this.onBlur = dom.getInstanceBase().nullEventRaiser;
+this.onChange = dom.getInstanceBase().nullEventRaiser;
+this.onClick = dom.getInstanceBase().nullEventRaiser;
+this.onFocus = dom.getInstanceBase().nullEventRaiser;
+this.onKeyDown = dom.getInstanceBase().nullEventRaiser;
+this.onKeyPress = dom.getInstanceBase().nullEventRaiser;
+this.onKeyUp = dom.getInstanceBase().nullEventRaiser;
+this.onMouseOut = dom.getInstanceBase().nullEventRaiser;
+this.onMouseOver = dom.getInstanceBase().nullEventRaiser;
+this.onSelect = dom.getInstanceBase().nullEventRaiser;
+}
+Globales_Bhtcs_ObjForms_Input_m.prototype = { base: dom.getInstanceBase(),			
+		
+// ---------- Blr   method ------------------------------------------------		
+Blr: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var e=this.dom.getInstanceEvent(this,"onBlur");
+	e.raise();
+			
+},			
+		
+// ---------- Chng   method ------------------------------------------------		
+Chng: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	e=(this.parent!=main)?this.parent.getElementById(this.id):this.dom.getOut().getElementById(this.id);
+	if(e){
+		this.value=e.value;
+		if (e.type=='checkbox' || e.type=='radio') 
+			{
+				this.checked=e.checked;
+				this.setOK();
+			}
+		}	
+	var e=this.dom.getInstanceEvent(this,"onChange");
+	e.raise();
+			
+},			
+		
+// ---------- Clk   method ------------------------------------------------		
+Clk: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	ev=(this.parent!=main)?this.parent.getElementById(this.id):this.dom.getOut().getElementById(this.id);
+if(ev && ev.type=='text'){
+	ev.focus();
+	this.value=ev.value;
+	_this=this;
+	setTimeout(function(){
+	var e=this.dom.getInstanceEvent(_this,"onClick");
+	e.raise();
+	},1);
+	
+}else{
+	var e=this.dom.getInstanceEvent(this,"onClick");
+	e.raise();
+	
+	ev=(this.parent!=main)?this.parent.getElementById(this.id):this.dom.getOut().getElementById(this.id);
+	if(ev){
+		this.value=ev.value;
+		if (ev.type=='checkbox') {
+			if(ev.checked){				
+				ev.parentNode.className = ev.parentNode.className + ' checked';				
+				this.checked=true;
+			}else{				
+				ev.parentNode.className = ev.parentNode.className.replace(' checked','');				
+				this.checked=false;
+			}
+		}		
+	}
+}
+			
+},			
+		
+// ---------- Foc   method ------------------------------------------------		
+Foc: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var e=this.dom.getInstanceEvent(this,"onFocus");
+	e.raise();
+			
+},			
+		
+// ---------- kDown   method ------------------------------------------------		
+kDown: function (event){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var e=this.dom.getInstanceEvent(this,"onKeyDown");
+	e.htmlEvent=event;
+	e.raise();
+			
+},			
+		
+// ---------- kPress   method ------------------------------------------------		
+kPress: function (event){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var e=this.dom.getInstanceEvent(this,"onKeyPress");
+	e.htmlEvent=event;
+	e.raise();
+			
+},			
+		
+// ---------- kUp   method ------------------------------------------------		
+kUp: function (event){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var e=this.dom.getInstanceEvent(this,"onKeyUp");
+	e.htmlEvent=event;
+	e.raise();
+			
+},			
+		
+// ---------- mOut   method ------------------------------------------------		
+mOut: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var e=this.dom.getInstanceEvent(this,"onMouseOut");
+	e.raise();
+			
+},			
+		
+// ---------- mOver   method ------------------------------------------------		
+mOver: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var e=this.dom.getInstanceEvent(this,"onMouseOver");
+	e.raise();
+			
+},			
+		
+// ---------- Sel   method ------------------------------------------------		
+Sel: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var e=this.dom.getInstanceEvent(this,"onSelect");
+	e.raise();
+			
+},			
+		
+// ---------- getVal   method ------------------------------------------------		
+getVal: function (inputValue,currentValue,rootPath){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var val=currentValue;
+	try {
+		if(inputValue&&inputValue[0]){
+			val=this.dom.getXmlValueAtName(this.dom.xmlNodes[rootPath],inputValue[1]);
+			if(!val)val=currentValue;
+		}
+	} catch(e) {}
+	return val;
+			
+},			
+		
+// ---------- setValue   method ------------------------------------------------		
+setValue: function (_value){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	try {
+	dom.setValueNode(this.inputRoot,this.input[1],_value);
+	} catch(e){}
+			
+},			
+		
+// ---------- getClass   method ------------------------------------------------		
+getClass: function (){
+	if (this.type!="checkbox" && this.type!="radio"){
+		if(this.tclass!="" && this.tclass != null){
+			clase=this.tclass;
+		}else{
+			clase=((this.viewMandatory)?"fnLeft fnInputActCarga":"fnLeft");
+		}
+
+		var datos= clase.split(" ");
+		var long=datos.length;
+		var style="";
+		for(i=0;datos.length>i;i++){
+		   if(datos[i] != "fnInputError" && 
+		      datos[i] != "fnInputDisFrm" && 
+		      datos[i] != "fnInputAct" &&
+		      datos[i] != "fnInputDisFrm" &&
+		      datos[i] != "fnInputReadOnly" &&
+		      datos[i] != "norequired" &&
+		      datos[i] != "inputtext" &&
+		      datos[i] != "inputradio" &&
+		      datos[i] != "inputcheckbox" &&
+		      datos[i] != "inputbutton" &&
+		      datos[i] != "inputfile" &&
+		      datos[i] != "inputpassword"){
+		      style = style + datos[i]+ " ";
+		   } 
+		}
+
+		if (this.Validation[0].result){
+			switch(this.Validation[0].result){
+				case "ERROR": clase=style+" fnInputError";break;
+				case "EXTERNAL": clase=style+" fnInputError";break;
+				case "REQUIRED": clase=style+" fnInputAct";break;
+				case "DISABLED": clase=style+" fnInputDisFrm"; break;
+				case "READONLY": clase=style+" fnInputReadOnly"; break;
+				case "NOREQUIRED": clase=style+"norequired";break;
+			}
+		}else{clase=style;}
+		switch(this.type){
+			case 'button':
+				if(clase.indexOf('inputbutton')==-1){
+					clase='inputbutton '+clase;
+				}
+				break;
+			case 'file':
+				if(clase.indexOf('inputfile')==-1){
+					clase='inputfile '+clase;
+				}
+				break;
+			case 'password':
+				if(clase.indexOf('inputpassword')==-1){
+					clase='inputpassword '+clase;
+				}
+				break;
+			default:
+				if(clase.indexOf('inputtext')==-1){
+					clase='inputtext '+clase;
+				}
+				break;
+		}
+		this.tclass=clase;
+		return clase;
+	}else{
+		if(this.type=='checkbox'){
+			if(this.tclass.indexOf('inputcheckbox')==-1){
+				this.tclass='inputcheckbox '+this.tclass;
+			}
+			if(this.isChecked()){
+				this.tclass=(this.tclass.indexOf(' checked')==-1)? this.tclass + ' checked' : this.tclass;
+			}else{
+				this.tclass = this.tclass.replace(' checked','')
+			}
+		}
+		else if(this.type=='radio'){
+			if(this.tclass.indexOf('inputradio')==-1){
+				this.tclass='inputradio '+this.tclass;
+			}
+		}
+		return this.tclass;
+	}
+			
+},			
+		
+// ---------- setDisabled   method ------------------------------------------------		
+setDisabled: function (disable){
+var e=(this.parent!=main)?this.parent.getElementById(this.id):this.dom.getOut().getElementById(this.id);
+if(e){
+	e.disabled=disable;
+	this.disabled=disable;
+		if(disable){
+			this.Validation[0]={result:"DISABLED"};
+			e.className = this.getClass();
+		}else{
+			this.Validation[0]={result:""};
+			e.className=this.getClass();			
+		}
+	if (this.required)
+		this.setRequired(true);
+}
+			
+},			
+		
+// ---------- setRequired   method ------------------------------------------------		
+setRequired: function (require){
+var e=(this.parent!=main)?this.parent.getElementById(this.id):this.dom.getOut().getElementById(this.id);
+if(e){
+	if(!this.disabled){
+		if (require){
+			this.Validation[0]={result:"REQUIRED"};
+			e.className=this.getClass();
+		}else{
+			this.Validation[0]={result:"NOREQUIRED"};
+			e.className=this.getClass();	
+		}
+	this.required=require;
+	}
+}
+			
+},			
+		
+// ---------- setChecked   method ------------------------------------------------		
+setChecked: function (ck){
+	this.checked=ck;
+	var dCheck = (this.parent!=main)?this.parent.getElementById(this.id):this.dom.getOut().getElementById(this.id);
+	if(dCheck) dCheck.checked=this.checked;
+			
+},			
+		
+// ---------- setReadonly   method ------------------------------------------------		
+setReadonly: function (rd){
+	this.readonly=rd;
+	var dReadonly = (this.parent!=main)?this.parent.getElementById(this.id):this.dom.getOut().getElementById(this.id);
+	if(dReadonly){
+		dReadonly.readOnly=this.readonly;
+		if(this.readOnlyStyle){
+		this.Validation[0]={result:"READONLY"};
+		}else{
+			this.Validation[0]={result:""}
+		}
+		dReadonly.className = this.getClass();
+	}
+	
+	
+			
+},			
+		
+// ---------- isDisabled   method ------------------------------------------------		
+isDisabled: function (){
+return this.disabled;
+			
+},			
+		
+// ---------- isKO   method ------------------------------------------------		
+isKO: function (){
+if(this.Validation){
+	var salida=false;
+	for(long in this.Validation){
+		if(this.Validation[long].result=="ERROR" || this.Validation[long].result=="EXTERNAL"){
+			salida=true;
+		}
+	}
+	return salida;
+}
+return false;
+			
+},			
+		
+// ---------- isRequired   method ------------------------------------------------		
+isRequired: function (){
+return this.required;
+			
+},			
+		
+// ---------- isChecked   method ------------------------------------------------		
+isChecked: function (){
+	try{
+		e=(this.parent!=main)?this.parent.getElementById(this.id):this.dom.getOut().getElementById(this.id);
+		if(e && (this.type=='radio' || this.type=='checkbox')){
+			this.checked = e.checked;
+		}
+		return this.checked;
+	} catch(e){
+		return this.checked;
+	}
+			
+},			
+		
+// ---------- isReadonly   method ------------------------------------------------		
+isReadonly: function (){
+return this.readonly;
+			
+},			
+		
+// ---------- setError   method ------------------------------------------------		
+setError: function (campo,msg){
+var e = (this.parent!=main)?this.parent.getElementById(this.id):this.dom.getOut().getElementById(this.id);
+if(e){
+	this.Validation[0] = {result:"ERROR",reason:msg};
+	e.className = this.getClass();
+}
+			
+},			
+		
+// ---------- repaint   method ------------------------------------------------		
+repaint: function (obj){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var e=(this.parent!=main)?this.parent.getElementById(this.id):this.dom.getOut().getElementById(this.id);
+	if(!e)return false;
+	if (obj=="saving"||obj=="layout"){//permite repintar el input sin necesidad de repintar el layout que lo contiene
+		e.value=this.value;
+		this.paint(true,false);
+		if(this.type=="checkbox" || this.type=="radio"){
+			e.checked=check;
+		}
+		if(this.disabled){
+			this.setDisabled(true);
+		}else{
+			this.setDisabled(false);
+		}
+		if(this.readOnlyStyle && this.readonly){
+			this.setReadonly(true);
+		}
+		if(this.viewMandatory && !this.validate()){
+			this.setRequired(true);
+		}else{
+			this.setRequired(false);
+		}
+	}else{		
+		var check;
+		if(this.type=="checkbox" || this.type=="radio"){
+			check=e.checked;
+		}
+		var texto=e.value;
+		this.paint(true,false);
+		e.value = texto;
+		if(this.type=="checkbox" || this.type=="radio"){
+			e.checked=check;
+		}
+		if(this.disabled){
+			this.setDisabled(true);
+		}else{
+			this.setDisabled(false);
+		}
+		if(this.readOnlyStyle && this.readonly){
+			this.setReadonly(true);
+		}
+		if(this.viewMandatory && !this.validate()){
+			this.setRequired(true);
+		}else{
+			this.setRequired(false);
+		}
+	}
+if (this.dom.getOut()!=main){
+var e = this.dom.getOut().getElementById(this.id)
+}else{
+var e = this.dom.getOut().getElementById(this.id)
+}
+			
+},			
+		
+// ---------- validate   method ------------------------------------------------		
+validate: function (){
+
+if(this.disabled) return false;
+if(this.readonly && this.readOnlyStyle) return false;
+this.Validation=[];
+var e=(this.parent!=main)?this.parent.getElementById(this.id):this.dom.getOut().getElementById(this.id);
+if(e){
+	if(this.viewMandatory && this.type!="checkbox" && this.type!="radio"){
+		var textoInput=e.value;
+		if(textoInput!=""){
+			this.setRequired(false);
+			this.setOK();
+			return true;
+		}else{
+			this.setRequired(true);
+			return false;
+		}
+	}else{this.setOK();return true;}
+}else{return false;}
+			
+},			
+		
+// ---------- onload   method ------------------------------------------------		
+onload: function (){
+if(this.readonly) this.setReadonly(true);
+if(this.disabled)this.setDisabled(true);
+if(this.viewMandatory && !this.validate())this.setRequired(true);
+this.origDisabled=this.disabled;
+this.origValue=this.value;
+			
+},			
+		
+// ---------- reset   method ------------------------------------------------		
+reset: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+this.msgOption="";
+this.Validation=[];
+this.value=this.initial_value;
+this.paint(true,false);
+
+			
+},			
+		
+// ---------- getValue   method ------------------------------------------------		
+getValue: function (){
+var arrayVal=[];
+if(this.validate())arrayVal[0]=(this.parent!=main)?this.parent.getElementById(this.id).value:this.dom.getOut().getElementById(this.id).value;		
+return arrayVal;
+			
+},			
+		
+// ---------- setExternalKO   method ------------------------------------------------		
+setExternalKO: function (text){
+if(this.disabled)return;
+if(this.readonly && this.readOnlyStyle) return;
+this.Validation=[];
+if(!text)text="";
+this.Validation[0]={result:"EXTERNAL",reason:text};
+var e=(this.parent!=main)?this.parent.getElementById(this.id):this.dom.getOut().getElementById(this.id);
+if(e)e.className=this.getClass();
+			
+},			
+		
+// ---------- setOK   method ------------------------------------------------		
+setOK: function (){
+this.Validation[0]={result:"NOREQIRED"};
+if (this.type!="radio") this.setRequired(false);
+var e=(this.parent!=main)?this.parent.getElementById(this.id):this.dom.getOut().getElementById(this.id);
+if(e){
+	if (this.type!="radio") {
+		e.className=(this.type=="button")?'button center':this.getClass();
+		if(this.type=='button'){
+			if(e.className.indexOf('inputbutton')==-1){
+				e.className='inputbutton '+e.className;
+			}
+		}	
+}
+	if(this.type!='radio' && this.type!='checkbox'){
+		this.setValue(e.value);
+		}
+	else{
+		if(this.type=='checkbox' && !e.checked){
+			this.setValue('');
+		}else{
+			this.setValue(e.value);
+		}	
+	}
+}
+			
+},			
+		
+// ---------- getValidationMessages   method ------------------------------------------------		
+getValidationMessages: function (){
+var r=null;
+var req=[];
+var msg=[];
+var ext;
+if(this.Validation){
+	r=this.Validation[0].result;
+	ext=this.Validation[0].reason;
+}
+if(r=='ERROR')msg=this.Validation[0].reason;
+if(r=='REQUIRED')req.push(this.Texts[0]);
+if(r=='REQUIRED')msg=req.join('\n');	
+if(r=='EXTERNAL')msg=ext;
+return msg;
+			
+},			
+		
+// ---------- initialize   method ------------------------------------------------		
+initialize: function (){
+this.initial_value=this.getVal(this.input, this.value, this.inputRoot);
+if(this.type!='checkbox' && this.type!='radio')
+	this.value=this.getVal(this.input, this.value, this.inputRoot);
+
+		for (var x=0;x<this.plugins.length;x++)
+		{
+	 		if (this.plugins[x]) 
+	 		{
+ 					this.plugins[x].init(this);
+ 	 		}
+ 		}
+	
+			
+},			
+		
+// ---------- focus   method ------------------------------------------------		
+focus: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var e = (this.parent!=main)?this.parent.getElementById(this.id):this.dom.getOut().getElementById(this.id);
+	if(e) e.focus();
+			
+},			
+		
+// ---------- paintInput   method ------------------------------------------------		
+paintInput: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+if(this.value && typeof this.value=='string' && this.value.length>0){this.value=this.value.replace(/\"/g,"&quot;");}
+this.callMethod=this.getFullVarName();
+var s=[];
+if(this.id=="")this.id=this.getId("Input");
+if(this.tclass==""){this.Validation[0]={result:""};this.tclass=this.getClass();}
+else{
+	switch(this.type){
+		case 'radio':
+			if(this.tclass.indexOf('inputradio')==-1){
+				this.tclass='inputradio '+this.tclass;
+			}
+			break;
+		case 'checkbox':
+			if(this.tclass.indexOf('inputcheckbox')==-1){
+				this.tclass='inputcheckbox '+this.tclass;
+			}
+			break;
+		case 'button':
+			if(this.tclass.indexOf('inputbutton')==-1){
+				this.tclass='inputbutton '+this.tclass;
+			}
+			break;
+		case 'file':
+			if(this.tclass.indexOf('inputfile')==-1){
+				this.tclass='inputfile '+this.tclass;
+			}
+			break;
+		case 'password':
+			if(this.tclass.indexOf('inputpassword')==-1){
+				this.tclass='inputpassword '+this.tclass;
+			}
+			break;
+		default:
+			if(this.tclass.indexOf('inputtext')==-1){
+				this.tclass='inputtext '+this.tclass;
+			}
+			break;
+	}
+}
+var val= this.value;
+var valCk='';
+var redon='';
+if(this.maxLength && this.maxLength!="" && !(isNaN(this.maxLength)) ){
+	val=val+'';
+	val=val.substr(0,this.maxLength);
+}
+s.push('<input ');
+	switch (this.type){
+		case "password": s.push('type="password" ');
+			redon = (this.readonly)?' readonly="readonly"':'';
+			s.push(redon+ ' maxlength="'+this.maxLength+ '" onblur="'+this.callMethod +'.Blr()" onclick="'+this.callMethod +'.Clk()" onchange="'+this.callMethod +'.Chng()" onfocus="'+this.callMethod +'.Foc()" onkeydown="'+this.callMethod +'.kDown(event)" onkeypress="'+this.callMethod +'.kPress(event)" onkeyup="'+this.callMethod +'.validate();'+this.callMethod +'.kUp(event)" onmouseout="'+this.callMethod +'.mOut()" onmouseover="'+this.callMethod +'.mOver()" onselect="'+this.callMethod +'.Sel()" ');
+			break;
+		case "button": s.push('type="button" ');
+			redon = (this.readonly)?' readonly="readonly"':'';
+			s.push(redon+' onblur="'+this.callMethod +'.Blr()" onclick="'+this.callMethod +'.Clk()" onfocus="'+this.callMethod +'.Foc()" onkeydown="'+this.callMethod +'.kDown(event)" onkeypress="'+this.callMethod +'.kPress(event)" onkeyup="'+this.callMethod +'.kUp(event)" onmouseout="'+this.callMethod +'.mOut()" onmouseover="'+this.callMethod +'.mOver()" ');
+			break;
+		case "file": s.push('type="file" ');
+			redon = (this.readonly)?' readonly="readonly"':'';
+			s.push(redon+' onfocus="'+this.callMethod +'.Foc()" onchange="'+this.callMethod +'.Chng()" onclick="'+this.callMethod +'.Clk()" ');
+			break;
+		case "checkbox": s.push('type="checkbox" ');
+			valCk = (this.checked)?' checked="checked"':'';
+			var valueContext=this.dom.getXmlValueAtName(this.dom.xmlNodes[this.inputRoot],this.input[1]);
+			if(valueContext==this.value && valueContext!='' && valueContext!=null && valueContext!=undefined){
+				valCk= ' checked="checked" ';		
+				this.checked=true;
+			}else{
+				if(this.dom.getXmlValueAtName(this.dom.xmlNodes[this.inputRoot],this.input[1])) valCk='';
+			}
+			redon = (this.readonly)?' readonly="readonly"':'';
+			s.push(valCk+redon+' onblur="'+this.callMethod +'.Blr()" onchange="'+this.callMethod +'.Chng();'+this.callMethod +'.checked=this.checked;" onclick="'+this.callMethod +'.Clk();'+this.callMethod +'.checked=this.checked;" onfocus="'+this.callMethod +'.Foc()" onkeydown="'+this.callMethod +'.kDown(event)" onkeypress="'+this.callMethod +'.kPress(event);'+this.callMethod +'.checked=this.checked;" onkeyup="'+this.callMethod +'.kUp(event)" onmouseout="'+this.callMethod +'.mOut()" onmouseover="'+this.callMethod +'.mOver()" ');
+			break;
+		case "radio": s.push('type="radio" ');
+			if (this.dom.getOut().getElementById(this.id)){
+				valCk = (this.dom.getOut().getElementById(this.id).checked)?' checked="checked"':'';
+			}else{
+				valCk = (this.checked)?' checked="checked"':'';
+			}
+			valueContext=this.dom.getXmlValueAtName(this.dom.xmlNodes[this.inputRoot],this.input[1]);
+			if((valueContext==this.value&&this.value!='')&&valueContext!=''&&valueContext!=null&&valueContext!=undefined){
+				valCk= ' checked="checked" ';			
+				this.checked=true;
+				}
+			else
+				if(this.dom.getXmlValueAtName(this.dom.xmlNodes[this.inputRoot],this.input[1])) valCk='';			redon = (this.readonly)?' readonly="readonly"':'';
+			s.push(valCk+redon+' onblur="'+this.callMethod +'.Blr()" onchange="'+this.callMethod +'.Chng()" onclick="'+this.callMethod +'.Clk()" onfocus="'+this.callMethod +'.Foc()" onkeydown="'+this.callMethod +'.kDown(event)" onkeypress="'+this.callMethod +'.kPress(event)" onkeyup="'+this.callMethod +'.kUp(event)" onmouseout="'+this.callMethod +'.mOut()" onmouseover="'+this.callMethod +'.mOver()" ');
+			break;
+			
+		default: s.push('type="text" ');
+			redon = (this.readonly)?' readonly="readonly"':'';
+			s.push(redon+ ' maxlength="'+this.maxLength+'" onblur="'+this.callMethod +'.Blr()" onchange="'+this.callMethod +'.Chng()" onclick="'+this.callMethod +'.Clk()"  onfocus="'+this.callMethod +'.Foc()" onkeydown="'+this.callMethod +'.kDown(event)" onkeypress="'+this.callMethod +'.kPress(event)" onkeyup="'+this.callMethod +'.validate();'+this.callMethod +'.kUp(event)" onmouseout="'+this.callMethod +'.mOut()" onmouseover="'+this.callMethod +'.mOver()" onselect="'+this.callMethod +'.Sel()" ');break;
+	}
+	this.width=(this.type=="radio" || this.type=="checkbox")?'':'width:'+this.mW +'px;height:'+this.mH+'px;';	
+	s.push('style="'+this.style+';'+this.width+'" id="'+this.id+'" name="'+this.name+'" class="'+this.tclass+'" tabindex="'+this.tabindex+'" accesskey="'+this.accesskey+'" value="'+val+'" ');
+	if(this.disabled) s.push('disabled="disabled" ');
+s.push('/>');
+return s.join('');
+			
+},			
+// ---------- drawHeader   method ------------------------------------------------		
+drawHeader: function () {			
+var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};			
+this.setText('Globales_Bhtcs_ObjForms_Input');			
+			
+var s = new Array();			
+this.initialize();			
+
+return s.join(' ');			
+},			
+		
+// ---------- drawBody   method ------------------------------------------------		
+drawBody: function (d,l) {return this.dom.getBodyValue(d,l,this);},		
+// ---------- paint   method ------------------------------------------------		
+paint: function (draw,init) {var s = new Array(); 
+		for (var x=0;x<this.plugins.length;x++)
+		{
+	 		if (this.plugins[x]) 
+	 		{
+ 					this.plugins[x].register(this);
+ 	 		}
+ 		}
+		var _classPadding='';
+		if((brw!='NN')&&(this.type=="radio" || this.type=="checkbox")){
+			_classPadding=' marcoFocus';
+		}
+	s.push("	<div id=\"");s.push( this.getId('repaint') );s.push("\" class=\"ObjectFormInput ");s.push((this.layoutv2)?' ObjectFormInputLayoutContent '+_classPadding:((this.layoutv2grid)?'lygInput'+_classPadding:''+_classPadding) );s.push((this.bancaOnline1024!=null)?' bancaOnline1024Input':'');s.push( (this.checked)? ' checked' : '' );s.push("\">");s.push( this.paintInput() );s.push("	</div>");return this.dom.paint(draw,init,this,s.join(''));			
+}			
+
+}
+
+;dom.onLoaded('Globales_Bhtcs_ObjForms_Input');

@@ -1,0 +1,462 @@
+DIV.Firma_ER{
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:.7em;
+	line-height:normal;
+	margin:0;
+	padding:0px;
+	/*width:591px;*/
+	font-size:100% !important;
+}
+
+.Firma_ER .iconoLupa{
+	background-image:url('./../Img/icoLupa.gif');
+	background-repeat: no-repeat;
+	width: 20px;
+	height: 20px;
+	cursor:pointer;
+	cursor:hand;
+	float:left;
+	margin-right: 80px; 
+}
+
+.Firma_ER .cambioModo{
+	padding:0 px;
+	margin:0 px;
+}
+.Firma_ER .cambioModo SELECT{
+	height:1.8em;
+	*margin-bottom:-1px;
+}
+.Firma_ER P.titulo_componente{
+	margin:0 0 7px 10px;
+	
+}
+
+.Firma_ER DIV.borderojo{
+	width:100%;
+	border:1px solid #FF0000;
+	text-align:center;
+	float:left;
+}
+.Firma_ER FIELDSET{
+	border:0;
+	padding:0;
+	margin:0;
+}
+.Firma_ER .padding{
+	padding:12px;
+	background-color: #FFFFFF; 
+}
+.Firma_ER STRONG{
+	font-weight: bold;
+}
+.Firma_ER DIV.borderojo P.debajoPStrong{
+	padding-top:0;
+}
+
+.Firma_ER .box-validation{
+	width:0px;
+	overflow:visible;
+	margin:0 auto;
+	padding-bottom:5px;
+}
+html>body .Firma_ER .box-validation{
+	width:auto;
+	display:inline-block;
+	*height:auto;
+	*display:block;
+	padding-bottom:6px;
+}
+.Firma_ER .box-validation .box{
+	width:2.1em;
+	margin-right:.5em;
+	margin-left:.5em;
+	float:left;
+	clear:right;
+}
+
+.Firma_ER .box-validation .box span{
+	width:23px;
+	height:16px;
+	padding-top:12px;
+	display:block;
+	clear:both;
+	float:left;
+}
+.Firma_ER .box-validation .box .posHidden{
+	height:1em;
+	padding-top:5px;
+	*padding-top:1px;
+	margin-top:5px;
+	color:#000000;
+}
+.box-validation .box input{
+	width:20px;
+	height:20px;
+	padding-top:4px;
+	text-align:center;
+	font-weight:bold;
+	font-size:1em;
+}
+
+.Firma_ER .box-validation .box label strong{
+	font-weight:normal;
+	width:23px;
+	height:18px;
+	padding-top:4px;
+	padding-bottom:4px;
+	clear:both;
+	float:left;
+	background:#F1F1F1;
+	color:#000000;
+	margin-bottom:11px;
+	margin-right:0;
+	text-align:center;
+}
+
+.Firma_ER .box-validation .box strong{
+	font-weight:normal;
+	width:24px;
+	height:20px;
+	padding-top:4px;
+	clear:both;
+	float:left;
+	background:#F1F1F1;
+	margin-bottom:6px;
+	margin-right:0;
+	text-align:center;
+	vertical-align: center;
+}
+.Firma_ER .box-validation .box P{
+	font-weight:normal;
+	height:24px;
+	text-align:center;
+	clear:both;
+	padding-top:9px;
+	*padding-top:4px;
+}
+
+.Firma_ER DIV.enlace_seg{
+	clear:both;
+	padding-top:0px;
+	margin-bottom:0px;
+	text-align:center;
+}
+
+.Firma_ER A{
+	color:#FF0000;
+}
+
+.Firma_ER  LABEL.info{
+	margin-right: 4px;
+	background:#F1F1F1;
+	color:#000000;
+	padding:2px 1px 2px 0;
+}
+
+.Firma_ER .changeSelectButton{
+	font-weight:bold;
+	padding:1px 8px 2px 8px;
+	cursor:hand;
+	cursor:pointer;
+	height:auto;
+	border:1px solid #FFFFFF;
+	background:#FF0000;
+	color:#FFFFFF;
+	margin-left:0;
+	width:auto;
+	margin-top:-5px;
+}
+
+
+.Firma_ER INPUT.disabled{
+	background:#E5E5E5;
+	text-align: left;
+	margin-right: 6px;
+	float:left; 
+}
+
+.Firma_ER LABEL.infoCert{
+	color:#000000;
+	padding-top:2px;
+	padding-bottom:2px;
+	background:#F1F1F1;
+	margin-left:110px;
+	*margin-left:50px;
+	width: 150px;
+	float: left;
+	text-align: right;
+	margin-right: 4px;
+	display: block;
+	margin-bottom: 4px;
+	margin-top: 2px;
+	clear: both;
+}
+
+.Firma_ER .left{
+	text-align: left;
+	clear: right;
+	margin-bottom: 4px;
+	margin-top: 2px;
+}
+
+/*No permitimos que se colque nada  a la derecha de la capa en curso (Icono LUPA)*/
+.Firma_ER .leftEnd{
+	text-align: left;
+	float:left;
+	clear: right; 
+	margin-bottom: 4px;
+	margin-top: 2px;
+}
+
+.Firma_ER leftWithImg{
+	text-align: left;
+	float:left;
+	margin-left: 6px;
+	margin-right: 6px;
+	background-image:url('./../Img/FirmaERicoLupa.gif');
+	background-repeat: no-repeat;
+	width: 20px;
+	height: 20px;
+}
+
+.Firma_ER DIV.title{
+	margin-top: 0px;
+	padding-top: 0px;
+	margin-bottom:10px;
+}
+.Firma_ER DIV.subtitle{
+	margin-top: 0px;
+	padding-top: 0px;
+	margin-bottom:10px;
+	color:#000000;
+}
+.Firma_ER DIV.certifates{
+	margin-bottom:10px;
+}
+
+.Firma_ER DIV.dni{
+	width:auto;
+	height:0;
+	display:table;
+}
+
+.Firma_ER DIV.imgDni {
+	margin-left:40px;
+	*margin-left:20px;
+	float:left;
+}
+
+.Firma_ER DIV.divBodyDni{
+	margin-left:12px;
+	float:left;
+	text-align:left;
+}
+
+.Firma_ER DIV.divBodyDni .linea1{
+	clear:both;
+}
+.Firma_ER DIV.divBodyDni .linea2{
+	margin-top:4px;
+	float:left;
+}
+.Firma_ER DIV.divBodyDni LABEL.infoDni{
+	background:#F1F1F1;
+	color:#000000;
+	width: 150px;
+	text-align: right;
+	margin-right: 4px;
+	float:left;
+}
+.Firma_ER DIV.divBodyDni P.textDni{
+	color:#000000;
+	padding-top:2px;
+	padding-bottom:2px;
+	width: auto;
+	margin-right: 4px;
+	display: inline;
+}
+
+
+.Firma_ER DIV.alerta_seg{
+	width:100%;
+	display:table;
+	background-color:#FFFFFF;
+	border:1px solid #FF0000;
+	margin-bottom:12px;
+	
+}
+.Firma_ER DIV.imgAlerta{
+	float:left;
+	margin-top:6px;
+	margin-left:6px;
+	background-image:url('./../Img/FirmaERalerta.gif');
+	background-repeat: no-repeat;
+	width: 20px;
+	height: 20px;
+
+}
+
+.Firma_ER DIV.divBodyAlerta{
+	float:left;
+	text-align:left;
+	padding:6px;
+	width: 90%;
+}
+
+.Firma_ER DIV.divBodyAlerta .msg1{
+	font-weight: bold;
+	float:left;
+	width: 100%;
+	color:#000000;
+}
+
+.Firma_ER DIV.divBodyAlerta .msg2{
+	padding-top:4px;
+	clear:both;
+	width: 100%;
+	color:#000000;
+}
+
+.Firma_ER .formSMS{
+	margin-bottom:10px;
+}
+
+.Firma_ER .formSMS INPUT{
+	*margin-bottom:-2px;
+}
+
+.Firma_ER .formITAN{
+	margin-bottom:10px;
+}
+
+.Firma_ER .formITAN INPUT{
+	*margin-bottom:-2px;
+}
+
+.Firma_ER .formOTPHW{
+	margin-bottom:10px;
+}
+
+.Firma_ER .formOTPHW INPUT{
+	*margin-bottom:-2px;
+}
+
+.Firma_ER .segApplet{
+	width:0px;
+	height:0px;
+	overflow:hidden;
+	visibility:hidden;
+	*display:none;
+}
+
+.Firma_ER #issuer {
+	color:#000000;
+}
+
+.Firma_ER #receiver {
+	color:#000000;
+}
+
+/* Estilos para el pop-up de certificados */
+.CapaPopup{
+	border: 1px solid #BFBFBF; 
+}
+
+.CapaPopup #Titulo{color:#000000;background-color:#E8E8E8;font-family:verdana;font-size:8pt;font-size-adjust:none;font-stretch:normal;font-style:normal;font-variant:normal;font-weight:bold;margin:0; padding-top:6px;padding-bottom:6px; padding-left:8px}
+.CapaPopup #Tabla table{width:1123px;font:8pt verdana;clear:both;}
+.CapaPopup #Tabla caption{text-align:left;padding-bottom:6px;padding-left:8px}
+.CapaPopup #Tabla tbody .col0{width:281px;padding-left:6px;padding-right:6px;padding-bottom:6px;border-left:1px solid #E8E8E8}
+.CapaPopup #Tabla tbody .col1{width:444px;padding-left:6px;padding-right:6px;padding-bottom:6px}
+.CapaPopup #Tabla tbody .col2{width:70px;padding-left:6px;padding-right:6px;padding-bottom:6px}
+.CapaPopup #Tabla tbody .col3{width:70px;padding-left:6px;padding-right:6px;padding-bottom:6px}
+.CapaPopup #Tabla tbody .col4{width:24px;padding-left:6px;padding-right:6px;padding-bottom:6px}
+.CapaPopup #Tabla tbody .col5{width:234px;padding-left:6px;padding-right:6px;padding-bottom:6px;border-right:1px solid #E8E8E8}
+.CapaPopup #Tabla thead th {background-color:#F6F6F6;border:1px solid #FFF;text-align:center;font:8pt verdana}
+.CapaPopup #Tabla thead th div {color:#C90212;background-color:#F7F2F2;border:1px solid #C90212;text-align:center;padding-bottom:5px}
+.CapaPopup #Tabla thead th.first div {border-left:1px solid #E8E8E8;text-align:left;padding-left:6px}
+.CapaPopup #Tabla thead th.last{border-right:1px solid #E8E8E8;}
+.CapaPopup #Tabla tbody td {border-bottom:1px solid #E8E8E8;padding-left:6px;padding-right:6px;padding-bottom:6px;border-right:1px solid #E8E8E8;height:19px;}
+.CapaPopup #Tabla tbody tr.par{background-color:#FFFFFF;}
+.CapaPopup #Tabla tbody tr.impar{background-color:#FFFFFF;}
+.CapaPopup #Tabla tbody tr.over{background-color:#E8F3F2;cursor:pointer;cursor:hand;}
+.CapaPopup #Tabla tbody tr.selected{background-color:#E8F3F2;cursor:pointer;cursor:hand;}
+.CapaPopup #PiePaginacion {height:36px;background-color:#E8E8E8;border-top:1px solid #767676;}
+.CapaPopup #PiePaginacion table {float:right; padding: 0 12px 14px 0}
+.CapaPopup #PiePaginacion table td.separadorLinkPaginacion {padding:0px 7px 0px 7px}
+.CapaPopup #PiePaginacion table td a {font:8pt verdana; margin:0px}
+.CapaPopup #PieBotonera {background-color:#BFBFBF;height:24px;margin-top:0px;text-align:center;}
+.CapaPopup #PieBotonera span{border:1px solid #FFFFFF;float:left;margin-left:522px;margin-top:5px;margin-bottom:5px}
+.CapaPopup #PieBotonera a {font:8pt verdana;text-decoration:none;color:#FFFFFF;background-color:#FF0000;border-top:1px solid #59B8D4;border-bottom:1px solid #1F486E;padding:2px 12px;}
+.CapaPopup #PieBotonera a:hover{background-color:#FF0000;border-bottom:1px solid #59B8D4;border-top:1px solid #1F486E;}
+
+
+.Firma_ER DIV.helpArea_seg{
+	width:100%;
+	display:table;
+	background-color:#FFFFFF;
+	border:1px solid #FF0000;
+	color: #000000;
+	margin-top:21px;
+	*margin-top:2px;
+}
+
+.Firma_ER DIV.imgHelpArea_seg{
+	margin-top:18px;
+	width: 45px;
+	height: 45px;
+	background-image:url('./../Img/icoCandadoInfoMSG.gif');
+	background-repeat: no-repeat;
+	background-position:center top;
+	float:left;
+}
+
+.Firma_ER DIV.imgHelpBody{
+	display:table;
+}
+
+.Firma_ER DIV.helpAreaDesc_seg{
+	margin-top:23px;
+	margin-bottom:10px;
+	clear: right;
+	font-size: 14px;
+	*font-size: 1.1em;
+	font-weight: bold;
+	*margin-left:45px;
+}
+.Firma_ER DIV.helpAreaLink_seg{
+	margin-bottom:20px;
+	*padding-bottom:10px;
+	float: left;
+	margin-right:3px;
+	font-size: 11px;
+	*font-size: 0.875em;
+	padding-left: 1.27em;
+	*padding-left: 1.1em;
+}
+
+.Firma_ER DIV.helpAreaLink_seg A{
+	color: #FF0000;
+}
+
+.Firma_ER DIV.helpAreaLinkImg_seg{
+	background-image:url('./../Img/ico_acces.gif');
+	background-repeat: no-repeat;
+	background-position:center bottom;
+	width: 12px;
+	height: 13px;
+	float: left;
+}
+
+.Firma_ER DIV.divBodyPaperSignature{
+	margin-top: 0px;
+	padding-top: 0px;
+	margin-bottom:10px;
+	color:#000000;
+	text-align:left;
+}
+
+.Firma_ER DIV .subtitle .linkInformationArea_seg{
+	margin-top: 0px;
+	margin-bottom:10px;
+}

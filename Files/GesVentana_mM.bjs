@@ -1,0 +1,385 @@
+
+
+
+/*110613*/
+function Globales_Bhtcs_Intranet_Util_GesVentana_m (id,parent) {	
+this.main=parent.main;this.dom=this.main.dom;	
+this._CVSRevision = '$Revision: 1.39.2.20 $';	
+this.evBubble = dom.getInstanceBase().nullEventRaiser;	
+}
+Globales_Bhtcs_Intranet_Util_GesVentana_m.prototype = {			
+			
+		
+// ---------- onload   method ------------------------------------------------		
+onload: function (){}
+};
+
+GesVentana = new Object();
+
+GesVentana.crearCapa = function(x,y,width,height,title,target,iframe){
+this.width=width;
+this.height=height;
+tipo="";
+_widthDoc=document.body.clientWidth;
+_heightDoc=document.body.clientHeight;
+_offsetMaskX=9;
+_offsetMaskY=0;
+if (x>(_widthDoc/2)){
+		if (y>(_heightDoc/2)){
+			tipo="bottomRightArrow";
+			_offsetX=-(this.width)-5;
+			_offsetY=-this.height+25;
+		}else{
+			tipo="topRightArrow";
+			_offsetX=-(this.width)-5;
+			_offsetY=-18;
+		}
+}else{
+		if ((y>(_heightDoc/2))&&this.height!=0){
+			tipo="topLeftArrow";
+			_offsetX=5;
+			_offsetY=-this.height+25;
+		}else{
+			tipo="topLeftArrow";
+			_offsetX=5;
+			_offsetY=-18;
+		}
+}
+		if (!this.popupLayer){
+			this.popupLayer = document.createElement("div");
+			if(!iframe){
+				this.popupMask = document.createElement("iframe");
+				this.popupMask.setAttribute("id","iframe_gesventana");
+				this.popupMask.setAttribute("frameBorder",0);
+				this.popupMask.setAttribute("scrolling","no");
+			}
+			this.popupLayer.style.width=this.width;
+			this.popupLayer.style.width=this.height;
+			if(!iframe){
+				this.popupMask.style.width=this.width-22;
+				this.popupMask.style.height=this.height;
+			}
+			this.popupLayer.className="IutGV";
+			this.popupLayer.style.zIndex=500;
+			if(!iframe){
+				this.popupMask.style.zIndex=490;
+			}
+			this.popupLayer.innerHTML=GesVentana.generaHTML(tipo,title,target);
+			this.popupLayer.style.position="absolute";
+			if(!iframe){
+				this.popupMask.style.position="absolute";
+			}
+			if (brw=='NN') {
+				y = y+_offsetY;
+				x = x+_offsetX;
+			}else{
+				y=y+_offsetY+document.body.scrollTop;
+				x=x+_offsetX+document.body.scrollLeft;
+			}
+			this.popupLayer.style.top=y;
+			this.popupLayer.style.left=x;
+			if(!iframe){
+				this.popupMask.style.top=y+_offsetMaskY;
+				this.popupMask.style.left=x+_offsetMaskX;
+			}
+			document.body.appendChild(this.popupLayer);
+			if(!iframe){
+				document.body.appendChild(this.popupMask);
+			}
+		}else{
+			this.popupLayer.innerHTML=GesVentana.generaHTML(tipo,title,target);
+			if (brw=='NN') {
+				x = x+_offsetX;
+				y = y+_offsetY;
+			}else{
+				x = x+_offsetX+document.body.scrollLeft;
+				y = y+_offsetY+document.body.scrollTop;
+			}
+			this.popupLayer.style.top=y;
+			this.popupLayer.style.left=x;
+			if(!iframe){
+				this.popupMask.style.top=y+_offsetMaskY;
+				this.popupMask.style.left=x+_offsetMaskX;
+			}
+			this.popupLayer.style.width=this.width;
+			this.popupLayer.style.width=this.height;
+			if(!iframe){
+				this.popupMask.style.width=this.width-22;
+				this.popupMask.style.height=this.height;
+			}
+		}
+return true;
+}
+GesVentana.generaHTML = function(tipo,title,target){
+mPopup='';
+var mPopup ="";
+_height=(brw=="NN")?this.height-25:this.height-10;
+_leftPadding=this.width-17;
+_leftPaddingIENN=(brw=="NN")?2:1;
+_width=(brw=="NN")?this.width-45:this.width-30;
+_indexList=25;
+_borderSup=3;
+_fileHeight=20;
+_LeftArrow=(tipo.indexOf('bottomLeft')!=-1)?'':'NoArrow';
+_RightArrow=(tipo.indexOf('bottomRight')!=-1)?'':'NoArrow'; 
+_TopArrow=(tipo.indexOf('topRight')!=-1)?'NoArrow':'';
+_paddingArrow=(tipo.indexOf('Right')!=-1)?'left:'+(_leftPadding-_leftPaddingIENN)+'px;':'left:1px;';
+_paddingBorder=(tipo.indexOf('Left')!=-1)?'left:'+_leftPadding+'px;':'';
+_paddingTopArrow=(tipo.indexOf('bottom')!=-1)?'top:'+(this.height-28)+'px':'';
+mPopup+='<div class="cornerTopLeft">&nbsp;</div>';
+mPopup+='<div class="borderTop" style="width:'+(this.width-30)+'">&nbsp;</div>';
+mPopup+='<div class="cornerTopRight'+_TopArrow+'" style="left:'+(this.width-18)+';top:1px;">&nbsp;</div>';
+mPopup+='<div class="'+tipo+'" style="'+_paddingArrow+_paddingTopArrow+'">&nbsp;</div>';
+_type=(tipo.indexOf('top')!=-1)?tipo:'Top';
+_border=(tipo.indexOf('Left')!=-1)?'Right':'Left';
+mPopup+='<div id="popupTitle" class="borderIntHeader header" style="width:'+((brw=="NN")?_width+2:_width)+'px;">'+title+'</div>';
+mPopup+='<div id="content" class="borderInt content" style="width:'+_width+'px;height:'+(_height-20)+'px">'+target+'</div>';
+_borderTopRight=_borderSup;
+_borderRight=this.height-10;
+_borderTopLeft=_borderSup;
+_borderLeft=this.height-10;
+_borderLng=this.height-8;
+mPopup+='<div class="borderRight" style="height:'+_borderRight+'px;top:'+_borderTopRight+'px;left:'+(_leftPadding-1)+'px;z-index:-1;">&nbsp;</div>';
+mPopup+='<div class="borderLeft" style="height:'+_borderLeft+';top:'+_borderTopLeft+'px;">&nbsp;</div>';
+mPopup+='<div class="cornerBottomLeft'+_LeftArrow+'" style="top:'+_borderLng+'px;z-index:-1;">&nbsp;</div>';
+mPopup+='<div class="borderBottom" style="top:'+_borderLng+'px;width:'+((brw=="NN")?_width+15:_width)+'px;z-index:-1;">&nbsp;</div>';
+mPopup+='<div class="cornerBottomRight'+_RightArrow+'" style="top:'+_borderLng+'px;left:'+(_leftPadding-1)+'px;z-index:-1;">&nbsp;</div>';
+return mPopup;
+}
+GesVentana.eliminaVentana = function(){ 
+	if(this.popupLayer)document.body.removeChild(this.popupLayer);
+	if(this.popupMask)document.body.removeChild(this.popupMask);
+	this.popupLayer=null;
+	this.popupMask=null;
+}
+
+
+GesVentana.crearVentana = function(oComponent,sName,sFeatures,sTitle,instancia){
+	var winLauncher= GesVentana.getWinLauncher(oComponent);
+	var auxwin;
+	oComponent.winLauncher = winLauncher;
+	oComponent.Creator = this;
+	sFeatures = (sFeatures)?sFeatures:oComponent.varOptions;
+	sName = (sName)?sName:oComponent.title;
+	if(!instancia)if (winTemp) winTemp.close();
+	auxwin = winLauncher.open("",sName,sFeatures);	
+	auxwin.document.write("<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">\n");
+	auxwin.document.write("<html>\n");
+	auxwin.document.write("<head>\n");
+	if(!sTitle)sTitle=oComponent.title;
+	auxwin.document.write('<title>'+sTitle+'</title>\n');
+	auxwin.document.write(GesVentana.getStyles(GesVentana.getDocument(oComponent)));	
+	this.winpopup;
+	oComponent.creature = this.winpopup;	
+	oComponent.includeBhtcHeader=null;
+	auxwin.document.write(oComponent.drawHeader());
+	oComponent.initialize();
+	auxwin.document.write('<script>\n');
+	auxwin.document.write('GesVentana = new Object();\n');
+	auxwin.document.write('GesVentana.repaint='+GesVentana.repaint+'\n');
+	GesVentana.writeRefs(auxwin.document,oComponent);	
+	auxwin.document.write('</script>\n');			
+	auxwin.document.write('</head>\n');
+	auxwin.document.write('<body  style="padding:0px; margin:0px"');
+	auxwin.document.write(' onload="'+oComponent.getFullVarName()+'.onload()"');
+	auxwin.document.write(' onunload="window.parentWindow.winTemp=null;'+oComponent.getFullVarName()+'.raiseOnUnLoad()">');
+	auxwin.document.write(oComponent.paint(true,true));
+	auxwin.document.write('</body>');
+	auxwin.document.write('</html>');
+	auxwin.document.close();
+	auxwin.parentWindow = winLauncher.self;
+	objWinPopUp = oComponent;
+	documentOut = auxwin.document;
+	if(instancia)return auxwin;
+	winTemp=auxwin;
+	this.winpopup=winTemp;
+	return this.winpopup;
+}
+
+
+
+GesVentana.crearPopup = function(oComponent,sName,sFeatures,sTitle,instancia){
+	var winLauncher= GesVentana.getWinLauncher(oComponent);
+	var auxWin;
+	oComponent.winLauncher = winLauncher;
+	oComponent.Creator = this;
+	sFeatures = (sFeatures)?sFeatures:oComponent.varOptions;
+	if(!instancia)if (winTempP) winTempP.close();	
+	auxWin = winLauncher.open("",sName,sFeatures);	
+	auxWin.document.write("<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">\n");
+	auxWin.document.write("<html>\n");
+	auxWin.document.write("<head>\n");
+	if(!sTitle)sTitle=oComponent.title;
+	auxWin.document.write('<title>'+sTitle+'</title>\n');
+	auxWin.document.write(GesVentana.getStyles(GesVentana.getDocument(oComponent)));	
+	function exit(){
+		documentOut=window.document;
+		if(auxWin!=null){
+			try{auxWin.close();}catch(e){}
+			auxWin=null;
+			if (document.all){
+				winLauncher.detachEvent("onfocus",exit);
+			} else {
+				winLauncher.onfocus=null;
+			}
+		}
+	}
+	if (document.all){
+		winLauncher.attachEvent("onfocus",exit);
+	} else {
+		winLauncher.onfocus=exit;
+	}
+	oComponent.includeBhtcHeader=null;
+	auxWin.document.write(oComponent.drawHeader());
+	oComponent.initialize();
+	auxWin.document.write('<script>\n');
+	auxWin.document.write('GesVentana = new Object();\n');
+	auxWin.document.write('GesVentana.repaint='+GesVentana.repaint+'\n');	
+	GesVentana.writeRefs(auxWin.document,oComponent);		
+	auxWin.document.write('</script>\n');		
+	auxWin.document.write('</head>\n');
+	auxWin.document.write('<body  style="padding:0px; margin:0px"');
+	auxWin.document.write(' onload="'+oComponent.getFullVarName()+'.onload()"');
+	auxWin.document.write(' onunload="window.parentWindow.winTemp=null;'+oComponent.getFullVarName()+'.raiseOnUnLoad()">');	
+	auxWin.document.write(oComponent.paint(true,true));
+	auxWin.document.write('</body>');
+	auxWin.document.write('</html>');
+	auxWin.document.close();
+	auxWin.parentWindow = winLauncher.self;
+	objWinPopUp = oComponent;
+	documentOut = auxWin.document;
+	if(instancia)return auxWin;
+	this.winpopup=auxWin;
+	winTempP=auxWin;
+	return this.winpopup;
+}
+
+GesVentana.intervalo=50;
+
+GesVentana.crearModal = function(oComponent,sName,sFeatures,sTitle){
+	var winLauncher=GesVentana.getWinLauncher(oComponent);
+	oComponent.winLauncher=winLauncher;
+	oComponent.Creator = this;
+	if (winTempM) winTempM.close();
+	winTempM=winLauncher.open('','replace',sFeatures);
+	winTempM.document.write("<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">\n");
+	winTempM.document.write('<html>\n');
+	winTempM.document.write('<head>\n');
+	if(!sTitle)sTitle=oComponent.title;
+	winTempM.document.write('<title>'+sTitle+'</title>\n');
+	winTempM.document.write(GesVentana.getStyles(GesVentana.getDocument(oComponent)));	
+	winTempM.document.write('<script>\n');
+	winTempM.document.write('GesVentana = new Object();\n');	
+	winTempM.document.write('GesVentana.skip=false;\n');
+	winTempM.document.write('GesVentana.intervalo='+GesVentana.intervalo+';\n');
+	winTempM.document.write('GesVentana.timerHandler='+GesVentana.timerHandler+'\n');
+	winTempM.document.write('GesVentana.register='+GesVentana.register+'\n');
+	winTempM.document.write('GesVentana.unregister='+GesVentana.unregister+'\n');
+	winTempM.document.write('GesVentana.timer=null;\n');
+	winTempM.document.write('GesVentana.repaint='+GesVentana.repaint+'\n');
+winTempM.main=main;
+winTempM.document.write('main=opener.main;\n');	
+winTempM.document.write('GesVentana.component='+oComponent.fullVarName+'\n');	
+	winTempM.document.write('</script>\n');	
+	winTempM.document.write('</head>\n');
+	oComponent.initialize();
+	winTempM.document.write('<body style="padding:0px; margin:0px; overflow:hidden;" onunload="GesVentana.unregister();GesVentana.component.raiseOnUnLoad()" onload="GesVentana.register();">');
+	winTempM.document.write('<div id="GesVentana">');
+	winTempM.document.write(oComponent.paint(true,true));
+	winTempM.document.write('</div>');
+	winTempM.document.write('</body>');
+	winTempM.document.write('</html>');
+	winTempM.document.close();
+	try {
+		winTempM.GesVentana.register();
+	} catch (e){}
+	winTempM.parentWindow=winLauncher.self;
+	this.winpopup=winTempM;
+	return this.winpopup;
+}
+
+GesVentana.timerHandler=function(){
+	if (!GesVentana.skip) window.focus();
+}
+
+GesVentana.repaint=function(){
+	window.document.body.innerHTML=GesVentana.component.paint(true,true);
+	try { GesVentana.register(); } catch (error) {}	
+}
+
+GesVentana.unregister=function(){
+	window.clearInterval(GesVentana.timer);
+}
+
+GesVentana.register=function(){
+	if (arguments.length==0){
+		GesVentana.register(window.document.body);
+		GesVentana.skip=false;
+		if (!GesVentana.timer) GesVentana.timer=setInterval('GesVentana.timerHandler()',GesVentana.intervalo);
+	} else {
+		var element = arguments[0];
+		for (var i=0;element && element.childNodes && i<element.childNodes.length;i++){
+			var item=element.childNodes[i];
+			try {item.onblur=new Function("GesVentana.skip=false;");} catch (e){}
+			try {item.onfocus=new Function("GesVentana.skip=true;");} catch (e){}			
+			GesVentana.register(item);
+		}		
+	}	
+}
+winTemp = null;
+winTempP = null; 
+winTempM = null;
+
+GesVentana.getStyles=function(doc){
+	var styles='';
+	for (var i=0;doc && doc.styleSheets && i<doc.styleSheets.length;i++)
+		if(doc.styleSheets[i].href !='')
+			styles+='<link href="'+doc.styleSheets[i].href+'" rel="stylesheet" type="text/css"/>';
+	return styles;
+}
+
+GesVentana.check = function(){
+	try {
+		var state =this.launcher.ContainedWindow.document.readyState;
+		if (state=="complete") {
+			top.dom.EvHandler.registerHandler(this.launcher.ContainedWindow.dom.main,this.launcher,"evBubble"); 
+		}
+	} catch(e) {  }
+}
+GesVentana.launchOperation=function(sOperation,sName,sFeatures){
+	this.ContainedWindow=window.open(sOperation,sName,sFeatures);
+	this.launcher=this;
+	window.setTimeout('GesVentana.check()', GesVentana.intervalo);  
+}
+
+GesVentana.getWinLauncher=function(oComponent){
+	var w = null;
+	try {
+	  	w = (brw=='NN')?oComponent.dom.getOut().defaultView:oComponent.dom.getOut().parentWindow;
+	} catch (e){
+		w = window.self;
+	}
+	return w;
+}
+
+GesVentana.getDocument=function(oComponent){
+	try {
+		if (oComponent && oComponent.dom && oComponent.dom.getOut) return oComponent.dom.getOut();
+		if (dom && dom.getOut) return dom.getOut();	
+	} catch (e) {
+		return document;
+	}
+	return document;
+}
+
+GesVentana.writeRefs=function(d,oComponent){
+	d.write('if (window.opener.dom && window.opener.dom.main) {\n');
+	d.write('GesVentana.component=window.opener.dom.'+oComponent.getFullVarName()+';\n');	
+	d.write('main=window.opener.dom.main;\n');
+	d.write('} else {\n');
+	d.write('GesVentana.component=window.opener.'+oComponent.getFullVarName()+';\n');	
+	d.write('main=window.opener.main;\n');		
+	d.write('}\n');
+}
+
+;dom.onLoaded('Globales_Bhtcs_Intranet_Util_GesVentana');

@@ -1,0 +1,154 @@
+#general{position:absolute;	top:0px;	width:1010px;	background-color:#e4e4e4;	font-size:11px !important;	background-color:#e4e4e4;}
+
+#Cabecera{	position:absolute;	top:0px;	left:0px;	padding:0px;	margin:0px;	height:65px;	width:1010px;}
+
+#MenuIzquierdo{	position:relative;	top:0px;	left:0px;	padding:0px;	margin-top:20px;	width:188px;}
+
+#Workarea{	position:absolute;	top:0px;	left:0px;	padding:0px;	margin:0px;	width:631px;	background-color:white;}
+
+#derecha{	position:absolute;	top:0px;	left:630px;	width:191px;}
+
+#misOfertas{	position:relative;	top:20px;	padding:0px;	margin:0px;	width:191px;}
+
+#sabiasQue{	position:relative;	padding-top:20px;	width:191px;}
+
+#banner{	position:relative;	width:191px;}
+
+body{ background:#E4E4E4 !important;}
+
+
+/*************************** CABECERA ************************/
+div#header{	background:#fff url(https://particulares.gruposantander.es/Estatico/CE_VentanaOperativa_Pres/Images/Cabecera_fondoCabeceraSANv0.gif);	font-family:verdana,arial,helvetica,sans-serif;	font-size:11px;	text-align:left;	width:1010px;	height:65px;	border-bottom: 1px #f2f2f2 solid;}
+
+div#header h1{	float:left;	font-size:1em;	font-weight:normal;	margin:6px 0 0;}
+
+div#header h1 img{float:left;	border:1px solid white;	border-width:1px 6px 6px 5px;}
+
+div#header h1 span{	display:none;}
+
+/* AUX TOOLS*/
+div#header .auxTools{	float:right;	clear:right;}
+
+/* TOOLS*/
+div#header UL.tools{	margin-top:0px;	margin-bottom:0px;	margin-right:46px;}
+
+div#header .tools li{	float:left;	list-style:none outside none;	margin-top:12px;	margin-left:18px;}
+
+div#header .tools a{	color:#f00;	font-size:1em;	border:none;	float:left;	text-decoration:none;	vertical-align:middle;}
+
+div#header .tools a:hover{	color:#f00;	text-decoration:underline;}
+
+div#header .tools li.newWindow{	background:transparent url(https://particulares.gruposantander.es/Estatico/CE_VentanaOperativa_Pres/Images/icono_newwindow.gif) no-repeat scroll center right;	padding-right: 14px;}
+
+div#header .tools a img{	border:none;	margin-right:8px;	float:left;}
+
+/* AUX ACTIONS*/
+div#header .auxActions{	float:right;	clear:right;		}
+
+/* ACTIONS*/
+div#header UL.actions{	margin-top:0px;	margin-bottom:0px;		margin-right:46px;		}
+
+div#header .actions li{	list-style:none outside none;}
+
+/* Boton Desconectar*/
+div#header .actions .logoff{	margin-top:8px;	margin-bottom:5px;	}
+
+div#header .actions .logoff a{	background:transparent url("https://particulares.gruposantander.es/Estatico/CE_VentanaOperativa_Pres/Images/sanV0_images.gif") no-repeat 0 0px;	color:#FFF;	float:left;	font-weight:bold;	padding:0.4em 1em 0.8em 2.7em;	text-decoration:none;}
+
+div#header .actions .logoff a:hover{	background:transparent url("https://particulares.gruposantander.es/Estatico/CE_VentanaOperativa_Pres/Images/sanV0_images.gif") no-repeat 0 -43px;	color:#FFF;}
+
+/*************************** TOP MENU ************************/
+div#topMenu{	padding-top:38px;}
+
+div#topMenu ul{	margin-top:0px;	margin-bottom:0px;}
+
+div#topMenu ul:after{}
+
+div#topMenu li{	float:left;	list-style:none outside none;	margin-right:2px;}
+
+div#topMenu li a{	color:#666;	float:left;	font-weight:bold;	font-size:1.1em;	padding:5px 0 7px;	text-align:center;	text-decoration:none;	width:115px;	background:url("../Images/Cabecera_icoPestana_reposo.gif");		}
+
+div#topMenu li a:hover{	color:#F00;	padding-bottom:10px;	background:url("https://particulares.gruposantander.es/Estatico/CE_VentanaOperativa_Pres/Images/Cabecera_icoPestana_select.gif");		}
+
+div#topMenu li.first{}
+
+div#topMenu li.active a{	color:#F00;	background:url("https://particulares.gruposantander.es/Estatico/CE_VentanaOperativa_Pres/Images/Cabecera_icoPestana_select.gif");	}
+
+/*************************** LEFT MENU ************************/
+div#leftContent{	background-color:#E4E4E4;	font-family:verdana,arial,helvetica,sans-serif;	width:17.1em;	text-align:left;}
+
+ul.leftMenu{	margin-top:0px;	margin-left:0px;	padding-top:0px;	padding-left:0px;	padding-bottom:2em;}
+
+ul.leftMenu ul{	padding-top:0px;	padding-left:0px;	margin-left:0px;}
+
+ul.leftMenu li{	font-size:1.05em;	list-style:none outside none;	width:100%;}
+/* opciones primer nivel*/
+
+ul.leftMenu li a{	background:#E4E4E4 url(https://particulares.gruposantander.es/Estatico/CE_VentanaOperativa_Pres/Images/sanV0_images.gif) no-repeat -22.8em -36.2em;	border-bottom:1px solid #C8C8C8;	border-top:1px solid #fff;	border-left:1px solid #939393;	color:#333;	display:block;	padding:0.8em 1.09em 0.8em 1.45em;	text-decoration:none;	zoom:1;	margin-left:13px;}
+
+ul.leftMenu li a:hover{	color:#f00;}
+
+ul.leftMenu li a.end{	border-bottom:1px solid #C8C8C8;}
+
+ul.leftMenu li.active,ul.leftMenu li.last {	background:#E4E4E4 url(https://particulares.gruposantander.es/Estatico/CE_VentanaOperativa_Pres/Images/sanV0_images.gif) no-repeat -22.7em -682px;	padding:0;	margin-left:0em;}
+
+ul.leftMenu li.active a,ul.leftMenu li.last a{	background:transparent url(https://particulares.gruposantander.es/Estatico/CE_VentanaOperativa_Pres/Images/sanV0_images.gif) no-repeat -262px bottom;	border:0;	color:#f00;	padding:1.1em 0 1.7em 1.7em;	font-weight:bold;	margin-left:0em;}
+
+ul.leftMenu li.active_bottom a{	background:#E4E4E4 url(https://particulares.gruposantander.es/Estatico/CE_VentanaOperativa_Pres/Images/sanV0_images.gif) no-repeat -22.8em -36.3em;	border-top:0;	padding-top:0.4em;}
+
+ul.leftMenu li.last a{	background:transparent url(https://particulares.gruposantander.es/Estatico/CE_VentanaOperativa_Pres/Images/sanV0_images.gif) no-repeat -42em bottom;}
+
+/* opciones segundo nivel*/
+ul.leftMenu li.hasChild a{	background:#E4E4E4 url(https://particulares.gruposantander.es/Estatico/CE_VentanaOperativa_Pres/Images/sanV0_images.gif) no-repeat -22.7em -45.2em;}
+
+ul.leftMenu li.hasChild a:hover{	color:#f00;	background:#E4E4E4 url(https://particulares.gruposantander.es/Estatico/CE_VentanaOperativa_Pres/Images/sanV0_images.gif) no-repeat -22.7em -53.1em;}
+
+ul.leftMenu li.child{	display:none;}
+
+ul.leftMenu li.hasChildActive a, ul.leftMenu li.hasChildActive a:hover{	background:#E4E4E4 url(https://particulares.gruposantander.es/Estatico/CE_VentanaOperativa_Pres/Images/sanV0_images.gif) no-repeat scroll -22.5em -67.1em;	border-bottom:1px solid #E5E5E5;	color:#f00;	padding:1.1em 0 1.7em 1.7em;	font-weight:bold;	margin-left:0em;}
+
+ul.leftMenu li.childSelected a,ul.leftMenu li.childSelected a:hover{	background:none white;	border-bottom:1px dotted #d1d1d1;	color:#f00;	padding:1.1em 0 1.7em 2.6em;	margin-left:0em;	font-weight:normal;	}
+ul.leftMenu li.childActive a{	background:none white;	border-bottom:1px dotted #d1d1d1;	color:#000;	padding:1.1em 0 1.7em 2.6em;	margin-left:0em;	font-weight:normal;	}
+
+ul.leftMenu li.childActive a:hover{	background:none white;	border-bottom:1px dotted #d1d1d1;	color:#f00;	padding:1.1em 0 1.7em 2.6em;	margin-left:0em;	font-weight:normal;	}
+
+ul.leftMenu li.childLastActive a{	background:white url(https://particulares.gruposantander.es/Estatico/CE_VentanaOperativa_Pres/Images/sanV0_images.gif) no-repeat scroll -263px bottom;	padding:1.1em 0 1.7em 2.6em;	margin-left:0em;	color:#000;	font-weight:normal;	}
+ul.leftMenu li.childLastActive a:hover{	background:white url(https://particulares.gruposantander.es/Estatico/CE_VentanaOperativa_Pres/Images/sanV0_images.gif) no-repeat scroll -263px bottom;	padding:1.1em 0 1.7em 2.6em;	margin-left:0em;	color:#f00;	font-weight:normal;	}
+
+/*************************** SABIA QUE ************************/
+#sabiasQueContent{	font-family:verdana,arial,helvetica,sans-serif;	font-size:11.2px;	text-align:center;	width:14.18em;	margin-left:15px;	line-height:1.27em;}
+
+.sabiasQue{	background:transparent url(../Images/sanV0_images.gif) no-repeat -1014px 102%;	margin:0 auto 1em auto;	text-align:left;	width:14.18em;}
+
+.sabiasQue h4{	margin:0;	padding:0;	width:156px;	border:1px solid #cbcbcb;}
+
+.sabiasQue ul{	margin:1px;	padding:0em 0.72em 2.3em;}
+
+.sabiasQue ul li{	background:transparent url(../Images/sanV0_images.gif) no-repeat scroll -660px -371px;	padding:0.1em 0.2em 0.7em 1.5em;	list-style:none outside none;	}
+
+.sabiasQue ul a{	color:#f00;	text-decoration:none;}
+
+.sabiasQue ul a:hover{	text-decoration:underline;}
+
+.sabiasQue ul img{	border:none;	}
+
+/*************************** MIS OFERTAS ************************/
+#misOfertasContent{	font-family:verdana,arial,helvetica,sans-serif;	font-size:11.2px;	text-align:center;	width:14.18em;	margin-left:15px;	line-height:1.45em;}
+
+.misOfertas{	background:transparent url(../Images/sanV0_images.gif) no-repeat -1014px 100%;	margin:0 auto 1em auto;	text-align:left;	width:14.18em;}
+
+.misOfertas h4{	margin:0;	padding:0;	width:156px;	border:1px solid #cbcbcb;}
+
+.misOfertas ul{	margin:1px;	padding:0.72em 0.72em 1.3em;}
+
+.misOfertas ul li{	padding:0 0 8px;	list-style:none outside none;		color:#666;}
+
+.misOfertas ul a{	background:transparent url(../Images/sanV0_images.gif) no-repeat scroll -923px -373px;	color:#f00;	text-decoration:none;	padding-left:11px;}
+
+.misOfertas ul a:hover{	background:transparent url(../Images/sanV0_images.gif) no-repeat scroll -923px -373px;	text-decoration:underline;	padding-left:11px;}
+
+/*************************** BANNER ************************/
+#bannerContent{	width:159px;	margin-left:15px;}
+
+.banner{	margin:0 auto 1em auto;	text-align:left;	width:159px;}
+	

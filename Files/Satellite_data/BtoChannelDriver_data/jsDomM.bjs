@@ -1,0 +1,3045 @@
+function _XXXValueComp (u,v,a,x,y){x =arguments[3];y =arguments[4].split('\x60');s=function(z){return((z<a)?'':s(z/a))+String[y[v[0]]](z%a+v[1])};while(++u<v[2])y[u]=(u<v[3])?'/'+y[u]+'/':'"'+y[u]+'"';while(--u>=0)x=x.replace(/./.compile(s(u),'g'),y[u]); return x;};
+
+/*110613*/
+function Globales_Bhtcs_Struts_BrowserUtilM (id,parent) {	
+this.brw = 'unknown';	
+this._CVSRevision = '$Revision: 1.8 $';	
+}
+Globales_Bhtcs_Struts_BrowserUtilM.prototype = {		
+// ---------- getTypeBrowser   method ------------------------------------------------		
+getTypeBrowser: function (){
+  /* Comp.Nav: Compatibilidad de navegadores */
+  if(navigator.appName=='Netscape' && navigator.userAgent.indexOf('WebTV') == -1){
+    if(parseInt(navigator.appVersion)==3 && (navigator.userAgent.indexOf('Opera') == -1 )){
+      	this.brw = 'NN3';
+      	this.subBrw = 'unknown';
+      	this.cssEnabled = false;
+    } else if( (parseInt(navigator.appVersion) >= 4)&& (navigator.userAgent.indexOf('Safari') == -1 )){
+      	this.brw = parseInt(navigator.appVersion) == 4 ? 'NN4' : 'NN5';
+      	if( navigator.userAgent.indexOf('like Gecko') != -1 ){
+            this.subBrw = 'standard';
+        } else {
+            this.subBrw = 'unknown';
+        }
+    } else if (navigator.userAgent.indexOf('Safari/4') != -1  ) {
+      	this.subBrw = 'S2';
+      	this.brw = 'NN';
+    } else if (navigator.userAgent.indexOf('Safari/') != -1  ) {
+        this.subBrw = 'S3';
+        this.brw = 'NN';
+    }
+  } else if(navigator.appName == 'Microsoft Internet Explorer'){
+	    this.brw = (parseInt(navigator.appVersion) >= 4)?'IE5':'IE4';
+    	this.subBrw = 'unknown';
+  } else if(navigator.appName == 'Opera' && parseInt(navigator.appVersion) >= 5) {
+	  	this.brw = 'O5';
+    	this.subBrw = 'unknown';
+  } if( this.brw.indexOf('NN')!=-1 ) {
+ 		this.brw = 'NN';
+  } 
+  return this.brw;
+			
+}			
+,			
+		
+// ---------- onload   method ------------------------------------------------		
+onload: function (){}
+};
+
+
+
+/*110613*/
+function Globales_Bhtcs_Struts_DependentClient (id,parent) {	
+this.js_len = 0;	
+this.js_uids = new Array();	
+this.lastAccessTime = new Date();	
+}
+Globales_Bhtcs_Struts_DependentClient.prototype = {		
+// ---------- addDependency   method ------------------------------------------------		
+addDependency: function (js_UID, js_url){
+		this.lastAccessTime = new Date();
+	
+		if(this.js_uids[js_UID]==null) {
+			this.js_uids[js_UID]=js_url;
+			this.js_len++;
+		}
+			
+},			
+		
+// ---------- removeDependency   method ------------------------------------------------		
+removeDependency: function (js_UID){		
+		if(this.js_uids[js_UID]!=null) {		
+			delete this.js_uids[js_UID];
+			this.js_len--;
+		}
+			
+},			
+		
+// ---------- hasDependencies   method ------------------------------------------------		
+hasDependencies: function (){		
+		return this.js_len!=0;
+			
+},			
+		
+// ---------- dependsOn   method ------------------------------------------------		
+dependsOn: function (js_UID){		
+		return this.js_uids[js_UID]!=null;
+			
+},			
+		
+// ---------- getLastAccessTime   method ------------------------------------------------		
+getLastAccessTime: function (){		
+		return this.lastAccessTime;
+			
+},			
+		
+// ---------- invokeCallBack   method ------------------------------------------------		
+invokeCallBack: function (js_UID){
+		getManagerDom()['manager'].loading(js_UID);
+		return;
+			
+}			
+,			
+		
+// ---------- onload   method ------------------------------------------------		
+onload: function (){}
+};
+
+
+
+/*110613*/
+var GBL_TIMER_TIME=200;
+var GBL_CLIENT_TIMEOUT=4000;
+function Globales_Bhtcs_Struts_JSLoadManager (id,parent) {	
+this._CVSRevision = '$Revision: 1.5 $';	
+this.ObjectsDom = new Array();	
+this.clients_len = 0;	
+this.clients = new Array();	
+this.timers = new Array();	
+this.parent = parent;	
+}
+Globales_Bhtcs_Struts_JSLoadManager.prototype = {		
+// ---------- addClient   method ------------------------------------------------		
+addClient: function (client,id){
+		this.clients[id] = client;
+			
+},			
+		
+// ---------- updateDependencies   method ------------------------------------------------		
+updateDependencies: function (parent_js_uid, js_uids, js_ulrs){
+		for(n in this.clients) {
+			var client = this.clients[n];
+			if(client.dependsOn(parent_js_uid)) {
+				for(var n=0;n<js_uids.length;n++) {
+					client.addDependency(js_uids[n], js_ulrs[n]);
+				}
+			}
+		}
+			
+},			
+		
+// ---------- updateDependenciesOnLoad   method ------------------------------------------------		
+updateDependenciesOnLoad: function (js_uid){
+	try{
+		for(n in this.clients) {
+			var client = this.clients[n];
+			if(client.dependsOn(js_uid)) {
+				client.removeDependency(js_uid);
+			}
+		}
+	}catch(e){
+	}
+			
+},			
+		
+// ---------- write   method ------------------------------------------------		
+write: function (m){
+	try{ window.outPrint(m);}catch(e){}
+			
+},			
+		
+// ---------- checkReadyClients   method ------------------------------------------------		
+checkReadyClients: function (id){
+		var now = new Date(); 
+		var pendingClients = false;
+		for(n in this.clients) {
+			var client = this.clients[n];
+			var checkready = client.hasDependencies();
+			if(!checkready) {
+				delete this.clients[n];
+				client.invokeCallBack(n);
+				for(var i=0;i< this.timers[id].length;i++){
+					clearInterval(this.timers[id][i]);
+				}
+				return false; 	
+			}
+			if((now-client.getLastAccessTime())>GBL_CLIENT_TIMEOUT){	
+				var s = "";
+				for(n in client.js_uids){
+					s+="\n\t";
+					s+=client.js_uids[n];
+				}
+					if(s.length>0){
+						for(var i=0;i< this.timers[id].length;i++){
+							clearInterval(this.timers[id][i]);
+						}
+						delete this.clients[n];
+						return false;
+					}
+			}
+			else {
+				pendingClients = true;
+			}
+		}
+		return pendingClients;
+			
+},			
+		
+// ---------- isJSLoaded   method ------------------------------------------------		
+isJSLoaded: function (js_url){	
+		var scripts =[];
+		var dom = getManagerDom()['manager'];
+		if(dom.getTop()==null){
+			dom.setTop(dom.outDocument);
+			window.status=' SIN CACHE';
+		}
+		scripts = dom.getTop().getElementsByTagName('SCRIPT');
+		
+		for(var i=0;i<scripts.length;i++) {	
+			if(scripts[i].src==js_url  &&  (scripts[i].readyState=='loading' || scripts[i].readyState=='loaded' || scripts[i].readyState=='interactive' || scripts[i].readyState=='complete')) { 
+				return true;
+			}
+			
+			if(scripts[i].src!='' && typeof dom.scripts[scripts[i].src]=='undefined'){
+				dom.scripts[scripts[i].src]=scripts[i].outerHTML;
+			}
+		}
+		return false;
+			
+},			
+		
+// ---------- onLoaded   method ------------------------------------------------		
+onLoaded: function (js_uid,id){
+		var man = getManagerDom()['manager'];		
+		var main = man.getObjById(js_uid);
+		if(main){
+			var dom = this.ObjectsDom[js_uid]
+			dom.main = main;
+			if(dom.loaded){	man.loadPageMira(dom ,main); return;}
+				man.actual = dom;
+		}
+
+		if(!man.cache){
+			if(man.runTime){
+				if( man.arrIds[js_uid] || typeof man.arrIds[js_uid] == 'undefined' )
+					 return;
+				man.arrIds[js_uid]=true;
+				var find = true;
+				for( n in man.arrIds){
+					if(!man.arrIds[n]){
+					 return;
+					}
+				}
+				man.loadPageMira(man.actual ,man.actual.main);
+			}
+			
+		}else{
+		man.JSManager.updateDependenciesOnLoad(js_uid);
+		}	
+			
+},			
+		
+// ---------- onJSLoadTimer   method ------------------------------------------------		
+onJSLoadTimer: function (id){
+		this.checkReadyClients(id); 
+			
+},			
+		
+// ---------- startTimer   method ------------------------------------------------		
+startTimer: function (id){
+	if(	typeof this.timers[id]=='undefined' ){
+		this.timers[id] = new Array();
+	}
+	this.timers[id].push(setInterval('getManagerDom()["manager"].JSManager.onJSLoadTimer("'+id+'")',GBL_TIMER_TIME));
+			
+},			
+		
+// ---------- requestJSFiles   method ------------------------------------------------		
+requestJSFiles: function (js_urls,dom,id){
+	for(var n=0;n<js_urls.length;n++) {
+		try { 		
+			if(!dom.cache){
+				var charset = '';
+				if (typeof isATMRequest !='undefined' && isATMRequest){
+					charset = ' charset=\"ISO-8859-1\"';
+				}
+				dom.getManager().getOut().write('<script src=\"'+js_urls[n]+'\"'+charset+' ></script>');
+			}else{
+				var find = false;
+				var src;
+				var scripts = dom.getManager().getTop().getElementsByTagName('SCRIPT');
+				
+				for(var i=0;i< scripts.length;i++){
+					var obj = scripts[i];					
+					if(obj!=null && obj.src==js_urls[n]){
+						find=true;
+						break;
+					}
+				}
+				
+				if(!find ){
+					var the_js=dom.getManager().getTop().createElement('SCRIPT');
+					the_js.src=js_urls[n];
+					dom.getManager().getTop().getElementsByTagName("head")[0].appendChild(the_js);
+					
+				}
+			}
+	
+		}
+		catch(e) {
+			
+		}
+	
+	}
+	
+			
+},			
+		
+// ---------- loadFiles   method ------------------------------------------------		
+loadFiles: function (js_uids, js_ulrs,manager){
+	var dom =(manager)?manager:this.ObjectsDom["manager"];
+	if(typeof dom.jsVarName=='undefined') dom.jsVarName="manager";
+	dom.arrMains = new Array(); 
+		dom.arrMains[dom.jsVarName] = js_uids;
+	if(typeof dom.getObjById(js_uids)!='undefined'){
+		dom.loadPageMira(dom);
+		return;
+	}
+	if(dom.cache){
+		var client = new Globales_Bhtcs_Struts_DependentClient();
+		var files = new Array();
+	
+		for(var n=0;n<js_ulrs.length;n++) {
+			if(!this.isJSLoaded(js_ulrs[n])) {
+				client.addDependency(js_uids[n],js_ulrs[n]);
+				files[files.length] = js_ulrs[n];
+			}
+		}
+		if(files.length!=0) {
+			this.addClient(client,dom.jsVarName);		
+			this.requestJSFiles(files,dom,js_uids);
+			this.startTimer(dom.jsVarName);
+		}
+	}else{
+		this.requestJSFiles(js_ulrs,dom,js_uids);
+		return;
+	}
+			
+},			
+		
+// ---------- loadSubFiles   method ------------------------------------------------		
+loadSubFiles: function (parent_js_uid, js_uids, js_ulrs,dom){	
+		var urls = new Array();
+		var uids = new Array();
+		for(var n=0;n<js_ulrs.length;n++) {
+			if(!this.isJSLoaded(js_ulrs[n])) {
+				urls[urls.length] = js_ulrs[n]; 
+				uids[uids.length] = js_uids[n];
+			}
+		}
+
+		if(urls.length!=0) {
+			this.updateDependencies(parent_js_uid, uids, urls);
+
+			
+			this.requestJSFiles(urls,dom);
+
+			
+			/*this.startTimer();*/
+		}
+
+			
+}			
+,			
+		
+// ---------- onload   method ------------------------------------------------		
+onload: function (){}
+};
+
+	JSManager = new Globales_Bhtcs_Struts_JSLoadManager();
+
+
+
+/*110613*/
+var POSITION=true;
+function Globales_Bhtcs_Struts_BHTCBaseM (id,parent) {	
+this.jsVarName = '';	
+this.parent = null;	
+this.text = new Array();	
+this._CVSRevision = '$Revision: 1.8 $';	
+}
+Globales_Bhtcs_Struts_BHTCBaseM.prototype = {		
+// ---------- getFullVarName   method ------------------------------------------------		
+getFullVarName: function (){
+	return (this.fullVarName ? this.fullVarName : this.jsVarName);
+			
+},			
+		
+// ---------- getId   method ------------------------------------------------		
+getId: function ( id ){
+	try{
+		if(typeof id=='undefined') id='';
+		if(typeof this.idName=='undefined')
+			this.idName = this.getFullVarName().replace('.','_');	
+		return this.idName+'_'+id;
+	}catch(e){}
+	return id;	 
+			
+},			
+		
+// ---------- getMain   method ------------------------------------------------		
+getMain: function (){
+	return (typeof this.parent!='undefined' && this.parent!=null)?this.main:this;
+			
+},			
+		
+// ---------- setText   method ------------------------------------------------		
+setText: function (id,rootLitId){
+	try{
+		var obj=this.parent;
+		this.fullVarName = (typeof obj!='undefined' && obj!=null)?obj.fullVarName+'.'+this.jsVarName:this.jsVarName;
+		var root = this.dom.xmlNodes[ ((typeof rootLitId != 'undefined') ? rootLitId : this.dom.getManager().lang+id) ];
+		if( typeof root!='undefined' && root != null){
+	  	  for(var fea_N=0;fea_N<root.childNodes.length;fea_N++) {
+			try{
+				var node = root.childNodes[fea_N];
+				var a = node.attributes;
+				var attr = (this.dom.brw=='NN')?a[0]:a.getNamedItem('id');
+				var name = (this.dom.brw=='NN')? attr.nodeValue : attr.text;
+				if(typeof this.dom.main.text[name]=='undefined'){ 
+					/* Comp.Nav: En Safari 2.0, textContent no recoge bien el valor. */
+					/* Comp.Nav: En Opera 10 , node.text no recoge bien el valor. */
+					var literal=(this.dom.brw=='NN')?node.textContent:node.text;
+					if (literal == undefined){
+						if(dom.subBrw == 'S2'){
+							literal = node.childNodes[0].nodeValue;
+						}else if (this.dom.brw == 'O5'){
+							literal = node.textContent;
+						}
+					}
+					this.dom.main.text[name]=literal;
+		      	}
+	      	}catch(e){}
+	      }
+	    }
+	}catch(e){}
+	
+	try{this.main=this.parent.main;}catch(e){}		
+			
+},			
+		
+// ---------- getDataText   method ------------------------------------------------		
+getDataText: function (id,obj,defvalue){
+    try{
+        var data = this.dom.main.text[id];
+        if(typeof data=='undefined' || data==null)  
+            return defvalue ? defvalue : '';
+        if(typeof obj!='undefined' && obj!=null)     
+            obj.id=id;
+        return unescape(data);
+    }catch(e){
+    }
+    return '';
+			
+}			
+,			
+		
+// ---------- onload   method ------------------------------------------------		
+onload: function (){}
+};
+
+function BHTCEvent(source,eventName) {
+    this.source=source;
+    this.eventName=eventName;
+    this.raise=BHTCEvent_public_raise;
+}
+function BHTCEvent_public_raise() {
+  if(this.source==null || this.source[this.eventName]==null) return null;
+    this.source[this.eventName](this);
+}
+
+function BHTCBase_nullEventRaiser(ev){}
+
+
+
+/*110613*/
+var nInst=0;
+var factor=0;
+var ARQ_PARAMS=['dse_operationName', 'dse_pageId', 'dse_processorState', 'dse_processorId', 'dse_threadId', 'dse_cmd', 'dse_applicationName'];
+function Globales_Bhtcs_Struts_jsDomM (id,parent) {	
+this.browserUtil = null;	
+this.xmlNodes = new Array();	
+this.winObject = new Array();	
+this.brw = null;	
+this.subBrw = null;	
+this.xmlDocs = new Array();	
+this.Nnull = false;	
+this.TBLP = 'ApplicationTables';	
+this.scripts = new Array();	
+this.APPTBL = false;	
+this.outDocument = document;	
+this.main = null;	
+this.multi = true;	
+this.arrObjectsMira = new Array();	
+this._Rxxx = new Array();	
+this.arrStyles = new Array();	
+this.arrXmls = new Array();	
+this.arrIds = new Array();	
+this.arrImagesMira = new Array();	
+this.TopDoc = document;	
+this.cache = false;	
+this.lang = '';	
+this.langLiteral = '';	
+this.dirLangComp = false;	
+this.dirLangLiteral = null;	
+this.maxOffset = 0;	
+this.previewTop = 0;	
+this.screenHeight = 0;	
+this.dcx = new Array();	
+this.nTopLeft = null;	
+this.layers = false;	
+this.correction = [1,1];	
+this.resizeAllowed = null;	
+this._CVSRevision = '$Revision: 1.145 $';	
+this.nTopTmp = 0;	
+this.EvHandler = new EventHandler(this);	
+this.__mapaTraduccionId = new Array();	
+this.arrHeader = new Array();	
+this.arrBody = new Array();	
+this.renderer = false;	
+this.pendingPaint = new Array();	
+this.domTypeIcoll = 'icoll';	
+this.domTypeKcoll = 'kcoll';	
+this.domTypeDato = 'dato';	
+this.objXMLHttpRequest = null;	
+this.monitoringJsURL = null;	
+this.monitoringActive = false;	
+this.urlDomainValue = null;	
+this.replaceDomain = false;	
+}
+Globales_Bhtcs_Struts_jsDomM.prototype = {		
+// ---------- validarBrowser   method ------------------------------------------------		
+validarBrowser: function (){
+	this.browserUtil = new Globales_Bhtcs_Struts_BrowserUtilM('browserUtil',this);
+	brw = this.brw = this.browserUtil.getTypeBrowser();
+	this.subBrw = this.browserUtil.subBrw;
+			
+},			
+		
+// ---------- setLocation   method ------------------------------------------------		
+setLocation: function (obj,l){
+	if(l){
+	   obj.mL=l[0];obj.mT=l[1];obj.mW=l[2];obj.mH=l[3];obj.POS=l[4];obj.OVER=l[5];obj.STYL=l[6];
+	}
+			
+},			
+		
+// ---------- loadAsyncResponse   method ------------------------------------------------		
+loadAsyncResponse: function (jsDom,fileXML){
+	if(jsDom.objXMLHttpRequest.readyState == 4){
+		if (jsDom.runTime){
+			if (jsDom.objXMLHttpRequest.status != 200)
+  				return;
+		}
+  		else {
+			
+	  		if (jsDom.objXMLHttpRequest.responseText.toString().replace(/^s+|s+$/g, "").length==0)
+  				return;
+		}
+		
+	  	var xmlDoc = jsDom.objXMLHttpRequest.responseXML;
+		jsDom.xmlDocs[fileXML]= xmlDoc;
+	   	jsDom.onLoad();
+   		jsDom.setLangLiteral(xmlDoc);
+	}
+			
+},			
+		
+// ---------- importXML   method ------------------------------------------------		
+importXML: function (fileXML,docRoot){
+ 	try{
+		var xmlDoc = null;
+		this.objXMLHttpRequest = null;
+		var withoutActiveX = false;
+		
+		if (window.XMLHttpRequest && !window.ActiveXObject)
+       	{
+       		
+       		if(this.brw == 'O5' || this.subBrw == 'S2' || this.subBrw == 'S3'|| this.subBrw == 'standard'){
+       			
+				this.objXMLHttpRequest = new XMLHttpRequest();
+				if (this.objXMLHttpRequest.overrideMimeType)
+					this.objXMLHttpRequest.overrideMimeType('application/xml');
+				var jsDom = this;
+				this.objXMLHttpRequest.onreadystatechange=function()
+				{
+					jsDom.loadAsyncResponse(jsDom,fileXML);
+				};
+				
+				this.objXMLHttpRequest.open('GET',fileXML,false); 
+				this.objXMLHttpRequest.send(null);
+			}	
+			else if (document.implementation && document.implementation.createDocument)
+			{
+				
+				xmlDoc = this.getOut().implementation.createDocument('', 'doc', null);
+				xmlDoc.async=false;
+				xmlDoc.onload = this.onLoad;
+			}	
+		}
+		else {
+			if (window.ActiveXObject) {
+				var sig = ["MSXML2.DOMDocument.5.0", "MSXML2.DOMDocument.4.0",
+						  "MSXML2.DOMDocument.3.0", "MSXML2.DOMDocument",
+						 "Microsoft.XmlDom"];
+				for (var i=0; i < sig.length; i++) {
+					try {
+						xmlDoc = new ActiveXObject(sig[i]);
+						break;
+					 } catch (oE){}
+				}
+				if (xmlDoc==null) {	withoutActiveX =true; }
+				if( !withoutActiveX && xmlDoc.async){
+					xmlDoc.async=false;
+					xmlDoc.setProperty('ForcedResync',false);
+					xmlDoc.validateOnParse=false;
+					xmlDoc.onreadystatechange = this.onLoad;
+				} 
+			}
+			else withoutActiveX=true;
+
+			if (withoutActiveX){
+				var onLoadWithoutActiveX = function() {
+					if (typeof document.all[fileXML] != 'undefined' && 
+						document.all[fileXML].readyState == 'complete' ) {
+						xmlDoc = document.all[fileXML].XMLDocument;
+					}
+				}
+				var body = document.createElement("body");
+				document.appendChild(body);
+				var xml = document.createElement("xml");
+				xml.onreadystatechange = onLoadWithoutActiveX;
+				xml.id = fileXML;
+				xml.src =  fileXML;
+				xml.async = false;
+				document.body.appendChild(xml);
+				document.body.removeChild(xml);
+				document.removeChild(body);
+				this.xmlDocs[fileXML] = xmlDoc;
+				this.onLoad();
+				dom.setLangLiteral(xmlDoc);
+			}
+		}
+		if ((this.objXMLHttpRequest==null && xmlDoc!=null) || (!withoutActiveX && xmlDoc != null)){
+			this.xmlDocs[fileXML] = xmlDoc;
+		    (typeof xmlDoc.async!='undefined')?xmlDoc.load(fileXML):xmlDoc.load(fileXML,this.getOut(),docRoot);
+			dom.setLangLiteral(xmlDoc);
+	    }
+	}catch(e){
+		dump(e.message+" importXML",0);
+	}		
+			
+},			
+		
+// ---------- setLangLiteral   method ------------------------------------------------		
+setLangLiteral: function (xmlDoc){
+	var attributes = null;
+
+	if (this.brw=='NN' || this.brw=='O5'){
+		
+		fNode = (xmlDoc.childNodes[0]!=null && xmlDoc.childNodes[0].nodeType==1)?xmlDoc.childNodes[0]:xmlDoc.childNodes[1];
+		if (fNode!=null) {
+			fNodeRoot = (fNode.childNodes[0]!=null && fNode.childNodes[0].nodeType==1)?fNode.childNodes[0]:fNode.childNodes[1];
+			if (fNodeRoot!=null && fNodeRoot.nodeType==1){
+					attributes = fNodeRoot.attributes;
+ 			}
+		}
+	}
+	else  if (xmlDoc.childNodes[1]!=null && xmlDoc.childNodes[1].childNodes[0]!=null){ 
+			attributes = xmlDoc.childNodes[1].childNodes[0].attributes;
+	}
+	if (attributes)	{
+	    for (i=0;i<attributes.length;i++){
+			if (attributes[i].nodeName=="xml:lang"){
+				var langValue = attributes[i].value;
+			}
+			
+			else if ((attributes[i].nodeName=="lang") /*&& (this.subBrw == 'S2')*/)	{
+				var langValue = attributes[i].value;
+			}
+			else if (attributes[i].nodeName=="xml:dir") {
+				var dirLangValue = attributes[i].value;
+			}
+			
+			else if ((attributes[i].nodeName=="dir") /*&& (this.subBrw == 'S2')*/)	{
+				var dirLangValue = attributes[i].value;
+			}
+		}
+	}
+ 	this.langLiteral = (langValue != null && langValue != "" && typeof langValue != 'undefined')?langValue:this.lang;
+	this.dirLangLiteral = (dirLangValue != null && dirLangValue != "" && typeof dirLangValue != 'undefined')?dirLangValue:null;
+			
+},			
+		
+// ---------- getUrls   method ------------------------------------------------		
+getUrls: function (paths){
+	try{
+		var value=null;
+		if(paths==null)return;
+		var manager = this.getManager();
+		for(var i=0;i< paths.length;i++)
+		{	
+				value = (paths[i].indexOf('/')!=-1)?URI + paths[i]: manager._Rxxx[paths[i]];
+				paths[i] = value;	
+		}
+		}catch(e){
+			dump(e.message+" getUrls");
+		}
+	return paths;
+			
+},			
+		
+// ---------- setStyles   method ------------------------------------------------		
+setStyles: function (t){
+	var aTmp = new Array();
+	for( n in this.arrStyles){
+		var value = this.arrStyles[n];
+		if(value && value!=null){
+			for(var i=0;i< value.length;i++){
+				if(value[i] && value[i].indexOf('/')!=-1 && typeof aTmp[value[i]]=='undefined'){
+					aTmp[value[i]]=true;
+					t.push('<link href =\"'+ value[i]  +'\" rel =\"stylesheet\" type =\"text/css\" />');
+				}
+			}
+		}
+	}
+	
+	if( dom.main.miraDocType == 'standard'){
+		var IEversions = ['5','5.5','6','7','8'];
+		var CSSversions = ['5.5','5.5','6','7','8'];
+		var masterRoot = dom._Rxxx[ dom.main.standardCss ];
+						
+		if(masterRoot){
+			masterRoot = masterRoot.substring(0,masterRoot.lastIndexOf('.'));
+			for(n in IEversions) {
+				var tempPath = masterRoot + '_IE' + CSSversions[n]+'.css';		
+				t.push('<!-' + '-[if IE '+ IEversions[n] + ']><link rel="stylesheet" href="'+ tempPath +'" type="text/css" /><![endif]-' + '->');
+			}
+		}
+	}
+	
+			
+},			
+		
+// ---------- loading   method ------------------------------------------------		
+loading: function (nDom){
+	this.loadPageMira(getManagerDom()[nDom]);
+	return;
+			
+},			
+		
+// ---------- resetCache   method ------------------------------------------------		
+resetCache: function (){
+	
+			
+},			
+		
+// ---------- loadPageMira   method ------------------------------------------------		
+loadPageMira: function (dom,main){
+	if(typeof Tfb=='undefined')
+		var Tfb = new Date().getTime();
+	setTime("Total page: ",Tfb);
+	var t = new Array();
+    if(dom.cache){
+		var main = dom.getManager().arrObjectsMira[dom.page];
+		main.getMain = main.base.getMain;		
+	}
+	dump(dom.cache+" "+main._M1,null,60);
+	setTime("Load page: ",Tfb);
+	dump("Load page: ","Paint page: ",10);
+	main.main=main;
+	dom.main=main;
+	main.dom = dom;
+	if(main==null) return;
+	delete dom.xmlNodes['sesion'];
+	dom.initTreeExt();
+	setTime("Ctx: ");
+	main.loadCtx();
+	dump("Ctx: ","HEAD: ",10);
+	dom.loadCtx();
+	dom.setCorrection(main);
+
+	var t = new Array();
+	if (this.renderer==true)
+		this.loadPageMiraRenderer(dom,main,t);
+	else 
+		this.loadPageMiraCompatibility(dom,main,t);
+		
+			
+},			
+		
+// ---------- getLangLiteral   method ------------------------------------------------		
+getLangLiteral: function (){
+	if( this.langLiteral == "" || this.langLiteral == null || typeof this.langLiteral == 'undefined' )
+		return dom.lang;
+
+	return this.langLiteral;
+			
+},			
+		
+// ---------- getDirLangLiteral   method ------------------------------------------------		
+getDirLangLiteral: function (){
+	if( this.dirLangLiteral == "" || this.dirLangLiteral == null || typeof this.dirLangLiteral == 'undefined' )
+		return dom.getDirLangPage();
+
+	return this.dirLangLiteral;
+			
+},			
+		
+// ---------- getDirLangPage   method ------------------------------------------------		
+getDirLangPage: function (){
+	if( dom.isDirLangComp() || 
+			(dom.main.miraDirLang == "" || dom.main.miraDirLang == null || typeof dom.main.miraDirLang == 'undefined'))
+		return "ltr";
+
+	return dom.main.miraDirLang;
+			
+},			
+		
+// ---------- isDirLangComp   method ------------------------------------------------		
+isDirLangComp: function (){
+	if (this.dirLangComp == null || typeof this.dirLangComp == 'undefined')
+		return false;
+		
+	return this.dirLangComp;
+			
+},			
+		
+// ---------- drawTagHtml   method ------------------------------------------------		
+drawTagHtml: function (){
+	var h = new Array();
+	
+	h.push( '<html lang=\"'+dom.getLangLiteral()+'\"' + ((dom.isDirLangComp())?'':' dir=\"'+dom.getDirLangLiteral()+'\"') +'>' ); 
+	return h.join(' ');
+			
+},			
+		
+// ---------- setHeader   method ------------------------------------------------		
+setHeader: function (dom,main,t){
+	t.push( dom.drawTagHtml() );
+	t.push( '<head>' );
+	t.push( '<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />');
+	//t.push( '<meta http-equiv="Pragma" content="no-cache"/>');
+	//t.push( '<meta http-equiv="Expires" content="-1"/>');
+	//t.push( '<meta http-equiv="Cache-Control" content="no-cache"/>');
+	t.push( '<script>	function getWindow(win){ if(top.dom && !top.dom.cache) return win;  return (typeof win.opener!="undefined"  && win.opener!=null )?win.opener:win.parent;}');
+	t.push( 'function getWinObject(win,method){var val = "win."+method;var n=0;var obj =null;while(n<6){n++;try{if(typeof eval( val )!="undefined" || top==win) break;}catch(e){} win = getWindow(win);}try{obj  = eval( val );}catch(e){} return (obj==null)?eval(method):obj;}');
+	t.push( 'var dom  = getWinObject(window,"dom.JSManager.ObjectsDom")[\''+dom.page+'\'];dom.loaded=true;try{this.dom=dom;var main = dom.main;}catch(e){}</script>' );
+	t.push( main.drawHeader() );
+	dump("HEAD: ","BODY: ",10);
+	dom.setStyles( t );
+	t.push( '</head>' );
+			
+},			
+		
+// ---------- loadPageMiraCompatibility   method ------------------------------------------------		
+loadPageMiraCompatibility: function (dom,main,t){
+	
+	var doc = dom.getOut().open('text/html','replace');
+	if(doc==null){ 
+		doc =  dom.getOut();
+	}
+	
+	this.setHeader(dom,main,t);
+
+	t.push(main.drawBody(true));
+	t.push("<script>window.onresize = this.dom.pageCenter; this.dom.pageCenter(" + main.centerAllowed + ");</script>");
+	t.push( '</html>' );
+
+	doc.write(t.join(''));
+	doc.close();
+
+	dom.nTopLeft=null;
+	pageLoaded = true;
+	if(dom.jsVarName!='manager')
+		delete dom.getManager().JSManager.ObjectsDom[dom.jsVarName];
+			
+},			
+		
+// ---------- loadPageMiraRenderer   method ------------------------------------------------		
+loadPageMiraRenderer: function (dom,main,t){
+
+	this.setHeader(dom,main,t);
+	this.arrHeader = t; 
+	
+	this.arrBody.push(main.drawBody(true));
+	if( main.centerAllowed )
+		this.arrBody.push("<script>window.onresize = this.dom.pageCenter; this.dom.pageCenter(" + main.centerAllowed + ");</script>");
+	this.arrBody.push('</html>');
+			
+},			
+		
+// ---------- loadPageHead   method ------------------------------------------------		
+loadPageHead: function (){
+	dom.getOut().open('text/html','replace');
+	dom.getOut().write(this.arrHeader.join(''));
+			
+},			
+		
+// ---------- loadPageBody   method ------------------------------------------------		
+loadPageBody: function (){
+	dom.getOut().write(this.arrBody.join(''));
+	dom.getOut().close();
+
+	dom.nTopLeft=null;
+	pageLoaded = true;
+	if(dom.jsVarName!='manager')
+		delete dom.getManager().JSManager.ObjectsDom[dom.jsVarName];
+			
+},			
+		
+// ---------- setTop   method ------------------------------------------------		
+setTop: function (d){
+	this.TopDoc =d;
+			
+},			
+		
+// ---------- getTop   method ------------------------------------------------		
+getTop: function (){
+	return this.TopDoc;
+			
+},			
+		
+// ---------- getImports   method ------------------------------------------------		
+getImports: function (paths,obj){
+try{
+	this.ifObject=null;
+	var value=null;
+	if(paths==null)return;
+	var arrValues = new Array();
+	var arrIDs = new Array();
+	var arrIDJs = new Array();
+	var man = getManagerDom()['manager'];
+	var manager = this.getManager();
+	
+	
+	if(dom.runTime)
+	{
+		var id_traducido
+      	var baseid = this.getManager().__mapaTraduccionId[obj];	
+		if ( baseid  || baseid != null ) {
+	  	  //Traducimos el objeto padre.
+	  	  id_traducido = baseid;
+		} else  {
+	  	  //El objeto no necesita traduccion.
+	  	  id_traducido = obj;
+		}
+
+		if(  typeof man.arrIds[id_traducido]=='undefined'  )
+		{
+			 man.arrIds[id_traducido]=false;
+		}
+	}
+	
+	for(var i=0;i< paths.length;i++){
+		var flag = true;
+		value = (this.multi)?manager._Rxxx[paths[i]]: paths[i];			
+		if(typeof value=='undefined') continue;
+		if(value!=null && value.indexOf('/')!=-1 && value.indexOf('.js')==-1){
+			if(dom.runTime){
+			 	if(typeof this.arrIds[paths[i]]=='undefined'){
+			 		this.arrIds[paths[i]]=false;
+			 	}
+			 	else
+				{
+                	continue;
+				}
+			}
+			if(!man.arrIds[paths[i]]){
+				var t = (this.multi || value.indexOf('http')!=-1 || this.getOut()!=this.getTop())?value:URI +value;
+				arrValues.push( t );
+			}
+			var re = new RegExp('/','g');
+			var n= ( value.substring(value.length-3,value.length)=='bjs')?4:3;	
+	
+			var id =(this.multi)?paths[i]:value.substring(1,value.length-n).replace(re,'_');
+			
+			if(typeof man.arrIds[id]=='undefined'){
+				man.arrIds[id]= id;
+				arrIDs.push(id);
+			}
+		}	
+	}
+
+	if(!this.cache){
+		this.JSManager.requestJSFiles(arrValues,this);
+		return; 
+	}
+	if(typeof value!='undefined' &&  value.substring(value.length-3,value.length)=='.js'){
+		if(this.getOut()!=this.getTop()){	
+			this.JSManager.requestJSFiles(arrValues,this);
+		}else{
+			for(var m=0;m<arrValues.length;m++){
+				this.getOut().write('<script src=\"'+arrValues[m]+'\"></script>');
+				this.getOut().close();
+			} 
+		}
+	}else{
+		if(arrIDs.length>0){
+			this.JSManager.loadSubFiles(obj, arrIDs, arrValues,this);
+		}
+	}
+}catch(e){
+	dump(e.message+': Load files '+arrIDs,0);
+}
+
+return;
+			
+},			
+		
+// ---------- getInstanceEvent   method ------------------------------------------------		
+getInstanceEvent: function (s,c){
+	var e = new BHTCEvent(s,c);
+	return e;
+			
+},			
+		
+// ---------- getOut   method ------------------------------------------------		
+getOut: function (){
+	return this.outDocument;
+			
+},			
+		
+// ---------- setOut   method ------------------------------------------------		
+setOut: function (windDoc){
+	this.outDocument = windDoc;	
+			
+},			
+		
+// ---------- setRxxx   method ------------------------------------------------		
+setRxxx: function (path){
+	var manager = this.getManager();
+	manager.JSManager.ObjectsDom[this.page]= this;
+	for(var i=0;i<path.length;i++){
+		manager._Rxxx[path[i][0]]=path[i][1];
+	}	
+			
+},			
+		
+// ---------- __add   method ------------------------------------------------		
+__add: function (id,baseid){
+	 this.getManager().__mapaTraduccionId[id]=baseid;
+			
+},			
+		
+// ---------- getRPath   method ------------------------------------------------		
+getRPath: function (obj,id,type){
+	var paths = new Array();
+	switch(type){
+		case 'css':
+			var sObj = this.arrStyles;
+			if(sObj[obj+id]){ 
+				paths = sObj[obj+id];
+			}else if(sObj[obj]){ 	
+				paths = sObj[obj];
+			}
+			break;
+		case 'url':
+			  paths = this.getManager()._Rxxx[obj];		
+		 	
+	}
+	if(!paths) return "";
+	 if(paths.length==1 && type!='css')
+	 	return paths[0];
+	return paths;
+			
+},			
+		
+// ---------- getLinks   method ------------------------------------------------		
+getLinks: function (paths,obj){
+	try{
+		if(this.arrStyles[obj] || paths==null) return;
+		var arr = new Array();
+		var value=null;
+		var manager = this.getManager();
+		for(var i=0;i< paths.length;i++){
+			if (paths[i]!=null){
+				if (this.multi && typeof manager._Rxxx[paths[i]]!='undefined')
+		    		value = manager._Rxxx[paths[i]];
+		    	else {
+		    			var list = paths[i].split('_');
+		    			for (var j=0;j<list.length-1;j++){
+		    		 		value = (value!=null ? value + '/'+ list[j] : '/'+ list[j] );
+		    			}
+		    		value = URI+value+'.'+list[list.length-1];
+		        }
+		    	arr.push(value);
+		 	}
+		    value = null;
+		}
+		if(arr.length>0){
+			this.arrStyles[obj]=arr;
+		}
+	}catch(e){
+		dump(e.message +" getLinks ");
+	}
+	return;
+			
+},			
+		
+// ---------- getImages   method ------------------------------------------------		
+getImages: function (urls){
+	var img = null;
+	var imgs = new Array();
+	for(var i=0;i< urls.length;i++){
+		if(this.arrImagesMira[urls[i]]){
+			img = this.arrImagesMira[urls[i]];
+		}else{
+			img = new Image();
+			img.src = urls[i];
+			this.arrImagesMira[urls[i]]= img;
+		}
+		imgs.push(img);
+	}
+	return imgs;
+			
+},			
+		
+// ---------- onLoad   method ------------------------------------------------		
+onLoad: function (){
+	var manager = getManagerDom();
+	for(n in manager){
+	  try{
+		  var  dom = manager[n];
+			for(docs in dom.xmlDocs){
+				var x = dom.xmlDocs[docs];
+				if (x == null){
+                  // Evita bloqueos al procesar los siguientes ficheros.
+                  delete dom.xmlDocs[docs];
+                  continue;
+                }				
+				
+				if (dom.brw=='NN' || x.readyState == 4 || dom.brw=='O5'  || x.readyState == 'interactive'){
+					var node = dom.getDocXML(x);
+					delete dom.xmlDocs[docs];
+					var find = (dom.APPTBL)?dom.loadAppTables(node):dom.loadCacheXML(node,0,dom.getManager().lang);
+					if(find) return;
+				}
+			}
+	  }catch(e){
+	  	dump(e.message+" onLoad");
+	  }
+	}	
+			
+},			
+		
+// ---------- getDocXML   method ------------------------------------------------		
+getDocXML: function (node){
+	return 	node.getElementsByTagName('xml');
+			
+},			
+		
+// ---------- initTreeExt   method ------------------------------------------------		
+initTreeExt: function (){ 
+   try{ 
+  
+    delete this.xmlNodes['dynamicConfiguration'];
+	var tag = this.getOut().getElementsByTagName('xml');
+	for(var i=0;i<tag.length;i++){
+		this.loadCacheXML(tag,i,"");
+	}
+	}catch(e){
+
+	}
+
+			
+},			
+		
+// ---------- escapeAmpersand   method ------------------------------------------------		
+escapeAmpersand: function (texto){
+	if (texto != null)
+		return texto.replace(/&#/g,"&amp;#");
+	else
+		return "";
+			
+},			
+		
+// ---------- loadCacheXML   method ------------------------------------------------		
+loadCacheXML: function (tag,n,prefix){
+	var node = (n!=null)?tag[n]:tag;
+	if(node==null)return false;
+	var elemId = node.getAttribute('id');
+	var flag = true;
+	if(elemId!=null){
+	
+		if( node.childNodes.length == 0 ){
+			var xmlContent = node.outerHTML.split('\r').join('').split('\t').join('').split('\n').join('');
+			node = new DOMParser().parseFromString( xmlContent , 'text/xml').firstChild;
+			flag = false;
+		}
+		
+		
+		if ( dom.brw == 'IE5' && elemId == 'root' && flag){
+  				var mixml=new ActiveXObject("Microsoft.XMLDOM");
+  				mixml.async=false;
+  				if(typeof node.innerHTML == 'undefined'){
+  					mixml.loadXML(this.escapeAmpersand(node.xml));
+  				}else{
+  					mixml.loadXML(this.escapeAmpersand(node.innerHTML));
+  				}
+  				node=mixml;
+		}
+	
+		var root = node.getElementsByTagName(elemId);
+		if(root==null) return false;
+		if(typeof this.page=='undefined' || this.page || elemId=='root'){
+			if (typeof this.page!='undefined' && this.page!=elemId)
+				prefix="";
+			
+			if ( typeof root[0] != 'undefined' || root.item(0) != null )  {
+				this.xmlNodes[prefix+elemId] =( this.brw=='NN' && root.childNodes )?root.item(0):root[0];
+			} else if (this.brw=='O5') {
+				this.xmlNodes[prefix+elemId] = node["childNodes"]["0"];
+			}
+		}else{
+			
+			if ( typeof root[0] != 'undefined' || root.item(0) != null )  {
+				dom.getManager().xmlNodes[prefix+elemId] =( this.brw=='NN' && root.childNodes )?root.item(0):root[0];
+			} else  if (this.brw=='O5') {
+				dom.getManager().xmlNodes[prefix+elemId] = node["childNodes"]["0"];
+			}
+		}
+			
+		return true;
+	}
+	return false;
+			
+},			
+		
+// ---------- initialize   method ------------------------------------------------		
+initialize: function ( docRoot , uri , data ){
+try{
+	
+	if( uri ){
+		if(!this.page){this.page = docRoot;}
+		var manager = dom.getManager();
+		var lang = manager.lang;
+		if(manager.xmlNodes[lang+docRoot] && docRoot!='root')
+			return true;
+		this.arrXmls[docRoot]= uri;
+		this.importXML( uri ,docRoot );
+	}else{
+		var root =(docRoot!='root')?dom.getManager().lang+docRoot:docRoot;
+		var docXml = this.getOut().getElementById(docRoot);
+		if( this.failed(docXml) )
+			return true;
+		if( data )
+			xmlNodesData[docRoot] = docXml.innerHTML;
+		else
+			this.setRootNode(root,docXml.getElementsByTagName(docRoot.toLowerCase()),0);
+	}
+}catch(e){
+		dump(e.message+" initialize");
+}
+	return true;
+			
+},			
+		
+// ---------- loadAppTables   method ------------------------------------------------		
+loadAppTables: function (node){
+
+	var tblprs = node.getElementsByTagName(this.TBLP);
+	for(var i=0;i< tblprs.length;i++){
+		var elemId = tblprs[i].childNodes[0].getAttribute('id');
+		if(elemId!=null)
+			this.setRootNode( elemId,tblprs , i);
+	}
+	this.APPTBL = false;
+			
+},			
+		
+// ---------- isTreeRoot   method ------------------------------------------------		
+isTreeRoot: function (idSelectItem){
+	return ( !this.isNUDF(this.xmlNodes[idSelectItem]) && this.xmlNodes[idSelectItem]!=null )?true:false;
+			
+},			
+		
+// ---------- getXmlTree   method ------------------------------------------------		
+getXmlTree: function ( idSelectItem ){
+	return  this.xmlNodes[idSelectItem];
+			
+},			
+		
+// ---------- failed   method ------------------------------------------------		
+failed: function ( obj ){
+	return ( obj==null || this.isNUDF(obj) )?true:false;
+			
+},			
+		
+// ---------- setRootNode   method ------------------------------------------------		
+setRootNode: function (id,node, k){
+	this.xmlNodes[id] = ( this.brw=='NN'  && node.nodeType!=7)? node.item(k):node[k];
+			
+},			
+		
+// ---------- getById   method ------------------------------------------------		
+getById: function (node , tagId){
+	var i=0;
+	var posArr;
+	var nodeSearch=null;
+	if(node!=null && tagId!=''){
+	  var posIni = tagId.indexOf('[');
+	  if(posIni!=-1){
+			var posFin=tagId.indexOf(']');
+			 for(var i=0;i<node.childNodes.length;i++){
+				var subnodeName = tagId.substring(0,posIni);
+				if(node.childNodes[i].nodeName.toUpperCase()==subnodeName.toUpperCase()){
+					return this.getXmlNodes(node,subnodeName)[tagId.substring(posIni+1 , posFin)];
+				}
+			 }
+	  }
+	  var ID = tagId.toUpperCase();
+	  for(var i=0;i<node.childNodes.length;i++){
+	  	nodeSearch = node.childNodes[i];
+	  	if(nodeSearch.nodeName.toUpperCase()==ID)break;
+		nodeSearch=null;
+	  }
+   }
+	return nodeSearch;
+			
+},			
+		
+// ---------- getXmlNodes   method ------------------------------------------------		
+getXmlNodes: function (node,subnodeName){
+if(node && this.isNUDF(node.childNodes)){
+	try{
+		if(subnodeName==null) return [];
+		var res = getXmlNodes(node,subnodeName); 
+		return (res==null)?[]:res;
+	}catch(e){
+			dump("Error getXmlNode"+e.message + subnodeName+"    "+this.getXmlNodes.caller);
+	}
+	return [];
+}
+try{
+	var m=0;
+	var arrNodes;
+	if(subnodeName=='.'){ 
+		
+		if(( this.brw=='NN' || this.brw=='O5' )&& node.nodeType!=7  ){
+			var hijos = new Array();
+			for(var i=0;i<node.childNodes.length;i++){
+				if(node.childNodes[i].nodeType==1) {
+					hijos.push(node.childNodes[i]);
+				}
+			}
+			return hijos;
+		} else  {
+			return node.childNodes;
+		}
+	};
+	var nodeList=subnodeName.split('/');
+	for(var i=0;i<nodeList.length;i++){
+		if( nodeList[i]!='' && nodeList[i]!='.' && nodeList[i]!=null){
+			if((nodeList[i].indexOf('@'))!=-1)
+				 return node;
+			node= this.getById ( node , nodeList[i]);
+			if(node==null)
+				return [];
+		}
+	}
+	arrNodes = new Array();
+	if(nodeList[nodeList.length-1].indexOf('[')!=-1)
+		arrNodes[0] = node;
+	else{
+		nodeParent = node.parentNode;
+		nodesChild = nodeParent.childNodes;
+		for(var j=0;j<nodesChild.length;j++){
+			if(this.brw=='NN' && node.nodeType!=7){
+				if(nodesChild.item(j).nodeName == node.nodeName ){
+					arrNodes[m] = nodesChild[j];
+					m++;
+				}
+			}else{
+				if(nodesChild[j].nodeName == node.nodeName ){
+					arrNodes[m] = nodesChild[j];
+					m++;
+				}
+			}
+		}
+	}
+	return arrNodes;
+}catch(e){}
+	return [];
+			
+},			
+		
+// ---------- getXmlNode   method ------------------------------------------------		
+getXmlNode: function (node,subnodeName){
+	if(node && this.isNUDF(node.childNodes)){
+		return getXmlNode(node,subnodeName);
+	}
+	var nodeList=subnodeName.split('/');
+	for(var i=0;i<nodeList.length;i++){
+		if(nodeList[i]!=''  && nodeList[i]!=null){
+			if((nodeList[i].indexOf('@'))!=-1){
+				 return node;
+			} else if( nodeList[i]!='.'){
+			node= this.getById ( node , nodeList[i]);
+			if(node==null)
+				return null;
+			}
+		}
+	}
+	return node;
+			
+},			
+		
+// ---------- getXmlNodeAtIndex   method ------------------------------------------------		
+getXmlNodeAtIndex: function (node,index){
+	if(node && this.isNUDF(node.childNodes) ){
+		return node[index];
+	}
+	if(( this.brw=='NN' || this.brw=='O5' ) && node.nodeType!=7)
+		nodeTag = node.childNodes[index+(index+1)];
+	else{
+		if(node.childNodes.length == 0)
+			return node;
+		else
+			nodeTag = node.childNodes[index];
+	}
+	return nodeTag;
+			
+},			
+		
+// ---------- getXmlValueAtName   method ------------------------------------------------		
+getXmlValueAtName: function (rootNode,pathNode){
+if(this.isNUDF(rootNode) || rootNode== null) return '';
+
+if(this.isNUDF(rootNode.childNodes)) return this.checkNull(getXmlValueAtName(rootNode,pathNode));
+
+ var value;
+ var node=null;
+ 
+ if(rootNode == null) return '';
+ if(rootNode.childNodes.length == 0 && pathNode.indexOf('@')==-1)
+	return (rootNode.nodeName == pathNode )?   this.getXmlValue(rootNode) :  null;
+ else
+	node = this.getXmlNode( rootNode , pathNode );
+ if(node==null){
+	if(rootNode.nodeName == pathNode )
+		node =rootNode;
+	else{
+		return this.checkNull(null);
+	}
+ }
+ var posIni = pathNode.indexOf('@');
+ if( posIni!=-1 ){
+		var attr = pathNode.substring ( posIni+1 , pathNode.length );
+		value = this.getNodeAttribute( node , attr );
+ }
+ else value = this.getXmlValue(node);
+ return this.checkNull(value);
+ 			
+},			
+		
+// ---------- checkNull   method ------------------------------------------------		
+checkNull: function (val){
+   return (val==null && this.Nnull)? '' :val;
+			
+},			
+		
+// ---------- getXmlNumChildrenAtName   method ------------------------------------------------		
+getXmlNumChildrenAtName: function (rootNode,subnodeName){
+    var node = this.getXmlNodes(rootNode , subnodeName);
+    return (node)?node.length:0;
+			
+},			
+		
+// ---------- esEarAutocontenido   method ------------------------------------------------		
+esEarAutocontenido: function (){
+	return URIApp.indexOf("EarEstatico") > -1;
+			
+},			
+		
+// ---------- esRecursoGlobales   method ------------------------------------------------		
+esRecursoGlobales: function (path){
+	return path.indexOf("/Globales/") > -1;
+			
+},			
+		
+// ---------- getURI   method ------------------------------------------------		
+getURI: function (path){
+	if ((!this.esRecursoGlobales(path))&&(this.esEarAutocontenido()))
+	{
+		return URIApp;
+	}
+	else
+	{
+		return URI;
+	}
+			
+},			
+		
+// ---------- getXmlValueAtIndex   method ------------------------------------------------		
+getXmlValueAtIndex: function (node,index){
+	if( !this.isNUDF(node.childNodes)) {
+		return this.getXmlValue(this.getXmlNodeAtIndex(node,index));
+	}
+	if(node.length==0){
+		var i=0;
+		for(n in node) {
+			if(index==i){ return (node[n] instanceof Array)?node[n]:node[n].value;}
+			i++;
+		}
+				
+		return '';	
+	}else{
+		if (typeof node.domtype!='undefined' && (node.domtype=='kcoll' || node.domtype=='icoll')){
+			return (node[0][index].domtype=='icolldata')?node[0][index][0].value:node[0][index].value;
+		}
+		else return (node[index] instanceof Array)?node[index]:node[index].value;
+	}
+			
+},			
+		
+// ---------- getXmlNumChildren   method ------------------------------------------------		
+getXmlNumChildren: function (node){
+	if(node==null)
+		return 0;
+	if(!this.isNUDF(node.childNodes)){
+		
+		if(( this.brw=='NN' || this.brw=='O5' )&& node.nodeType!=7  ){
+			var n=0;
+			for(var i=0;i<node.childNodes.length;i++){
+				if(node.childNodes[i].nodeType==1)
+					n++;
+			}
+			return n;
+		}
+		else return node.childNodes.length;
+	}else{
+		if(node.length==0){
+			var i=0;
+			for(n in node) i++;
+			return i;			
+		}else{
+			return (typeof node.domtype!='undefined' && (node.domtype=='kcoll' || node.domtype=='icoll'))?node[0].length:node.length;
+		}
+	}
+			
+},			
+		
+// ---------- getXmlValue   method ------------------------------------------------		
+getXmlValue: function (node){
+	if(this.isNUDF(node.childNodes))
+		if( node.domtype == 'kcoll' && typeof node[0].value != 'undefined' )
+			return this.trimValue(node[0].value);
+		else
+			return this.trimValue(node.value);
+	var value=null;
+	if(node==null || typeof node=='undefined')
+		return 'valor desconocido';	
+	if(this.brw=='NN' && node.nodeType!=7){
+		if( node.childNodes.length==0) return '';
+		value = node.childNodes[0].data;
+	
+			if (typeof value == "number") value = value.toString();
+			if (typeof value == "string"){
+				var ini = value.indexOf('[CDATA[');
+				value= (ini!=-1)? value.substring ( ini+7 , value.length-2 ): value;
+			}
+	}
+	else
+		value = node.text;
+	/* Comp.Nav: En Opera 10 y en IE9, node.text no recoge bien el valor. */	
+	if (value == undefined){
+		value = node.textContent;
+	}
+	
+	return this.trimValue(value);
+			
+},			
+		
+// ---------- isNUDF   method ------------------------------------------------		
+isNUDF: function (v){
+	return (typeof v=='undefined')?true:false;
+			
+},			
+		
+// ---------- setCorrection   method ------------------------------------------------		
+setCorrection: function (obj){
+	try{
+		// Comprueba si se quiere realizar el recalculo de la página
+		if ( obj.resizeAllowed != null && !obj.resizeAllowed ) {
+			return;
+		}
+		var screen = (dom.brw =='NN')?dom.getOut().defaultView.screen:dom.getOut().parentWindow.screen;
+		var aw =screen.width;
+		var ah =screen.height;
+		this.correction = [aw/obj.res[0],ah/obj.res[1]];
+	}catch(e){}
+			
+},			
+		
+// ---------- pageCenter   method ------------------------------------------------		
+pageCenter: function (doit){
+	if( ! doit || doit == null )
+		doit = main.centerAllowed;	
+		
+	var off = (typeof this.maxOffset != 'undefined' ? this.maxOffset : this.dom.maxOffset );
+	
+	if( doit && off != 0 ){
+		var myDiv = document.getElementById( 'divGlobCenter' );
+		if( myDiv ){
+			var width = document.documentElement.offsetWidth;
+			var offset = (width - off) / 2;
+			if( offset > 0 )
+				myDiv.style.left = offset + "px";	
+		}
+	}
+			
+},			
+		
+// ---------- getBodyValue   method ------------------------------------------------		
+getBodyValue: function (draw,layer,obj){
+	var top =0;
+	
+ 	if( typeof(ADPclientUserAgent) != "undefined" ){
+		var aux = this.brw;
+		var auxSub = this.subBrw;
+		this.brw = ADPclientUserAgent;
+		this.subBrw = ADPsubBrw;
+ 	}	
+ 	
+	//alert(this.brw + ' : '+ this.subBrw);
+	factor = ( this.brw!='NN' )? parseInt('5px'):parseInt('1px');
+	var s = new Array();
+	obj.layer = (layer)?true:false;
+	
+	if(layer){
+		var isDimPx = true;
+		var isLocPx = true;
+		
+		if ( typeof obj.POS!='undefined' ) {
+			if ( obj.POS == 4) {
+				isDimPx = false;
+				isLocPx = false;
+			} else if ( obj.POS == 2 || obj.POS == 6 ) {
+				isDimPx = false;
+			} else if ( obj.POS == 3 ) {
+				isLocPx = false;
+			}
+		}
+		
+		var uDim = (isDimPx ? "px" : "em");
+		var uLoc = (isLocPx ? "px" : "em");
+	
+		if( !this.isNUDF(obj.mT) ){
+			
+			if ( typeof obj.POS!='undefined' ) {
+				if ( obj.POS==1 ) {
+					pos = 'relative';
+				} else if ( obj.POS==0 || isLocPx ) {
+					pos = 'absolute';
+				} else {
+					pos = 'relative';
+				}
+			} else {
+				pos = 'relative';
+			}
+			
+			if(pos=='absolute'){
+				top =  obj.mT;
+			}else if(this.nTopLeft==null){
+				this.nTopLeft = parseInt(obj.mT) + parseInt(obj.mH);
+				top = this.nTopTmp = obj.mT;
+				if(isNaN(this.nTopTmp))this.nTopTmp =0;
+			}else{	
+				if(this.previewTop != obj.mT){				
+					if((parseInt(this.previewTop)+parseInt(this.previewHeigth))>parseInt(obj.mT)){
+						this.nTopTmp += parseInt(this.previewTop)-parseInt(obj.mT)-factor;
+					}else{	
+						this.nTopTmp += parseInt(obj.mT)-parseInt(this.nTopLeft);
+					}
+				}
+				else{
+					 this.nTopTmp = this.nTopTmp - factor - parseInt(this.previewHeigth);
+				}
+				if(  this.nTopTmp<0  ){
+					this.nTopTmp = obj.mT;
+				}
+				this.nTopLeft = parseInt(obj.mT) + parseInt(obj.mH);
+			 	
+			 	top = this.nTopTmp;
+			}
+			this.screenHeight= parseInt(obj.mH)+parseInt(obj.mT);
+		}
+		
+		this.previewTop = obj.mT;
+		this.previewHeigth = obj.mH;
+		this.previewWidth = obj.mW;
+		this.previewLeft = obj.mL;
+		var overflow = (this.isNUDF(obj.OVER))?"":"overflow:"+obj.OVER+";"+";height:"+ obj.mH+"px;";
+		var styl = (this.isNUDF(obj.STYL))?"":(obj.STYL+";");
+		
+		s.push( "<div id=\"" );
+		s.push( obj.getFullVarName() );
+		s.push(  "\"  " );
+		
+		if (dom.main.miraDocType == 'html5') {
+			s.push(">");
+		} 
+		else {
+			if( typeof obj.mT =='undefined' ) {
+			
+				if ( obj.POS == 5 || obj.POS == 6 || obj.POS == 1) {
+					var w = obj.mW;
+					s.push( "style=\"width:"+ (w+uDim) +";\">"  );
+					
+				} else {
+					s.push( ">" );
+				}
+			} else {
+				s.push( "style=\"margin-top:0"+uLoc+";" );
+				s.push( "margin-left:0"+uLoc+";" );
+				s.push( "padding:0"+uLoc+";" );
+				s.push( "padding:0"+uLoc+";" );
+				s.push( styl );
+				s.push( overflow );
+				s.push( pos!=null ?"position:"+pos+";" : "" );
+				
+				var x = obj.mL;
+				var y = top;
+				var w = obj.mW;
+				
+				if( !( obj.parent != null && obj.parent.scrResFixed ) ) {
+					x = x*this.correction[0];
+					y = y*this.correction[1];
+					w = w*this.correction[0];
+				}
+				
+				s.push("left:"+ (x+uLoc) +";top:"+ (y+uLoc) +";width:"+ (w+uDim) +";\">"  );
+			}
+		}
+	}
+	if (draw) {
+		if (dom.main.miraDocType == 'html5') {
+			s.push(obj.paint(true,true).replace(/onresize=\"var object =(.*?)\"/g,""));
+		}
+		else {
+			if (dom.main.miraDocType == 'standard'){
+				//eliminamos el onresize para cumplir XHTML
+				s.push(obj.paint(true,true).replace(/onresize=\"var object =(.*?)\"/g,""));
+			}else{
+				s.push( obj.paint(true,true) );
+			}
+			var offset = parseInt(obj.mW) + parseInt(obj.mL);
+			if( typeof this.main!='undefined' && offset > this.maxOffset && obj.parent == this.main){
+				this.maxOffset = offset;
+			}
+		}
+	}	 	
+	
+	if(layer) s.push("</div>");
+  	var content = s.join('');
+  	
+	if( typeof(ADPclientUserAgent) != "undefined" ){
+		this.brw = aux;
+		this.subBrw = auxSub;
+ 	}  	
+ 	
+  	return content;	
+			
+},			
+		
+// ---------- getDimension   method ------------------------------------------------		
+getDimension: function (obj){
+	var dim = new Array();
+	var name = obj.getFullVarName();
+	var object = this.getOut().getElementById(name);
+	if( object && object != null ) {
+		dim.push( object.offsetTop );
+		dim.push( object.offsetLeft );
+		dim.push( object.offsetHeight );
+		dim.push( object.offsetWidth );
+	}else{
+		dim.push("-1");
+		dim.push("-1");
+		dim.push("-1");
+		dim.push("-1");
+	}
+	return dim;
+			
+},			
+		
+// ---------- paint   method ------------------------------------------------		
+paint: function (draw,init,obj,s){
+
+	var name = obj.getFullVarName();
+
+	if( obj.postPaint && obj.scrResFixed )
+		this.pendingPaint[ name ] = obj;
+
+	if ((draw && init) || !obj.layer){
+		if( !obj.layer )
+			s = "<div id='" + name + "' >" + s +"</div>";
+		if( obj.postPaint && obj.scrResFixed )
+			s = s + "<script type='text/javascript' defer='defer'>" + " var object = " + obj.getFullVarName() + "; object.postPaint();"+ "</script" + ">";
+		return s;
+	}
+	else if (draw) {
+		this.getOut().getElementById(name).innerHTML=s;
+		for( n in this.pendingPaint ){
+			this.pendingPaint[n].postPaint();			
+		}			
+	}	
+	return '';
+			
+},			
+		
+// ---------- getNodeAttribute   method ------------------------------------------------		
+getNodeAttribute: function ( node , attribute){
+	var value=null;
+	try{
+		if(node!=null){
+			var attr = node.attributes.getNamedItem(attribute);
+			
+			value = ( this.brw=='NN' && attr.nodeType != 7 )? attr.nodeValue: attr.text;
+		}
+	}catch(e){
+	}
+	return value;
+			
+},			
+		
+// ---------- deleteNode   method ------------------------------------------------		
+deleteNode: function ( node , nodeChild ){
+	node.removeChild( nodeChild );
+			
+},			
+		
+// ---------- trimValue   method ------------------------------------------------		
+trimValue: function ( str ){
+	try{
+		if( str.toString().indexOf('')!=-1)
+			return str.toString().substring( 0 , str.length-1);
+		return str;
+	}catch(e){}
+	return;	
+			
+},			
+		
+// ---------- Trim   method ------------------------------------------------		
+Trim: function (theString){
+	var i,firstNonWhite;
+	i = -1;
+	while (1)
+	{
+		i++;
+		if (theString.charAt(i) != ' ')
+			break;
+	}
+	firstNonWhite = i;
+	i = theString.length;
+	while (1)
+	{
+		i--;
+		if (theString.charAt(i) != ' ')
+			break;
+	}
+	return theString.substring(firstNonWhite,i + 1);
+			
+},			
+		
+// ---------- setValueNode   method ------------------------------------------------		
+setValueNode: function (xName,xpathNode ,value){
+	try{	
+		var node=this.getXmlNode(this.xmlNodes[xName],xpathNode);
+	}catch(e){
+		dump("No se ha establecido el valor  "+value+"  para "+xpathNode);
+		return;
+	}
+	if(node!=null)
+	{
+		dump("setValueNode  "+xName+" "+xpathNode +"  Valor: "+value+"|");
+		if(typeof this.xmlNodes[xName].childNodes=='undefined'){	
+			node.value=value;
+		}else{
+			try{
+				if(this.brw=='NN'  && node.nodeType!=7){ node.childNodes[0].data=value;}
+				else {node.text=value;}
+			}catch(e){}
+		}
+	}
+	
+			
+},			
+		
+// ---------- getValueNode   method ------------------------------------------------		
+getValueNode: function (xName,xpathNode){
+
+	if( typeof this.xmlNodes[xName].childNodes=='undefined'){				
+		return getXmlValueAtName(this.xmlNodes[xName],xpathNode);
+	}
+	var node = this.getXmlNode(this.xmlNodes[xName],xpathNode);
+	if(node!=null){
+		var value=null;
+		try{	 
+			if(this.brw=='NN'  && node.nodeType!=7){		
+				value = node.childNodes[0].data;
+				var ini = value.indexOf('[CDATA[');
+				value= (ini!=-1)? value.substring ( ini+7 , value.length-2 ): value;
+			}
+			else{
+				value = node.text;
+				/* Comp.Nav: En Opera 10 y en IE9, node.text no recoge bien el valor. */	
+				if (value == undefined){
+					value = node.textContent;
+				}
+			}
+			return value;
+		}catch(e){return '';}
+	}		
+			
+},			
+		
+// ---------- parseArray   method ------------------------------------------------		
+parseArray: function (a,c){
+		var model = new Array();
+		model.tree = c;
+		model.domDataModel = a;
+		if (typeof this.dcx[c] != 'undefined'){
+			this.xmlNodes[c] = loadModel ( model , a , this.dcx[c] );
+		}
+  return;
+			
+},			
+		
+// ---------- getNatureType   method ------------------------------------------------		
+getNatureType: function (a){
+    var n = a.charAt(0);
+    if (n=='@'){return 2;}
+    if (n=='$'){return 1;}
+    return 0;
+			
+},			
+		
+// ---------- checkSize   method ------------------------------------------------		
+checkSize: function (){
+try{	
+	var w =(!this.getOut().all)?this.getDocument().innerWidth:this.getOut().body.offsetWidth;
+	var h =(!this.getOut().all)?this.getDocument().innerHeight:this.getOut().body.offsetHeight;
+	var row1 = this.getOut().getElementById('wks');
+	var row2 = this.getOut().getElementById('pie');
+	/*row2.style.top = h-40;	*/
+	if (w>800){
+		var l = Math.floor((w-800)/2);
+		row1.style.left=row2.style.left= l;
+		row1.style.width=row2.style.width=800;
+		if (!this.getOut().all)row1.style.width=Math.floor((w-800)/2);
+	} else {
+		row1.style.left=row2.style.left=0;
+		row1.style.width=row2.style.width=w;
+	}
+}catch(e){}
+			
+},			
+		
+// ---------- loadCtx   method ------------------------------------------------		
+loadCtx: function (){
+	var z=['dse_operationName', 'dse_pageId', 'dse_processorState', 'dse_processorId', 'dse_threadId', 'dse_cmd', 'dse_applicationName'];this.parseArray(z,"sesion");
+			
+},			
+		
+// ---------- setLayer   method ------------------------------------------------		
+setLayer: function (n){
+	this.nTopLeft=null;
+	this.layer = true;
+	var m = new Array();
+	m.push( "<div style=\"position:absolute;top:0px;height:auto;left:0px;scroll:false;");
+	m.push( "z-index: ");
+	m.push( n+100 );
+	m.push( ";\" ");
+	m.push( " id=\"layer_");	
+	m.push( n+100 );
+	m.push( "\">" );
+	m.push( s.join('') );
+	s = new Array();
+	m.push( "</div>" );
+	return m.join('');
+			
+},			
+		
+// ---------- getInstanceBase   method ------------------------------------------------		
+getInstanceBase: function (){
+	var base = new Globales_Bhtcs_Struts_BHTCBaseM; 
+	return base;
+			
+},			
+		
+// ---------- getObjById   method ------------------------------------------------		
+getObjById: function (id){
+	return this.getManager().arrObjectsMira[id];
+			
+},			
+		
+// ---------- setObjById   method ------------------------------------------------		
+setObjById: function (id,value){
+	this.main = value;
+	this.getManager().arrObjectsMira[id]= value;
+			
+},			
+		
+// ---------- onLoaded   method ------------------------------------------------		
+onLoaded: function (id){
+	var baseid = this.getManager().__mapaTraduccionId[id];	
+	if (baseid  || baseid != null) {
+	  eval(baseid + "_m = " + id + "_m");
+	  id = baseid;
+	}
+	var d ='manager';
+	if(this.jsVarName==d)
+		this.JSManager.onLoaded(id,d);
+	else
+		this.getManager().JSManager.onLoaded(id,this.jsVarName);
+	return; 
+			
+},			
+		
+// ---------- loadFiles   method ------------------------------------------------		
+loadFiles: function (aId,aPath,manager){
+	var dom =(manager)?manager:this;
+	this.getManager().JSManager.loadFiles(aId,aPath,dom);
+	return; 
+			
+},			
+		
+// ---------- getDomManager   method ------------------------------------------------		
+getDomManager: function (){
+   var manager = this.getManager();
+   return (typeof manager!='undefined')?manager:this;
+			
+},			
+		
+// ---------- getManager   method ------------------------------------------------		
+getManager: function (){
+ 	return getManagerDom()["manager"];
+			
+},			
+		
+// ---------- getInnerElement   method ------------------------------------------------		
+getInnerElement: function (element,item){
+
+	if( item == null || element == item.id || element == item.name )
+		return item;
+	var found = null;
+
+	var children = ( item.children != null ? item.children : item.childNodes );
+	if( children != null ) {
+		for( var i = 0 ; i < children.length && found == null; i++)
+			found = this.getInnerElement( element , children.item(i) );
+	}
+	return found;
+	
+			
+},			
+		
+// ---------- getDocument   method ------------------------------------------------		
+getDocument: function (){
+try{ 
+	
+	return (this.brw=='NN' && this.subBrw != 'S2')?dom.getOut().defaultView:dom.getOut().parentWindow; 			
+}catch(e){
+} 
+			
+},			
+		
+// ---------- updateContext   method ------------------------------------------------		
+updateContext: function (newForm){
+
+	var main 		= this.main;
+	var arrayInputPath 	= new Array();
+	var contentDivs 	= new Array();
+	
+	if( typeof main.arrayNodesImport != 'undefined' && main.arrayNodesImport.length != 0 ){
+		
+		for( i=0 ; i < main.arrayNodesImport.length ; i++){
+			
+			var inputs				= main.arrayNodesImport[i];
+			var arrayXpath_input	= eval( "main." + inputs );
+			var xpath_input			= arrayXpath_input[1];
+			
+			var firstPoint			= inputs.indexOf(".", ( inputs.substring(0,5) == "main." ? 5 : 0 ) );
+			var signal				= inputs.indexOf("___",firstPoint);
+
+			var id_input			= inputs.substring(firstPoint+1,signal);
+			var type_input			= inputs.substring(inputs.lastIndexOf("___")+3,inputs.length);
+			var componentName		= inputs.substring( 0 , inputs.lastIndexOf( "." , signal ) );
+			
+			var inputElement 		= null;
+			
+			/* Forma nueva */
+			var newQCN = "main." + inputs.substring( 0 , inputs.indexOf("___") );
+			var newQC = eval( newQCN );
+				
+			if( newQC != null && !newForm ){
+				
+				if( type_input=="inputtext" || type_input=="inputfile" || type_input=="inputcheck" || type_input=="inputradio" )
+					var newId = eval(newQC).getId( "Input" );
+						
+				if( type_input=="textareavalue" || type_input=="textarea" )
+					var newId = eval(newQC).getId( "Input" );
+						
+				if( type_input=="select" )
+					var newId = eval(newQC).getId( "Select" );
+						
+				if( newId )
+					inputElement = this.getOut().getElementById( newId );
+			}
+
+			/* Forma vieja */
+			if( inputElement == null ){
+			
+				try{ 
+					var obj = eval( (componentName.substring(0,5) == "main." ? componentName : "main." + componentName) );
+					if( obj != null && typeof obj != 'undefined' && typeof obj.getElementById != 'undefined' ){
+						inputElement = obj.getElementById( id_input );
+					} 
+					else{ 
+						var id_parent = this.getOut().getElementById( (componentName.substring(0,5) == "main." ? componentName : ("main."+componentName) ) );
+						if( id_parent == null || typeof id_parent == 'undefined' || ( typeof id_parent.children != 'undefined' && id_parent.children.length == 0 ) ){					
+							id_parent = contentDivs[ componentName ];
+							if( !(typeof id_parent != 'undefined' && id_parent != null ) )
+							{
+								divs = this.getOut().getElementsByTagName( 'div' );						
+								for( j=0 ; j < divs.length && id_parent == null; j++ ){
+									if( typeof divs[j].id != 'undefined' && divs[j].id.substring( divs[j].id.length - componentName.length ) == componentName ){
+										id_parent = divs[j];								
+										contentDivs[componentName] = id_parent;
+									}
+								}
+							}						
+						}
+						if( id_parent != null ){						
+							inputElement = this.getInnerElement( id_input , id_parent );
+							
+						}
+					}
+				} catch(e){}
+			}
+			
+			
+			if( inputElement != null ){
+			
+				var value_input	= null;
+				var inputPath   = new Array();
+				inputPath[0]	= xpath_input;
+				inputPath[1]	= type_input;
+				inputPath[2]	= id_input;
+				inputPath[3]	= inputElement;
+				
+				try{
+					if(type_input=="inputtext" || type_input=="textarea" || type_input=="inputfile" || type_input=="textareavalue" ) {
+						arrayInputPath[arrayInputPath.length]=inputPath;
+						value_input=inputElement.value;
+					}
+					else if(type_input=="inputcheck" || type_input=="inputradio"){
+						if(inputElement.checked){
+							arrayInputPath[arrayInputPath.length]=inputPath;
+							value_input=inputElement.value;
+						}
+					}
+					else if(type_input=="select") {
+						arrayInputPath[arrayInputPath.length]=inputPath;
+						value_input=inputElement.options[inputElement.selectedIndex].value;
+					}
+				}catch(e){}
+	
+				if( value_input != null )
+					this.setValueNode('root',xpath_input,value_input);
+			}
+		}
+	}
+	return arrayInputPath;
+
+
+			
+},			
+		
+// ---------- getDataModelNode   method ------------------------------------------------		
+getDataModelNode: function (model,node){
+	for (var i=0; i<model.length;i++){
+		if ( model[i] == node ){
+			return model[i+1];
+		}
+	}
+			
+},			
+		
+// ---------- getDataModel   method ------------------------------------------------		
+getDataModel: function (xmltree,xpath){
+	var	apath = xpath.split("/");
+	if (!apath.length>0) return;
+	if (apath[0] == '') apath.splice(0,1);
+	if (apath[apath.length-1] =='') apath.splice(apath.length-1,1);
+	var node = dom.xmlNodes[xmltree];
+	var model = node.domDataModel;
+	for (var i=0; i<apath.length;i++){
+		node = dom.getXmlNodes ( node, apath[i] );
+		if(node.domtype==null && node[0]!= null){
+			node = node[0];
+		}
+		switch(node.domtype){
+			case 'icoll': model = dom.getDataModelNode( model, '@'+apath[i]);
+						break;
+			case 'kcoll': model = dom.getDataModelNode( model, '$'+apath[i]);
+						break;
+			case 'dato': model = dom.getDataModelNode( model, apath[i]);
+						break;
+	
+		}
+	}
+	return model;
+			
+},			
+		
+// ---------- domDataValue   method ------------------------------------------------		
+domDataValue: function (model){
+	var dataValue = new Array();
+	while (model.length>0){
+		var submodel = model.shift();
+		if (submodel.charAt(0) == '@'){
+			dataValue.push( dom.domDataValue (model.shift().slice(0)) );
+		}else if (submodel.charAt(0) == '$'){
+			dataValue.push( dom.domDataValue (model.shift().slice(0)) );
+		}else{
+			dataValue.push( '' );
+		}
+	}
+	return dataValue;
+			
+},			
+		
+// ---------- resetXmlTextNode   method ------------------------------------------------		
+resetXmlTextNode: function (node){
+	for  (var i=0; i<node.childNodes.length;i++){
+		dom.resetXmlTextNode ( node.childNodes[i] );
+	}
+	if (!node.hasChildNodes() && node.nodeType == 3){
+		node.deleteData(0,node.length);
+	}
+	return node;
+			
+},			
+		
+// ---------- getFirstChildElement   method ------------------------------------------------		
+getFirstChildElement: function (node){
+	for  (var i=0; i<node.childNodes.length;i++){
+		if (node.childNodes[i].nodeType == 1) return node.childNodes[i];
+	}
+	return null;
+			
+},			
+		
+// ---------- addNodeAtIndex   method ------------------------------------------------		
+addNodeAtIndex: function (xmltree,xpath,index){
+	if (xpath.charAt(xpath.length-1)!='/') xpath = xpath+'/';
+	var xmlNodes = dom.xmlNodes[xmltree];
+	if (this.isNUDF(xmlNodes.tree)){
+		var node = dom.getXmlNode ( xmlNodes , xpath );
+		var newNode;
+		if ( !node.hasChildNodes() || dom.getFirstChildElement(node) == null ){
+			var modelData =dom.xmlNodes[xmltree];
+			dom.importXML(dom.arrXmls[xmltree],xmltree);
+			var createNode = dom.getXmlNode ( dom.xmlNodes[xmltree], xpath);
+			dom.xmlNodes[xmltree] = modelData;
+			newNode = dom.getFirstChildElement(createNode).cloneNode(true);
+			newNode = dom.resetXmlTextNode (newNode);
+		}else{
+			newNode = dom.getFirstChildElement(node).cloneNode(true);
+			newNode = dom.resetXmlTextNode (newNode);
+		}
+		node.insertBefore(newNode,node.childNodes[index]);
+	}else{
+		var node = dom.getXmlNodes ( xmlNodes , xpath );
+		if (node.domtype != 'icolldata') throw "El xpath no corresponde al de una icoll"; 
+		var dataModel = dom.getDataModel (xmltree,xpath.replace(/\[([0-9]+)\]/g,""));
+		var dataValue = dom.domDataValue ( dataModel.slice(0) );
+		var model = new Array();
+		model.tree = xmltree;
+		var newModel = loadModel ( model, dataModel,dataValue);
+		newModel.domtype ='icolldata';
+		node.splice(index,0,newModel);
+	}
+			
+},			
+		
+// ---------- removeNodeAtIndex   method ------------------------------------------------		
+removeNodeAtIndex: function (xmltree,xpath,index){
+	if (xpath.charAt(xpath.length-1)!='/') xpath = xpath+'/';
+	var xmlNodes = dom.xmlNodes[xmltree];
+	if (this.isNUDF(xmlNodes.tree)){
+		var node = dom.getXmlNode ( xmlNodes , xpath );
+		
+		if ( dom.getXmlNumChildren(node) >index ){
+			
+			node.removeChild(dom.getXmlNodeAtIndex(node,index));
+		}
+	}else{
+		var node = dom.getXmlNodes ( xmlNodes , xpath );
+		if (node.domtype != 'icolldata') throw "El xpath no corresponde al de una icoll"; 
+		if (node.length>index) node.splice(index,1);
+	}
+			
+},			
+		
+// ---------- getDataNumChildren   method ------------------------------------------------		
+getDataNumChildren: function (node){
+	if(node==null)
+		return 0;
+	if(!this.isNUDF(node.childNodes)){
+		var n=0;
+		for(var i=0;i<node.childNodes.length;i++){
+			if(node.childNodes[i].nodeType==1)
+			n++;
+		}
+		return n;
+	}else{
+		if(node.length==0){
+			if (typeof node.domtype!='undefined' && node.domtype=='dato'){
+				return 0;
+			}	
+		}else{
+			return (typeof node.domtype!='undefined' && (node.domtype=='kcoll' || node.domtype=='icoll'))?node[0].length:node.length;
+		}
+	}
+			
+},			
+		
+// ---------- getDataNodeAtIndex   method ------------------------------------------------		
+getDataNodeAtIndex: function (node,index){
+	var nodeTag=null;
+	if(node && this.isNUDF(node.childNodes) ){
+		if (typeof node.domtype!='undefined' && (node.domtype=='kcoll' || node.domtype=='icoll')){
+			return (node[0][index].domtype=='icolldata')?node[0][index][0]:node[0][index];
+		}
+		else return node[index];
+	}
+	
+	if((this.brw=='NN' && node.nodeType!=7)||(this.brw=='O5' && node.nodeType!=7)){
+		
+		if (node.childNodes.length>1)
+			nodeTag = node.childNodes[index+(index+1)];
+		else
+			nodeTag = node.childNodes[index];
+	}
+	else {
+		if(node.childNodes.length == 0)
+			return node;
+		else
+			nodeTag = node.childNodes[index];
+	}
+	
+	if (typeof nodeTag=='undefined')
+		nodeTag=null;
+	return nodeTag;
+			
+},			
+		
+// ---------- getDataName   method ------------------------------------------------		
+getDataName: function (node){
+	if(node==null)
+		return null;
+	if(!this.isNUDF(node.nodeName)){
+		return node.nodeName;
+	}else{
+		return node.domoriginalname;
+	}
+			
+},			
+		
+// ---------- getDataType   method ------------------------------------------------		
+getDataType: function (node){
+	if(node==null)
+		return null;
+	if(!this.isNUDF(node.nodeName)){
+		if (node.nodeType == 1){
+			if (this.getDataNumChildren(node)== 0) return this.domTypeDato;
+			else if (this.getDataNumChildren(node)== 1) return this.domTypeKcoll;
+			else{
+				if (this.getXmlNodeAtIndex(node,0).nodeName == this.getXmlNodeAtIndex(node,1).nodeName) return this.domTypeIcoll;
+				else return this.domTypeKcoll;
+			}
+		return node.nodeName;
+		}
+	}else{
+		return node.domtype;
+	}
+			
+},			
+		
+// ---------- getMonitoringJsURL   method ------------------------------------------------		
+getMonitoringJsURL: function (){
+	return this.monitoringJsURL;
+			
+},			
+		
+// ---------- isMonitoringActive   method ------------------------------------------------		
+isMonitoringActive: function (){
+	return this.monitoringActive;
+			
+},			
+		
+// ---------- doMonitoringPage   method ------------------------------------------------		
+doMonitoringPage: function (compMoni){
+	compMoni.initialize();
+			
+},			
+		
+// ---------- getUrlDomainValue   method ------------------------------------------------		
+getUrlDomainValue: function (){
+	return this.urlDomainValue;
+			
+},			
+		
+// ---------- isReplaceDomain   method ------------------------------------------------		
+isReplaceDomain: function (){
+	return this.replaceDomain;
+			
+}			
+,			
+		
+// ---------- onload   method ------------------------------------------------		
+onload: function (){}
+};
+
+ 
+if(typeof URI=='undefined' || URI=='../../Estatico')
+{
+	var URI='/Estatico';
+	var URIApp='/Estatico';
+}
+
+if (typeof debug =='undefined' || ( typeof debug == 'function' && navigator.userAgent.toString().toUpperCase().indexOf('SAFARI')) > -1 )
+	var debug=0;
+
+
+		 
+  function EventHandler(d){
+    this.d=d;
+    this.pages=new Array();
+    this.registerHandler=function(child,page,event){
+      try{
+     	page.EvBubbleName=event;
+		
+	    page.EvBubbleFuncion = eval("page."+event);	
+        child.openerFrame = page;
+        if( typeof page.framec == 'undefined') {
+			this.pages[child._M1]=page;
+		} else if ( child.constructor == String ) {
+	   		this.pages[(page.framec.id) + child]=page;
+		} else if ( typeof child._M1 != 'undefined' ) {
+			this.pages[(page.framec.id) + child._M1]=page;
+		} else{
+			this.pages[page.framec.id]=page;
+		}
+      } catch(e){}
+  	}; 
+    this.handle=function(event){
+   	  try{
+        var obj = event.source.main.openerFrame;
+       	if ( typeof obj == 'undefined' ){
+       		if( typeof this.pages[event.source.main._M1] != 'undefined' ){
+	       		obj = this.pages[event.source.main._M1];
+	       	} else if( typeof window.top.openerFrame != 'undefined'){
+	       		obj = window.top.opener.dom.getManager().EvHandler.pages[window.top.openerFrame.framec.id];
+	       	}
+       	}
+        if ( typeof obj != 'undefined' ) {
+       		
+	       obj.EvBubbleFuncion(event);
+       }
+      }catch(e){}
+    };
+  }	
+  
+  
+  function initializeEvent( page , id ){
+	var mainObj = new Object();
+	mainObj._M1 = id;
+	page.main = mainObj;
+	page.dom.main = mainObj;
+  }
+
+  
+  function raiseEvent( main , launcher , ev ){
+  	launcher.main = main;
+	ev.elementId = launcher.id;
+	ev.source = launcher;
+	var jsMng = top.dom.JSManager;
+	try{
+	  	if( typeof top.dom.JSManager != 'undefined' ){
+		  	var domArray = top.dom.JSManager.ObjectsDom;
+	  	} else if ( typeof parent.dom.JSManager != 'undefined' ){
+	  		var domArray = parent.dom.JSManager.ObjectsDom;
+        } else if ( typeof window.top != 'undefined' ) {
+	  		var domArray = window.top.opener.dom.JSManager.ObjectsDom;
+	  	} else if ( typeof window.opener.dom.JSManager != 'undefined' ) {
+	  		var domArray = window.opener.dom.JSManager.ObjectsDom;
+	  	}
+		if( typeof domArray != 'undefined' && typeof domArray['manager'] != 'undefined' ){
+		  var manager = domArray['manager'];
+		  if( typeof manager != 'undefined' ){
+		    var evHandler = manager.EvHandler;
+			if( typeof evHandler.handle != 'undefined' ){
+			  evHandler.handle( ev );
+		    }
+	      }
+	    }
+	}catch(t){}
+  }
+
+	var timerD = new Array();
+	var TAB ="                                                             ";
+	var winDEBUG = (debug>0)?((top.winDEBUG)?top.winDEBUG:window.open().document):null;
+	
+	function dump(id,next,s){
+		try{
+			if(debug<1) return;
+			if(typeof next=='undefined' && debug<2) return;
+		    var t =(typeof timerD[id]!='undefined')?( new Date().getTime()-timerD[id]):'';
+			if(typeof winDEBUG=='undefined' || winDEBUG==null) return;
+			
+			var st = id+" "+t;
+			var p = TAB.substring(0, s-st.length).length;
+			
+			winDEBUG.write("<FONT SIZE='-7'>"+st);
+			
+			for( var i =0;i<p;i++){
+				winDEBUG.write("&nbsp;");
+			}	
+			winDEBUG.write(" | </FONT>");
+			if(id=="Total page: "){
+				winDEBUG.write("<BR>");
+			}
+			windDEBUG.close();
+			if(typeof next!='undefined' && next!=null)setTime(next);
+		}catch(e){}
+	}
+	
+	function setTime (id,time){timerD[id]= (typeof time=='undefined')?new Date().getTime():time;}	
+
+
+	function searchNode(mo,n,parent,ik,pos){
+		try{
+			var nd = n.toLowerCase();
+			var no = (mo.search)? mo[mo.search]:mo; 
+			var va =no[nd];
+			if(va){ return (pos==null)?va:va[pos];};
+			switch(no.domtype){
+				case 'icoll': 	return (pos==null)?no[0][0][nd]:no[0][pos][nd];
+				case 'icolldata': if (pos==null) return no[0][nd];
+								  else {
+									if (no[pos].domtype=='dato') return no[pos];
+									else return no[pos][nd];
+			   					  }
+				case 'kcoll': 	if (no[0][nd]) return no[0][nd];
+			}
+			if(no.domname==nd) return no;
+		}catch(e){
+		}
+		return null;
+	}	
+	
+	function searchNodes(mo,n,parent,ik,pos){
+		try{
+			var nd = n.toLowerCase();
+			var no = (mo.search)? mo[mo.search]:mo; 
+			var va =no[nd];
+			if(va){ return (pos==null)?va:va[pos];};
+			switch(no.domtype){
+				case 'icolldata':		if(pos!=null) return  no[pos][0];
+												if(parent!=null) return no[0][nd];
+												var t = new Array();
+												for(var i=0;i<no.length;i++){
+													t.push( (no[i].domtype=='dato')?no[i]:no[i][nd]);
+												}
+												return t;
+				case 'icoll':           if(mo[0]) return searchNodes(mo[0],n,parent,ik,pos);
+				case 'kcolldata' : return null;
+				case 'kcoll' :  if (no[0][nd]) return no[0][nd]; 
+								if(no[0][0] && no[0][0][nd] ) return no[0][0][nd];
+			}
+			if(no.domname==nd ) return no;
+		}catch(e){
+		}
+		return null;
+	}					
+	
+	function  getXmlNodes(node,paths){		
+		if(typeof paths=='undefined' ) return null;		
+		if(node==null || typeof node=='undefined') return null;
+		var xPos =null;
+		var isKcoll =false;
+		var paths =(paths instanceof Array)?paths[0].split('/'): paths.split('/');
+		for(var i=0;i<paths.length;i++){
+			if(paths[i]!='.' && paths[i]!=''){
+				xPos=null;
+				var t1 = paths[i].indexOf('[');
+				if(t1!=-1){
+					var t2 = paths[i].indexOf(']');
+					xPos = parseInt(paths[i].substring(t1+1,t2));
+					var xPat = paths[i].substring(0,t1);
+					paths[i]=xPat;
+				}
+				isKcoll = (node.domtype=='kcoll');
+				var child = (paths[i+1])?paths[i+1]:null;
+				node = searchNodes(node,paths[i].toString(),child,isKcoll,xPos);
+				if(node!=null && (node.domtype=='icoll' || node.domtype=='kcoll') && typeof paths[i+1]!='undefined')
+					node = (xPos==null)?node[0]:node[0][xPos];
+			}
+			if(node==null ){return [];}
+		}
+		return node;
+		
+	}
+	
+	function  getXmlNode(node,paths){
+		
+		if(typeof paths=='undefined' ) return null;
+		
+		if(node==null || typeof node=='undefined') return null;
+	
+		var xPos =null;
+		var isKcoll =false;
+		var paths =(paths instanceof Array)?paths[0].split('/'): paths.split('/');
+		for(var i=0;i<paths.length;i++){
+			if(paths[i]!='.' && paths[i]!=''){
+				xPos=null;
+				var t1 = paths[i].indexOf('[');
+				if(t1!=-1){
+					var t2 = paths[i].indexOf(']');
+					xPos = parseInt(paths[i].substring(t1+1,t2));
+					var xPat = paths[i].substring(0,t1);
+					paths[i]=xPat;
+			  	}
+				isKcoll = (node.domtype=='kcoll');
+				var child = (paths[i+1])?paths[i+1]:null;
+				if(child!=null && xPos==null)
+					node = searchNodes(node,paths[i].toString(),child,isKcoll,xPos);
+				else
+					node = searchNode(node,paths[i].toString(),child,isKcoll,xPos);
+				if(node!=null && node.domtype=='icoll' && paths[i+1])
+					node = (xPos==null)?node[0]:node[0][xPos];	
+			}
+			if(node==null ){return null;}
+		}
+		return node;
+	}
+	
+	function  getXmlValueAtName(node,paths){
+		var val ='';
+		var node = getXmlNode(node,paths);
+		if(node==null){
+			val = '';
+		} 
+		else{
+			val = node.value;
+			if(typeof val=='undefined'){
+				if( node.domtype == 'kcoll' && typeof node[0].value != 'undefined')
+					val = node[0].value;
+				else{
+					val = '';
+				}
+			}
+		}			
+		return val;
+	}
+	
+	
+	
+	
+	function getNatureType(name){
+		   var n = name.charAt(0);
+	       if (n=='@'){return 'icoll';}
+	       if (n=='$'){return 'kcoll';}
+	       return 'dato';
+	}
+	
+	
+	function getName( node ){
+		return  toLower( node.substring(1,node.length));
+	}
+	
+	function getOriginalName( node ){
+		return  node.substring(1,node.length);
+	}
+	
+	function toLower( node ){
+		return  node.toLowerCase();
+	}
+	
+	function expandIColl ( m, nextNode , data ) {
+	  m[0] = new Array();
+	  var mo = m[0];
+	  mo.domtype='icolldata';  
+	  for ( var im = 0 ;im < data.length; im++ ) {
+		var k=0;
+		for ( var it = 0 ;it < nextNode.length; it++ ) {
+			
+			try{
+				var node = toLower(nextNode[it]);
+				var t = getNatureType(node);
+				
+				switch(t){
+			
+					case 'icoll':	
+									if(typeof mo[im] =='undefined'){
+										mo[im] = new Array();
+										mo[im].tree = mo.tree;
+										mo[im].domtype = t;
+									}					
+									var n = getName( node );
+									var on = getOriginalName(node);
+									setNode(mo[im],n,t,k);
+									expandIColl ( mo[im][n], nextNode[it+1] , data[im]); 
+									it++; 
+								
+									mo[im][k] = mo[im][n];
+									mo[im][k].domname=n;
+									mo[im][k].domoriginalname=on;
+									break;
+					case 'kcoll':	
+									if(typeof mo[im] =='undefined'){
+										mo[im] = new Array();
+										mo[im].tree = mo.tree;
+										mo[im].domtype = 'icolldata';
+									}
+									
+									var nd = getName(nextNode[it]);
+									var on = getOriginalName(nextNode[it]);
+									var mp =loadNode(mo[im],it,nd,t,new Array());
+									var tmp = data[im];
+									expandKColl ( mp  , nextNode[it+1] , tmp);
+									it++;
+									mo[im][k] = mp;
+									mo[im][k].domname = nd;
+									mo[im][k].domoriginalname=on;
+									mp.domtype= 'kcolldata';
+									break;
+					
+					case 'dato'  : {
+							   
+								if( data [ im ] instanceof Array){
+									for ( var m = 0 ;m < data.length; m++ ) {
+										mo[m] = new Array();
+										mo[m].tree = mo.tree;
+										mo[m].domtype = 'dato';
+										for ( var m1 = 0 ;m1 < nextNode.length; m1++ ) {
+											node = toLower(nextNode[m1]);
+											loadNode (mo[m],m1,node,"dato",data [ m ] [ m1 ]);
+											mo[m][m1] = mo[m][node];
+											mo[m][m1].domname=node;
+											mo[m][m1].domoriginalname=nextNode[m1];
+										}
+										
+									}
+										
+								}else{
+									mo[im] = { domname: node, value: data[im],tree: mo.tree, domtype:t, domoriginalname:nextNode[it] };
+								}
+								k++;
+					}			
+				}
+				
+			}catch(e){
+			}
+		}
+	  }
+	}
+	
+	function expandKColl ( mo, nextNode , data ) {
+		var im =0;
+		var k=0;
+		for ( var it = 0 ;it < nextNode.length; it++ ) {
+			
+			try{
+				var node = toLower(nextNode[it]);
+				var t = getNatureType(node);
+				
+				switch(t){
+			
+					case 'icoll':	
+									if(typeof mo[im] =='undefined'){
+										mo[im] = new Array();
+										mo[im].tree = mo.tree;
+										mo[im].domtype = t;
+									}					
+									var n = getName( node );
+									var on = getOriginalName(nextNode[it]);
+									setNode(mo,n,t,k);
+									mo[n].domtype=t;
+									expandIColl ( mo[n], nextNode[it+1] , data[im]); 
+									it++; 								
+									mo[im] = mo[n];
+									mo[im].domname=n;
+									mo[im].domoriginalname=on;
+									im++;k=0;
+									break;
+					case 'kcoll':	
+									if(typeof mo[im] =='undefined'){
+										mo[im] = new Array();
+										mo[im].tree = mo.tree;
+										mo[im].domtype = t;
+									}
+									var nd = getName(nextNode[it]);
+									var on = getOriginalName(nextNode[it]);
+									var mp =loadNode(mo,it,nd,t,new Array());
+									var tmp = data[im];
+									expandKColl ( mp  , nextNode[it+1] , tmp);
+									it++;
+									mo[im][k] = mp;
+									mo[im][k].domname = nd; 
+									mo[im][k].domoriginalname=on;
+									mp.domtype= 'kcolldata';
+									im++;
+									break;
+					
+					case 'dato'  : {
+							   
+								if( data [ im ] instanceof Array){
+									for ( var m = 0 ;m < data.length; m++ ) {
+										for ( var m1 = 0 ;m1 < nextNode.length; m1++ ) {
+											node = toLower(nextNode[m1]);
+											loadNode (mo,m1,node,"dato",data [ m ] [ m1 ]);
+											mo[m1] = mo[node];
+											mo[m1].domname=node;
+											mo[m1].domoriginalname=nextNode[m1];
+										}
+										
+									}
+								}else{
+									setNode(mo,node,t,it,data[im]);
+									mo[im] = mo[node];
+									mo[im].domname=node;	
+									mo[im].domoriginalname=nextNode[it];
+								}
+								im++;
+								k++;
+					}			
+				}
+				
+			}catch(e){
+			}
+		}
+		checkComposedMap( mo , data , nextNode );		
+		
+	}
+	
+	
+	
+	function setNode(m,n,t,i,d){
+		m [ n ] = new Array();	
+		m [ n ].tree= m.tree;
+		m [ n ].node= n;
+		m [ n ].domtype= t;
+		m [ n ].value= (d)?d:'';
+	}
+	
+	
+	function loadNode (mo,it,nd,ty,vx){
+		switch(ty){
+			case 'icoll': mo[nd]= vx; mo[nd].tree=mo.tree;mo[nd].domtype=ty;return mo[nd];
+						break;
+			case 'kcoll': mo[nd]= vx;  mo[nd][0]= new Array(); mo[nd][0].domtype='kcolldata';mo[nd].tree=mo.tree;mo[nd].domtype=ty;return mo[nd][0];
+						break;
+			case 'dato':mo[nd]= { domname: nd, value: vx,tree: mo.tree, domtype:ty };
+						return mo[nd];
+	
+		}
+	}
+	
+	function isArray(node){
+		return (node instanceof Array); 
+	}
+	
+	function checkComposedMap( model , data , structure ){
+		var pos = 0;
+		var num = 0; 
+		if (!(structure instanceof String) && (typeof data!='undefined')){
+			for( ; pos < structure.length ; pos++ ){
+				var node = structure[pos];
+				if( typeof(node) != "string" ){
+					num++;
+				} else{
+					if( 'dato' == getNatureType(node) ){
+						num++;
+					}
+				}
+			}
+		
+			if( num == (data.length-1) )
+				model.value = data[ data.length-1 ];
+		}
+	} 
+	
+	function loadModel ( model, node , data){
+		var j=0;
+		var bugNode= 0;
+		for(var i = 0;i<node.length;i++){
+				var t = getNatureType(node[i]);
+				switch(t){
+					case 'kcoll' :
+						var nd = getName(node[i]);
+						var on = getOriginalName(node[i]);
+						var nodeData = data[j];
+						if(nodeData==null)nodeData=[[]];
+						i++;
+						var nx = node[i];
+						var mo =loadNode(model,j,nd,t,new Array());
+						if(!isArray(nodeData)){
+							bugNode++;
+						}
+						var dt = data[j+bugNode];
+						expandKColl ( mo  , nx, dt ) ;
+						model[j] = mo;
+						model[j].domname = nd;
+						model[j].domoriginalname = on;
+						model[j].domtype= 'kcolldata';
+						break;
+					case 'icoll' :
+						var nd = getName(node[i]);
+						var on = getOriginalName(node[i]);
+						var nodeData = data[j];
+						i++;
+						var nx = node[i];
+						model[j] = new Array();
+						var mo =loadNode(model,j,nd,t,new Array());
+						expandIColl ( mo, nx, nodeData); 
+						model[j] = mo;
+						model[j].domname = nd;
+						model[j].domoriginalname = on;
+						break;
+					case 'dato' :
+						var mo = loadNode(model,j,toLower(node[i]),t,data[j]);
+						model[j] = mo;
+						model[j].domname = this.toLower(node[i]);
+						model[j].domoriginalname = node[i];
+				}
+				
+				j++;
+		}
+		return model;
+	}
+
+
+ function getSecondlevelDomain(documentdomain){
+      var firstPosition;
+      var secondPosition;
+      var tempDocumentDomain;
+      //Estamos suponiendo que es todas las url estan correctamente formadas en caso contrario no llegariamos a esta validacion   
+     try{
+          firstPosition = documentdomain.lastIndexOf(".");
+          tempDocumentDomain = documentdomain.substr(0,firstPosition-1);
+          secondPosition = tempDocumentDomain.lastIndexOf(".");
+          if (secondPosition >-1){
+            tempDocumentDomain = documentdomain.substr(secondPosition+1,firstPosition);
+           }else{
+            tempDocumentDomain = documentdomain;
+           }
+           return tempDocumentDomain;
+      }catch(e){
+     //no es posible camb
+           return tempDocumentDomain;
+    }
+ }
+ 
+
+	function setCrossSiteConf(){
+	
+		if (dom.replaceDomain){
+        	if (dom.urlDomainValue!=null) {
+	       	//se cumplen todas las condiciones para aplicar el cross-domain scripting
+            if (dom.urlDomainValue!="")
+                {document.domain = dom.urlDomainValue;}
+         	}else {
+        	    document.domain = getSecondlevelDomain(document.domain);
+    	     }
+	    }
+	}
+
+	function createDomInstance(cache,manager){
+		if(manager){
+			if(this.dom.jsVarName == 'dom'){ 
+				n ="manager";
+				this.dom.JSManager = new Globales_Bhtcs_Struts_JSLoadManager('',this.dom);
+				this.dom.validarBrowser();
+				this.dom.jsVarName = n;
+				this.dom.JSManager.ObjectsDom[n]= this.dom;
+				this.dom.setTop(self.document);
+				if(!cache){
+					this.dom.cache=false;
+					return this.dom;
+				}
+			}			
+		}
+		
+		var i = nInst++;
+		n = 'dom'+ i;
+		var mDom=(!manager)?dom:new Globales_Bhtcs_Struts_jsDomM ();
+		mDom.jsVarName = n;
+		this.dom.JSManager.ObjectsDom[n]= mDom;
+		mDom.validarBrowser();
+		return mDom;
+	}
+	
+	function getManagerDom(){
+	    return getWinObject(window,"dom.JSManager").ObjectsDom;
+	}
+	function getMain(win){
+	    return getWinObject(win,"dom.main");
+	}
+	function getMainDom(id){
+		return this.dom.JSManager.ObjectsDom[id];
+	}
+	
+	function getWindow(win){
+		var returnWin;
+	    if(!dom.cache) returnWin = win;
+	    else  returnWin =  (typeof win.opener!="undefined"  && win.opener!=null )? win.opener:win.parent;
+		
+	    if ( typeof returnWin.document.parentWindow ==  'undefined' && typeof returnWin.document.defaultView.open == 'undefined') {
+		   	returnWin.document.parentWindow = returnWin;
+		   	
+		}
+ 	    return returnWin;
+	 }
+
+	function initConst(parent){parent.main = this.main;parent.dom = this.dom;try{ window = (this.brw=='NN' && dom.subBrw != 'S2')?dom.getOut().defaultView:dom.getOut().parentWindow; var event=( event==null)? window.event:event;}catch(e){} }
+
+	function getWinObject(win,method){
+	    var href='';
+	    try{ href = win.location.href;}catch(e){} 
+		var obj = dom.winObject[href+method];
+		if(obj) return obj;
+		var val = "win."+method;var n=0;
+		var obj =null;
+		while(n<6){n++;try{obj = eval( val ); if(typeof obj!="undefined" || top==win) break;}catch(e){} win = getWindow(win);}
+		var myObj = (obj==null || typeof obj=="undefined")?eval(method):obj;
+		dom.winObject[href+method]= myObj;
+		return myObj;
+	}
+	var dom = new Globales_Bhtcs_Struts_jsDomM ();
+	dom.jsVarName="dom";
+

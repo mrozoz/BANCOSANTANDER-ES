@@ -1,0 +1,200 @@
+.TecladoVirtual{
+	left:0px;
+	top:0px;
+	float:left;
+	position:relative;
+	border:5px solid #E2E2E2;
+	font: 11px verdana;
+	background-color:#fff;
+	z-index: 500;
+	font-size:100% !important;
+}
+html> body .TecladoVirtual{
+	width:308px;
+}
+.TecladoVirtual .ext{
+	width:308px;
+	float:left;
+	position:relative;
+	border:1px solid #FF0000;
+	background-color: #FFFFFF;
+}
+html> body .TecladoVirtual .ext{
+	width:306px;
+}
+.TecladoVirtual .ext .cab{
+	width:100%;
+	height:19px;
+	border-bottom:1px solid #FF0000;
+}
+
+.TecladoVirtual .ext .cabText{
+	width:262px;
+	height:18px;
+	float:left;
+}
+.TecladoVirtual .ext .cab .cabText span{font-weight:bold;margin-left:12px;line-height:19px;}
+
+.TecladoVirtual .ext .cabHelp{
+	background:url("../../../../Images/GbTecladoVirtualAyuda.gif") no-repeat;
+	width:22px;
+	height:19px;
+	float:left;
+	cursor:pointer;
+	cursor:hand;	
+}
+.TecladoVirtual .ext .cabClose{
+	background:url("../../../../Images/GbTecladoVirtualCerrar.gif") no-repeat;
+	width:22px;
+	height:19px;
+	float:left;
+	cursor:pointer;
+	cursor:hand;	
+}
+
+.TecladoVirtual .ext .tecExt{
+	width:287px;
+	margin-left: 9px;
+	margin-top: 6px;
+	padding: 4px;
+	border:1px solid #DDDDDD;
+	background-color: #FBFCFC;
+}
+
+html> body .TecladoVirtual .ext .tecExt{
+	width:276px;
+}
+.TecladoVirtual .ext .tecExt .tecInt{
+	width:100%;
+}
+ul.keyboardnum_row, ul.keyboard_row, ul.keyboard_specialkeys {
+	list-style-type: none;
+	padding:0px;
+	border-style: none;
+	margin: 0px;
+	border-style: none;
+	border-width: 0px;
+	overflow: hidden;
+	position: relative;
+}
+
+ul.keyboard_specialkeys {
+	clear: left;
+}
+
+ul.keyboardnum_row li, ul.keyboard_row li, ul.keyboard_specialkeys li {
+	list-style-type: none;
+	margin-right: 1px;
+	padding: 0px;
+	margin-left: 0px;
+	margin-bottom: 1px;
+	margin-top: 0px;
+	float: left;
+	background-color: #F1F1F1;
+	border-style: none;
+	border-width: 0px;
+}
+
+ul.keyboardnum_row li.keyin, ul.keyboard_row li.keyin, ul.keyboard_specialkeys li.keyin {
+	width:20px;
+	*width:22px;
+	height:17px;
+	*height:19px;
+	background-color: #F9F9F9;
+	padding: 0px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #E2E2E2;	
+}
+
+a.key, a.keyspace, a.keytwo {
+	width:22px;
+	height:19px;
+	cursor:hand;
+	margin:0px;
+	padding: 0px;
+	text-align: center;
+	text-decoration: none;
+	color: #000;
+	background-color: #F1F1F1;
+	border:1px solid #B4B4B4;
+	line-height: 15px;
+	display: block;
+}
+
+a.key:hover, a.keyspace:hover, a.keytwo:hover {
+	border:1px solid #FF0000;
+}
+
+a.keytwo{
+	width:45px;
+	height:19px;
+	margin: 0px;
+	display: block;
+}
+a.keyspace{
+	width:183px;
+	height:19px;
+	margin: 0px;
+	display: block;
+}
+
+a.keyspace span{
+	height:15px;
+	margin: 0px
+}
+
+html> body .TecladoVirtual .ext .tecExt .tecInt a.keyspace {
+	width:181px;
+	height:17px;
+}
+html> body .TecladoVirtual .ext .tecExt .tecInt a.keytwo {
+	width:43px;
+	height:17px;
+}
+
+html> body .TecladoVirtual .ext .tecExt .tecInt a.key {
+	width:20px;
+	height:17px;
+}
+.mens {
+	overflow: hidden;
+	margin-left: 9px;
+	padding-top: 7px;
+	padding-bottom: 7px;
+	padding-left: 0px;
+}
+.TecladoVirtual .ext .mens ul{
+	list-style-type: none;
+	margin: 0px 0px 0px 0px;
+	padding-left: 0px;
+	
+}
+.TecladoVirtual .ext .mens ul li {
+	list-style-type: none;
+	display: inline;
+	margin: 0px;
+	padding: 0px;
+}
+.TecladoVirtual .ext .mens ul li input {
+	vertical-align: middle;
+}
+.TecladoVirtual .ext .mens div label {
+	margin-left: 3px;
+}
+.TecladoVirtual .ext .helpMens{
+	width:283;
+	height:105px;
+	margin:12px 12px 0 12px;
+}
+.TecladoVirtual .ext .helpMens span{
+	line-height:17px;
+}
+.TecladoVirtual .ext .helpReturn{
+	margin:8px 12px 12px 12px;
+}
+.TecladoVirtual .ext .helpReturn span a{
+	text-decoration:none;
+	line-height:18px;
+	color:#f00;
+}

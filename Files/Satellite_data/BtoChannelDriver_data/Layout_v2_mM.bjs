@@ -1,0 +1,478 @@
+
+
+
+/*110613*/
+function Globales_Bhtcs_Util_Layout_v2_m (id,parent,l,s,m) {	
+this.main=parent.main;this.dom=this.main.dom;this.dom.setLocation(this,l);	
+this._M1='Globales_Bhtcs_Util_Layout_v2';this.jsVarName = id;	
+this.parent = parent;	
+this.text = new Array();this.setText = this.base.setText;this.getFullVarName = this.base.getFullVarName;this.getId = this.base.getId;this.getDataText = this.base.getDataText;this.getMain = this.base.getMain;this.openWindowPopup = this.base.openWindowPopup;this.dom.getLinks(['Globales_Styles_Intranet_13_Css_Master_css'],'Globales_Bhtcs_Util_Layout_v2'+id,true);	
+this._CVSRevision = '$Revision: 1.6.2.49 $';	
+this.type = 'G';	
+this.className = '';	
+this.renderMode = 'def';	
+this.printMode = 'pr';	
+this.padding = 0;	
+this.margin = 0;	
+this.contents = [];	
+this.rows = 0;	
+this.cols = 0;	
+this.styleResources = this.dom.getRPath(this._M1,id,'css');	
+this.widths = ['%',[]];	
+this.width = '100%';	
+this._class = 'lyLayout_v2';	
+}
+Globales_Bhtcs_Util_Layout_v2_m.prototype = { base: dom.getInstanceBase(),			
+		
+// ---------- onload   method ------------------------------------------------		
+onload: function () {},			
+		
+// ---------- setWidth   method ------------------------------------------------		
+setWidth: function (row,col,ancho){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+      try{
+            var obj;
+            if(!arguments[1]){
+				obj = this.dom.getOut().getElementById(this.getId('repaint'));
+				ancho=arguments[0];
+			}else{
+				obj = this.dom.getOut().getElementById(this.getId('cell_'+row+':'+col));
+			}
+            if(obj){obj.style.width = ancho + 'px';}
+      }
+      catch (e){}
+			
+},			
+		
+// ---------- setHeight   method ------------------------------------------------		
+setHeight: function (row,col,alto){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+      try{
+            var obj;
+            if(!arguments[1]){
+				obj = this.dom.getOut().getElementById(this.getId('repaint'));
+				alto=arguments[0];
+			}else{
+				obj = this.dom.getOut().getElementById(this.getId('cell_'+row+':'+col));
+			}
+            if(obj){obj.style.height = alto + 'px';}
+      }
+      catch (e){}
+			
+},			
+		
+// ---------- setVisibility   method ------------------------------------------------		
+setVisibility: function (row,col,estado){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	try{console.log(this.dom.getOut().getElementById(this.getId('cell_'+row+':'+col))); this.dom.getOut().getElementById(this.getId('cell_'+row+':'+col)).style.display=(estado)?'block':'none'; this.dom.getOut().getElementById(this.getId('cell_'+row+':'+col)).style.visibility=(estado)?'visible':'hidden';
+	}
+	catch (e){}
+			
+},			
+		
+// ---------- setRowVisibility   method ------------------------------------------------		
+setRowVisibility: function (row,estado){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	try{
+		if(this.type=='V') this.setVisibility(row,0,estado);
+		else this.dom.getOut().getElementById(this.getId('row_'+row)).style.display=(estado)?'block':'none';
+	}
+	catch (e){}
+			
+},			
+		
+// ---------- setColVisibility   method ------------------------------------------------		
+setColVisibility: function (col,estado){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	try{
+		if (this.type!='B'){
+			for (var i=0;i<this._rows;i++){
+				this.setVisibility(i,col,estado);
+			}
+		}
+	}
+	catch (e){}
+			
+},			
+		
+// ---------- repaint   method ------------------------------------------------		
+repaint: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){}; this.dom.getOut().getElementById(this.getId('repaint')).innerHTML=this.generateBody();
+	this.repaintTabla(this.contents);
+	for( n in dom.pendingPaint ){
+			dom.pendingPaint[n].postPaint();			
+		}
+			
+},			
+		
+// ---------- repaintTabla   method ------------------------------------------------		
+repaintTabla: function (contents){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+if (contents.length){
+	for (var i=0;i<contents.length;i++){
+		if (contents[i].length>1 && contents[i][1]){
+			if (contents[i][1].tableContainer) contents[i][1].repaint();
+			if (contents[i][1].contents) this.repaintTabla(contents[i][1].contents);
+			if (contents[i][1].content) {this.repaintTabla(contents[i][1].content)};
+			if (contents[i][1].editorTexto){contents[i][1].repaint();}
+		}else if (contents.layout){this.repaintTabla(contents.contents[i])}
+	}
+}else{
+	if (contents.tableContainer) contents.repaint();
+	if (contents.layout) this.repaintTabla(contents.contents[0]);
+	if (contents.contents) this.repaintTabla(contents.contents);
+	if (contents.content) this.repaintTabla(contents.content);
+	if (contents.editorTexto){contents.repaint();}
+}		
+			
+},			
+		
+// ---------- emround   method ------------------------------------------------		
+emround: function (numero){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var n = (Math.round(numero * Math.pow(10, 2)) / Math.pow(10, 2)).toString();
+	var point = n.indexOf('.');
+	if (point == -1) {
+		len = 0;
+		n += 2 > 0 ? '.' : '';
+	}
+	else {
+		len = n.length - point - 1;
+	}
+	var pad = 2 - len;
+	if (pad > 0) {
+		for (var counter = 1; counter <= pad; counter++) {
+			n += '0';
+		}
+	}
+	return n;
+			
+},			
+		
+// ---------- initialize   method ------------------------------------------------		
+initialize: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	this.emconstant = 11;
+			
+},			
+		
+// ---------- generateBody   method ------------------------------------------------		
+generateBody: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+
+	var b=[];
+	var total=0;
+	this._unit=this.widths[0];
+	this._colWidths=this.widths[1];
+	
+	
+	
+	if (this._colWidths==[] || this._colWidths==null || this._colWidths=="" && (this.cols>1) ){
+		this._unit="%";
+		this.widths[0]="%";
+		var v=(100/this.cols).toFixed(0);
+		total=parseInt(0)
+		v=parseInt(v)
+		for (var i=0;i<this.cols;i++){
+			this._colWidths[i]=v;
+			total+=v;
+			if (total>=100) this._colWidths[i]=v-1;
+		}
+	}
+	
+	switch (this.type){
+		case 'B': 
+			
+			b.push(this.generateRow(0));			
+			this._rows=1;
+			this._cols=3;
+			var aux=this.contents.splice(0,1);
+			b.push(this.generateGrid());
+			this.contents.splice(0,0,aux);
+			b.push(this.generateRow(4));		
+			return b.join('');
+			break;
+		case 'H': 
+		
+			this._rows=1;
+			this._cols=this.contents.length;
+			break;
+		case 'V': 
+		
+			this._rows=this.contents.length;
+			this._cols=1;
+			break;
+		default: 
+		
+			this._rows=this.rows;
+			this._cols=this.cols;		
+	}
+	if(this.type=='V') return this.generateVertical();
+	return (this.type=='GN')?this.generateGridNuevo():this.generateGrid();
+			
+},			
+		
+// ---------- generateGrid   method ------------------------------------------------		
+generateGrid: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var _width,_style,b=[],classCol;
+
+	if (this._colWidths==[]){
+		var v=(100/this.cols).toFixed(2);
+
+		for (var i=0;i<this.cols-1;i++){ 
+			this._colWidths[i]=v; 
+			total+=v;
+			if (total>100) this._colWidths[i]=100-(total-v);
+		}
+	}
+	var cont=0;
+	var _widths=[];
+	
+	for (var i=0;i<this.contents.length;i++){	
+		_colspan=this.contents[i][0];
+		_colspan=(!isNaN(_colspan)&&_colspan>1)?_colspan:1; 
+		if(_colspan>1){
+				var ancho=0;
+				for (var k=0;k<_colspan;k++) {
+					ancho += parseInt(this._colWidths[(i+k)%this.cols]);
+					_widths[i] = ancho;
+					_widths[i+k+1] = 0;
+				}			
+				i=i+_colspan-1;
+		}else{
+				_widths[i] = this._colWidths[i%this.cols];						
+		}
+			
+	}
+	var cont=0;
+	var styleWidth='';
+	for (var i=0;i<this._rows;i++){	
+		
+		var tempRow=[];
+		var emptyRow=true;
+		var classRow=(this.renderMode=="lista")?'lySeparator row':'row'; 
+		if (i==this.contents.length-1)classRow='lySeparator row quitarBorde';
+		classRow+=(this.className=='')?'':' '+this.className;
+		tempRow.push('<div id="'+this.getId('row_'+i)+'" class="'+classRow+'" >');
+		for (var j=0;j<this._cols;j++){
+			if(this.contents[cont]){								
+				
+				if(_widths && !isNaN(_widths[cont])){
+					_styleWidth= 'width:'+_widths[cont]+this._unit+';';
+				}else{
+					_styleWidth=''; 
+				}
+				classCol='';		
+				if(j==0){
+					classCol+=(this.className=='')?' firstCol':' firstColCabMode';
+				}else if(j+1>=this._cols){
+					classCol+=(this.className=='')?' lastCol':' lastColCabMode';
+				}
+				tempRow.push('<div id="'+this.getId('col_'+i+':'+j)+'" class="column'+classCol+'" style="'+_styleWidth+'">');
+				
+				_style='overflow:hidden;';
+				_style+=(this.contents[cont][3])?'':'visibility:hidden;';
+				_style+=(this.contents[cont][2])?this.contents[cont][2]:'';
+		
+				exp=/margin-left:\s?-\d*(px)?;?/i;
+				_style=_style.replace(exp,"");
+		//end
+				tempRow.push('<div id="'+this.getId('cell_'+i+':'+j)+'" class="cell" style="'+_style+'">');
+	
+				if (eval(this.contents[cont][1])){
+					 eval(this.contents[cont][1]).layoutv2grid=true;					 
+					 if(this.renderMode=='rightArea'){
+						 eval(this.contents[cont][1]).bancaOnline1024=true;
+					 }
+					 var content=eval(this.contents[cont][1]).paint(true,true);
+					 if (content!='') emptyRow=false;
+					 tempRow.push(content);
+	       		}else{
+	       			//if (brw=='NN')  tempRow.push('&nbsp;');
+	       			tempRow.push('&nbsp;');
+				}
+				tempRow.push('</div></div>');
+				cont++;
+			}
+		}
+		tempRow.push('</div>');
+		if (emptyRow)tempRow=[]
+		b.push(tempRow.join(''));
+	}
+	return b.join('');
+
+
+			
+},			
+		
+// ---------- generateGridNuevo   method ------------------------------------------------		
+generateGridNuevo: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var b=[];
+	var cont=0;
+	
+	b.push('<table id="'+this.getId('tableGRID')+'" class="layoutGridModoTabla" cellspacing="0" cellpadding="0" style="border:0;padding:0;margin:0;">'); 
+	 
+	for(var i=0; i<this._colWidths.length;i++){
+		if(this._colWidths[i]!=''){
+			b.push('<col style="width:'+this._colWidths[i]+this._unit+';" />');	
+		}else{
+			b.push('<col/>');
+		}
+	}
+	b.push('<tbody>');
+	
+	for (var i=0;i<this._rows;i++){	
+		b.push('<tr id="'+this.getId('row_'+i)+'">');
+		
+		for (var j=0;j<this._cols;j++){
+			if(this.contents[cont]){
+				var _colspan=this.contents[cont][0];	
+				var _style='overflow:hidden;';
+				_style+=(this.contents[cont][3])?'':'visibility:hidden; ';
+				_style+=(this.contents[cont][2])?this.contents[cont][2]:'';
+				_vAlign=' valign="baseline"';
+				b.push('<td id="'+this.getId('col_'+i+':'+j)+'"'+_vAlign);
+				
+				if(_colspan>1){
+					b.push(' colspan="'+_colspan+'"');
+				}
+				b.push('>');
+				b.push('<div id="'+this.getId('cell_'+i+':'+j)+'" style="'+_style+'">');	
+				if (eval(this.contents[cont][1])){
+					 eval(this.contents[cont][1]).layoutv2grid=true;
+					 if(this.renderMode=='rightArea'){
+						 eval(this.contents[cont][1]).bancaOnline1024=this;
+					 }
+					 b.push(eval(this.contents[cont][1]).paint(true,true));
+	       		}else{
+	       			//if (brw=='NN')  b.push('&nbsp;');
+	       			b.push('&nbsp;');
+				}
+				b.push('</div>');
+				b.push('</td>');
+				if(_colspan>1){
+					j+=_colspan-1;
+					cont+=_colspan;
+				}else{
+					cont++;
+				}
+			}
+		}
+		b.push('</tr>');	
+	}
+	b.push('</tbody>');
+	b.push('</table>'); 
+	return b.join('');
+			
+},			
+		
+// ---------- generateVertical   method ------------------------------------------------		
+generateVertical: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var _style,b=[],classCell;
+	var cont=0;
+	b.push('<div class="' + this.className + '">');
+	for (var i=0;i<this._rows;i++){	
+		var tempRow=[];
+		var emptyRow=true;
+		for (var j=0;j<this._cols;j++){
+			_style= (this._colWidths[j])?'width:'+this._colWidths[j]+this._unit+';':'';
+			_style+=(this.contents[cont][3])?'':'display:none;';
+			_style+=(this.contents[cont][2])?this.contents[cont][2]:'';
+			_style=(_style!='')?' style="'+_style+'"':'';
+			classCell='';
+			if(i==0)classCell=' firstRow';
+			if(i+1==this._rows)classCell=' lastRow';
+			tempRow.push('<div class="cell'+classCell+'" id="'+this.getId('cell_'+i+':'+j)+'"'+_style+'>');
+			if (eval(this.contents[cont][1])){
+				eval(this.contents[cont][1]).layoutv2=true;
+				if(this.renderMode=='rightArea'){
+						 eval(this.contents[cont][1]).bancaOnline1024=this;
+					 }
+				var content=eval(this.contents[cont][1]).paint(true,true);
+				if (content!='') emptyRow=false;
+				tempRow.push(content);
+			}else{
+	       		//if (brw=='NN')  tempRow.push('&nbsp;');
+	       		tempRow.push('&nbsp;');
+			}
+			tempRow.push('</div>');
+			cont++;
+		}
+		if (emptyRow) tempRow=[];
+		b.push(tempRow.join(''));
+	}
+	b.push('</div>');
+	return b.join('');
+			
+},			
+		
+// ---------- generateRow   method ------------------------------------------------		
+generateRow: function (item){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var b=[];
+	var _style;
+	if(this.contents[item]){	
+
+	b.push('<div id="'+this.getId('row_'+item)+'" style="'+((brw=='NN')?'overflow:hidden':';')+'">');
+	
+	_style= ((this._colWidths[item])?'width:'+this._colWidths[item]+this._unit+';':'')+ 'overflow:hidden;' + 'float:left';
+
+		b.push('<div id="'+this.getId('col_'+item+':0')+'" style="'+_style+'">');
+	
+		
+		_style= 'display:block;';	
+		_style+=(this.contents[item][3])?'':'visibility:hidden;';
+		_style+=(this.contents[item][2])?this.contents[item][2]:'';
+	
+		b.push('<div id="'+this.getId('cell_'+item+':0')+'" style="'+_style+'">');
+	
+	
+		if (eval(this.contents[item][1])){
+			eval(this.contents[item][1]).layoutv2=true;
+			b.push(eval(this.contents[item][1]).paint(true,true));
+		}else{
+	    	//if (brw=='NN')  b.push('&nbsp;');
+	    	b.push('&nbsp;');
+		}
+	b.push('</div></div></div>');
+	}
+
+
+	return b.join('');
+			
+},			
+// ---------- drawHeader   method ------------------------------------------------		
+drawHeader: function () {			
+var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};			
+this.setText('Globales_Bhtcs_Util_Layout_v2');			
+			
+var s = new Array();			
+this.initialize();			
+
+return s.join(' ');			
+},			
+		
+// ---------- drawBody   method ------------------------------------------------		
+drawBody: function (d,l) {return this.dom.getBodyValue(d,l,this);},		
+// ---------- paint   method ------------------------------------------------		
+paint: function (draw,init) {var s = new Array();	var _padding='';
+		var _margin='';
+		var classLayoutV2_Important='';
+		var classBancaOnline='';
+		if(this.padding!='0' && this.padding!=''){
+			_padding='padding:'+ this.padding +';';
+		}
+		if(this.margin!='0' && this.margin!=''){
+			_margin='margin:'+this.margin + ';';
+		}
+		
+		if(this.type=='V'){
+			this._class='Vertical';
+		}else if(this.type=='H'){
+			this._class='Horizontal';
+		}else{
+			this._class='Grid';
+		}
+		
+		
+		if(this.renderMode == 'imp'){ 
+		    classLayoutV2_Important = " lyLayout_V2_Important";
+		}
+		if(this.renderMode == 'rightArea'){
+			classBancaOnline = " BancaOnline1024LayoutV2";
+		}
+	s.push("<div class=\"");s.push(this.printMode+" UtilLayout_v2 "+this._class+classLayoutV2_Important+classBancaOnline);s.push("\" style=\"");s.push(_margin + _padding);s.push(";overflow:hidden;\" id=\"");s.push( this.getId('repaint') );s.push("\">");s.push(this.generateBody());s.push("</div>");return this.dom.paint(draw,init,this,s.join(''));			
+}			
+
+}
+
+;dom.onLoaded('Globales_Bhtcs_Util_Layout_v2');

@@ -1,0 +1,82 @@
+
+
+
+/*110613*/
+function Globales_Bhtcs_Internet_AT_TituloPagina_m (id,parent,l,s,m) {	
+this.main=parent.main;this.dom=this.main.dom;this.dom.setLocation(this,l);	
+this._M1='Globales_Bhtcs_Internet_AT_TituloPagina';this.jsVarName = id;	
+this.parent = parent;	
+this.text = new Array();this.setText = this.base.setText;this.getFullVarName = this.base.getFullVarName;this.getId = this.base.getId;this.getDataText = this.base.getDataText;this.getMain = this.base.getMain;this.openWindowPopup = this.base.openWindowPopup;this.dom.getLinks(['Globales_Styles_BancaOnline_Banesto_css','Globales_Styles_Internet_Banesto_css'],'Globales_Bhtcs_Internet_AT_TituloPagina'+id,true);	
+this._CVSRevision = '$Revision: 1.19.2.30 $';	
+this.printMode = 'pr';	
+this.subtitle = 'subtitle';	
+this.title = 'title';	
+this.icon = '';	
+this.styleResources = this.dom.getRPath(this._M1,id,'css');	
+this.classname = '';	
+this.xmltree = 'root';	
+this.Xpath_Title = '';	
+this.Xpath_Subtitle = '';	
+this.estructura = 'auto';	
+}
+Globales_Bhtcs_Internet_AT_TituloPagina_m.prototype = { base: dom.getInstanceBase(),			
+		
+// ---------- onload   method ------------------------------------------------		
+onload: function () {},			
+		
+// ---------- repaint   method ------------------------------------------------		
+repaint: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	try{ this.dom.getOut().getElementById(this.getId('REPAINT')).innerHTML=this.paint(true,true);
+	}catch(e){
+		return false;
+	}
+	return true;
+			
+},			
+		
+// ---------- initialize   method ------------------------------------------------		
+initialize: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	this.title=(this.dom.getXmlValueAtName(this.dom.xmlNodes[this.xmltree],this.Xpath_Title)&&this.Xpath_Title!='')?this.dom.getXmlValueAtName(this.dom.xmlNodes[this.xmltree],this.Xpath_Title):this.title;
+	this.subtitle=(this.dom.getXmlValueAtName(this.dom.xmlNodes[this.xmltree],this.Xpath_Subtitle)&&this.Xpath_Subtitle!='')?this.dom.getXmlValueAtName(this.dom.xmlNodes[this.xmltree],this.Xpath_Subtitle):this.subtitle;	
+			
+},			
+// ---------- drawHeader   method ------------------------------------------------		
+drawHeader: function () {			
+var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};			
+this.setText('Globales_Bhtcs_Internet_AT_TituloPagina');			
+			
+var s = new Array();			
+this.initialize();			
+
+return s.join(' ');			
+},			
+		
+// ---------- drawBody   method ------------------------------------------------		
+drawBody: function (d,l) {return this.dom.getBodyValue(d,l,this);},		
+// ---------- paint   method ------------------------------------------------		
+paint: function (draw,init) {var s = new Array();if (this.classname=="formSimple"){s.push("			<div class=\"formSimple ");s.push( this.printMode );s.push("\" id=\"");s.push( this.getId('REPAINT') );s.push("\">");s.push("				<div class=\"title\">");s.push( this.title );s.push("</div>");s.push("				<div class=\"subtitle\">");s.push( this.subtitle );s.push("</div>");s.push("				<div class=\"resto\">&nbsp;</div>");s.push("			</div>");}else{	
+	this.estructura=this.estructura.toLowerCase();
+	switch(this.classname){
+		case "subt":
+			this.etiquetaH=(this.estructura=="auto")? "h2" : this.estructura;
+			s.push("			<div class=\"InternetAtTituloPagina ");s.push((this.layoutv2)?" InternetAtTituloPaginaLayoutContent":"" );s.push((this.layoutv2 && (this.estructura=="h2"||this.estructura=="auto"))?" InternetAtTituloPaginaH2":"" );s.push("\">");s.push("			<");s.push(this.etiquetaH);s.push("  id=\"");s.push( this.getId('REPAINT') );s.push("\" class=\"modosubt ");s.push( this.printMode );s.push("\">");s.push("				<span class=\"titulo\">");s.push( this.title );s.push("</span>");s.push("				<span class=\"subtitulo\">");s.push( this.subtitle );s.push("</span>");s.push("			</");s.push(this.etiquetaH);s.push("></div>");
+			break;
+		case "form":s.push("			<div class=\"InternetAtTituloPagina ");s.push((this.layoutv2)?" InternetAtTituloPaginaLayoutContent":"" );s.push((this.layoutv2 && (this.estructura=="h2"||this.estructura=="auto"))?" InternetAtTituloPaginaH2":"" );s.push("\">");this.etiquetaH=(this.estructura=="auto")? "h2" : this.estructura; s.push("			<");s.push(this.etiquetaH);s.push("  id=\"");s.push( this.getId('REPAINT') );s.push("\" class=\"modoform ");s.push( this.printMode );s.push("\">");s.push("				<span class=\"titulo\">");s.push( this.title );s.push("</span>");s.push("				<span class=\"subtitulo\">");s.push( this.subtitle );s.push("</span>");s.push("			</");s.push(this.etiquetaH);s.push("></div>");
+			break;
+		case "libre":if (this.icon != ""){
+					this.etiquetaH=(this.estructura=="auto")? "h2" : this.estructura;
+					this.hasIcon ='icono'
+					 }else{
+					this.etiquetaH=(this.estructura=="auto")? "h1" : this.estructura;
+					this.hasIcon =''
+					 } s.push("			<div class=\"InternetAtTituloPagina ");s.push((this.layoutv2)?" InternetAtTituloPaginaLayoutContent":"" );s.push((this.layoutv2 && (this.estructura=="h2"||this.estructura=="auto"))?" InternetAtTituloPaginaH2":"" );s.push("\">");s.push("			<");s.push(this.etiquetaH);s.push("  id=\"");s.push( this.getId('REPAINT') );s.push("\" class=\"modolibre ");s.push( this.hasIcon );s.push( this.printMode );s.push("\">"); if (this.icon != ""){ s.push("					<img src=\"");s.push( this.icon );s.push("\" alt=\"icono\" title=\"icono\" />"); } s.push("				<span class=\"titulo\">");s.push( this.title );s.push("</span>");s.push("				<span class=\"subtitulo\">");s.push( this.subtitle );s.push("</span>");s.push("			</");s.push(this.etiquetaH);s.push("></div>");
+			break;
+		default:if((this.classname==null)||(this.classname=="")){
+		this.etiquetaH=(this.estructura=="auto")? "h1" : this.estructura;s.push("		<div class=\"InternetAtTituloPagina ");s.push((this.layoutv2)?" InternetAtTituloPaginaLayoutContent":"" );s.push((this.layoutv2 && (this.estructura=="h2"||this.estructura=="auto"))?" InternetAtTituloPaginaH2":"" );s.push("\">");s.push("		<");s.push(this.etiquetaH);s.push("  id=\"");s.push( this.getId('REPAINT') );s.push("\" class=\"");s.push( this.printMode );s.push("\">");s.push("			<span class=\"titulo\">");s.push( this.title );s.push("</span>");s.push("			<span class=\"subtitulo\">");s.push( this.subtitle );s.push("</span>");s.push("		</");s.push(this.etiquetaH);s.push("></div>");}
+		}
+	}return this.dom.paint(draw,init,this,s.join(''));			
+}			
+
+}
+
+;dom.onLoaded('Globales_Bhtcs_Internet_AT_TituloPagina');

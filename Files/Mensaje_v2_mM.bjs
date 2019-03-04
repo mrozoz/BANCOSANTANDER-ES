@@ -1,0 +1,348 @@
+
+dom.getImports(['Globales_Bhtcs_Intranet_Util_GesVentana'],'Globales_Bhtcs_Internet_Util_Mensaje_v2');
+
+/*110613*/
+function Globales_Bhtcs_Internet_Util_Mensaje_v2_m (id,parent,l,s,m) {	
+this.main=parent.main;this.dom=this.main.dom;this.dom.setLocation(this,l);	
+this._M1='Globales_Bhtcs_Internet_Util_Mensaje_v2';this.jsVarName = id;	
+this.parent = parent;	
+this.text = new Array();this.setText = this.base.setText;this.getFullVarName = this.base.getFullVarName;this.getId = this.base.getId;this.getDataText = this.base.getDataText;this.getMain = this.base.getMain;this.openWindowPopup = this.base.openWindowPopup;this.dom.getLinks(['Globales_Styles_Internet_Banesto_css'],'Globales_Bhtcs_Internet_Util_Mensaje_v2'+id,true);	
+this._CVSRevision = '$Revision: 1.14.2.18 $';	
+this.styleresources = this.dom.getRPath(this._M1,id,'css');	
+this.printMode = 'pr';	
+this.plugins = [];	
+this.displayType = '';	
+this.topImg = URI + '/Globales/Styles/Intranet/13/Images/Mensaje/MensajeFondoCabecera.gif';	
+this.typeImg = URI + '/Globales/Styles/Intranet/13/Images/Mensaje/MensajeLogoSeg.gif';	
+this.watermark = URI + '/Globales/Styles/Intranet/13/Images/Mensaje/MensajeLabelSeg.gif';	
+this.xmlTree = 'Globales_Bhtcs_Internet_Util_Mensaje_v2';	
+this.xpathtitle = 'mTitle';	
+this.xpathcontent = 'mContent';	
+this.xpathType = 'mType';	
+this.xpathTopImg = 'mTopImg';	
+this.xpathTypeImg = 'mTypeImg';	
+this.xpathWatermark = 'mWatermark';	
+this.xpathLinkText = 'mLinkText';	
+this.xpathLinkUrl = 'mLinkUrl';	
+this.styleDef = ['hint','warning','info','confirm','error','main c08','warn','text','check','bArea bg19'];	
+this.type = 'Tipo de mensaje';	
+this.title = 'titulo';	
+this.message = 'contenido';	
+this.height = 342;	
+this._heightFoot = 42;	
+this.width = 483;	
+this.content = null;	
+this.foot = null;	
+this.showCookie = true;	
+this.checkText = 'No volver a mostrar este mensaje';	
+this.linkText = 'Enlace a vinculo';	
+this.linkUrl = 'http://www.vectorsf.com';	
+this.border = false;	
+this._sBorder = 12;	
+this._lBorder = 15;	
+this.errorText = false;	
+this.onclick = dom.getInstanceBase().nullEventRaiser;
+this.onopen = dom.getInstanceBase().nullEventRaiser;
+this.onclose = dom.getInstanceBase().nullEventRaiser;
+}
+Globales_Bhtcs_Internet_Util_Mensaje_v2_m.prototype = { base: dom.getInstanceBase(),			
+		
+// ---------- onload   method ------------------------------------------------		
+onload: function () {},			
+		
+// ---------- initialize   method ------------------------------------------------		
+initialize: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	this.load();
+	this.parentID = this.getFullVarName();
+	this.innerCallsetCookie=this.parentID+'.close(this)';
+	
+	this._height=(this.height<198)?198:this.height;
+	this._width =(this.width<483)?483:this.width;
+	if (this.border){
+		this._heightPopup=parseInt(this._height);
+		this._widthPopup=parseInt(this._width-4);
+	} else{		
+		this._heightPopup=parseInt(this._height); 
+		this._widthPopup=parseInt(this._width);		
+	}
+	if (this.foot && this.foot.register) this.foot.register(this);
+	this._heightFoot=(this.foot)?(this.foot.className=='PiePaginaEnlaces')?44:this._heightFoot:5;
+
+
+	if (this.content){
+		if (this.content.getFullVarName().search(/tecladoVirtual/)>-1) {
+			this._width = this.width+50;
+			this._widthPopup+=50;
+		}
+	}
+			
+},			
+		
+// ---------- open   method ------------------------------------------------		
+open: function (mode,x,y){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	this.valor=0;
+	if (!x) x=parseInt((screen.width-parseInt(this._widthPopup))/2,10);
+	if (!y) y=parseInt((screen.height-this._heightPopup)/2,10);
+	
+	if(this.showCookie){
+		if(document.cookie){
+			this.valor=this.getCookieVal();
+		}else{
+			this.insertCookie('winpopup');
+		}
+	}
+	if(parseInt(this.valor)!=1){
+		var ev=new BHTCEvent(this,'onopen');
+		ev.mode=mode;
+		ev.raise();
+		this.sourceComponent=this;
+		this.showCookie=this.showCookie;
+		this.cookieName='winpopup';
+		this.aLink= this.styleresources;
+		this.parentID= 'opener.'+this.getFullVarName();
+		this.sourceComponent=this;
+
+		switch (mode) {
+			case 'modal' :
+				this.creature=GesVentana.crearModal(this,"Message","height="+((brw=='NN')?this._heightPopup+1:this._heightPopup)+",width="+((brw=='NN')?this._widthPopup+1:this._widthPopup)+",top="+y+",left="+x+",resizable=no,scrollbars=no,status=no");
+				break;
+			case 'popup' :
+				this.creature=GesVentana.crearPopup(this,"Message","height="+((brw=='NN')?this._heightPopup+1:this._heightPopup)+",width="+((brw=='NN')?this._widthPopup+1:this._widthPopup)+",top="+y+",left="+x+",resizable=no,scrollbars=no,status=no");
+				break;
+			case 'ventana' :
+				this.creature=GesVentana.crearVentana(this,"Message","height="+((brw=='NN')?this._heightPopup+1:this._heightPopup)+",width="+((brw=='NN')?this._widthPopup+1:this._widthPopup)+",top="+y+",left="+x+",resizable=no,scrollbars=no,status=no");
+				break;
+			default :
+				this.creature=GesVentana.crearModal(this,"Message","height="+((brw=='NN')?this._heightPopup+1:this._heightPopup)+",width="+((brw=='NN')?this._widthPopup+1:this._widthPopup)+",top="+y+",left="+x+",resizable=no,scrollbars=no,status=no");
+				break;
+		}
+	}
+			
+},			
+		
+// ---------- doClick   method ------------------------------------------------		
+doClick: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var ev=new BHTCEvent(this,'onclick');
+	ev.raise();
+			
+},			
+		
+// ---------- close   method ------------------------------------------------		
+close: function (obj){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var w = (this.creature)?this.creature:window;	
+	if(this.showCookie) {
+		var show= w.eval('doc'+'ument.getElementById("'+this.getId("alertoff")+'").checked');
+		if(show){
+			this.valor=1;
+			this.insertCookie('winpopup');
+		}else{
+			this.valor=0;
+		}
+	}
+	if (this.creature){
+		var ev=new BHTCEvent(this,'onclose');
+		ev.raise();
+		this.creature.close();
+	}
+			
+},			
+		
+// ---------- getCookieVal   method ------------------------------------------------		
+getCookieVal: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var a = document.cookie.split(';');
+	for (var i=0;i<a.length;i++){
+		var s=a[i].split('$$');
+		var check=[];
+		for(var j=0;j<s.length;j++){
+			check[j]=s[j].split('=');
+		}
+		if((check[0][1]==this.type)&&(check[1][1]==this.title)&&(check[2][1]==1)&&(check[3][1]==document.location.href.replace(/=/g,'¬¬'))){
+			return 1;
+		}
+	}
+	return 0;
+			
+},			
+		
+// ---------- removeCookie   method ------------------------------------------------		
+removeCookie: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var sname='winpopup';
+	var exp=new Date();
+	exp.setTime(exp.getTime()-1);
+	var cval=this.valor;
+	document.cookie=sname+'='+cval+';expires='+exp.toGMTString();
+	this.valor=0;
+			
+},			
+		
+// ---------- insertCookie   method ------------------------------------------------		
+insertCookie: function (sname){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	if(this.showCookie) {
+		var argv=this.insertCookie.arguments;
+		var argc=this.insertCookie.arguments.length;
+		var expires=(argc > 2) ? argv[2] : null;
+		var path=(argc > 3) ? argv[3] : null;
+		var domain=(argc > 4) ? argv[4] : null;
+		var secure=(argc > 4) ? argv[5] : false;
+		document.cookie=sname+'=' + this.type+'$$title='+this.title + '$$show='+this.valor+'$$domain=' + document.location.href.replace(/=/g,'¬¬')+';'+document.cookie;
+	}
+			
+},			
+		
+// ---------- load   method ------------------------------------------------		
+load: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	if(this.dom.getXmlValueAtName(this.dom.xmlNodes[this.xmlTree],this.xpathtitle)){
+		this.title=this.dom.getXmlValueAtName(this.dom.xmlNodes[this.xmlTree],this.xpathtitle);
+	}
+	if(this.dom.getXmlValueAtName(this.dom.xmlNodes[this.xmlTree],this.xpathcontent)){
+		this.message=this.dom.getXmlValueAtName(this.dom.xmlNodes[this.xmlTree],this.xpathcontent);
+	}
+	if(this.dom.getXmlValueAtName(this.dom.xmlNodes[this.xmlTree],this.xpathType)){
+		this.type=this.dom.getXmlValueAtName(this.dom.xmlNodes[this.xmlTree],this.xpathType);
+	}
+	if(this.dom.getXmlValueAtName(this.dom.xmlNodes[this.xmlTree],this.xpathTopImg)){
+		this.topImg=URI + '/Globales/Images/' + this.dom.getXmlValueAtName(this.dom.xmlNodes[this.xmlTree],this.xpathTopImg);
+	}
+	if(this.dom.getXmlValueAtName(this.dom.xmlNodes[this.xmlTree],this.xpathTypeImg)){
+		this.typeImg=URI + '/Globales/Images/' + this.dom.getXmlValueAtName(this.dom.xmlNodes[this.xmlTree],this.xpathTypeImg);
+	}
+	if(this.dom.getXmlValueAtName(this.dom.xmlNodes[this.xmlTree],this.xpathWatermark)){
+		this.watermark=URI + '/Globales/Images/' + this.dom.getXmlValueAtName(this.dom.xmlNodes[this.xmlTree],this.xpathWatermark);
+	}
+	if(this.dom.getXmlValueAtName(this.dom.xmlNodes[this.xmlTree],this.xpathLinkText)){
+		this.linkText=this.dom.getXmlValueAtName(this.dom.xmlNodes[this.xmlTree],this.xpathLinkText);
+	}
+	if(this.dom.getXmlValueAtName(this.dom.xmlNodes[this.xmlTree],this.xpathLinkUrl)){
+		this.linkUrl=this.dom.getXmlValueAtName(this.dom.xmlNodes[this.xmlTree],this.xpathLinkUrl);
+	}
+			
+},			
+		
+// ---------- save   method ------------------------------------------------		
+save: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	dom.setValueNode(this.xmlTree, this.xpathtitle, this.title);
+	dom.setValueNode(this.xmlTree, this.xpathcontent, this.message);
+			
+},			
+		
+// ---------- mouseOver   method ------------------------------------------------		
+mouseOver: function (obj){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	if(obj==null)return;
+	if (obj.className == null || obj.className == "")
+		obj.className = "over";
+	else
+		obj.className += " over";
+			
+},			
+		
+// ---------- mouseOut   method ------------------------------------------------		
+mouseOut: function (obj){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	if (obj.className != null || obj.className == "") {
+		var clase = obj.className;
+		if(clase.indexOf(" over")>=0)
+			obj.className = clase.replace(/ over/gi, '');
+		else if(clase.indexOf("over")>=0)
+			obj.className = clase.replace(/over/gi, '');
+	}
+			
+},			
+		
+// ---------- createWindowContent   method ------------------------------------------------		
+createWindowContent: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};	
+	var o='';var _sborde,_lborde,_borde, myHeight=0;
+	var clase;
+	var estilo;
+	borde='';
+	separator='';
+	_sborde=0;
+	_lborde=0;	
+	if (this.border){
+		_sborde=this._sBorder;
+		_lborde=this._lBorder;
+		borde='border-width:'+_sborde+'px '+_lborde+'px '+_sborde+'px '+_lborde+'px;border-color:#f1f1f1;';				
+		widthMark=(brw=='NN')?(this._width+26):(this._width-4);
+		o+='<div class="borderMark" style="width:'+widthMark+'px;"><div class="borderMarkF"></div></div>';
+	 	o+='<div><div style="margin:0 13px;">';
+ 	}
+ 	Mpheight=(brw=='NN')?(this._height-(4*_sborde)+4):(this._height-(2*_sborde)+5); 		
+	o+='<div id="'+this.getId("popup")+'" class="Mpopup '+this.printMode+'" style="'+separator+borde+'width:'+(this._width-(2*_lborde))+';height:'+Mpheight+';overflow:hidden;">';
+	o+='<div class="barraSup" style="width:'+(this._width-(2*_lborde))+';"></div>';
+	o+='<div class="cuadro"></div>';
+	o+='<div class="images'+((this.border)?'':'B')+'" style="height:'+(this._height-this._heightFoot-51 + 5-(2*_sborde))+'px">';
+	if(this.displayType==''){
+		o+='<span><img src="'+this.typeImg+'"></span>';
+	} else {
+		o+='<div class="type'+this.displayType+'"></div>';
+	}
+	o+='</div>';
+	myTypeWidth=(brw!='IE5')?(this._width-(2*_lborde)-73):(this._width-(2*_lborde)-70);
+	o+='<div class="'+this.styleDef[5] +' '+this.displayType+' '+((this.border)?'':'mainB')+'" style="width:'+myTypeWidth+';">'+this.type+'</div>';
+	if(this.foot){
+		myHeight=parseInt(this.height-(this._heightFoot)-29 + 5-(4*_sborde));
+	}else{
+		myHeight=parseInt(this.height-(this._heightFoot)-47 + 5-(4*_sborde));
+	}
+	myHeight2=(brw=='NN')?myHeight+20:myHeight;
+	
+	myWidth=(brw!='IE5')?(this.border)?(this._width-(2*_lborde)-68):(this._width-(2*_lborde)-80):(this._width-(2*_lborde)-69);
+	
+	o+='<div style="height:'+myHeight2+'px;width:'+myWidth+';" class="bmessage'+((this.border)?'B':'')+'">';	
+	
+	if(!this.border){
+		Mwidht=(this._width-(2*_lborde)-69-30);
+		Fwidht=this._width;
+	}
+	else{
+		Mwidht=(this._width-(2*_lborde)-69-30-13);
+		Fwidht=(this._width-(2*_lborde)-28);
+	}
+	
+	var strLink= (this.linkUrl!='#')? 'href="'+this.linkUrl+'" ' : '' ;
+	var strHref= 'onmouseover="'+this.getFullVarName()+'.mouseOver(this)" onmouseout="'+this.getFullVarName()+'.mouseOut(this)"';
+		
+	o+='<div class="' + this.styleDef[6] + '" style="width:'+Mwidht+';">'+this.title+'</div>';		
+	o+='<div class="'+this.styleDef[7] +'" style="width:'+Mwidht+';">'+this.message+'</div>';
+	if (this.linkUrl&&this.linkText){
+		o+='<div class="'+this.styleDef[7] +'" style="padding-top:18px;"><a "'+ strLink + strHref+'" onclick="'+this.getFullVarName()+'.doClick();">'+this.linkText+'</a></div>';
+	}
+	if(this.content){
+		o+='<div class="'+this.styleDef[7] +'">'+this.content.paint(true,true)+'</div>';
+	}
+	if(this.showCookie){
+		o+='<div class="'+this.styleDef[8]+'" style="top:'+(this._height-this._heightFoot-65-(4*_sborde))+'px;">';
+		o+='<input type="checkbox" name="'+this.getId("alertoff")+'" id="'+this.getId("alertoff")+'"/>'+ this.checkText;
+		o+='</div>';
+	}
+	o+='</div>';	
+	if(this.foot){		
+		myHeight=(brw!='IE5')?(this.border)?myHeight+21:myHeight+11:(this.border)?myHeight+24:myHeight+11;	
+		Fwidht=(brw=='NN')?'auto':Fwidht;
+		o+='<div id="foot" style="background-color:#ffffff;height:'+(myHeight-this._heightFoot - 5-(2*_sborde))+';width:'+Fwidht+';position:relative; margin-top:'+(myHeight)+'px;">';
+		o+=this.foot.paint(true,true);
+		o+='</div>';
+	}
+	o+='</div>';
+	if (this.border) o+='</div></div><div class="borderMark" style="width:'+widthMark+'px;"><div class="borderMarkF"></div></div>';
+	return o;
+			
+},			
+// ---------- drawHeader   method ------------------------------------------------		
+drawHeader: function () {			
+var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};			
+this.setText('Globales_Bhtcs_Internet_Util_Mensaje_v2');			
+			
+var s = new Array();			
+this.initialize();			
+
+return s.join(' ');			
+},			
+		
+// ---------- drawBody   method ------------------------------------------------		
+drawBody: function (d,l) {return this.dom.getBodyValue(d,l,this);},		
+// ---------- paint   method ------------------------------------------------		
+paint: function (draw,init) {var s = new Array();s.push(this.createWindowContent());return this.dom.paint(draw,init,this,s.join(''));			
+}			
+
+}
+
+;dom.onLoaded('Globales_Bhtcs_Internet_Util_Mensaje_v2');

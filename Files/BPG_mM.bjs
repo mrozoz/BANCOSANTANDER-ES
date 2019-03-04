@@ -1,0 +1,425 @@
+
+
+
+/*110613*/
+function Globales_Bhtcs_Util_BPG_m (id,parent,l,s,m) {	
+this.main=parent.main;this.dom=this.main.dom;this.dom.setLocation(this,l);	
+this._M1='Globales_Bhtcs_Util_BPG';this.jsVarName = id;	
+this.parent = parent;	
+this.text = new Array();this.setText = this.base.setText;this.getFullVarName = this.base.getFullVarName;this.getId = this.base.getId;this.getDataText = this.base.getDataText;this.getMain = this.base.getMain;this.openWindowPopup = this.base.openWindowPopup;this.dom.getLinks(['Globales_Styles_Intranet_13_Css_Master_css'],'Globales_Bhtcs_Util_BPG'+id,true);	
+this._CVSRevision = '$Revision: 1.1.2.36 $';	
+this.scrXMLPlantilla = '';	
+this.numWorkArea = [];	
+this.BHTC_Error = null;	
+this.styleResources = this.dom.getRPath(this._M1,id,'css');	
+this.errorTexts = ['Error Bloqueante','XML areas','Recursos JS','Recursos CSS'];	
+this.OnError = dom.getInstanceBase().nullEventRaiser;
+}
+Globales_Bhtcs_Util_BPG_m.prototype = { base: dom.getInstanceBase(),			
+		
+// ---------- initialize   method ------------------------------------------------		
+initialize: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	
+	this.areasAsync=[];
+	this.error=false;
+	this.areasError=''
+	this.xmlDoc=this.cargaXML(this.scrXMLPlantilla,'config','','GET');
+	if (brw=="NN" && dom.subBrw!="standard"){
+		var serializer = new XMLSerializer();
+		var xml = serializer.serializeToString(this.xmlDoc);
+		if (xml.indexOf("parsererror")!=-1){		
+			this.typeError="1"	
+			this.error=true;
+		}
+	}else{
+		var xml=this.xmlDoc.xml
+		if (xml==''){		
+			this.typeError="1"	
+			this.error=true;
+		}
+	}
+	if (this.xmlDoc&&!this.error) this.getResourcesCSS();
+	if (this.xmlDoc&&!this.error) this.getResourcesJS();
+			
+},			
+		
+// ---------- onload   method ------------------------------------------------		
+onload: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	for (var i=0;i<this.areasAsync.length;i++){
+		this.cargaXMLAsync(this.areasAsync[i][0],this.areasAsync[i][1],this.areasAsync[i][2],this.areasAsync[i][3])
+	}
+			
+},			
+		
+// ---------- getResourcesCSS   method ------------------------------------------------		
+getResourcesCSS: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};	
+try{	
+	var resources=this.xmlDoc.getElementsByTagName('resources');
+	if (resources.length!=0) {
+		var css=resources[0].getElementsByTagName('css');
+		var myHead=this.dom.getOut().getElementsByTagName('head')[0];
+		for (var i=0;i<css.length;i++){
+			var _href=URI+css[i].getAttribute("src");
+			var myss=this.dom.getOut().createElement('link');
+			myss.setAttribute('rel','stylesheet');
+			myss.setAttribute('type','text/css');
+			myss.setAttribute('href',_href);
+			myHead.appendChild(myss);	
+		}
+	}else{}
+}catch(e){
+	this.raiseOnError(this.errorTexts[3],3,'true');
+}	
+			
+},			
+		
+// ---------- getResourcesJS   method ------------------------------------------------		
+getResourcesJS: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+try{
+	resources=this.xmlDoc.getElementsByTagName('resources');
+	if (resources.length!=0) {
+		var js=resources[0].getElementsByTagName('javascript');
+		var myHead=this.dom.getOut().getElementsByTagName('head')[0];
+		for (var i=0;i<js.length;i++){
+			var _href=URI+js[i].getAttribute("src");
+			var myjs=this.dom.getOut().createElement('script');
+			myjs.setAttribute('type','text/javascript');
+			myjs.setAttribute('src',_href);
+			myHead.appendChild(myjs);	
+		}
+	}else{
+		
+	}
+}catch(e){
+	this.raiseOnError(this.errorTexts[2],3,'true');
+}
+			
+},			
+		
+// ---------- getAreas   method ------------------------------------------------		
+getAreas: function (xml){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var area=xml.getElementsByTagName('area');
+	var areasOutput=[];
+	for (var i=0;i<area.length;i++){
+		if (this.error) break;
+		var idArea=area[i].getAttribute("id");
+		var typeArea=area[i].getAttribute("type");
+		var srcArea=area[i].getAttribute("src");
+		var _method=area[i].getAttribute("method");
+		var _syncro=area[i].getAttribute("async");
+		var _class=area[i].getAttribute("className");
+		var _error=area[i].getAttribute("stopIfError");
+		_syncro=(_syncro!='' && _syncro!='undefined' && _syncro!=null)?_syncro:false;
+		_method=(_method!='' && _method!='undefined' && _method!=null)?_method.toUpperCase():'POST';
+		_class=(_class!='' && _class!='undefined' && _class!=null)?_class:'';
+		_error=(_error!='' && _error!='undefined' && _error!=null)?_error:false;	
+		if(typeArea=='url'){
+			this.paramsOutput='';
+			if (area[i].childNodes.length) {
+				this.contextParam='';
+				this.getParams(area[i].childNodes,'','');
+				this.paramsOutput=this.paramsOutput.substring(1); 
+			}
+			if (!_syncro||_syncro=="false"){
+				areasOutput.push('<div class="BHTC_BPG_AuxArea '+_class+'" id="'+idArea+'">'+this.cargaXML(srcArea,'',this.paramsOutput,_method)+'</div>');
+			}else{
+				areasOutput.push('<div class="BHTC_BPG_AuxArea '+_class+'" id="'+idArea+'"></div>');
+				this.areasAsync.push(new Array(idArea,srcArea,this.paramsOutput,_method));
+			}
+			if (this.error){
+				this.raiseOnError(idArea,this.typeError,_error);
+				if (_error==true||_error=="true"){
+					this.areasError='<div class="BHTC_BPG_ERROR" id="'+idArea+'_Error">'+((this.BHTC_Error)?this.BHTC_Error.paint(true,true):this.errorTexts[0])+'</div>';
+					break;
+				}else{
+					this.error=false;
+				}
+			}
+		}	
+		if(typeArea=='WA'){
+			areasOutput.push('<div class="BHTC_BPG_WorkArea '+_class+'" id="'+idArea+'">'+((this.numWorkArea[idArea.charAt(idArea.length-1)])?this.numWorkArea[idArea.charAt(idArea.length-1)].paint(true,true):'')+'</div>');
+		}	
+		if(typeArea==undefined||typeArea==null||typeArea=='compose'){
+			areasOutput.push('<div class="BHTC_BPG_Container '+_class+'" id="'+idArea+'">'+this.getAreas(area[i])+'</div>');
+			i+=area[i].getElementsByTagName('area').length;
+		}			
+	}
+	if (this.error){
+		return this.areasError;
+	}else{
+		return areasOutput.join(' ');
+	}
+			
+},			
+		
+// ---------- getParams   method ------------------------------------------------		
+getParams: function (paramsArea,ruta,varContext){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+try{
+for (var i=0;i<paramsArea.length;i++){
+	if(paramsArea[i].nodeName=='param'){
+		var nameParam=paramsArea[i].getAttribute("name");
+		var typeParam=paramsArea[i].getAttribute("type");
+		var contextValue=(this.contextParam!=''&&(typeParam=="simple"||typeParam==""||typeParam==null||typeParam==undefined))?'':paramsArea[i].getAttribute("ctx_value");
+		var valueParam=paramsArea[i].getAttribute("value");
+		if (typeParam=="simple"||typeParam==""||typeParam==null||typeParam==undefined){
+			if (this.contextParam==''||this.contextParam==false){
+				if (contextValue==""||contextValue==null||contextValue==undefined){
+					value=valueParam;
+				}else{
+					var value=dom.getValueNode('root',ruta+'/'+contextValue);
+					value=(value==null||value==undefined)?valueParam:value;
+					if (this.contextParam!='') value=valueParam;
+				}
+				if (value==null||value==undefined) throw "error";
+				this.paramsOutput+="&"+varContext+nameParam+"="+value;
+			}else{
+				if((paramsArea[i].parentNode&&paramsArea[i].parentNode.parentNode&&paramsArea[i].parentNode.parentNode.getAttribute("type")=="array")){
+						
+						var value=dom.getValueNode('root',ruta+'/'+nameParam);
+						if (value==null||value==undefined) throw "error";
+						this.paramsOutput+="&"+varContext+nameParam+"="+value;	
+				}else{ 
+					if ((paramsArea[i].parentNode&&paramsArea[i].parentNode.getAttribute("type")=="array")){
+						if (paramsArea[i].parentNode.getAttribute("type")=="array"){
+							var fea_Root29 = this.dom.getXmlNodes(this.dom.xmlNodes['root'],ruta+'/'+nameParam);			
+for(var k=0;k<fea_Root29.length;k++) {			
+var fea_Node29 = fea_Root29[k];			
+
+									var value=dom.getValueNode('root',ruta+'/'+nameParam+'['+k+']');
+									var rutaParameter=varContext.split('.');
+									rutaParameter.pop();
+									rutaParameter=rutaParameter.join('.');
+									if (value==null||value==undefined) throw "error";
+									this.paramsOutput+="&"+rutaParameter+"."+k+"="+value;	
+							}			
+
+						}else{
+							var value=dom.getValueNode('root',ruta+'/'+nameParam);
+							if (value==null||value==undefined) throw "error";
+							this.paramsOutput+="&"+varContext+nameParam+"="+value;
+						}
+					}else{
+						var value=dom.getValueNode('root',ruta+'/'+nameParam);
+						value=(value==null||value==undefined)?valueParam:value;
+						if (value==null||value==undefined) throw "error";
+						this.paramsOutput+="&"+varContext+nameParam+"="+value;
+					}
+				}
+			}			
+		}	
+		if (typeParam=="array"||typeParam=="struct"){
+			if (this.contextParam==''){
+				if (typeParam=="array"){
+					if ((contextValue==""||contextValue==null||contextValue==undefined)&&(!(paramsArea[i].parentNode&&paramsArea[i].parentNode.getAttribute("type")=="struct"))){
+						throw "mal";
+					}else{
+						if (!(paramsArea[i].parentNode&&paramsArea[i].parentNode.getAttribute("type")=="struct")) this.contextParam=true;
+					}
+				}else{
+					if ((contextValue==""||contextValue==null||contextValue==undefined)&&!(paramsArea[i].parentNode&&(paramsArea[i].parentNode.getAttribute("type")=='struct'||paramsArea[i].parentNode.getAttribute("type")=='array'))){
+						this.contextParam=false;
+					}else{
+						if (!(paramsArea[i].parentNode&&(paramsArea[i].parentNode.getAttribute("type")=='struct'||paramsArea[i].parentNode.getAttribute("type")=='array'))){
+							this.contextParam=true;
+						}
+					}
+				}				
+			}
+			
+			if (!contextValue&&typeParam=="array"&&paramsArea[i].parentNode&&paramsArea[i].parentNode.getAttribute("type")=="array") throw "mal";
+			if (!this.contextParam&&typeParam=="array"&&paramsArea[i].parentNode&&paramsArea[i].parentNode.getAttribute("type")=='struct'&&paramsArea[i].parentNode.getAttribute("ctx_value")==undefined) throw "mal";
+
+			if ((contextValue==""||contextValue==null||contextValue==undefined)){	
+					if (paramsArea[i].parentNode.getAttribute("type")=='array'){
+						var rutaParam=varContext.split('.');
+						rutaParam.pop();
+						rutaParam=rutaParam.join('.');
+						var fea_Root30 = this.dom.getXmlNodes(this.dom.xmlNodes['root'],ruta+'/'+nameParam);			
+for(var k=0;k<fea_Root30.length;k++) {			
+var fea_Node30 = fea_Root30[k];			
+
+							this.getParams(paramsArea[i].childNodes,ruta+"/"+nameParam+"["+k+"]",rutaParam+"."+k+".");
+						}			
+ 
+					}else{
+							this.getParams(paramsArea[i].childNodes,ruta+"/"+nameParam,varContext+nameParam+".");
+					}	
+			}else{
+				if (paramsArea[i].parentNode&&(paramsArea[i].parentNode.getAttribute("type")=='struct'||paramsArea[i].parentNode.getAttribute("type")=='array')){
+					if (paramsArea[i].parentNode.getAttribute("type")=='array'){
+						var rutaParam=varContext.split('.');
+						rutaParam.pop();
+						rutaParam=rutaParam.join('.');
+						var fea_Root31 = this.dom.getXmlNodes(this.dom.xmlNodes['root'],ruta+'/'+nameParam);			
+for(var k=0;k<fea_Root31.length;k++) {			
+var fea_Node31 = fea_Root31[k];			
+
+							this.getParams(paramsArea[i].childNodes,ruta+"/"+nameParam+"["+k+"]",rutaParam+"."+nameParam+"."+k+".");
+						}			
+
+					}else{
+						this.getParams(paramsArea[i].childNodes,ruta+"/"+nameParam,varContext+nameParam+".");
+					}					
+				}else{
+					this.getParams(paramsArea[i].childNodes,ruta+"/"+contextValue,varContext+nameParam+".");					
+				}
+			}
+		}
+	}
+this.contextParam = (paramsArea[i].parentNode&&(paramsArea[i].parentNode.getAttribute("type")=='struct'||paramsArea[i].parentNode.getAttribute("type")=='array'))? this.contextParam: '';
+
+}
+}catch(e){
+	this.error=true;
+	this.typeError="2"	
+}
+
+
+			
+},			
+		
+// ---------- parseXML   method ------------------------------------------------		
+parseXML: function (txt){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+try //Internet Explorer
+  {
+  xmlDoc=new ActiveXObject("Microsoft.XMLDOM");
+  xmlDoc.async="false";
+  xmlDoc.loadXML(txt);
+  return xmlDoc;
+  }
+catch(e)
+  {
+  try //Firefox, Mozilla, Opera, etc.
+    {
+    parser=new DOMParser();
+    xmlDoc=parser.parseFromString(txt,"text/xml");
+    return xmlDoc;
+    }
+  catch(e) {
+	this.typeError="1"	
+	this.error=true;
+  } 
+  }
+  
+return null;
+			
+},			
+		
+// ---------- cargaXMLAsync   method ------------------------------------------------		
+cargaXMLAsync: function (id,url,params,_method){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	if (!url) return false;
+	var http = false;
+	if(brw == "IE5") {			
+		http = new ActiveXObject("Microsoft.XMLHTTP");
+	} else {
+		http = new XMLHttpRequest();
+	}
+	http.abort();
+	if(_method.toUpperCase()=='GET'){
+		if(params!=''){
+			url+=(url.indexOf('?')!=-1)?'&'+params:'?'+params;
+		}
+		params=null;
+	}
+	http.open(_method, url , true);
+	http.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+	var t=this;
+	http.onreadystatechange = function(){
+	 	if (http.readyState == 4) {
+			if (http.status>=400&&http.status<599){
+				t.raiseOnError(id,"1",false)
+			}else{
+				
+				eval("document").getElementById(id).innerHTML=http.responseText;
+			}	 		
+  		}else{
+			t.typeError="1"	
+			t.error=true;
+  		}
+	}
+	http.send(params);
+			
+},			
+		
+// ---------- cargaXML   method ------------------------------------------------		
+cargaXML: function (url,type,params,_method){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+try{
+	if (!url) return false;
+	var http = false;
+	if(brw == "IE5") {			
+		http = new ActiveXObject("Microsoft.XMLHTTP");
+	} else {
+		http = new XMLHttpRequest();
+	}
+	http.abort();
+
+	if(_method.toUpperCase()=='GET'){
+		if(params!=''){
+			url+=(url.indexOf('?')!=-1)?'&'+params:'?'+params;
+		}
+		params=null;
+	}
+	http.open(_method, url , false);
+	
+	http.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+	http.send(params);
+	if (type=='config'){
+		if (http.status>=400&&http.status<599){
+			this.typeError="3"	
+			this.error=true;
+		}else{
+			if(http.responseXML.getElementsByTagName('message')[0]!=null){
+			 	return http.responseXML;
+			}else{		 
+				 return this.parseXML(http.responseText);
+		 	}
+		 }
+	}else{
+		if (http.status>=400&&http.status<599){
+			this.typeError="1"	
+			this.error=true;
+			return ""
+		}else{
+			return http.responseText;
+		}
+	}
+}catch(e){
+	if (type=='config'){
+		this.typeError="3"	
+	}else{
+		this.typeError="1"	
+	}
+	this.error=true;
+}
+			
+},			
+		
+// ---------- raiseOnError   method ------------------------------------------------		
+raiseOnError: function (id,type,stop){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+var e = this.dom.getInstanceEvent(this,"OnError");
+e.id_area=id;
+e.Codigo_error=type;
+e.Stop=stop;
+e.raise();
+			
+},			
+// ---------- drawHeader   method ------------------------------------------------		
+drawHeader: function () {			
+var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};			
+this.setText('Globales_Bhtcs_Util_BPG');			
+			
+var s = new Array();			
+this.initialize();			
+
+return s.join(' ');			
+},			
+		
+// ---------- drawBody   method ------------------------------------------------		
+drawBody: function (d,l) {return this.dom.getBodyValue(d,l,this);},		
+// ---------- paint   method ------------------------------------------------		
+paint: function (draw,init) {var s = new Array();if (this.xmlDoc&&!this.error){s.push(this.getAreas(this.xmlDoc));}else{s.push("<div class=\"BHTC_BPG_ERROR\" id=\"XML_CONFIG\">");s.push((this.BHTC_Error)?this.BHTC_Error.paint(true,true):this.errorTexts[0]);s.push("</div>");this.raiseOnError(this.errorTexts[1],this.typeError,'true');}return this.dom.paint(draw,init,this,s.join(''));			
+}			
+
+}
+
+;dom.onLoaded('Globales_Bhtcs_Util_BPG');

@@ -1,0 +1,314 @@
+
+var _M1 ='CN_Tarjetas_Pres_Bhtcs_ConsultaPIN_ConfirmarConsultaOnlinePin';
+dom.getImports(['Globales_Bhtcs_Internet_Nav_PiePaginaV2','Globales_Bhtcs_Util_BPG','Globales_Bhtcs_Internet_Nav_Barra','Globales_Bhtcs_Seguridad_Firma_ER','Globales_Bhtcs_Internet_Util_Mensaje_v2','Globales_Bhtcs_Arq_FormArqMira','Globales_Bhtcs_Internet_AT_TituloPagina','Globales_Bhtcs_Internet_AT_DatosContexto','Globales_Bhtcs_Util_Layout_v2'],this._M1,false);
+/*110613*/
+
+function CN_Tarjetas_Pres_Bhtcs_ConsultaPIN_ConfirmarConsultaOnlinePin_m(id,parent) {	
+this.main=this;this.dom = 	getMainDom(_M1);			
+this._M1=_M1;	
+this.jsVarName = id;	
+this.parent = parent;	
+this.text = new Array();this.setText = this.base.setText;this.getFullVarName = this.base.getFullVarName;this.getId = this.base.getId;this.getDataText = this.base.getDataText;this.getMain = this.base.getMain;this.openWindowPopup = this.base.openWindowPopup;	
+	
+this.res = [1024,768];	
+this.resizeAllowed = true;	
+this.miraLang = 'spa';	
+this.miraDirLang = 'ltr';}
+CN_Tarjetas_Pres_Bhtcs_ConsultaPIN_ConfirmarConsultaOnlinePin_m.prototype = { base: dom.getInstanceBase(),	
+		
+// ---------- onload   method ------------------------------------------------		
+onload: function () {this.pieError.onload();this.bpgPrincipal.onload();this.lytPrincipal.onload();this.titTitulo.onload();this.dtcContexto.onload();this.pieNavegacion.onload();this.fmaFirma.onload();this.brrNavegacion.onload();this.msgError.onload();this.formArqMira_1.onload();	
+},	
+		
+// ---------- loadCtx   method ------------------------------------------------		
+loadCtx: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+var a = ['$entrada',['numTarjeta','$CB_seguridad',['canal','$cliente',['TIPO_DE_PERSONA','CODIGO_DE_PERSONA'],'$contrato',['$CENTRO',['EMPRESA','CENTRO'],'PRODUCTO','NUMERO_DE_CONTRATO']],'empresa','$contratoAsociado',['$CENTRO',['EMPRESA','CENTRO'],'PRODUCTO','NUMERO_DE_CONTRATO']],'$salida',['nombreTitular','tipoTarjeta','nombreBeneficiario','$DOMICILIO',['descripcionPlaza','nombreVia','numeroDomicilio','numeroVia','restoDatosDomicilio','tipoVia','codigoPostal'],'numTarjeta','$CB_seguridad',['canal','$cliente',['TIPO_DE_PERSONA','CODIGO_DE_PERSONA'],'$contrato',['$CENTRO',['EMPRESA','CENTRO'],'PRODUCTO','NUMERO_DE_CONTRATO']],'empresa','$contratoAsociado',['$CENTRO',['EMPRESA','CENTRO'],'PRODUCTO','NUMERO_DE_CONTRATO'],'$numeroPersonaCliente',['TIPO_DE_PERSONA','CODIGO_DE_PERSONA']],'$verificarFirma',['CONFIRMATION_TYPE','$KEY_SIGNATURE',['POSITIONS','POSITION_VALUES'],'DIGITAL_SIGNATURE','OTP','UNIVERSAL_SIGNATURE'],'$datosCliente',['$persona',['TIPO_DE_PERSONA','CODIGO_DE_PERSONA']]];this.dom.parseArray(a,"root");
+			
+},			
+		
+// ---------- initialize   method ------------------------------------------------		
+initialize: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	
+
+String.prototype.sinEspacios = function() {
+	return this.replace(/\s/g, "");
+}
+
+function capit(tit)
+{
+	var tuc=tit.toLowerCase();
+	tuc=tuc.replace(/(^| )([a-záéíóúüñ])/gi, function($1) {
+	return $1.toUpperCase();
+	} );
+
+	for(g=0;g<tuc.length;g++)
+	{
+		if(tuc.substring(g,g+1) == '-')
+		{
+			var cad1 = tuc.substring(0,g+1);
+			var cad2 = tuc.substring(g+2,tuc.length);
+			var mayus = tuc.substring(g+1,g+2).toUpperCase();
+			tuc = cad1+mayus+cad2;
+		}
+	}
+	return(tuc);
+}
+
+main.dom.correction = [1,1];
+
+main.dtcContexto.columns[0][0][1] = dom.getValueNode('root', '/salida[0]/contratoAsociado[0]/CENTRO[0]/EMPRESA')+' '+
+										dom.getValueNode('root', '/salida[0]/contratoAsociado[0]/CENTRO[0]/CENTRO')+' '+
+										dom.getValueNode('root', '/salida[0]/contratoAsociado[0]/PRODUCTO')+' '+
+										dom.getValueNode('root', '/salida[0]/contratoAsociado[0]/NUMERO_DE_CONTRATO');
+main.dtcContexto.columns[0][1][1]=capit(dom.getValueNode('root', '/salida[0]/nombreTitular'));
+main.dtcContexto.columns[0][2][1]=capit(dom.getValueNode('root', '/salida[0]/tipoTarjeta'));
+main.dtcContexto.columns[0][3][1]=dom.getValueNode('root', '/entrada[0]/numTarjeta');
+main.dtcContexto.columns[0][4][1]=capit(dom.getValueNode('root', '/salida[0]/nombreBeneficiario'));
+
+var domicilio = dom.getValueNode('root', '/salida[0]/DOMICILIO[0]/tipoVia')+' '+
+				dom.getValueNode('root', '/salida[0]/DOMICILIO[0]/nombreVia')+' '+
+				dom.getValueNode('root', '/salida[0]/DOMICILIO[0]/numeroVia')+', '+
+				dom.getValueNode('root', '/salida[0]/DOMICILIO[0]/restoDatosDomicilio')+' '+
+				dom.getValueNode('root', '/salida[0]/DOMICILIO[0]/codigoPostal')+' '+
+				dom.getValueNode('root', '/salida[0]/DOMICILIO[0]/descripcionPlaza');
+				
+main.dtcContexto.columns[0][5][1]=capit(domicilio);
+
+var numTarj = dom.getValueNode('root', '/entrada[0]/numTarjeta');
+if (numTarj.length > 19){
+		numTarj = numTarj.sinEspacios();
+	}
+
+var empresa = dom.getValueNode('root', '/entrada[0]/empresa');
+var seg_empresa=dom.getValueNode('root', '/entrada[0]/CB_seguridad[0]/contrato[0]/CENTRO[0]/EMPRESA');
+var seg_centro=dom.getValueNode('root', '/entrada[0]/CB_seguridad[0]/contrato[0]/CENTRO[0]/CENTRO');
+var seg_producto=dom.getValueNode('root', '/entrada[0]/CB_seguridad[0]/contrato[0]/PRODUCTO');
+var seg_numCont=dom.getValueNode('root', '/entrada[0]/CB_seguridad[0]/contrato[0]/NUMERO_DE_CONTRATO');
+var tipoPers=dom.getValueNode('root', '/entrada[0]/CB_seguridad[0]/cliente[0]/TIPO_DE_PERSONA');
+var codPers=dom.getValueNode('root', '/entrada[0]/CB_seguridad[0]/cliente[0]/CODIGO_DE_PERSONA');
+var canal = dom.getValueNode('root', '/entrada[0]/CB_seguridad[0]/canal');
+var ctoAsoc_empresa=dom.getValueNode('root', '/entrada[0]/contratoAsociado[0]/CENTRO[0]/EMPRESA');
+var ctoAsoc_centro=dom.getValueNode('root', '/entrada[0]/contratoAsociado[0]/CENTRO[0]/CENTRO');
+var ctoAsoc_prod=dom.getValueNode('root', '/entrada[0]/contratoAsociado[0]/PRODUCTO');
+var ctoAsoc_cto=dom.getValueNode('root', '/entrada[0]/contratoAsociado[0]/NUMERO_DE_CONTRATO');
+
+
+dom.setValueNode('root', '/salida[0]/numTarjeta', numTarj);
+dom.setValueNode('root', '/salida[0]/empresa', empresa);
+dom.setValueNode('root', '/salida[0]/CB_seguridad[0]/canal', canal);
+dom.setValueNode('root', '/salida[0]/CB_seguridad[0]/cliente[0]/TIPO_DE_PERSONA', tipoPers);
+dom.setValueNode('root', '/salida[0]/CB_seguridad[0]/cliente[0]/CODIGO_DE_PERSONA', codPers);
+dom.setValueNode('root', '/salida[0]/CB_seguridad[0]/contrato[0]/CENTRO[0]/EMPRESA', seg_empresa);
+dom.setValueNode('root', '/salida[0]/CB_seguridad[0]/contrato[0]/CENTRO[0]/CENTRO', seg_centro);
+dom.setValueNode('root', '/salida[0]/CB_seguridad[0]/contrato[0]/PRODUCTO',  seg_producto);
+dom.setValueNode('root', '/salida[0]/CB_seguridad[0]/contrato[0]/NUMERO_DE_CONTRATO', seg_numCont);
+dom.setValueNode('root', '/salida[0]/contratoAsociado[0]/CENTRO[0]/EMPRESA',ctoAsoc_empresa);
+dom.setValueNode('root', '/salida[0]/contratoAsociado[0]/CENTRO[0]/CENTRO', ctoAsoc_centro);
+dom.setValueNode('root', '/salida[0]/contratoAsociado[0]/PRODUCTO',ctoAsoc_prod);
+dom.setValueNode('root', '/salida[0]/contratoAsociado[0]/NUMERO_DE_CONTRATO', ctoAsoc_cto);
+			
+},			
+		
+// ---------- evButtonClickpieError   method ------------------------------------------------		
+evButtonClickpieError: function (event){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+
+main.msgError.close();
+main.formArqMira_1.event='cancelar';
+main.formArqMira_1.submit();
+			
+},			
+		
+// ---------- onclickbrrNavegacion   method ------------------------------------------------		
+onclickbrrNavegacion: function (event){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+
+main.formArqMira_1.event='volver';
+main.formArqMira_1.submit();
+
+			
+},			
+		
+// ---------- evVALIDACION_KOfmaFirma   method ------------------------------------------------		
+evVALIDACION_KOfmaFirma: function (event){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+
+alert('La firma introducida es incorrecta.');
+			
+
+event.source = this;
+dom.getDomManager().EvHandler.handle(event);
+},			
+		
+// ---------- evVALIDACION_OKfmaFirma   method ------------------------------------------------		
+evVALIDACION_OKfmaFirma: function (event){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+
+dom.setValueNode('root', '/verificarFirma[0]/CONFIRMATION_TYPE', 'positionsAndCertificate');
+var posiciones = dom.getValueNode('root', '/verificarFirma[0]/KEY_SIGNATURE[0]/POSITIONS');
+var posicionesValores = dom.getValueNode('root', '/verificarFirma[0]/KEY_SIGNATURE[0]/POSITION_VALUES');
+
+if (posicionesValores.length < posiciones.length) {
+    alert('Debe rellenar todas las posiciones solicitadas de la firma.');
+} 
+else
+{
+	
+	var tipoPersonaTarj = dom.getValueNode('root', '/salida[0]/numeroPersonaCliente[0]/TIPO_DE_PERSONA');
+	var codPersonaTarj = dom.getValueNode('root', '/salida[0]/numeroPersonaCliente[0]/CODIGO_DE_PERSONA');
+
+	var tipoPersonaCliente = dom.getValueNode('root', '/datosCliente[0]/persona[0]/TIPO_DE_PERSONA');
+	var codPersonaCliente = dom.getValueNode('root', '/datosCliente[0]/persona[0]/CODIGO_DE_PERSONA');
+
+	if((tipoPersonaTarj!=tipoPersonaCliente) || (codPersonaTarj!=codPersonaCliente))
+	{
+		main.msgError.message = 'El Número de Identificación Personal (P.I.N.) de esta tarjeta sólo puede solicitarse online por el propio beneficiario. No obstante puede solicitar el reenvío del P.I.N. por correo al domicilio de la tarjeta desde la opción \"Reenvío de número secreto (PIN)\".';
+		main.msgError.open('modal','342','342');
+	}
+	else
+	{
+	    main.formArqMira_1.event = 'aceptar';
+    	main.formArqMira_1.submit();
+	}
+}
+			
+},			
+		
+// ---------- evButtonClickpieNavegacion   method ------------------------------------------------		
+evButtonClickpieNavegacion: function (event){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+
+switch(event.id){
+	case 'Aceptar': 
+	 	main.fmaFirma.uploadDataToContext();	
+	break; 
+	case 'Cancelar': 
+		main.formArqMira_1.event='cancelar';
+		main.formArqMira_1.submit();
+	break;
+}
+
+
+			
+
+event.source = this;
+dom.getDomManager().EvHandler.handle(event);
+},			
+// ---------- drawHeader   method ------------------------------------------------		
+drawHeader: function () {			
+var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};			
+this.setText(this._M1);			
+			
+var s = new Array();			
+	
+	
+this.pieError = new Globales_Bhtcs_Internet_Nav_PiePaginaV2_m("pieError",this,[0,0,631,400,1],s,[]);	
+	
+s['scrXMLPlantilla']=true;	
+this.bpgPrincipal = new Globales_Bhtcs_Util_BPG_m("bpgPrincipal",this,[0,0,631,400,0],s,['scrXMLPlantilla']);	
+this.bpgPrincipal.errorTexts = [this.main.text['bpgPrincipal_errorTexts_0'],this.main.text['bpgPrincipal_errorTexts_1'],this.main.text['bpgPrincipal_errorTexts_2'],this.main.text['bpgPrincipal_errorTexts_3']];	
+	
+this.lytPrincipal = new Globales_Bhtcs_Util_Layout_v2_m("lytPrincipal",this,[0,0,631,200,1],s,[]);	
+	
+	
+this.titTitulo = new Globales_Bhtcs_Internet_AT_TituloPagina_m("titTitulo",this,[702,366,35,53,1],s,[]);	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+this.dtcContexto = new Globales_Bhtcs_Internet_AT_DatosContexto_m("dtcContexto",this,[534,372,77,67,1],s,[]);	
+this.dtcContexto.colTooltipsInfo = [[[this.main.text['dtcContexto_colTooltipsInfo_0']],[this.main.text['dtcContexto_colTooltipsInfo_1']]]];	
+	
+	
+this.pieNavegacion = new Globales_Bhtcs_Internet_Nav_PiePaginaV2_m("pieNavegacion",this,[684,378,37,46,1],s,[]);	
+	
+	
+this.fmaFirma = new Globales_Bhtcs_Seguridad_Firma_ER_m("fmaFirma",this,[630,420,52,50,1],s,[]);	
+	
+	
+	
+	
+	
+	
+	
+this.brrNavegacion = new Globales_Bhtcs_Internet_Nav_Barra_m("brrNavegacion",this,[606,432,591,20,1],s,[]);	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+this.msgError = new Globales_Bhtcs_Internet_Util_Mensaje_v2_m("msgError",this,[84,462,60,60,1],s,[]);	
+	
+this.formArqMira_1 = new Globales_Bhtcs_Arq_FormArqMira_m("formArqMira_1",this,[302,111,60,60,0],s,[]);	
+this.pieError.buttonsTxt = [[this.main.text['pieError_buttonsTxt_0'],,this.main.text['pieError_buttonsTxt_1']]];this.pieError.buttons = [['idAceptar',true,0,'']];
+s.push(this.pieError.drawHeader());this.bpgPrincipal.numWorkArea = [main.lytPrincipal];
+	
+this.bpgPrincipal.scrXMLPlantilla = dom.getRPath('CN_Tarjetas_Pres_Html_Plantilla00_Supernet_xml',this._M1,'url');s.push(this.bpgPrincipal.drawHeader());this.lytPrincipal.type = 'V';
+this.lytPrincipal.contents = [[0,main.brrNavegacion,'',true],[0,main.titTitulo,'',true],[0,main.dtcContexto,'',true],[0,main.fmaFirma,'',true],[0,main.pieNavegacion,'',true]];
+s.push(this.lytPrincipal.drawHeader());this.titTitulo.subtitle = this.getDataText('titTitulo_subtitle_0',this.titTitulo);this.titTitulo.title = this.getDataText('titTitulo_title_0',this.titTitulo);s.push(this.titTitulo.drawHeader());this.dtcContexto.width = [['','']];
+this.dtcContexto.colspan = [[[,],[,]]];
+this.dtcContexto.xmltree = 'confirmarConsultaOnlinePin';
+this.dtcContexto.columns = [[[this.main.text['dtcContexto_columns_0'],,,,,],[this.main.text['dtcContexto_columns_1'],,,,,],[this.main.text['dtcContexto_columns_2'],,,,,],[this.main.text['dtcContexto_columns_3'],,,,,],[this.main.text['dtcContexto_columns_4'],,,,,],[this.main.text['dtcContexto_columns_5'],,,,,]]];this.dtcContexto.className = 'DatosContexto_confirm2';
+this.dtcContexto.title = this.main.text['dtcContexto_title_0'];this.dtcContexto.subtitle = this.main.text['dtcContexto_subtitle_0'];this.dtcContexto.colTooltips = [[]];this.dtcContexto.colTooltipsValue = [[]];s.push(this.dtcContexto.drawHeader());this.pieNavegacion.buttonsTxt = [[this.main.text['pieNavegacion_buttonsTxt_0'],,],[this.main.text['pieNavegacion_buttonsTxt_1'],,]];this.pieNavegacion.className = 'PiePaginaEnlaces';
+this.pieNavegacion.buttons = [['Cancelar',true,0,''],['Aceptar',true,0,'']];
+s.push(this.pieNavegacion.drawHeader());this.fmaFirma.xpathDynPositionsValidate = '/verificarFirma/KEY_SIGNATURE/POSITIONS';
+this.fmaFirma.xpathPositionsValidate = '/verificarFirma/KEY_SIGNATURE/POSITION_VALUES';
+s.push(this.fmaFirma.drawHeader());this.brrNavegacion.options = [];
+this.brrNavegacion.optSecTxt = [[this.main.text['brrNavegacion_optSecTxt_0']]];this.brrNavegacion.optionsTxt = [];this.brrNavegacion.optSecUrl = [[this.main.text['brrNavegacion_optSecUrl_0']]];this.brrNavegacion.optSec = [['Volver','_self',false,false,0,2,false]];
+this.brrNavegacion.optionsUrl = [];this.brrNavegacion.align = 'right';
+s.push(this.brrNavegacion.drawHeader());this.msgError.showCookie = false;
+this.msgError.linkText = '';this.msgError.checkText = '';this.msgError.plugins = [main.pieError];
+this.msgError.displayType = 'Info';
+this.msgError.linkUrl = null;
+this.msgError.xmlTree = 'root';
+this.msgError.type = '';this.msgError.title = this.main.text['msgError_title_0'];this.msgError.foot = main.pieError;
+this.msgError.message = '';s.push(this.msgError.drawHeader());this.formArqMira_1.xpaths = ['/verificarFirma/CONFIRMATION_TYPE','/verificarFirma/DIGITAL_SIGNATURE','/verificarFirma/OTP','/verificarFirma/UNIVERSAL_SIGNATURE','/verificarFirma/KEY_SIGNATURE/POSITION_VALUES','/verificarFirma/KEY_SIGNATURE/POSITIONS','/salida/empresa','/salida/numTarjeta','/salida/CB_seguridad/canal','/salida/CB_seguridad/cliente/CODIGO_DE_PERSONA','/salida/CB_seguridad/cliente/TIPO_DE_PERSONA','/salida/CB_seguridad/contrato/CENTRO/CENTRO','/salida/CB_seguridad/contrato/CENTRO/EMPRESA','/salida/CB_seguridad/contrato/NUMERO_DE_CONTRATO','/salida/CB_seguridad/contrato/PRODUCTO','/salida/DOMICILIO/codigoPostal','/salida/DOMICILIO/descripcionPlaza','/salida/DOMICILIO/nombreVia','/salida/DOMICILIO/numeroDomicilio','/salida/DOMICILIO/numeroVia','/salida/DOMICILIO/restoDatosDomicilio','/salida/DOMICILIO/tipoVia'];
+s.push(this.formArqMira_1.drawHeader());this.initialize();			
+
+this.dom.getLinks([],null,false);return s.join(' ');			
+},			
+		
+// ---------- drawBody   method ------------------------------------------------		
+drawBody: function () {			
+s = new Array();this.dom.nTopLeft=null;var j =this.paint().join('');			
+return j;},			
+		
+// ---------- paint   method ------------------------------------------------		
+paint: function () {var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};			
+var t = new Array();t.push("<body scroll=\"auto\" onload=\"main.onload();\">");			
+this.pieError.evButtonClick = this.evButtonClickpieError;			
+s.push(this.pieError.drawBody(false,false));		
+t.push(this.dom.setLayer(10));			
+s.push(this.bpgPrincipal.drawBody(true,true));		
+t.push(this.dom.setLayer(9));			
+s.push(this.lytPrincipal.drawBody(false,false));		
+t.push(this.dom.setLayer(8));			
+s.push(this.titTitulo.drawBody(false,false));		
+t.push(this.dom.setLayer(7));			
+s.push(this.dtcContexto.drawBody(false,false));		
+t.push(this.dom.setLayer(6));			
+this.pieNavegacion.evButtonClick = this.evButtonClickpieNavegacion;			
+s.push(this.pieNavegacion.drawBody(false,false));		
+t.push(this.dom.setLayer(5));			
+this.fmaFirma.evVALIDACION_KO = this.evVALIDACION_KOfmaFirma;			
+this.fmaFirma.evVALIDACION_OK = this.evVALIDACION_OKfmaFirma;			
+s.push(this.fmaFirma.drawBody(false,false));		
+t.push(this.dom.setLayer(4));			
+this.brrNavegacion.onclick = this.onclickbrrNavegacion;			
+s.push(this.brrNavegacion.drawBody(false,false));		
+t.push(this.dom.setLayer(3));			
+s.push(this.msgError.drawBody(false,false));		
+t.push(this.dom.setLayer(2));			
+s.push(this.formArqMira_1.drawBody(true,true));		
+t.push(this.dom.setLayer(1));			
+t.push(s.join(''));t.push("</body>");			
+return t;			
+}			
+};
+if(typeof dom.getObjById(_M1)=='undefined'){dom.setObjById(_M1 , eval('new '+_M1+"_m('main')"));dom.onLoaded(_M1);}	

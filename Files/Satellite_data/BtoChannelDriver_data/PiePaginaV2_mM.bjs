@@ -1,0 +1,197 @@
+
+
+
+/*130611*/
+function Globales_Bhtcs_Internet_Nav_PiePaginaV2_m (id,parent,l,s,m) {	
+this.main=parent.main;this.dom=this.main.dom;this.dom.setLocation(this,l);	
+this._M1='Globales_Bhtcs_Internet_Nav_PiePaginaV2';this.jsVarName = id;	
+this.parent = parent;	
+this.text = new Array();this.setText = this.base.setText;this.getFullVarName = this.base.getFullVarName;this.getId = this.base.getId;this.getDataText = this.base.getDataText;this.getMain = this.base.getMain;this.openWindowPopup = this.base.openWindowPopup;this.dom.getLinks(['Globales_Styles_Internet_Banesto_css'],'Globales_Bhtcs_Internet_Nav_PiePaginaV2'+id,true);	
+this._CVSRevision = '$Revision: 1.3.2.16 $';	
+this.styleResources = this.dom.getRPath(this._M1,id,'css');	
+this.printMode = 'pr';	
+this.buttons = [['id0',true,0,''],['id1',true,1,'']];	
+this.className = 'PiePagina';	
+this.buttonClassNames = ['botonPrincipal','botonAdicional','botonSecundario'];	
+this.buttonsTxt = [['text0','tooltip0',''],['&text1','tooltip1','']];	
+this.evButtonClick = dom.getInstanceBase().nullEventRaiser;
+}
+Globales_Bhtcs_Internet_Nav_PiePaginaV2_m.prototype = { base: dom.getInstanceBase(),			
+		
+// ---------- onload   method ------------------------------------------------		
+onload: function () {},			
+		
+// ---------- raiseButtonClick   method ------------------------------------------------		
+raiseButtonClick: function (i){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	if(this.buttons[i][1]){
+		var e=this.dom.getInstanceEvent(this,"evButtonClick");
+		e.value=this.buttonsTxt[i][0];
+		e.type=this.buttons[i][2];
+		e.id=this.buttons[i][0];
+		e.raise();
+	}
+			
+},			
+		
+// ---------- enable   method ------------------------------------------------		
+enable: function (id){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var button=this.dom.getOut().getElementById(id);
+	for (var i=0;i<this.buttons.length;i++){
+		if (id==this.buttons[i][0]){
+			if (this.buttons[i][1]==false){
+				this.buttons[i][1]=true;
+				if (button) {
+					button.className=this.buttonClassNames[this.buttons[i][2]];
+					button.disabled=false;
+				}
+				return true;
+			} else return false;
+		}
+	}
+	return false;
+			
+},			
+		
+// ---------- disable   method ------------------------------------------------		
+disable: function (id){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var button=this.dom.getOut().getElementById(id);
+	for (var i=0;i<this.buttons.length;i++){
+		if (id==this.buttons[i][0]){
+			if (this.buttons[i][1]==true){
+				this.buttons[i][1]=false;
+				if (button) {
+					button.className="deshabilitado";
+					button.disabled=true;
+				}
+	 			return true;
+			} else return false;
+		}
+	}
+	return false;
+			
+},			
+		
+// ---------- generateButton   method ------------------------------------------------		
+generateButton: function (i){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var clase=(this.buttons[i][1]==false)?'deshabilitado':this.buttonClassNames[this.buttons[i][2]];
+	var disabled=(this.buttons[i][1]==false)?' disabled="disabled"':'';
+	var accesskey='';
+	var text=this.buttonsTxt[i][0];
+	var tooltip=(this.buttonsTxt[i][1]);
+	var butIndex = (this.buttons[i][3] && this.buttons[i][3]!='')? ' tabIndex="' + this.buttons[i][3] + '"' : '';
+	
+	if(this.buttonsTxt[i][0] && this.buttonsTxt[i][2]){
+	     if(this.buttonsTxt[i][0].indexOf('&')>=0){
+	           accesskey=' accesskey="'+this.buttonsTxt[i][2]+'"';
+	           var rex=new RegExp('('+this.buttonsTxt[i][2]+')');
+	           var array_strings = this.buttonsTxt[i][0].split('&');
+	            var encuentra=0;
+	              var cont2=0;
+	          for(var x=0; x < array_strings.length; x++){
+	  	          if(array_strings[x].length>0 && array_strings[x].indexOf(';')>=0){
+	 	             if(array_strings[x].indexOf(';')==array_strings[x].length-1){
+	 	                    array_strings[x]='&'+array_strings[x];
+	                 }else{
+	                      var posicion =array_strings[x].indexOf(this.buttonsTxt[i][2],array_strings[x].indexOf(';'));
+	                      if(posicion>0 && cont2==0){
+	                          array_strings[x]=array_strings[x].substr(0,posicion)+'<u>'+array_strings[x].charAt(posicion)+'</u>'+array_strings[x].substr(posicion+1);
+	                          array_strings[x]='&'+array_strings[x];
+	                          cont2=cont2+1;   
+	                      }else{array_strings[x]='&'+array_strings[x];} 
+	                     }
+	              }else{
+	                    var posicion2 =array_strings[x].indexOf(this.buttonsTxt[i][2])
+	                    if(posicion2>=0 && cont2==0){
+	                       array_strings[x]=array_strings[x].substr(0,posicion2)+'<u>'+array_strings[x].charAt(posicion2)+'</u>'+array_strings[x].substr(posicion2+1);
+	                       cont2=cont2+1;  
+	                    }else{}         
+	              }
+	          }
+	          text=array_strings.join('');
+	     }else{
+	           accesskey=' accesskey="'+this.buttonsTxt[i][2]+'"';
+	           var rex=new RegExp('('+this.buttonsTxt[i][2]+')');
+	           text=this.buttonsTxt[i][0].replace(rex,"<u>$1</u>");
+	           }
+	
+
+	}else if(this.buttonsTxt[i][0] && this.buttonsTxt[i][0].indexOf('&')>=0){
+         var array_strings = this.buttonsTxt[i][0].split('&');
+	     var cont=0;
+	     for(var x=0; x < array_strings.length; x++){
+	  	     if(array_strings[x].length>0 && array_strings[x].indexOf(';')<0){
+	 	         if(x>0){
+	 	             if(cont==0){
+	 	                accesskey=' accesskey="'+array_strings[x].charAt(0)+'"';
+		                array_strings[x]='<u>'+array_strings[x].charAt(0)+'</u>'+array_strings[x].substr(1);
+		                cont=cont+1;
+		               } 
+		             else{}
+		             
+		             }
+		     }else if(array_strings[x].length>0){
+		               array_strings[x]='&'+array_strings[x];
+		       }else{}
+	        }
+	         text=array_strings.join('');
+	}else{
+		accesskey='';
+		text=this.buttonsTxt[i][0];
+	}
+	tooltip=(this.buttonsTxt[i][1])?' title="'+this.buttonsTxt[i][1]+'"':'';
+		return '<span class="botonBorder"><button class="'+clase+'" id="'+this.buttons[i][0]+'" onclick="'+this.getFullVarName()+'.raiseButtonClick('+i+')" '+this.simulateOver(clase)+disabled+tooltip+accesskey+butIndex+'>'+text+'</button></span>';
+
+			
+},			
+		
+// ---------- initialize   method ------------------------------------------------		
+initialize: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	this.clase = "InternetNavPiePaginaV2";
+	if(this.className == "PiePaginaEnlaces"){
+		this.clase = "InternetNavPiePaginaV2 enlaces";
+	}
+			
+},			
+		
+// ---------- simulateOver   method ------------------------------------------------		
+simulateOver: function (clase){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	if(brw=='IE5'){
+	over = "onmouseover=\"this.className=\'"+clase+"over\'\"";
+	out =  " onmouseout=\"this.className=\'"+clase+"\'\"";}else{
+	over='';out='';
+	}
+	return over + out;
+			
+},			
+		
+// ---------- generate   method ------------------------------------------------		
+generate: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var htmlbuttons='';
+	this.buttons=(this.buttons==null)?[]:this.buttons;
+	this.buttonsTxt=(this.buttonsTxt==null)?[]:this.buttonsTxt;
+	for (var i=0;i<this.buttons.length && this.buttonsTxt.length;i++){
+			htmlbuttons += this.generateButton(i);
+	}
+	return htmlbuttons;
+			
+},			
+// ---------- drawHeader   method ------------------------------------------------		
+drawHeader: function () {			
+var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};			
+this.setText('Globales_Bhtcs_Internet_Nav_PiePaginaV2');			
+			
+var s = new Array();			
+this.initialize();			
+
+return s.join(' ');			
+},			
+		
+// ---------- drawBody   method ------------------------------------------------		
+drawBody: function (d,l) {return this.dom.getBodyValue(d,l,this);},		
+// ---------- paint   method ------------------------------------------------		
+paint: function (draw,init) {var s = new Array();s.push("	<div class=\"");s.push( this.clase);s.push((this.layoutv2)?" InternetNavPiePaginaV2LayoutContent":"" );s.push("\">");s.push("		<span>");s.push(this.generate());s.push("		</span>");s.push("	</div>");return this.dom.paint(draw,init,this,s.join(''));			
+}			
+
+}
+
+;dom.onLoaded('Globales_Bhtcs_Internet_Nav_PiePaginaV2');

@@ -1,0 +1,114 @@
+
+
+
+/*110613*/
+function Globales_Bhtcs_Seguridad_Utils_m (id,parent,l,s,m) {	
+this.main=parent.main;this.dom=this.main.dom;this.dom.setLocation(this,l);	
+this._M1='Globales_Bhtcs_Seguridad_Utils';this.jsVarName = id;	
+this.parent = parent;	
+this.text = new Array();this.setText = this.base.setText;this.getFullVarName = this.base.getFullVarName;this.getId = this.base.getId;this.getDataText = this.base.getDataText;this.getMain = this.base.getMain;this.openWindowPopup = this.base.openWindowPopup;	
+this._CVSRevision = '$Revision: 1.2.2.18 $';	
+}
+Globales_Bhtcs_Seguridad_Utils_m.prototype = { base: dom.getInstanceBase(),			
+		
+// ---------- initialize   method ------------------------------------------------		
+initialize: function (){},			
+		
+// ---------- onload   method ------------------------------------------------		
+onload: function () {},			
+		
+// ---------- getBoolean   method ------------------------------------------------		
+getBoolean: function (xpath,root){
+	return (this.dom.getXmlValueAtName(this.dom.xmlNodes[root],xpath)=='true');
+			
+},			
+		
+// ---------- getPattern   method ------------------------------------------------		
+getPattern: function (format,minocc,maxocc){
+	var pattern ="^";
+	if (format=="an" || format=="a" || format=="n"){
+		switch (format){
+			case 'an':
+				pattern+='[A-Z0-9]';
+				break;
+			case 'a':
+				pattern+='[A-Z]';
+				break;
+			case 'n':
+				pattern+='[0-9]';
+				break;
+		}
+		pattern+='{'+minocc+','+maxocc+'}$';
+	} else {
+		if(format!=null) pattern=format.replace(/N/g,"[0-9]");
+		pattern=pattern.replace(/L/g,"[A-Z]");
+		pattern=pattern.replace(/X/g,"[A-Z0-9]");
+	}
+	return new RegExp(pattern,"i");
+			
+},			
+		
+// ---------- getField   method ------------------------------------------------		
+getField: function (xpath,root){
+	var f = new Object();
+	f.maxlength=this.dom.getXmlValueAtName(this.dom.xmlNodes[root],xpath + '/lengthMax');
+	f.minlength=this.dom.getXmlValueAtName(this.dom.xmlNodes[root],xpath + '/lengthMin');
+	f.type=this.dom.getXmlValueAtName(this.dom.xmlNodes[root],xpath + '/type');
+	return f;
+			
+},			
+		
+// ---------- sortNumber   method ------------------------------------------------		
+sortNumber: function (array){
+	return (array!=null)?array.sort(this.compare):null;
+			
+},			
+		
+// ---------- compare   method ------------------------------------------------		
+compare: function (a,b){
+	return a-b;
+			
+},			
+		
+// ---------- indexOfArray   method ------------------------------------------------		
+indexOfArray: function (array,value){
+	for (var i=0;i<array.length;i++){
+		if(array[i] == value) {
+			return i;
+		}
+	}
+	return -1;
+			
+},			
+		
+// ---------- getZIndex   method ------------------------------------------------		
+getZIndex: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+      if (dom.Sec_zIndex){
+            dom.Sec_zIndex-=1;           
+      }else{
+            dom.Sec_zIndex=1000;
+      }
+      
+      return dom.Sec_zIndex;
+			
+},			
+// ---------- drawHeader   method ------------------------------------------------		
+drawHeader: function () {			
+var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};			
+this.setText('Globales_Bhtcs_Seguridad_Utils');			
+			
+var s = new Array();			
+this.initialize();			
+
+return s.join(' ');			
+},			
+		
+// ---------- drawBody   method ------------------------------------------------		
+drawBody: function (d,l) {return this.dom.getBodyValue(d,l,this);},		
+// ---------- paint   method ------------------------------------------------		
+paint: function (draw,init) {var s = new Array();s.push( this.getFullVarName() );return this.dom.paint(draw,init,this,s.join(''));			
+}			
+
+}
+
+;dom.onLoaded('Globales_Bhtcs_Seguridad_Utils');

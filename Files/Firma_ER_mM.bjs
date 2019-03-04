@@ -1,0 +1,3538 @@
+
+dom.getImports(['Globales_Bhtcs_Seguridad_Utils'],'Globales_Bhtcs_Seguridad_Firma_ER');
+
+/*110613*/
+function Globales_Bhtcs_Seguridad_Firma_ER_m (id,parent,l,s,m) {	
+this.main=parent.main;this.dom=this.main.dom;this.dom.setLocation(this,l);	
+this._M1='Globales_Bhtcs_Seguridad_Firma_ER';this.jsVarName = id;	
+this.parent = parent;	
+this.text = new Array();this.setText = this.base.setText;this.getFullVarName = this.base.getFullVarName;this.getId = this.base.getId;this.getDataText = this.base.getDataText;this.getMain = this.base.getMain;this.openWindowPopup = this.base.openWindowPopup;this.dom.getLinks(['Globales_Styles_Intranet_13_Css_Master_css','Globales_Styles_Firma_ER_css'],'Globales_Bhtcs_Seguridad_Firma_ER'+id,true);	
+this.xpathOperationData = null;	
+this.xpathDataName = null;	
+this.xpathDataValue = null;	
+this.xpahtOtpInfoText = null;	
+this._CVSRevision = '$Revision: 1.16.2.55 $';	
+this.xmltree = 'root';	
+this.Qualification_name = 'BHTC_FIRMA_ER';	
+this.bhtcVersion = 1;	
+this.NOT_ENROLLED = 'notEnrolled';	
+this.CLAVE_POSICIONES = 'positionsAndCertificate';	
+this.DNI_E = 'DNIe';	
+this.CLAVE_SMS = 'otpSMS';	
+this.CERTIFICADO_DIGITAL = 'digitalSignature';	
+this.ITAN = 'iTAN';	
+this.OTP_HW = 'OTPHW';	
+this.PAPER_SIGNATURE = 'paperSignature';	
+this.CLAVE_PUSH = 'otpPUSH';	
+this.CAMBIO_MODO = 'cambioModo';	
+this.COMMAND_CHALLENGE_POSITIONS = 'POSITIONS';	
+this.COMMAND_CHALLENGE_DNIE = 'DNIE';	
+this.COMMAND_CHALLENGE_DIGITAL_SIGNATURE = 'DIGITAL_SIGNATURE';	
+this.RESULT_CHALLENGE_OK = 'OK';	
+this.RESULT_CHALLENGE_KO = 'KO';	
+this.showSignSelectionOnInit = false;	
+this.showSignSelectionOnAlerts = false;	
+this.xpathType = 'Type';	
+this.xpathDynPositionsValidate = 'DynPositions';	
+this.xpathPositionsValidate = 'Positions';	
+this.xpathSignedDataValidate = 'SignedDataValidate';	
+this.xpathUniversalSignature = 'UniversalSignature';	
+this.xpathValidateOTP = 'ValidateOTP';	
+this.xpathSignatureError = 'SIGNATUREERROR';	
+this.xpathVerificationError = '';	
+this.xpathUID = '';	
+this.xpathAliasRepository = '';	
+this.xpathConcepto = '';	
+this.imageResources = [URI+'/Globales/Images/FirmaERicoLupa.gif',URI+'/Globales/Images/IcoDNI.gif',URI+'/Globales/Images/FirmaERalerta.gif'];	
+this.styleResources = this.dom.getRPath(this._M1,id,'css');	
+this.width = '591px';	
+this.height = 'auto';	
+this.codebase = URI + '/Globales/Recursos/Security/';	
+this.codebaseAxSign = URI + '/Globales/Recursos/Security/FirmaAccionista.cab';	
+this.appletServerPort = 80;	
+this.isER = false;	
+this.aliasRepository = '';	
+this.cmdAliasCfg = 'BHTCCFG';	
+this.isSecondSign = false;	
+this.headTitleEnabled = true;	
+this.titleEnabled = true;	
+this.informationEnabled = true;	
+this.messageTimeOTP = 3000;	
+this.messageTimeSentOTP = 20000;	
+this.messageTimeOTPPush = 3000;	
+this.messageTimeSentOTPPush = 20000;	
+this.endSignature = 'END_SIGNATURE';	
+this.appletTimeOut = '10000';	
+this.NETSCAPE_NAV = 'Netscape';	
+this.FIREFOX_NAV = 'Firefox';	
+this.IEXPLORER_NAV = 'Microsoft Internet Explorer';	
+this.SAFARI_NAV = 'Safari';	
+this.OPERA_NAV = 'Opera';	
+this.headTitle = ['confirmation/componentMessages/head.title','Si está conforme con los datos,','If you agree with the data,','Se está conforme com os dados,','Stimmen die Daten überein,'];	
+this.headTitle2 = ['confirmation/componentMessages/head.title2',' por favor, confirme la operación:','please confirm the operation:','por favor, confirme a operação:','Bitte bestätigen Sie die Transaktion:'];	
+this.alertErrorDNIe = ['confirmation/componentMessages/alert.error.dnie','Alerta: se ha producido un error durante la operación.|Por favor, vuelva a intentarlo en unos instantes, utilice si está disponible otro modo de firma o, compruebe que dispone de la versión de Java 1.5 o superior.','Alert: an error may have occurred during the operation.|Please try again after a few minutes or use another type of signature or make sure you are using Java 1.5 or later.','Atenção: ocorreu um erro durante a operação.|Por favor, aguarde uns minutos e volte a tentar, utilize outro tipo de assinatura ou verifique se a sua versão de Java é 1.5 ou posterior.','Alarm: bei dem Vorgang ist ein Fehler aufgetreten.|Bitte versuchen Sie es in wenigen Minuten erneut, verwenden Sie eine andere Unterschriftenart oder prüfen Sie, ob Sie über die Javaversion 1.5 oder höher verfügen.'];	
+this.alertNoBrowser = ['confirmation/componentMessages/alert.no.browser','Alerta: su navegador no es compatible con el servicio.|Por favor, actualice la versión de su navegador o, utilice otro navegador distinto o, si está disponible, elija otro modo de firma.','Alert: your browser is not compatible with the service.|Please update the version of your browser or use a different browser or select another signature mode if one is available.','Atenção: o seu Web Browser não é compatível com o serviço. Por favor, actualize a versão do seu Web browser, utilize outro Web browser diferente ou, se disponível, escolha outro modo de assinatura.','Alarm: ihr Browser ist nicht mit diesem Service kompatibel.|Bitte aktualisieren Sie Ihre Browserversion oder verwenden Sie einen anderen Browser, oder, falls verfügbar, wählen Sie eine andere Unterschriftenart.'];	
+this.alertNoScript = ['confirmation/componentMessages/alert.no.script','Alerta: su navegador no permite la ejecución de scripts.|Por favor, modifique su configuración en el menú Herramientas de su navegador o, si está disponible, utilice otro modo de firma.|Si cambia la configuración, cierre todas las sesiones de su navegador y vuelva a entrar para poder realizar su operación.','Alert: your browser does not support script running.|Please modify your configuration in the Tools menu of your browser or use another signature mode.|If you change the configuration, close all the sessions of your browser and re-enter in order to run the operation.','Alerta: o seu navegador não permite a execução de scripts.|Por favor, modifique a configuração no menu Ferramentas do seu navegador ou utilize outro modo de assinatura.|Se mudar a configuração, feche todas as sessões do seu navegador e volte a entrar para poder efectuar a sua operação.','Alarm: ihr Browser erlaubt nicht die Durchführung von Skripts.|Bitte ändern Sie Ihre Einstellung im Menü ?Werkzeuge? Ihres Browsers oder verwenden Sie eine andere Unterschriftsform. |Bei Änderung der Einstellung schließen Sie alle Sitzungen des Browsers und loggen Sie sich erneut an um die Transaktion durchzuführen.'];	
+this.alertError = ['confirmation/componentMessages/alert.error','Alerta: se ha producido un error durante la operación.|Por favor, vuelva a intentarlo en unos instantes o, si está disponible, utilice otra opción.','Alert: an error may have occurred during the operation.|Please try again after a few minutes or use another option if one is available.','Atenção: ocorreu um erro durante a operação.|Por favor, aguarde uns minutos e volte a tentar ou, se disponível, utilize outra opção.','Alarm: bei dem Vorgang ist ein Fehler aufgetreten.|Bitte versuchen Sie es in wenigen Minuten erneut, oder falls verfügbar, verwenden Sie eine andere Option.'];	
+this.noAliasERConfiguredError = ['confirmation/componentMessages/noaliaser.configured','No existe el alias de repositorio externo configurado.','No existe el alias de repositorio externo configurado.','No existe el alias de repositorio externo configurado.','No existe el alias de repositorio externo configurado.'];	
+this.alertNotEnrolled = ['confirmation/componentMessages/alert.error.notEnrolled','Alerta: El usuario no tiene ningún tipo de firma registrado.|Por favor, póngase en contacto con los administradores para disponer de un tipo de firma.','Alert: The user has no registered signature method.|Please contact the administrators to obtain a signature method.','Alerta: O utilizador não tem nenhum método de assinatura registado.|Por favor, contacte os administradores para dispor de um método de assinatura.','Warnung: Für den Nutzer ist keine Unterschriftsmethode registriert.|Bitte setzten Sie sich wegen der Unterschriftsmethode mit den Administratoren in Verbindung.'];	
+this.alertNoSignatureType = ['confirmation/componentMessages/alert.error.no.sign','Alerta: No se encuentra ningún tipo de firma disponible.|Por favor, llame al Centro de Atención al Cliente.','Alert: No available signature type was found.|Please contact the Customer Support Centre.','Alerta: não se encontra nenhum tipo de assinatura disponível.|Por favor, ligue para o centro de atendimento ao cliente.','Alarm: Es ist keine Unterschrift verfügbar.|Bitte rufen Sie beim Kundenservice an.'];	
+this.positionTitle = ['confirmation/componentMessages/position.title','Clave por posiciones','Password by Positions','Código por posições','Schlüssel nach Positionen'];	
+this.positionInfo = ['confirmation/componentMessages/position.info','Introduzca las posiciones ($0$) y ($1$) de su clave de firma','Enter positions ($0$) and ($1$) for your signature password','Introduza as posições ($0$) e ($1$) do seu código de assinatura.','Die Positionen ($0$) und ($1$)des Unterschriftenschlüssels eingeben'];	
+this.positionHidden = ['confirmation/componentMessages/position.hidden','*','*','*','*'];	
+this.digitalTitle = ['confirmation/componentMessages/digital.title','Certificado digital','Digital Certificate','Certificado digital','Digitales Zertifikat'];	
+this.digitalInfo = ['confirmation/componentMessages/digital.info','Haga clic sobre la lupa para seleccionar el certificado digital','Click the magnifying glass to select the digital certificate','Clique na lupa para seleccionar o certificado digital','Klicken Sie zur Auswahl des digitalen Zertifikates auf die Lupe'];	
+this.digitalIssuer = ['confirmation/componentMessages/digital.issuer','Emitido por:','Issued by:','Emitido por:','Ausgestellt von:'];	
+this.digitalReceiver = ['confirmation/componentMessages/digital.receiver','Emitido para:','Issued for:','Emitido para:','Ausgestellt für:'];	
+this.digitalPassword = ['confirmation/componentMessages/digital.password','Contraseña elem. elegido','Password for selected elem.','Palavra-passe elem. escolhido','Passwort Element gewählt'];	
+this.digitalActivexOk = ['confirmation/componentMessages/digital.activex.ok','Su certificado ha sido seleccionado.','Your certificate was selected.','O seu certificado foi seleccionado.','Ihr Zertifikat wurde ausgewählt.'];	
+this.digitalAlertNoCertificate = ['confirmation/componentMessages/digital.alert.no.certificate','Alerta: no tiene ningún certificado digital.|Por favor, valide la operación eligiendo, si está disponible, otro modo de firma.','Alert: you do not have any digital certificate.|Please validate the operation by selecting another signature mode.','Alerta: não tem nenhum certificado digital.|Por favor, valide a operação escolhendo outro modo de assinatura.','Alarm: es gibt kein digitales Zertifikat.|Bitte bestätigen Sie die gewählte Transaktion mit einer anderen Unterschriftsart.'];	
+this.digitalTableTitle = ['confirmation/componentMessages/digital.table.title','Selección de Certificado Digital','=Digital Certificate Selection','Selecção de Certificado Digital','Auswahl des digitalen Zertifikates'];	
+this.digitalTableInfo = ['confirmation/componentMessages/digital.table.info','Haga click sobre la fila para seleccionar el certificado','Click the row in order to select the certificate','Clique na linha para seleccionar o certificado','Klicken Sie zur Auswahl des Zertifikates auf die Reihe'];	
+this.digitalTableIssuer = ['confirmation/componentMessages/digital.table.issuer','Emitido por|Emitido por','Issued by|Issued by','Emitido por|Emitido por','Ausgestellt von |Ausgestellt von'];	
+this.digitalTableReceiver = ['confirmation/componentMessages/digital.table.receiver','Emitido para|Emitido para','Issued for|Issued for','Emitido para|Emitido para','usgestellt für|Ausgestellt für'];	
+this.digitalTableIssuedate = ['confirmation/componentMessages/digital.table.issuedate','Emisión|Emisión','Issue|Issue','Emissão|Emissão','Ausgabe|Ausgabe'];	
+this.digitalTableExpirationdate = ['confirmation/componentMessages/digital.table.expirationdate','Válido|Válido','Valid|Valid','Válido|Válido','Geprüft|Geprüft'];	
+this.digitalTableVersion = ['confirmation/componentMessages/digital.table.version','Ver.|Versión','Ver.|Version','Ver.|Versão','Ver.|Version'];	
+this.digitalTableSerialnumber = ['confirmation/componentMessages/digital.table.serialnumber','Nº Serie|Número de serie','Serial No.|Serial Number','N.º Série|Número de série','Seriennr. | Seriennummer'];	
+this.digitalTableCancel = ['confirmation/componentMessages/digital.table.cancel','Cancelar','Cancel','Cancelar','Abbrechen'];	
+this.digitalTableLastPage = ['confirmation/componentMessages/digital.table.lastpage','anteriores','last','last','last'];	
+this.digitalTableLastPageArrow = ['confirmation/componentMessages/digital.table.lastpagearrow','&lt;&lt;','&lt;&lt;','&lt;&lt;','&lt;&lt;'];	
+this.digitalTableNextPage = ['confirmation/componentMessages/digital.table.nextpage','siguientes','next','next','next'];	
+this.digitalTableNextPageArrow = ['confirmation/componentMessages/digital.table.nextpagearrow','&gt;&gt;','&gt;&gt;','&gt;&gt;','&gt;&gt;'];	
+this.digitalActivexParam0 = ['confirmation/componentMessages/digital.activex.param.0','Sistema de firma electrónica','Electronic Signature System','Sistema de Assinatura electrónica','System der elektronischen Unterschrift'];	
+this.digitalActivexParam1 = ['confirmation/componentMessages/digital.activex.param.1','Aceptar','Ok','Ok','Bestätigen'];	
+this.digitalActivexParam2 = ['confirmation/componentMessages/digital.activex.param.2','Cancelar','Cancel','Cancelar','Abbrechen'];	
+this.digitalActivexParam3 = ['confirmation/componentMessages/digital.activex.param.3','Selección de Certificados de firma','Signature Certificate Selection','Selecção de Certificados de Assinatura','Auswahl der Unterschriftszertifikate'];	
+this.digitalActivexParam4 = ['confirmation/componentMessages/digital.activex.param.4','Si desea firma pulse aceptar y si no pulse cancelar','If you wish to sign, click OK and if not, click Cancel','Se desejar assinatura clique em OK, caso contrário clique em Cancelar','Wünschen Sie die Unterschrift drücken Sie annehmen, andernfalls abbrechen'];	
+this.smsTitle = ['confirmation/componentMessages/sms.title','Clave por SMS','Password via SMS','Código por SMS','Schlüssel per SMS'];	
+this.smsInfoKey = ['confirmation/componentMessages/sms.info.key','Clave OTP recibida por SMS:','OTP Key received via SMS:','Código OTP recebido por SMS:','OTP-Schlüssel per SMS erhalten:'];	
+this.smsSendingSMSMessage = ['confirmation/componentMessages/sms.sendingSMSMessage','Se está enviando la clave OTP a su teléfono móvil.','The OTP key is being sent to your mobile phone.','O código OTP está a ser enviado para o seu telefone móvel.','Der OTP-Schlüssel wird an Ihr Mobiltelefon gesendet.'];	
+this.smsSentSMSMessage = ['confirmation/componentMessages/sms.smsSentSMSMessage','Se ha enviado la clave OTP a su teléfono móvil hace unos instantes. Si no la ha recibido aún, reinicie la operación.','The OTP key has been sent to your mobile phone...','O código OTP está a ser enviado para o seu telefone móvel.','Der OTP-Schlüssel wird an Ihr Mobiltelefon gesendet.'];	
+this.pushTitle = ['confirmation/componentMessages/push.title','Clave por Push','Password via Push','Código por Push','Schlüssel per Push'];	
+this.pushInfoKey = ['confirmation/componentMessages/push.info.key','Clave OTP recibida por Push:','OTP Key received via Push:','Código OTP recebido por Push:','OTP-Schlüssel per Push erhalten:'];	
+this.pushSendingPushMessage = ['confirmation/componentMessages/push.sendingPushMessage','Se está enviando la clave OTP a su dispositivo.','The OTP key is being sent to your device.','O código OTP está a ser enviado para o seu telefone móvel.','Der OTP-Schlüssel wird an Ihr Mobiltelefon gesendet.'];	
+this.pushSentPushMessage = ['confirmation/componentMessages/push.pushSentPushMessage','Se ha enviado la clave OTP a su dispositivo hace unos instantes. Si no la ha recibido aún, reinicie la operación.','The OTP key has been sent to your device...','O código OTP está a ser enviado para o seu telefone móvel.','Der OTP-Schlüssel wird an Ihr Mobiltelefon gesendet.'];	
+this.dnieTitle = ['confirmation/componentMessages/dnie.title','DNIe','Electronic ID Card','BI electrónico','Ausweis'];	
+this.dnieIssuer = ['confirmation/componentMessages/dnie.issuer','Emitido por:','Issued by:','Emitido por','Ausgestellt von:'];	
+this.dnieReceiver = ['confirmation/componentMessages/dnie.receiver','Emitido para:','Issued for:','Emitido para','Ausgestellt für:'];	
+this.dnieDetecting = ['confirmation/componentMessages/dnie.detecting','Detectando DNIe. Por favor, espere...','Checking for DNIe. Please wait...','Detectando DNIe. Por favor, espere...','Detectando Ausweis. Por favor, bitte...'];	
+this.dnieAlertNoCardreader = ['confirmation/componentMessages/dnie.alert.no.cardreader','Alerta: no se ha encontrado el lector de tarjetas o no está configurado.|Por favor, compruebe su lector de tarjetas y seleccione de nuevo DNI electrónico.','Alert: The card reader could not be found or it has not been configured.|Please check your card reader and select Electronic ID Card once again.','Alerta: não foi encontrado ou não está configurado o leitor de cartões.|Por favor, verifique o leitor de cartões e seleccione de novo BI electrónico.','Alarm: Der Kartenleser wurde nicht gefunden oder ist nicht konfiguriert. | Bitte prüfen Sie ihren Kartenleser und wählen Sie erneuet Elektronischer Ausweis aus.'];	
+this.dnieAlertNoDni = ['confirmation/componentMessages/dnie.alert.no.dni','Alerta: no se ha detectado el DNIe insertado en el lector.|Por favor, introduzca su DNIe en el lector y seleccione de nuevo DNI electrónico.','Alert: No Electronic ID Card was detected in the reader.|Please enter your Electronic ID Card in the reader and select Electronic ID Card again.','Alerta: não foi detectado o BI electrónico inserido no leitor.|Por favor, introduza o seu BI electrónico no leitor e seleccione de novo BI electrónico.','Alarm: Der in den Leser eingefügte Ausweis wurde nicht gefunden. | Bitte geben Sie ihren Ausweis in den Leser ein und wählen Sie erneut elektronischer Ausweis.'];	
+this.itanTitle = ['confirmation/componentMessages/itan.title','Clave iTAN','Key via iTAN','Código por ITAN','Schlüssel per ITAN'];	
+this.itanInfoKey = ['confirmation/componentMessages/itan.info.key','Clave iTAN:','iTAN Key:','Código iTAN:','iTAN-Schlüssel erhalten:'];	
+this.itanCallingWebService = ['confirmation/componentMessages/itan.callingWebService','Solicitando clave iTAN. Por favor. espere ...','Recovering the iTAN key. Please wait...','A pedir chave iTAN. Por favor, aguarde...','iTAN-Schlüssel wird beantragt. Bitte warten...'];	
+this.itanInfo = ['confirmation/componentMessages/itan.info','Por favor, introduzca la clave iTAN con el numero: ($0$)','Enter iTAN key ($0$) for your signature password','Introduza a iTAN ($0$) do seu código de assinatura.','Die iTANen ($0$) des Unterschriftenschlüssels eingeben'];	
+this.OTPHWTitle = ['confirmation/componentMessages/OTPHW.title','Clave OTP Hw','Key via OTP Hw','Código por OTP Hw','Schlüssel per OTP Hw'];	
+this.OTPHWInfoKey = ['confirmation/componentMessages/OTPHW.info.key','Clave OTP Hw:','OPT Hw Key:','Código OTP Hw:','OTP Hw-Schlüssel erhalten:'];	
+this.OTPHWCallingWebService = ['confirmation/componentMessages/OTPHW.callingWebService','Solicitando clave OTP Hw. Por favor. espere ...','Recovering the OTP Hw key. Please wait...','A pedir código OTP Hw. Por favor, aguarde...','OTP Hw-Schlüssel wird beantragt. Bitte warten...'];	
+this.OTPHWInfo = ['confirmation/componentMessages/OTPHW.info','Por favor, introduzca la clave OTP generada por su dispositivo','Enter OTP Hw key ($0$) for your signature password','Introduza a OTP Hw ($0$) do seu código de assinatura.','Die Otpen Hw ($0$) des Unterschriftenschlüssels eingeben'];	
+this.paperSignatureTitle = ['confirmation/componentMessages/paperSignature.title','Firma en destino','Signing at Destination','Assinatura no destino','Unterschrift vor Ort'];	
+this.paperSignatureInfo = ['confirmation/componentMessages/paperSignature.info','Su contrato tiene la modalidad de firma en destino. Para visualizar e imprimir el documento que autoriza a su sucursal a ejecutar esta orden, pulse sobre el botón Confirmar.','Your contract possesses the modality of requiring a signature at destination. To view or print the document authorising the branch to execute this order, click the Confirm button.','O seu contrato tem a modalidade de assinatura no destino. Para visualizar e imprimir o documento que autoriza a sua sucursal a executar esta ordem, prima o botão Confirmar.','Ihr Vertrag hat die Modalität Unterschrift vor Ort. Um das Dokument, das Ihre Filiale zur Ausführung des Auftrages berechtigt anzuzeigen oder zu drucken, klicken Sie auf Bestätigen.'];	
+this.comboITAN = ['confirmation/componentMessages/combo.iTAN','Clave iTAN','iTAN Password','Chave iTAN','iTAN-Schlüssel'];	
+this.comboOTPHw = ['confirmation/componentMessages/combo.OTPHw','Clave OTP HW','HW OTP Key','Código OTP Hw','OTP Hw-Schlüssel'];	
+this.comboCertificadoDigital = ['confirmation/componentMessages/combo.CertificadoDigital','Certificado Digital','Digital Certificate','Certificado digital','Digitales Zertifikat'];	
+this.comboDNIe = ['confirmation/componentMessages/combo.DNIe','DNIe','Electronic ID Card','BI electrónico','Ausweis'];	
+this.comboSMS = ['confirmation/componentMessages/combo.SMS','Clave por SMS','Password via SMS','Código por SMS','Schlüssel per SMS'];	
+this.comboPUSH = ['confirmation/componentMessages/combo.PUSH','Clave por Push','Password via Push','Código por Push','Schlüssel per Push'];	
+this.comboClavePorPosiciones = ['confirmation/componentMessages/combo.Positions','Clave por posiciones','Password by Positions','Código por posições','Schlüssel nach Positionen'];	
+this.comboPaperSignature = ['confirmation/componentMessages/combo.PaperSignature','Firma en destino','Signing at Destination','Assinatura no destino','Unterschrift vor Ort'];	
+this.changesignTitle = ['confirmation/componentMessages/changesign.title','Cambio de firma','Signature Change','Modificação de assinatura','Änderung der Unterschrift'];	
+this.changesignLink = ['confirmation/componentMessages/changesign.link','Cambiar modo de firma','Change Signature Mode','Modificar modo de assinatura','Unterschriftsart ändern'];	
+this.changesignComboSelection = ['confirmation/componentMessages/changesign.combo.selection','Seleccionar...','Select...','Seleccionar...','Auswählen...'];	
+this.changesignSubmit = ['confirmation/componentMessages/changesign.submit','Ir','Go','Ir','Ir'];	
+this.changesignSelectionInfo = ['confirmation/componentMessages/changesign.selection.info','Seleccione un modo de firma:','Select a signature mode:','Seleccione um modo de assinatura:','Wählen Sie eine Unterschriftsart aus:'];	
+this.imgAlertaDesc = ['confirmation/componentMessages/img.alerta.desc','Icono alerta','Alert Icon','Ícone alerta','Warnsymbol'];	
+this.imgDniDesc = ['confirmation/componentMessages/img.dni.desc','Icono DNIe','Electronic ID Card Icon','Ícone BI electrónico','Ausweissymbol'];	
+this.helpareaKeySignatureDesc = ['confirmation/componentMessages/helparea.keySignature.desc','Información para la clave por posiciones','','',''];	
+this.helpareaKeySignatureLinkDesc = ['confirmation/componentMessages/helparea.keySignature.link.desc','www.gruposantander.es','','',''];	
+this.helpareaKeySignatureLinkUrl = ['confirmation/componentMessages/helparea.keySignature.link.url','http://www.gruposantander.es','','',''];	
+this.helpareaKeySignatureLinkNota = ['confirmation/componentMessages/helparea.keySignature.link.nota','*','*','*','*'];	
+this.helpareaOtpSMSDesc = ['confirmation/componentMessages/helparea.otpSMS.desc','One Time Passcode Information line 0800 111 4229*','One Time Passcode Information line 0800 111 4229*','One Time Passcode Information line 0800 111 4229*','One Time Passcode Information line 0800 111 4229*'];	
+this.helpareaOtpSMSLinkDesc = ['confirmation/componentMessages/helparea.otpSMS.link.desc','Call charge information','Call charge information','Call charge information','Call charge information'];	
+this.helpareaOtpSMSLinkUrl = ['confirmation/componentMessages/helparea.otpSMS.link.url','http://www.santander.co.uk/csgs/Satellite?appID=abbey.internet.Abbeycom&c=Page&canal=CABBEYCOM&cid=1210607652654&empr=Abbeycom&leng=en_GB&pagename=Abbeycom%2FPage%2FWC_ACOM_TemplateA2','http://www.santander.co.uk/csgs/Satellite?appID=abbey.internet.Abbeycom&c=Page&canal=CABBEYCOM&cid=1210607652654&empr=Abbeycom&leng=en_GB&pagename=Abbeycom%2FPage%2FWC_ACOM_TemplateA2','http://www.santander.co.uk/csgs/Satellite?appID=abbey.internet.Abbeycom&c=Page&canal=CABBEYCOM&cid=1210607652654&empr=Abbeycom&leng=en_GB&pagename=Abbeycom%2FPage%2FWC_ACOM_TemplateA2','http://www.santander.co.uk/csgs/Satellite?appID=abbey.internet.Abbeycom&c=Page&canal=CABBEYCOM&cid=1210607652654&empr=Abbeycom&leng=en_GB&pagename=Abbeycom%2FPage%2FWC_ACOM_TemplateA2'];	
+this.helpareaOtpSMSLinkNota = ['confirmation/componentMessages/helparea.otpSMS.link.nota','*','*','*','*'];	
+this.helpareaOtpPushDesc = ['confirmation/componentMessages/helparea.otpPUSH.desc','One Time Passcode Information line 0800 111 4229*','One Time Passcode Information line 0800 111 4229*','One Time Passcode Information line 0800 111 4229*','One Time Passcode Information line 0800 111 4229*'];	
+this.helpareaOtpPushLinkDesc = ['confirmation/componentMessages/helparea.otpPUSH.link.desc','Call charge information','Call charge information','Call charge information','Call charge information'];	
+this.helpareaOtpPushLinkUrl = ['confirmation/componentMessages/helparea.otpPUSH.link.url','http://www.santander.co.uk/csgs/Satellite?appID=abbey.internet.Abbeycom&c=Page&canal=CABBEYCOM&cid=1210607652654&empr=Abbeycom&leng=en_GB&pagename=Abbeycom%2FPage%2FWC_ACOM_TemplateA2','http://www.santander.co.uk/csgs/Satellite?appID=abbey.internet.Abbeycom&c=Page&canal=CABBEYCOM&cid=1210607652654&empr=Abbeycom&leng=en_GB&pagename=Abbeycom%2FPage%2FWC_ACOM_TemplateA2','http://www.santander.co.uk/csgs/Satellite?appID=abbey.internet.Abbeycom&c=Page&canal=CABBEYCOM&cid=1210607652654&empr=Abbeycom&leng=en_GB&pagename=Abbeycom%2FPage%2FWC_ACOM_TemplateA2','http://www.santander.co.uk/csgs/Satellite?appID=abbey.internet.Abbeycom&c=Page&canal=CABBEYCOM&cid=1210607652654&empr=Abbeycom&leng=en_GB&pagename=Abbeycom%2FPage%2FWC_ACOM_TemplateA2'];	
+this.helpareaOtpPushLinkNota = ['confirmation/componentMessages/helparea.otpPUSH.link.nota','*','*','*','*'];	
+this.helpareaDigitalSignatureDesc = ['confirmation/componentMessages/helparea.digitalSignature.desc','Información para la firma con certificado digital','','',''];	
+this.helpareaDigitalSignatureLinkDesc = ['confirmation/componentMessages/helparea.digitalSignature.link.desc','www.gruposantander.es','','',''];	
+this.helpareaDigitalSignatureLinkUrl = ['confirmation/componentMessages/helparea.digitalSignature.link.url','http://www.gruposantander.es','','',''];	
+this.helpareaDigitalSignatureLinkNota = ['confirmation/componentMessages/helparea.digitalSignature.link.nota','*','*','*','*'];	
+this.helpareaDNIeDesc = ['confirmation/componentMessages/helparea.DNIe.desc','Información para la firma con DNIe','','',''];	
+this.helpareaDNIeLinkDesc = ['confirmation/componentMessages/helparea.DNIe.link.desc','www.gruposantander.es','','',''];	
+this.helpareaDNIeLinkUrl = ['confirmation/componentMessages/helparea.DNIe.link.url','http://www.gruposantander.es','','',''];	
+this.helpareaDNIeLinkNota = ['confirmation/componentMessages/helparea.DNIe.link.nota','*','*','*','*'];	
+this.helpareaItanDesc = ['confirmation/componentMessages/helparea.itan.desc','Información para la firma ITAN','','',''];	
+this.helpareaItanLinkDesc = ['confirmation/componentMessages/helparea.itan.link.desc','www.gruposantander.es','','',''];	
+this.helpareaItanLinkUrl = ['confirmation/componentMessages/helparea.itan.link.url','http://www.gruposantander.es','','',''];	
+this.helpareaItanLinkNota = ['confirmation/componentMessages/helparea.itan.link.nota','*','*','*','*'];	
+this.helpareaOTPHWDesc = ['confirmation/componentMessages/helparea.OTPHW.desc','Información para la firma OTPHW','','',''];	
+this.helpareaOTPHWLinkDesc = ['confirmation/componentMessages/helparea.OTPHW.link.desc','www.gruposantander.es','','',''];	
+this.helpareaOTPHWLinkUrl = ['confirmation/componentMessages/helparea.OTPHW.link.url','http://www.gruposantander.es','','',''];	
+this.helpareaOTPHWLinkNota = ['confirmation/componentMessages/helparea.OTPHW.link.nota','*','*','*','*'];	
+this.helpareaPaperSignatureDesc = ['confirmation/componentMessages/helparea.PaperSignature.desc','Información para la firma en destino','Information on sign at destination','Informação para a assinatura no destino','Information für Unterschrift vor Ort'];	
+this.helpareaPaperSignatureLinkDesc = ['confirmation/componentMessages/helparea.PaperSignature.link.desc','www.gruposantander.es','www.santander.co uk','santander.pt','santander.de'];	
+this.helpareaPaperSignatureLinkUrl = ['confirmation/componentMessages/helparea.PaperSignature.link.url','http://www.gruposantander.es','http://www.santander.co uk','http://www.santander.pt','http://www.santander.de'];	
+this.helpareaPaperSignatureLinkNota = ['confirmation/componentMessages/helparea.PaperSignature.link.nota','*','*','*','*'];	
+this.linkInfoAreaKeySignatureDesc = ['confirmation/componentMessages/linkInfoArea.keySignature.text','www.gruposantander.es','www.santander.co uk','santander.pt','santander.de'];	
+this.linkInfoAreaKeySignatureUrl = ['confirmation/componentMessages/linkInfoArea.keySignature.url','http://www.gruposantander.es','http://www.santander.co uk','http://www.santander.pt','http://www.santander.de'];	
+this.linkInfoAreaKeySignatureTarget = ['confirmation/componentMessages/linkInfoArea.keySignature.target','_blank','_blank','_blank','_blank'];	
+this.fieldPositionType = 'password';	
+this.spa = ['spa','es-ES','spa-ES'];	
+this.eng = ['eng','en-GB','eng-GB'];	
+this.por = ['por','pt-PT','por-PT'];	
+this.ger = ['ger','deu','de-DE','ger-DE','deu-DE'];	
+this.excludedAutoPos = [9,13,16,17,18,19,20,27,33,34,35,36,37,38,39,40,45,46,91,92,93,112,113,114,115,116,117,118,119,120,121,122,123,144,145];	
+this.certificatePagBase = 0;	
+this.certificatePagSize = 10;	
+this.visualConfigurationDefault = 'default';	
+this.helpAreaSignature = [false,false,false,false,false,false,false,false];	
+this.linkInformationArea = [false];	
+this.technicalError = null;	
+this.visibility = false;	
+this.headText = '';	
+this.noCertificatedMessage = '';	
+this.errorMessage = '';	
+this.searchText = '';	
+this.labelText = '';	
+this.archive = '';	
+this.browser = '';	
+this.code = '';	
+this.ActiveXTxt = '';	
+this.beginMessageText = '';	
+this.concatMessageText = '';	
+this.endMessageText = '';	
+this.hiddenCharText = '';	
+this.alertEmptyText = '';	
+this.verificationModeText = '';	
+this.ListaInfoMsg = '';	
+this.noCertificated = '';	
+this.printMode = '';	
+this.tiempo = '';	
+this.evVALIDACION_OK = dom.getInstanceBase().nullEventRaiser;
+this.evVALIDACION_KO = dom.getInstanceBase().nullEventRaiser;
+}
+Globales_Bhtcs_Seguridad_Firma_ER_m.prototype = { base: dom.getInstanceBase(),			
+		
+// ---------- resetDataContext   method ------------------------------------------------		
+resetDataContext: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	dom.setValueNode(this.xmltree,this.xpathUniversalSignature,'');
+	dom.setValueNode(this.xmltree,this.xpathSignedDataValidate,'');
+	dom.setValueNode(this.xmltree,this.xpathDynPositionsValidate,'');
+	dom.setValueNode(this.xmltree,this.xpathPositionsValidate,'');
+	dom.setValueNode(this.xmltree,this.xpathValidateOTP,'');
+	dom.setValueNode(this.xmltree,this.xpathType,'');
+			
+},			
+		
+// ---------- uploadDataToContext   method ------------------------------------------------		
+uploadDataToContext: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	try{
+		this.resetDataContext();
+		switch (this._verificationType){
+			case this.CLAVE_SMS: 
+				var dato=this.dom.getOut().getElementById('input_1').value;
+				dom.setValueNode(this.xmltree,this.xpathValidateOTP,dato);
+
+				if (this._randomIdentifier != ""){
+					dato += this.endSignature + this._randomIdentifier;
+				}
+
+				dom.setValueNode(this.xmltree,this.xpathUniversalSignature,dato);
+				dom.setValueNode(this.xmltree,this.xpathSignedDataValidate,dato);
+				break;
+			case this.CLAVE_POSICIONES: 
+				var value="";
+				var aValues=new Array();
+				var aPositions=new Array();
+				var ok=true;
+				for (var i=0;i<this._positions.length && ok;i++){
+					value=this.dom.getOut().getElementById(this.getId(this._positions[i])).value;
+					aValues.push(value);
+					aPositions.push(this._positions[i]);
+				}
+
+				var dato=aPositions.join(" ")+":"+aValues.join(" ");
+
+				if (this._randomIdentifier != ""){
+					dato += this.endSignature + this._randomIdentifier;
+				}
+
+				dom.setValueNode(this.xmltree,this.xpathUniversalSignature,dato);
+				dom.setValueNode(this.xmltree,this.xpathSignedDataValidate,dato);
+				dom.setValueNode(this.xmltree,this.xpathDynPositionsValidate,aPositions.join(" "));
+				dom.setValueNode(this.xmltree,this.xpathPositionsValidate,aValues.join(" "));
+
+				break;
+			case this.CERTIFICADO_DIGITAL: 
+				var vSign='';
+				var password='';
+				if (this._AcceptedCA!=null) {
+
+					var AppletCD = this.dom.getOut().getElementById(this.getId('AppletCD'));
+
+		    	    if (this._isPasswordRequired){
+			    	    password = this.dom.getOut().getElementById('contrasena').value;
+		    		}
+
+					try {
+			        	vSign=AppletCD.signByIndex(this._dataToBeSigned,this._idCertificado,password);
+			        } catch(er) {
+			        	if (this._idCertificado){
+			        		certificados = AppletCD.getCertificates(this._AcceptedCA);
+			        		vSign = AppletCD.sign(this._dataToBeSigned,certificados.get(this._idCertificado),password);
+			        	}else{
+			        		vSign=null;
+			        	}
+			        }
+
+		            if (vSign!=null) {
+						var str = new String(vSign);
+						var newvSign=str.replace(/\r|\n|\r\n/g, "");
+
+						if (this._randomIdentifier != ""){
+							newvSign += this.endSignature + this._randomIdentifier;
+						}
+
+						dom.setValueNode(this.xmltree,this.xpathUniversalSignature,newvSign);
+						dom.setValueNode(this.xmltree,this.xpathSignedDataValidate,newvSign);
+					}else{
+						this.reset();
+						dom.setValueNode(this.xmltree,this.xpathUniversalSignature,"");
+						dom.setValueNode(this.xmltree,this.xpathSignedDataValidate,"");
+					}
+
+				} else {
+					if (this.AxVSign!=null){
+						var str = new String(this.AxVSign);
+						var newvSign=str.replace(/\r|\n|\r\n/g, "");
+
+						if (this._randomIdentifier != ""){
+							newvSign += this.endSignature + this._randomIdentifier;
+						}
+
+						dom.setValueNode(this.xmltree,this.xpathUniversalSignature,newvSign);
+						dom.setValueNode(this.xmltree,this.xpathSignedDataValidate,newvSign);
+					} else {
+						this.reset();
+						dom.setValueNode(this.xmltree,this.xpathUniversalSignature,"");
+						dom.setValueNode(this.xmltree,this.xpathSignedDataValidate,"");
+					}
+				}
+				break;
+			case this.DNI_E: 
+				var vSign='';
+				var AppletCD = this.dom.getOut().getElementById(this.getId('AppletCD'));
+				try{
+			        vSign=AppletCD.signByIndex(this._dataToBeSigned,0,password);
+			    }catch(er){
+			    	certificados = AppletCD.getDNIeSignatureCertificate();
+			        vSign = AppletCD.sign(this._dataToBeSigned,certificados.get(this._idCertificado),password);
+			    }
+
+	    	    if (vSign!=null){
+					var str = new String(vSign);
+					var newvSign=str.replace(/\r|\n|\r\n/g, "");
+
+					if (this._randomIdentifier != ""){
+						newvSign += this.endSignature + this._randomIdentifier;
+					}
+
+					dom.setValueNode(this.xmltree,this.xpathUniversalSignature,newvSign);
+					dom.setValueNode(this.xmltree,this.xpathSignedDataValidate,newvSign);
+				}else{
+					this.reset();
+					dom.setValueNode(this.xmltree,this.xpathUniversalSignature,"");
+					dom.setValueNode(this.xmltree,this.xpathSignedDataValidate,"");
+				}
+				break;
+			case this.ITAN: 
+				var dato = this.dom.getOut().getElementById('input_2').value;
+
+				if (this._randomIdentifier != ""){
+					dato += this.endSignature + this._randomIdentifier;
+				}
+
+				dom.setValueNode(this.xmltree,this.xpathUniversalSignature,dato);
+				dom.setValueNode(this.xmltree,this.xpathSignedDataValidate,dato);
+				break;
+			case this.OTP_HW: 
+				var dato = this.dom.getOut().getElementById('input_3').value;
+
+				
+                if(this.txtOperationData != "") {
+					dato =  dato + "START_OPERATION_DATA" + this.txtOperationData;
+				}
+
+				if (this._randomIdentifier != ""){
+					dato += this.endSignature + this._randomIdentifier;
+				}
+
+				dom.setValueNode(this.xmltree,this.xpathUniversalSignature,dato);
+				dom.setValueNode(this.xmltree,this.xpathSignedDataValidate,dato);
+				break;
+			case this.CLAVE_PUSH: 
+				var dato = this.dom.getOut().getElementById('input_4').value;
+				dom.setValueNode(this.xmltree,this.xpathValidateOTP,dato);
+
+				if (this._randomIdentifier != "") {
+					dato += this.endSignature + this._randomIdentifier;
+				}
+
+				dom.setValueNode(this.xmltree,this.xpathUniversalSignature,dato);
+				dom.setValueNode(this.xmltree,this.xpathSignedDataValidate,dato);
+				break;
+		}
+
+		dom.setValueNode(this.xmltree,this.xpathType,this._verificationType);
+		var ev = this.dom.getInstanceEvent(this,"evVALIDACION_OK");
+		ev.raise();
+		result=true;
+	} catch(e) {
+		this.reset();
+		var ev = this.dom.getInstanceEvent(this,"evVALIDACION_KO");
+		ev.raise();
+		result=false;
+	}
+	return result;
+
+			
+},			
+		
+// ---------- isIE   method ------------------------------------------------		
+isIE: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	    return ((navigator.appName == this.IEXPLORER_NAV)
+				|| ((navigator.appName == this.NETSCAPE_NAV)
+					&& (new RegExp("Trident/.*rv:([0-9]{1,}[\\.0-9]{0,})").exec(navigator.userAgent) != null)));
+			
+},			
+		
+// ---------- getNavigator   method ------------------------------------------------		
+getNavigator: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var navegador='';
+
+	if (this.isIE()){
+		navegador=this.IEXPLORER_NAV;
+	}else if(navigator.appName==this.OPERA_NAV){
+		navegador=this.OPERA_NAV;
+	}else{
+		var userAgent=navigator.userAgent;
+		if (userAgent.indexOf(this.SAFARI_NAV)!=-1){
+			navegador=this.SAFARI_NAV;
+		}else if (userAgent.indexOf(this.FIREFOX_NAV)!=-1){	
+			
+			navegador=this.NETSCAPE_NAV;
+		}
+	}
+	
+	return navegador;
+			
+},			
+		
+// ---------- getAliasParam   method ------------------------------------------------		
+getAliasParam: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var aliasParam="";
+
+	
+	var aliasMapeo=""
+	if (this.xpathAliasRepository != ''){
+		aliasMapeo=this.dom.getXmlValueAtName(this.dom.xmlNodes['root'],this.xpathAliasRepository);
+	}
+
+	var aliasCfg=this.aliasRepository;
+	if (aliasMapeo!=null && aliasMapeo!=""){
+		aliasParam=aliasMapeo;
+		this.aliasRepository=aliasMapeo;
+	}else{
+		aliasParam=aliasCfg;
+	}
+
+	return aliasParam;
+			
+},			
+		
+// ---------- getUIDParam   method ------------------------------------------------		
+getUIDParam: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var uidParam="";
+	var uidMapeo=this.dom.getXmlValueAtName(this.dom.xmlNodes['root'],this.xpathUID);
+
+	if (uidMapeo!=null && uidMapeo!="")	uidParam=uidMapeo;
+
+	return uidParam;
+			
+},			
+		
+// ---------- getCsrfToken   method ------------------------------------------------		
+getCsrfToken: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var tokenParam= "";
+	var csrfToken = this.dom.getXmlValueAtName(this.dom.xmlNodes[this._root],'csrfToken');
+	if (csrfToken != null && csrfToken != ""){
+		tokenParam = "&csrfToken=" + csrfToken;
+	}
+
+	return tokenParam;
+			
+},			
+		
+// ---------- setCfgAJAX   method ------------------------------------------------		
+setCfgAJAX: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var cfg=null;
+	var cmdSrvMessage = null;
+	var ajaxName=this.dom.getXmlValueAtName(this.dom.xmlNodes[this._root],'ajaxBhtcName');
+	if (ajaxName!=null && ajaxName!=""){
+		try{
+			var http = this.getAjaxObject();
+			http.abort();
+
+			var cmd=this.cmdAliasCfg;
+			var bhtcNameParam="&bhtcName="+ajaxName;
+			var isERParam="";
+			var uidParam="";
+			var aliasParam="";
+			
+			if (this._tokenParam == "") {
+				isERParam="&isER="+this.isER;
+				uidParam="&UID="+this.getUIDParam();
+				aliasParam="&alias="+this.getAliasParam();
+			}
+
+			var versionParam="&bhtcVersion="+this.bhtcVersion;
+
+			http.open("POST", this.getApplication(cmd+bhtcNameParam+isERParam+uidParam+aliasParam+versionParam+this._tokenParam), false);
+			http.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+			http.setRequestHeader("Cache-Control", "no-cache");
+			http.send('');
+		}catch(ex){
+			throw new Error(this.getAttributeTagLib(this.alertError));
+		}
+
+		if (http.status != 200){
+			throw new Error(this.getAttributeTagLib(this.alertError));
+		}
+
+		cfg=http.responseXML;
+		cmdSrvMessage=cfg.getElementsByTagName('message')[0];
+
+		if (cmdSrvMessage!=null){
+			var type=cmdSrvMessage.getAttribute('type');
+			if (type=='error'){
+				var nodeMsg=cmdSrvMessage.firstChild.nodeValue;
+				throw new Error(nodeMsg);
+			}
+		}else if(cfg!=null && cfg.getElementsByTagName('COMPONENT')[0]!=null) {
+			var newRoot="SCBTO_"+this._root;
+			dom.xmlNodes[newRoot]=cfg.getElementsByTagName('COMPONENT')[0];
+			this._root=newRoot;
+
+			
+			var aliasERCfg = dom.getXmlNode(dom.xmlNodes[this._root],'NO_ALIAS_ER_CONFIGURED');
+			if (aliasERCfg!=null){
+				this._noAliasConfigured=true;
+			}
+		}
+	}
+			
+},			
+		
+// ---------- getConfigurationChallenges   method ------------------------------------------------		
+getConfigurationChallenges: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	this._dataToBeSigned = this.dom.getXmlValueAtName(this.dom.xmlNodes[this._root],'confirmation/dataToBeSigned');
+	this._totalNumberPositions =0;
+	this._positions=new Array();
+	if (this.dom.getXmlValueAtName(this.dom.xmlNodes[this._root],'confirmation/totalNumberPositions')!=null){
+		this._totalNumberPositions = parseInt(this.dom.getXmlValueAtName(this.dom.xmlNodes[this._root],'confirmation/totalNumberPositions'),10);
+	}
+
+	var fea_Root35 = this.dom.getXmlNodes(this.dom.xmlNodes[this._root],'confirmation/positions/position');			
+for(var fea_N35=0;fea_N35<fea_Root35.length;fea_N35++) {			
+var fea_Node35 = fea_Root35[fea_N35];			
+
+		this._positions.push(parseInt(this.dom.getXmlValueAtName(fea_Node35, '.')			
+,10));
+	}			
+
+			
+},			
+		
+// ---------- initialize   method ------------------------------------------------		
+initialize: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	this._idioma=dom.lang;
+
+	this._navegador=this.getNavigator();
+	
+	this._root;
+	
+	this.setValueIsER();
+
+	this._isCfgChallengeSaved=false;
+	
+	if (this.getAliasParam()=="" || this.getAliasParam()=="local"){
+		this.getConfigurationChallenges();
+		this._isCfgChallengeSaved=true;
+	}
+
+	
+	this._tokenParam = this.getCsrfToken();
+
+	this.technicalError=null
+	try{
+		
+		this.setCfgAJAX();
+	}catch(e) {
+		this.technicalError=e.message;
+	}
+
+	if (!this.technicalError){
+		
+		var signatureServiceVersion=this.dom.getXmlValueAtName(this.dom.xmlNodes[this._root],'confirmation/signatureVersion');
+		this._isNewSignatureVersion=(signatureServiceVersion!=null && signatureServiceVersion!="");
+
+		
+		if (!this._isNewSignatureVersion && !this._isCfgChallengeSaved){
+			this.getConfigurationChallenges();
+			this._isCfgChallengeSaved=true;
+		}
+
+		if(this.xpahtOtpInfoText != null) {
+			this.txtInformativo = this.dom.getXmlValueAtName(this.dom.xmlNodes['root'],this.xpahtOtpInfoText);
+		}
+
+		this.operationData = this.dom.getXmlNodes(this.dom.xmlNodes[this.xmltree],this.xpathOperationData);
+		this.operationDataChild = this.operationData[0];
+		this.txtOperationData = "";
+		this.separator = "|";
+		if (this.operationDataChild != undefined) {
+			for (var i=0;i<this.operationDataChild.length;i++) {
+				var iteracion = this.operationDataChild[i];
+	        	var clave =this.dom.getXmlValueAtName(iteracion, this.xpathDataName);
+
+		        var valor =this.dom.getXmlValueAtName(iteracion, this.xpathDataValue);
+
+		        clave = this.base64_encode(clave);
+		        valor = this.base64_encode(valor);
+
+	    	    if(this.txtOperationData != "") {
+	        		this.txtOperationData = this.txtOperationData + this.separator;
+				}
+
+	        	this.txtOperationData = this.txtOperationData + clave + this.separator + valor;
+	    	}
+		}
+		
+		this._isVirtualKeyboard=false;
+		var virtualKeyboard=this.dom.getXmlValueAtName(this.dom.xmlNodes[this._root],'confirmation/showVirtualKeyboard');
+
+		if (virtualKeyboard && virtualKeyboard!='false'){
+			this._isVirtualKeyboard=true;
+		}
+
+		
+		this._AcceptedCA = this.dom.getXmlValueAtName(this.dom.xmlNodes[this._root],'confirmation/AcceptedCA');
+
+		this._verificationMode = "";
+		var secondVerificationMode = this.dom.getXmlValueAtName(this.dom.xmlNodes[this._root],'confirmation/secondVerification/signatureVerificationMode');
+		if (secondVerificationMode != null && secondVerificationMode != "" && this.isSecondSign){
+			this._verificationMode = this.dom.getXmlValueAtName(this.dom.xmlNodes[this._root],'confirmation/secondVerification/signatureVerificationMode');
+		}else{
+			this._verificationMode = this.dom.getXmlValueAtName(this.dom.xmlNodes[this._root],'confirmation/signatureVerificationMode');
+		}
+
+		var firstStepIdentifier = this.dom.getXmlValueAtName(this.dom.xmlNodes[this._root],'confirmation/modeIdentifier');
+		var secondStepIdentifier = this.dom.getXmlValueAtName(this.dom.xmlNodes[this._root],'confirmation/secondVerification/modeIdentifier');
+
+		this._randomIdentifier = "";
+		if (this.isSecondSign && secondStepIdentifier != null && secondStepIdentifier != ""){
+			this._randomIdentifier = secondStepIdentifier;
+		}else{
+			if (firstStepIdentifier != null && firstStepIdentifier != ""){
+				this._randomIdentifier = firstStepIdentifier;
+			}
+		}
+
+		
+		this._erroresOTP = new Array();
+		var erroresSMS = dom.getXmlNode(dom.xmlNodes[this._root],'confirmation/errors');
+		var fea_Root36 = this.dom.getXmlNodes(this.dom.xmlNodes[this._root],'confirmation/errors/error');			
+for(var i=0;i<fea_Root36.length;i++) {			
+var fea_Node36 = fea_Root36[i];			
+
+			var errorOTP=new Object();
+			errorOTP.descripcion=this.dom.getXmlValueAtName(fea_Node36, '.')			
+;
+			errorOTP.id=erroresSMS.getElementsByTagName("error")[i].getAttribute("id");
+			this._erroresOTP.push(errorOTP);
+		}			
+
+
+		
+		var msgTimeOTP=this.dom.getXmlValueAtName(this.dom.xmlNodes[this._root],'confirmation/messageTimeOTP');
+		if (msgTimeOTP!=null){
+			this.messageTimeOTP=parseInt(msgTimeOTP)*1000;
+		}
+
+		
+		var msgTimeSentOTP=this.dom.getXmlValueAtName(this.dom.xmlNodes[this._root],'confirmation/messageTimeSentOTPSMS');
+		if (msgTimeSentOTP!=null){
+			this.messageTimeSentOTP=parseInt(msgTimeSentOTP)*1000;
+		}
+
+		
+		this.isShowMsgTimeSentOTPSMS=false;
+		var showMsgSentOTP=this.dom.getXmlValueAtName(this.dom.xmlNodes[this._root],'confirmation/showMessageSentOTPSMS');
+
+		if (showMsgSentOTP && showMsgSentOTP!='false'){
+			this.isShowMsgTimeSentOTPSMS=true;
+		}
+
+		
+		var maxRetriesOTP=this.dom.getXmlValueAtName(this.dom.xmlNodes[this._root],'confirmation/maxRetriesOTP');
+		this._maxRetriesOTP=0;
+		this._isMTan=false;
+		if (maxRetriesOTP != null && maxRetriesOTP > 0){
+			this._isMTan=true;	
+			this._maxRetriesOTP=parseInt(maxRetriesOTP);
+		}
+
+		
+		this._erroresOTPPush = new Array();
+		var erroresPush = dom.getXmlNode(dom.xmlNodes[this._root],'confirmation/pushErrors');
+		var fea_Root37 = this.dom.getXmlNodes(this.dom.xmlNodes[this._root],'confirmation/pushErrors/error');			
+for(var i=0;i<fea_Root37.length;i++) {			
+var fea_Node37 = fea_Root37[i];			
+
+			var errorOTPPush = new Object();
+			errorOTPPush.descripcion=this.dom.getXmlValueAtName(fea_Node37, '.')			
+;
+			errorOTPPush.id=erroresPush.getElementsByTagName("error")[i].getAttribute("id");
+			this._erroresOTPPush.push(errorOTPPush);
+		}			
+
+
+		
+		var msgTimeOTPPush = this.dom.getXmlValueAtName(this.dom.xmlNodes[this._root],'confirmation/messageTimeOTPPush');
+		if (msgTimeOTPPush!=null){
+			this.messageTimeOTPPush=parseInt(msgTimeOTPPush)*1000;
+		}
+
+		
+		var msgTimeSentOTPPush = this.dom.getXmlValueAtName(this.dom.xmlNodes[this._root],'confirmation/messageTimeSentOTPPush');
+		if (msgTimeSentOTPPush!=null){
+			this.messageTimeSentOTPPush=parseInt(msgTimeSentOTPPush)*1000;
+		}
+
+		
+		this.isShowMsgTimeSentOTPPush = false;
+		var showMsgSentOTPPush = this.dom.getXmlValueAtName(this.dom.xmlNodes[this._root],'confirmation/showMessageSentOTPPush');
+		if (showMsgSentOTPPush && showMsgSentOTPPush!='false'){
+			this.isShowMsgTimeSentOTPPush=true;
+		}
+
+		
+		var maxRetriesOTPPush = this.dom.getXmlValueAtName(this.dom.xmlNodes[this._root],'confirmation/maxRetriesOTPPush');
+		this._maxRetriesOTPPush = 0;
+		this._isOTPPush=false;
+		if (maxRetriesOTPPush != null && maxRetriesOTPPush > 0) {
+			this._isOTPPush = true;
+			this._maxRetriesOTPPush = parseInt(maxRetriesOTPPush);
+		}
+
+		
+	    var headTitleXML = this.dom.getXmlValueAtName(this.dom.xmlNodes[this._root],'confirmation/headTitleEnabled');
+		if (headTitleXML!='false'){
+			this.headTitleEnabled=true;
+		}else{
+			this.headTitleEnabled=false;
+		}
+
+		
+	    var titleXML = this.dom.getXmlValueAtName(this.dom.xmlNodes[this._root],'confirmation/titleEnabled');
+	    if (titleXML!='false')  {
+	        this.titleEnabled = true;
+	    }else{
+	        this.titleEnabled = false;
+	    }
+
+	    
+	    var informationXML = this.dom.getXmlValueAtName(this.dom.xmlNodes[this._root],'confirmation/informationEnabled');
+	    if (informationXML!='false') {
+	        this.informationEnabled = true;
+	    } else {
+	        this.informationEnabled = false;
+	    }
+
+		
+		this._verificationError=this.dom.getXmlValueAtName(this.dom.xmlNodes['root'],this.xpathVerificationError);
+		dom.setValueNode('root', this.xpathVerificationError, '');
+
+		this._type=this.dom.getXmlValueAtName(this.dom.xmlNodes['root'],this.xpathType);
+		dom.setValueNode('root', this.xpathType, '');
+
+		
+		this._fieldsPositions=this.utils.getField("confirmation/fieldPosition",this._root);
+
+		
+		if (this._verificationMode!=null && this._verificationMode!=''){
+			this._availableSignatures=this.getAvailableSignatures();
+		}else{
+			this._availableSignatures=new Array();
+		}
+
+		this._totalNumberCertificates;
+
+		
+		this._listaCertificados;
+
+		this._verificationType;
+		this._idCertificado;
+		this._isPasswordRequired=false;
+
+		
+		var nodoModoPositions = this.dom.getXmlValueAtName(this.dom.xmlNodes[this._root],'confirmation/positionSignComp');
+		var nodoModoOTP = this.dom.getXmlValueAtName(this.dom.xmlNodes[this._root],'confirmation/otpSignComp');
+		var nodoModoOTPPush = this.dom.getXmlValueAtName(this.dom.xmlNodes[this._root],'confirmation/otpPushSignComp');
+		var nodoModoITAN = this.dom.getXmlValueAtName(this.dom.xmlNodes[this._root],'confirmation/itanSignComp');
+	    var nodoModoOTPHW = this.dom.getXmlValueAtName(this.dom.xmlNodes[this._root],'confirmation/OTPHWSignComp'); 
+
+		if (nodoModoPositions != null && nodoModoPositions != '') {
+			this.fieldPositionType = nodoModoPositions;
+		}
+
+		if (nodoModoOTPPush != null && nodoModoOTPPush != '') {
+			this.fieldOTPPushType = nodoModoOTPPush;
+		}
+
+		if (nodoModoOTP != null && nodoModoOTP != '') {
+			this.fieldOTPType = nodoModoOTP;
+		}
+
+		if (nodoModoITAN != null && nodoModoITAN != '') {
+			this.fieldiTANType = nodoModoITAN;
+		} else {
+			this.fieldiTANType = "text";
+		}
+
+		if (nodoModoOTPHW != null && nodoModoOTPHW !='') {
+		    this.fieldOTPHWType = nodoModoOTPHW;
+		} else {
+			this.fieldOTPHWType = "text";
+		}
+
+		
+		var _showSignSelectionWhenIdle = this.dom.getXmlValueAtName(this.dom.xmlNodes[this._root],'confirmation/showSignSelectionWhenIdle');
+		if(_showSignSelectionWhenIdle != null && _showSignSelectionWhenIdle != '') {
+			this.showSignSelectionOnInit = _showSignSelectionWhenIdle.toLowerCase() == 'true';
+			this.showSignSelectionOnAlerts = _showSignSelectionWhenIdle.toLowerCase() == 'true';
+		}
+
+		
+	    var helpAreaPositionsNodo = this.dom.getXmlValueAtName(this.dom.xmlNodes[this._root],'confirmation/helpAreaSignature/keySignature');
+	    var helpAreaDigitalSignatureNodo = this.dom.getXmlValueAtName(this.dom.xmlNodes[this._root],'confirmation/helpAreaSignature/digitalSignature');
+	    var helpAreaDNIeNodo = this.dom.getXmlValueAtName(this.dom.xmlNodes[this._root],'confirmation/helpAreaSignature/DNIe');
+	    var helpAreaOtpSMSNodo = this.dom.getXmlValueAtName(this.dom.xmlNodes[this._root],'confirmation/helpAreaSignature/otpSMS');
+	    var helpAreaITANNodo = this.dom.getXmlValueAtName(this.dom.xmlNodes[this._root],'confirmation/helpAreaSignature/iTAN');
+	    var helpAreaOTPHWNodo = this.dom.getXmlValueAtName(this.dom.xmlNodes[this._root],'confirmation/helpAreaSignature/OTPHW');
+	    var helpAreaPaperSignatureNodo = this.dom.getXmlValueAtName(this.dom.xmlNodes[this._root],'confirmation/helpAreaSignature/paperSignature');
+	    var helpAreaOtpPushNodo = this.dom.getXmlValueAtName(this.dom.xmlNodes[this._root],'confirmation/helpAreaSignature/otpPUSH');
+
+		if (helpAreaPositionsNodo != null && (helpAreaPositionsNodo.toLowerCase() != this.visualConfigurationDefault)) {
+			this.helpAreaSignature[0]= helpAreaPositionsNodo.toLowerCase() == 'true';
+		}
+		if (helpAreaDigitalSignatureNodo != null && (helpAreaDigitalSignatureNodo.toLowerCase() != this.visualConfigurationDefault)) {
+			this.helpAreaSignature[1] = helpAreaDigitalSignatureNodo.toLowerCase() == 'true';
+		}
+		if (helpAreaDNIeNodo != null && (helpAreaDNIeNodo.toLowerCase() != this.visualConfigurationDefault)) {
+			this.helpAreaSignature[2] = helpAreaDNIeNodo.toLowerCase() == 'true';
+		}
+		if (helpAreaOtpSMSNodo != null && (helpAreaOtpSMSNodo.toLowerCase() != this.visualConfigurationDefault)) {
+			this.helpAreaSignature[3] = helpAreaOtpSMSNodo.toLowerCase() == 'true';
+		}
+		if (helpAreaITANNodo != null && (helpAreaITANNodo.toLowerCase() != this.visualConfigurationDefault)) {
+			this.helpAreaSignature[4] = helpAreaITANNodo.toLowerCase() == 'true';
+		}
+		if (helpAreaOTPHWNodo != null && (helpAreaOTPHWNodo.toLowerCase() != this.visualConfigurationDefault)) {
+			this.helpAreaSignature[5] = helpAreaOTPHWNodo.toLowerCase() == 'true';
+		}
+		if (helpAreaPaperSignatureNodo != null && (helpAreaPaperSignatureNodo.toLowerCase() != this.visualConfigurationDefault)) {
+			this.helpAreaSignature[6] = helpAreaPaperSignatureNodo.toLowerCase() == 'true';
+		}
+		if (helpAreaOtpPushNodo != null && (helpAreaOtpPushNodo.toLowerCase() != this.visualConfigurationDefault)) {
+			this.helpAreaSignature[7] = helpAreaOtpPushNodo.toLowerCase() == 'true';
+		}
+
+		
+		var linkInformationAreaNode = this.dom.getXmlValueAtName(this.dom.xmlNodes[this._root],'confirmation/linkInformationArea/keySignature');
+		if (linkInformationAreaNode != null) {
+			this.linkInformationArea[0] = linkInformationAreaNode.toLowerCase() == 'true';
+		}
+	}
+
+			
+},			
+		
+// ---------- onload   method ------------------------------------------------		
+onload: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+
+	
+	if (!this.visibility){
+	 	return;
+	}
+
+	if (this.technicalError && this.technicalError!=''){
+		var newLineCharacter = (this.technicalError.indexOf('|') != -1) ? '|' : '.';
+		this.showAlert(this.technicalError, newLineCharacter, true);
+	}else if (this._noAliasConfigured){ this.dom.getOut().getElementById('noAliasConfiguredFirmaER').style.display='';
+	}else{
+		if (this._verificationError!=null && this._verificationError!=''){
+			this.showAlert(this._verificationError,'.', true);
+			this._verificationError=null;
+		}else{
+		
+			if (this._availableSignatures==null || this._availableSignatures.length<=0){
+				
+				this.showAlert(this.getAttributeTagLib(this.alertNoSignatureType),'', false);
+			}else{
+				if(this._availableSignatures[0] == this.NOT_ENROLLED){
+					
+					this.showAlert(this.getAttributeTagLib(this.alertNotEnrolled),'', false);
+				} else if(this.showSignSelectionOnInit) {
+					
+					this.showMode(this.CAMBIO_MODO);
+				} else {
+					
+					this.showMode(this._availableSignatures[0]);
+				}
+			}
+		}
+	}
+	if (this._isVirtualKeyboard){
+    	this.virtualKeyUp();
+    }
+			
+},			
+		
+// ---------- virtualKeyUp   method ------------------------------------------------		
+virtualKeyUp: function (id){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var padre=this.getId();
+	padre=padre.substring(0,padre.length-1);
+	padre=padre.replace("main_", "main.");
+	var nodPadre=this.dom.getOut().getElementById(padre);
+	nodPadre.style.zIndex=this.utils.getZIndex();
+			
+},			
+		
+// ---------- setValueIsER   method ------------------------------------------------		
+setValueIsER: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	
+	this._root = 'dynamicConfigurationER.BHTC_FIRMA_ER';
+	var root_noisER = 'dynamicConfiguration.BHTC_FIRMA_ER';
+	this.isER = true;
+
+	
+	var isERRoot = dom.getXmlNode(dom.xmlNodes[this._root],'confirmation')
+	
+	if(isERRoot == null) {
+		this.isER = false;
+		this._root = root_noisER;
+	}
+			
+},			
+		
+// ---------- getAvailableSignatures   method ------------------------------------------------		
+getAvailableSignatures: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var signatures=new Array();
+	try {
+		
+		var selectableSignatures=new Array();
+
+		
+		var verificationModeArray = this._verificationMode.split(':');
+
+		if (this._isNewSignatureVersion) {
+			signatures=verificationModeArray;
+		} else {
+			
+			
+			var xmlnode=dom.getXmlNode(dom.xmlNodes[this._root],'confirmation/verificationTypes')
+			if (xmlnode!=null) {
+				var verificationTypes=xmlnode.childNodes;
+				if (this._verificationMode!="selectable") {
+					for(i=0;i<verificationModeArray.length;i++) {
+						var mode=verificationModeArray[i];
+						var ok=false;
+						for (j=0;j<verificationTypes.length && !ok;j++) {
+							if (verificationTypes[j].attributes) {
+								var verificationType=verificationTypes[j].nodeName;
+								var verificationTypeValue=dom.getValueNode(this._root,'confirmation/verificationTypes/'+verificationType);
+								if (verificationTypeValue==mode) {
+									ok=true;
+									signatures.push(verificationTypeValue);
+								}
+							}
+						}
+					}
+				} else { 
+					for(i=0;i<verificationTypes.length;i++) {
+						if (verificationTypes[i].attributes) {
+							var verificationType=verificationTypes[i].nodeName;
+							var verificationTypeValue=dom.getValueNode(this._root,'confirmation/verificationTypes/'+verificationType);
+							signatures.push(verificationTypeValue);
+						}
+					}
+				}
+			}
+		}
+	} catch (e) {
+		return null;
+	}
+	return signatures;
+			
+},			
+		
+// ---------- isJavaEnabled   method ------------------------------------------------		
+isJavaEnabled: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var enabled=true;
+	try{
+		enabled=navigator.javaEnabled();
+	}catch(e){ 
+		return true;
+	}
+	return enabled;
+			
+},			
+		
+// ---------- showAlert   method ------------------------------------------------		
+showAlert: function (alerta,saltoLinea,retryable){
+	this._alerta=alerta;
+	if (saltoLinea==null || saltoLinea=='') {
+		saltoLinea='|';
+	}
+	var arrayAlerta=this._alerta.split(saltoLinea);
+	var uno=arrayAlerta[0];
+	if (saltoLinea!=null && saltoLinea=='.') uno+='.';
+	
+	var dos='';
+	var finLinea='';
+	for (i=1;i<arrayAlerta.length;i++){
+		dos+=finLinea+arrayAlerta[i];
+		(saltoLinea=='.') ? finLinea='.' : finLinea='';
+	} this.dom.getOut().getElementById('alerta').innerHTML = uno; this.dom.getOut().getElementById('alertaDesc').innerHTML = dos;
+
+	if (this._availableSignatures!=null && this._availableSignatures.length>0) {
+		if (retryable && this._type!=null && this._type==this.CLAVE_SMS && this._maxRetriesOTP!=0) {
+			
+			this.showMode(this.CLAVE_SMS);
+		} else if (retryable && this._type!=null && this._type==this.CLAVE_PUSH && this._maxRetriesOTPPush!=0) {
+			
+			this.showMode(this.CLAVE_PUSH);
+		} else if (this._availableSignatures[0]==this.NOT_ENROLLED) {
+			
+			this.showMode(this.NOT_ENROLLED);
+		} else if (retryable && this._type != null && this.type != '' && !this.showSignSelectionOnAlerts) {
+			
+			this.showMode(this._type);
+		} else {
+			
+			this.showMode(this.CAMBIO_MODO);
+		}
+	} else {
+		this.showMode('');
+	}
+
+	this._type=null;
+			
+},			
+		
+// ---------- getAttributeTagLib   method ------------------------------------------------		
+getAttributeTagLib: function (att,attDefault,params){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var valor='';
+
+	if (att!=null && attDefault!=null && att.length>=2 && attDefault.length>=2) {
+		var valTagLib=this.dom.getXmlValueAtName(this.dom.xmlNodes[this._root],attDefault[0]);
+
+		if (valTagLib!=null && valTagLib!='') {
+			valor=valTagLib;
+		} else {
+			valor=attDefault[1];
+			if (this.utils.indexOfArray(this.spa,this._idioma)!=-1) {
+				valor=attDefault[1];
+			} else if (this.utils.indexOfArray(this.eng,this._idioma)!=-1) {
+				valor=attDefault[2];
+			} else if (this.utils.indexOfArray(this.por,this._idioma)!=-1) {
+				valor=attDefault[3];
+			} else if (this.utils.indexOfArray(this.ger,this._idioma)!=-1) {
+				valor=attDefault[4];
+			}
+		}
+	}
+	if (att!=null && attDefault == null && att.length>=2) {
+		var valTagLib=this.dom.getXmlValueAtName(this.dom.xmlNodes[this._root],att[0]);
+
+		if (valTagLib!=null && valTagLib!='') {
+			valor=valTagLib;
+		} else {
+			valor=att[1];
+			if (this.utils.indexOfArray(this.spa,this._idioma)!=-1) {
+				valor=att[1];
+			} else if (this.utils.indexOfArray(this.eng,this._idioma)!=-1) {
+				valor=att[2];
+			} else if (this.utils.indexOfArray(this.por,this._idioma)!=-1) {
+				valor=att[3];
+			} else if (this.utils.indexOfArray(this.ger,this._idioma)!=-1) {
+				valor=att[4];
+			}
+		}
+	}
+	if (params!=null && params.length>0) {
+		valor=this.replaceValAtt(valor,params);
+	}
+
+	return valor;
+			
+},			
+		
+// ---------- replaceValAtt   method ------------------------------------------------		
+replaceValAtt: function (valAtt,params){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var valor='';
+	var index=0;
+	var index2=0;
+	while (valAtt.indexOf('($')>0){
+		index=parseInt(valAtt.indexOf('($'));
+		index2=parseInt(valAtt.indexOf('$)'));
+		var indexParam=valAtt.substring(index+2,index2);
+		var st='';
+
+		if (params[indexParam]!=null) st=params[indexParam];
+
+		valor+=valAtt.substring(0,index)+st;
+		valAtt=valAtt.substring(index2+2);
+	}
+	valor += valAtt;
+
+	return valor;
+			
+},			
+		
+// ---------- showMode   method ------------------------------------------------		
+showMode: function (mode){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+
+	this._verificationType=mode;
+
+	
+	if (this._alerta!=null && this._alerta!='') { this.dom.getOut().getElementById('alertas').style.display='';
+	} else { this.dom.getOut().getElementById('alertas').style.display='none';
+	}
+
+	if (mode!=null && mode=='') { this.dom.getOut().getElementById('borde_rojo').style.display='none'; this.dom.getOut().getElementById('cabecera_Firma_ER').style.display='none'; this.dom.getOut().getElementById('clavePosiciones').style.display='none'; this.dom.getOut().getElementById('sms').style.display='none'; this.dom.getOut().getElementById('push').style.display='none'; this.dom.getOut().getElementById('certificadoDigital').style.display='none'; this.dom.getOut().getElementById('dnie').style.display='none'; this.dom.getOut().getElementById('dnie2').style.display='none'; this.dom.getOut().getElementById('itan').style.display='none'; this.dom.getOut().getElementById('cambiaModoLink').style.display='none'; this.dom.getOut().getElementById('cambiaModo').style.display='none';
+	} else if (mode!=null && mode == this.NOT_ENROLLED) { this.dom.getOut().getElementById('borde_rojo').style.display='none'; this.dom.getOut().getElementById('cabecera_Firma_ER').style.display='none'; this.dom.getOut().getElementById('clavePosiciones').style.display='none'; this.dom.getOut().getElementById('sms').style.display='none'; this.dom.getOut().getElementById('push').style.display='none'; this.dom.getOut().getElementById('certificadoDigital').style.display='none'; this.dom.getOut().getElementById('dnie').style.display='none'; this.dom.getOut().getElementById('dnie2').style.display='none'; this.dom.getOut().getElementById('itan').style.display='none'; this.dom.getOut().getElementById('cambiaModoLink').style.display='none'; this.dom.getOut().getElementById('cambiaModo').style.display='none';	
+	} else if (mode!=null && mode!='') {
+		if (this._availableSignatures!=null && this._availableSignatures.length > 1){ this.dom.getOut().getElementById('cambiaModoLink').style.display='';
+		}
+
+		
+		this.resetFields();
+		this.showArea();
+		switch(mode) {
+			case this.CLAVE_POSICIONES:
+				this.getChallenge(this.COMMAND_CHALLENGE_POSITIONS);
+				this.showPositions(); this.dom.getOut().getElementById('sms').style.display='none'; this.dom.getOut().getElementById('push').style.display='none'; this.dom.getOut().getElementById('certificadoDigital').style.display='none'; this.dom.getOut().getElementById('dnie').style.display='none'; this.dom.getOut().getElementById('dnie2').style.display='none'; this.dom.getOut().getElementById('cambiaModo').style.display='none'; this.dom.getOut().getElementById('itan').style.display='none'; this.dom.getOut().getElementById('OTPHW').style.display='none'; this.dom.getOut().getElementById('paperSignature').style.display='none'; this.dom.getOut().getElementById('clavePosiciones').style.display='';
+				if (this.helpAreaSignature[0]) { this.dom.getOut().getElementById("helpAreaDesc_seg").innerHTML=this.getAttributeTagLib(this.helpareaKeySignatureDesc); this.dom.getOut().getElementById("helpAreaLinkUrl_seg").innerHTML=this.getAttributeTagLib(this.helpareaKeySignatureLinkDesc); this.dom.getOut().getElementById("helpAreaLinkUrl_seg").href=this.getAttributeTagLib(this.helpareaKeySignatureLinkUrl); this.dom.getOut().getElementById('helpArea_seg').style.display='';
+				}
+				if(this.linkInformationArea[0]) { this.dom.getOut().getElementById("linkInformationAreaHref").innerHTML=this.getAttributeTagLib(this.linkInfoAreaKeySignatureDesc); this.dom.getOut().getElementById("linkInformationAreaHref").target=this.getAttributeTagLib(this.linkInfoAreaKeySignatureTarget); this.dom.getOut().getElementById("linkInformationAreaHref").href=this.getAttributeTagLib(this.linkInfoAreaKeySignatureUrl); this.dom.getOut().getElementById('linkInformationArea').style.display='';
+				}
+				this.reset();
+				break;
+			case this.CERTIFICADO_DIGITAL:
+				this.getChallenge(this.COMMAND_CHALLENGE_DIGITAL_SIGNATURE);
+				this.loadApplets(this.CERTIFICADO_DIGITAL); this.dom.getOut().getElementById('clavePosiciones').style.display='none'; this.dom.getOut().getElementById('sms').style.display='none'; this.dom.getOut().getElementById('push').style.display='none'; this.dom.getOut().getElementById('dnie').style.display='none'; this.dom.getOut().getElementById('dnie2').style.display='none'; this.dom.getOut().getElementById('itan').style.display='none'; this.dom.getOut().getElementById('OTPHW').style.display='none'; this.dom.getOut().getElementById('paperSignature').style.display='none'; this.dom.getOut().getElementById('cambiaModo').style.display='none';
+				if (this.helpAreaSignature[1]) { this.dom.getOut().getElementById("helpAreaDesc_seg").innerHTML=this.getAttributeTagLib(this.helpareaDigitalSignatureDesc); this.dom.getOut().getElementById("helpAreaLinkUrl_seg").innerHTML=this.getAttributeTagLib(this.helpareaDigitalSignatureLinkDesc); this.dom.getOut().getElementById("helpAreaLinkUrl_seg").href=this.getAttributeTagLib(this.helpareaDigitalSignatureLinkUrl); this.dom.getOut().getElementById('helpArea_seg').style.display='';
+				}
+				if (this._AcceptedCA!=null) {
+					if (this.getDigitalSignature()) { this.dom.getOut().getElementById('certificadoDigital').style.display='';
+						if (this._totalNumberCertificates==1){ this.dom.getOut().getElementById('unCertificado').style.display='';
+						}else{ this.dom.getOut().getElementById('nCertificados').style.display='';
+						}
+					}
+				} else {
+				
+					if (this._navegador==this.IEXPLORER_NAV) { this.dom.getOut().getElementById('certificadoDigital').style.display=''; this.dom.getOut().getElementById('activex').style.display='';
+					} else {
+						this.showAlert(this.getAttributeTagLib(this.alertNoBrowser),'', false);
+					}
+				}
+				break;
+			case this.CLAVE_SMS: this.dom.getOut().getElementById('clavePosiciones').style.display='none'; this.dom.getOut().getElementById('certificadoDigital').style.display='none'; this.dom.getOut().getElementById('dnie').style.display='none'; this.dom.getOut().getElementById('dnie2').style.display='none'; this.dom.getOut().getElementById('itan').style.display='none'; this.dom.getOut().getElementById('OTPHW').style.display='none'; this.dom.getOut().getElementById('cambiaModo').style.display='none'; this.dom.getOut().getElementById('sms').style.display=''; this.dom.getOut().getElementById('push').style.display='none'; this.dom.getOut().getElementById('paperSignature').style.display='none'; this.dom.getOut().getElementById(this.getId('textoOTP')).innerHTML='';
+				if (this.helpAreaSignature[3]) { this.dom.getOut().getElementById("helpAreaDesc_seg").innerHTML=this.getAttributeTagLib(this.helpareaOtpSMSDesc); this.dom.getOut().getElementById("helpAreaLinkUrl_seg").innerHTML=this.getAttributeTagLib(this.helpareaOtpSMSLinkDesc); this.dom.getOut().getElementById("helpAreaLinkUrl_seg").href=this.getAttributeTagLib(this.helpareaOtpSMSLinkUrl); this.dom.getOut().getElementById('helpArea_seg').style.display='';
+				}
+				
+				if(!this.displayOTPErrorMessage()) {
+					if (this._isMTan) {
+						
+						this.otpCheck();
+					} else {
+						this.getOtpSMS();
+					}
+				}
+				break;
+			case this.DNI_E:
+				this.getChallenge(this.COMMAND_CHALLENGE_DNIE);
+				this.loadApplets(this.DNI_E); this.dom.getOut().getElementById('dnie2').style.display=''; this.dom.getOut().getElementById('clavePosiciones').style.display='none'; this.dom.getOut().getElementById('certificadoDigital').style.display='none'; this.dom.getOut().getElementById('sms').style.display='none'; this.dom.getOut().getElementById('push').style.display='none'; this.dom.getOut().getElementById('itan').style.display='none'; this.dom.getOut().getElementById('OTPHW').style.display='none'; this.dom.getOut().getElementById('cambiaModo').style.display='none'; this.dom.getOut().getElementById('dnie').style.display='none';
+				if (this.helpAreaSignature[2]) { this.dom.getOut().getElementById("helpAreaDesc_seg").innerHTML=this.getAttributeTagLib(this.helpareaDNIeDesc); this.dom.getOut().getElementById("helpAreaLinkUrl_seg").innerHTML=this.getAttributeTagLib(this.helpareaDNIeLinkDesc); this.dom.getOut().getElementById("helpAreaLinkUrl_seg").href=this.getAttributeTagLib(this.helpareaDNIeLinkUrl); this.dom.getOut().getElementById('helpArea_seg').style.display='';
+				}
+				this.getDNIE();
+				break;
+			case this.ITAN: this.dom.getOut().getElementById('sms').style.display='none'; this.dom.getOut().getElementById('push').style.display='none'; this.dom.getOut().getElementById('certificadoDigital').style.display='none'; this.dom.getOut().getElementById('dnie').style.display='none'; this.dom.getOut().getElementById('dnie2').style.display='none'; this.dom.getOut().getElementById('cambiaModo').style.display='none'; this.dom.getOut().getElementById('clavePosiciones').style.display='none'; this.dom.getOut().getElementById('itan').style.display=''; this.dom.getOut().getElementById('OTPHW').style.display='none'; this.dom.getOut().getElementById('paperSignature').style.display='none'; this.dom.getOut().getElementById(this.getId('textoITAN')).innerHTML='';
+				if (this.helpAreaSignature[4]) { this.dom.getOut().getElementById("helpAreaDesc_seg").innerHTML=this.getAttributeTagLib(this.helpareaItanDesc); this.dom.getOut().getElementById("helpAreaLinkUrl_seg").innerHTML=this.getAttributeTagLib(this.helpareaItanLinkDesc); this.dom.getOut().getElementById("helpAreaLinkUrl_seg").href=this.getAttributeTagLib(this.helpareaItanLinkUrl); this.dom.getOut().getElementById('helpArea_seg').style.display='';
+				}
+				this.getITAN();
+				break;
+			case this.OTP_HW: this.dom.getOut().getElementById('sms').style.display='none'; this.dom.getOut().getElementById('push').style.display='none'; this.dom.getOut().getElementById('certificadoDigital').style.display='none'; this.dom.getOut().getElementById('dnie').style.display='none'; this.dom.getOut().getElementById('dnie2').style.display='none'; this.dom.getOut().getElementById('cambiaModo').style.display='none'; this.dom.getOut().getElementById('clavePosiciones').style.display='none'; this.dom.getOut().getElementById('itan').style.display='none'; this.dom.getOut().getElementById('OTPHW').style.display=''; this.dom.getOut().getElementById('paperSignature').style.display='none'; this.dom.getOut().getElementById(this.getId('textoOTPHW')).innerHTML='';
+				if (this.helpAreaSignature[5]) { this.dom.getOut().getElementById("helpAreaDesc_seg").innerHTML=this.getAttributeTagLib(this.helpareaOTPHWDesc); this.dom.getOut().getElementById("helpAreaLinkUrl_seg").innerHTML=this.getAttributeTagLib(this.helpareaOTPHWLinkDesc); this.dom.getOut().getElementById("helpAreaLinkUrl_seg").href=this.getAttributeTagLib(this.helpareaOTPHWLinkUrl); this.dom.getOut().getElementById('helpArea_seg').style.display='';
+				}
+				this.getOTPHW();
+				break;
+			case this.PAPER_SIGNATURE: this.dom.getOut().getElementById('sms').style.display='none'; this.dom.getOut().getElementById('push').style.display='none'; this.dom.getOut().getElementById('certificadoDigital').style.display='none'; this.dom.getOut().getElementById('dnie').style.display='none'; this.dom.getOut().getElementById('dnie2').style.display='none'; this.dom.getOut().getElementById('cambiaModo').style.display='none'; this.dom.getOut().getElementById('clavePosiciones').style.display='none'; this.dom.getOut().getElementById('itan').style.display='none'; this.dom.getOut().getElementById('OTPHW').style.display='none'; this.dom.getOut().getElementById('paperSignature').style.display='';
+				if (this.helpAreaSignature[6]) { this.dom.getOut().getElementById("helpAreaDesc_seg").innerHTML=this.getAttributeTagLib(this.helpareaPaperSignatureDesc); this.dom.getOut().getElementById("helpAreaLinkUrl_seg").innerHTML=this.getAttributeTagLib(this.helpareaPaperSignatureLinkDesc); this.dom.getOut().getElementById("helpAreaLinkUrl_seg").href=this.getAttributeTagLib(this.helpareaPaperSignatureLinkUrl); this.dom.getOut().getElementById('helpArea_seg').style.display='';
+				}
+				break;
+			case this.CLAVE_PUSH: this.dom.getOut().getElementById('clavePosiciones').style.display='none'; this.dom.getOut().getElementById('certificadoDigital').style.display='none'; this.dom.getOut().getElementById('dnie').style.display='none'; this.dom.getOut().getElementById('dnie2').style.display='none'; this.dom.getOut().getElementById('itan').style.display='none'; this.dom.getOut().getElementById('OTPHW').style.display='none'; this.dom.getOut().getElementById('cambiaModo').style.display='none'; this.dom.getOut().getElementById('sms').style.display='none'; this.dom.getOut().getElementById('push').style.display=''; this.dom.getOut().getElementById('paperSignature').style.display='none'; this.dom.getOut().getElementById(this.getId('textoOTPPush')).innerHTML='';
+				if (this.helpAreaSignature[7]) { this.dom.getOut().getElementById("helpAreaDesc_seg").innerHTML=this.getAttributeTagLib(this.helpareaOtpPushDesc); this.dom.getOut().getElementById("helpAreaLinkUrl_seg").innerHTML=this.getAttributeTagLib(this.helpareaOtpPushLinkDesc); this.dom.getOut().getElementById("helpAreaLinkUrl_seg").href=this.getAttributeTagLib(this.helpareaOtpPushLinkUrl); this.dom.getOut().getElementById('helpArea_seg').style.display='';
+				}
+				
+				if(!this.displayOTPPushErrorMessage()) {
+					if (this._isOTPPush) {
+						
+						this.otpPushCheck();
+					} else {
+						this.getOtpPush();
+					}
+				}
+				break;
+			case this.CAMBIO_MODO: this.dom.getOut().getElementById('clavePosiciones').style.display='none'; this.dom.getOut().getElementById('sms').style.display='none'; this.dom.getOut().getElementById('push').style.display='none'; this.dom.getOut().getElementById('certificadoDigital').style.display='none'; this.dom.getOut().getElementById('dnie').style.display='none'; this.dom.getOut().getElementById('dnie2').style.display='none'; this.dom.getOut().getElementById('itan').style.display='none'; this.dom.getOut().getElementById('OTPHW').style.display='none'; this.dom.getOut().getElementById('cambiaModoLink').style.display='none'; this.dom.getOut().getElementById('cambiaModo').style.display=''; this.dom.getOut().getElementById('paperSignature').style.display='none'; this.dom.getOut().getElementById('helpArea_seg').style.display='none';
+				break;
+			default:
+				this._type=this.NOT_ENROLLED;
+				this.showAlert(this.getAttributeTagLib(this.alertNoSignatureType),'', false);
+				this.clearComponentBox();
+				this.clearSignatureTypes();
+				break;
+		}
+
+		this._alerta=null;
+	}
+			
+},			
+		
+// ---------- resetFields   method ------------------------------------------------		
+resetFields: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+
+	 this.dom.getOut().getElementById('emisorDniCa').innerHTML = ''; this.dom.getOut().getElementById('usuarioDniCa').innerHTML = '';
+	 this.dom.getOut().getElementById('issuer').innerHTML = ''; this.dom.getOut().getElementById('receiver').innerHTML = '';
+	
+	 this.dom.getOut().getElementById('input_1').value=''; this.dom.getOut().getElementById('input_2').value=''; this.dom.getOut().getElementById('input_3').value=''; this.dom.getOut().getElementById('input_4').value='';
+
+			
+},			
+		
+// ---------- showArea   method ------------------------------------------------		
+showArea: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	if (!this.headTitleEnabled) { this.dom.getOut().getElementById('cabecera_Firma_ER').style.display='none';
+	}
+	if (!this.titleEnabled) { this.dom.getOut().getElementById('posTitle').style.display='none'; this.dom.getOut().getElementById('smsTitle').style.display='none'; this.dom.getOut().getElementById('pushTitle').style.display='none'; this.dom.getOut().getElementById('dniTitle').style.display='none'; this.dom.getOut().getElementById('dniDetectTitle').style.display='none'; this.dom.getOut().getElementById('cerTitle').style.display='none'; this.dom.getOut().getElementById('itanTitle').style.display='none'; this.dom.getOut().getElementById('OTPHWTitle').style.display='none'; this.dom.getOut().getElementById('paperSigTitle').style.display='none';
+    }
+	if (!this.informationEnabled) { this.dom.getOut().getElementById('posSubtitle').style.display='none'; this.dom.getOut().getElementById(this.getId('textoOTP')).style.display='none'; this.dom.getOut().getElementById(this.getId('textoOTPPush')).style.display='none'; this.dom.getOut().getElementById(this.getId('textoITAN')).style.display='none'; this.dom.getOut().getElementById(this.getId('textoOTPHW')).style.display='none'; this.dom.getOut().getElementById('cerSubtitle1').style.display='none'; this.dom.getOut().getElementById('cerSubtitle2').style.display='none';
+     }
+			
+},			
+		
+// ---------- getComboSeleccion   method ------------------------------------------------		
+getComboSeleccion: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var s = new Array();
+
+	if (this._availableSignatures!=null && this._availableSignatures.length>0) {
+
+		s.push(	'<option value="">'+this.getAttributeTagLib(this.changesignComboSelection)+'</option>');
+
+		for (i=0;i<this._availableSignatures.length;i++) {
+			var availableSignature=this._availableSignatures[i];
+			switch(availableSignature){
+				case this.CLAVE_POSICIONES:
+					s.push('<option value="'+ availableSignature + '">');
+					s.push(this.getAttributeTagLib(this.positionTitle,this.comboClavePorPosiciones));
+					s.push('</option>');
+					break;
+				case this.CLAVE_SMS:
+					if(!this.isER || this._isNewSignatureVersion){
+						s.push('<option value="'+ availableSignature + '">');
+						s.push(this.getAttributeTagLib(this.smsTitle,this.comboSMS));
+						s.push('</option>');
+					}
+					break;
+				case this.CERTIFICADO_DIGITAL:
+					if(!this.isER || this._isNewSignatureVersion){
+						s.push('<option value="'+ availableSignature + '">');
+						s.push(this.getAttributeTagLib(this.digitalTitle,this.comboCertificadoDigital));
+						s.push('</option>');
+					}
+					break;
+				case this.DNI_E:
+					if(!this.isER || this._isNewSignatureVersion){
+						s.push('<option value="'+ availableSignature + '">');
+						s.push(this.getAttributeTagLib(this.dnieTitle,this.comboDNIe));
+						s.push('</option>');
+					}
+					break;
+				case this.ITAN:
+					if(!this.isER || this._isNewSignatureVersion){
+						s.push('<option value="'+ availableSignature + '">');
+						s.push(this.getAttributeTagLib(this.itanTitle,this.comboITAN));
+						s.push('</option>');
+					}
+					break;
+			    case this.OTP_HW:
+			        if(!this.isER || this._isNewSignatureVersion){
+				        s.push('<option value="'+ availableSignature + '">');
+						s.push(this.getAttributeTagLib(this.OTPHWTitle,this.comboOTPHw));
+						s.push('</option>');
+			        }
+			        break;
+			    case this.PAPER_SIGNATURE:
+			        if(!this.isER || this._isNewSignatureVersion){
+				        s.push('<option value="'+ availableSignature + '">');
+						s.push(this.getAttributeTagLib(this.paperSignatureTitle,this.comboPaperSignature));
+						s.push('</option>');
+			        }
+			        break;
+			    case this.CLAVE_PUSH:
+					if(!this.isER || this._isNewSignatureVersion){
+						s.push('<option value="'+ availableSignature + '">');
+						s.push(this.getAttributeTagLib(this.pushTitle,this.comboPUSH));
+						s.push('</option>');
+					}
+					break;
+			}
+		}
+		return s.join('');
+	} else {
+		return '';
+	}
+			
+},			
+		
+// ---------- messageAppletFirma   method ------------------------------------------------		
+messageAppletFirma: function (status,wait){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	switch (status){
+		case appletFirma.STATUS_APPLET_NOT_INIT:
+			this.waitDNIEAlert(this.getAttributeTagLib(this.alertErrorDNIe), wait);
+			break;
+		case appletFirma.STATUS_INSTALL_ERROR:
+			this.waitDNIEAlert(this.getAttributeTagLib(this.alertErrorDNIe), wait);
+			break;
+		case appletFirma.STATUS_LIBS_NOT_INSTALLED:
+			this.waitDNIEAlert(this.getAttributeTagLib(this.alertErrorDNIe), wait);
+			break;
+		case appletFirma.STATUS_MANAGER_ERROR:
+			this.waitDNIEAlert(this.getAttributeTagLib(this.alertErrorDNIe), wait);
+			break;
+		case appletFirma.STATUS_UNKNOWN_ERROR:
+			this.waitDNIEAlert(this.getAttributeTagLib(this.alertErrorDNIe), wait);
+			break;
+		case appletFirma.STATUS_UNSUPPORTED_BROWSER:
+			this.waitDNIEAlert(this.getAttributeTagLib(this.alertNoBrowser), wait);
+			break;
+	}
+			
+},			
+		
+// ---------- messageAppletScard   method ------------------------------------------------		
+messageAppletScard: function (appdnitest,wait){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	switch(appdnitest){
+		case 3: 		
+			this.waitDNIEAlert(this.getAttributeTagLib(this.alertNoBrowser), wait);
+			break;
+		case 2: 				
+			this.waitDNIEAlert(this.getAttributeTagLib(this.dnieAlertNoCardreader), wait);
+			break;
+		case 4: 		
+			this.waitDNIEAlert(this.getAttributeTagLib(this.dnieAlertNoDni), wait);
+			break;
+	}
+			
+},			
+		
+// ---------- getStatusAppletFirma   method ------------------------------------------------		
+getStatusAppletFirma: function (appletFirma){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var status = null;
+	try{
+		
+		status = appletFirma.getStatus();
+	}catch(e){
+		
+		status = appletFirma.STATUS_UNKNOWN_ERROR;
+	}
+	return status;
+			
+},			
+		
+// ---------- getDNIE   method ------------------------------------------------		
+getDNIE: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	 this.dom.getOut().getElementById(this.getId('textoDNIE')).innerHTML=this.getAttributeTagLib(this.dnieDetecting);
+
+	var change = this.getFullVarName() + ".getDNIE_step1();";
+	window.setTimeout(change,10);
+			
+},			
+		
+// ---------- getDNIE_step1   method ------------------------------------------------		
+getDNIE_step1: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	
+	var date= new Date();
+	var tiempo1=date.getTime();
+
+	if (!this.isJavaEnabled()) {
+		
+		var date= new Date();
+		var tiempo2=date.getTime();
+		var wait = this.messageTimeOTP-(tiempo2-tiempo1);
+		this.waitDNIEAlert(this.getAttributeTagLib(this.alertNoScript),wait);
+	} else {
+		this.getDNIE_step2(tiempo1);
+	} 
+			
+},			
+		
+// ---------- getDNIE_step2   method ------------------------------------------------		
+getDNIE_step2: function (tiempo1){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var appletScard = this.dom.getOut().SCARD;
+	
+	var appdnitest = 0;
+	try{
+		appdnitest = appletScard.scard(this.appletTimeOut);
+	}catch(e){
+		
+		appdnitest = 0;
+	}
+	
+	if(appdnitest == 0 || appdnitest == 1 || appdnitest == 5) {
+		this.getDNIE_step3(tiempo1);
+	} else  {
+		
+		var date= new Date();
+		var tiempo2=date.getTime();
+		var wait = this.messageTimeOTP-(tiempo2-tiempo1);
+		this.messageAppletScard(appdnitest,wait);
+	}
+			
+},			
+		
+// ---------- getDNIE_step3   method ------------------------------------------------		
+getDNIE_step3: function (tiempo1){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	
+	var appletFirma = this.dom.getOut().getElementById(this.getId('AppletCD'));
+
+	
+	var status = this.getStatusAppletFirma(appletFirma);
+
+	
+	if(status == appletFirma.STATUS_READY) {
+		this.getDNIE_step4(tiempo1, appletFirma);
+	} else {
+		
+		var date= new Date();
+		var tiempo2=date.getTime();
+		var wait = this.messageTimeOTP-(tiempo2-tiempo1);
+		this.messageAppletFirma(status,wait);
+	}
+			
+},			
+		
+// ---------- getDNIE_step4   method ------------------------------------------------		
+getDNIE_step4: function (tiempo1,appletFirma){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	
+	var dniSignature = appletFirma.getDNIeSignatureCertificate();
+
+	
+	var date= new Date();
+	var tiempo2 = date.getTime();
+	var wait = this.messageTimeOTP-(tiempo2-tiempo1);
+	this.waitDNIE(appletFirma,dniSignature,wait);
+			
+},			
+		
+// ---------- getDNIE_final   method ------------------------------------------------		
+getDNIE_final: function (issuer,subject,dniSignature){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	switch (dniSignature){
+		case 1:
+			 this.dom.getOut().getElementById('dnie').style.display=''; this.dom.getOut().getElementById('dnie2').style.display='none'; this.dom.getOut().getElementById('emisorDniCa').innerHTML = issuer; this.dom.getOut().getElementById('usuarioDniCa').innerHTML = subject;
+			ok = true;
+			break;
+		case 0:
+			this.showAlert(this.getAttributeTagLib(this.digitalAlertNoCertificate),'', false);
+			break;
+		case -1:
+			this.showAlert(this.getAttributeTagLib(this.alertErrorDNIe),'', false);
+			break;
+	}
+			
+},			
+		
+// ---------- waitDNIEAlert   method ------------------------------------------------		
+waitDNIEAlert: function (msgalert,wait){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	if (wait>0) {
+		var change = this.getFullVarName() + ".showAlert('" + msgalert + "','',false);";
+		window.setTimeout(change,wait);
+	} else {
+		this.showAlert(msgalert,'', false);
+	}
+			
+},			
+		
+// ---------- waitDNIE   method ------------------------------------------------		
+waitDNIE: function (appletFirma,dniSignature,wait){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var issuer = null;
+	var subject = null;
+	if(dniSignature == 1) {
+		issuer = new String(appletFirma.getIssuer(0));
+		subject = new String(appletFirma.getSubject(0));
+	}
+	if (wait>0){
+		var change = this.getFullVarName() + ".getDNIE_final('" + issuer + "','" + subject + "'," + dniSignature + ");";
+		window.setTimeout(change,wait);
+	}else{
+		this.getDNIE_final(issuer,subject,dniSignature);
+	}
+			
+},			
+		
+// ---------- getDigitalSignature   method ------------------------------------------------		
+getDigitalSignature: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var ok=false;
+
+	if (!this.isJavaEnabled()){
+		this.showAlert(this.getAttributeTagLib(this.alertNoScript),'', false);
+	}
+	
+	var appletFirma = this.dom.getOut().getElementById(this.getId('AppletCD'));
+	
+	var status = this.getStatusAppletFirma(appletFirma);
+	
+	
+	if(status == appletFirma.STATUS_READY) {
+		this._isPasswordRequired = appletFirma.isPasswordRequired();
+		try{
+    		this._totalNumberCertificates = parseInt(appletFirma.getCertificatesV2(this._AcceptedCA));
+    	}catch(e){
+    		
+    		var certificatesList=appletFirma.getCertificates(this._AcceptedCA);
+    		this._totalNumberCertificates = parseInt(certificatesList.size());
+    	}
+
+    	switch (this._totalNumberCertificates){
+			case -1: 
+				this.showAlert(this.getAttributeTagLib(this.alertError),'', false);
+				break;
+			case 0: 
+				this.showAlert(this.getAttributeTagLib(this.digitalAlertNoCertificate),'', false);
+				break;
+			case 1: 
+				this._listaCertificados=this.getListaCertificados();
+				this._idCertificado=0; this.dom.getOut().getElementById('issuer').innerHTML = this._listaCertificados[this._idCertificado].issuer; this.dom.getOut().getElementById('receiver').innerHTML = this._listaCertificados[this._idCertificado].subject;
+				ok=true;
+				break;
+			default: 
+				this._listaCertificados=this.getListaCertificados();
+				ok=true;
+				break;
+		}
+	} else {
+		
+		this.messageAppletFirma(status,0);
+	}
+	return ok;
+			
+},			
+		
+// ---------- seleccionaCertificadoLista   method ------------------------------------------------		
+seleccionaCertificadoLista: function (indexSelected){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	this._idCertificado=indexSelected; this.dom.getOut().getElementById('selectedIssuer').value=this._listaCertificados[indexSelected].issuer; this.dom.getOut().getElementById('selectedReceiver').value=this._listaCertificados[indexSelected].subject;
+	this.cerrarVentanaLista();
+			
+},			
+		
+// ---------- getListaCertificados   method ------------------------------------------------		
+getListaCertificados: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	try{
+		var appletFirma = this.dom.getOut().getElementById(this.getId('AppletCD'));
+		
+		var listaCertificados=new Array();
+		
+		
+		var status = appletFirma.getStatus();
+
+		if(status == appletFirma.STATUS_READY) {
+			for(var i=0;i<this._totalNumberCertificates;i++){
+				var certificado = new Object();
+				certificado.issuer=appletFirma.getIssuer(i);
+				certificado.subject=appletFirma.getSubject(i);
+				certificado.issuedDate=appletFirma.getIssuedDate(i);
+				certificado.expirationDate=appletFirma.getExpirationDate(i);
+				certificado.version=appletFirma.getVersion(i);
+				certificado.serialNumber=appletFirma.getSerialNumber(i);
+				listaCertificados.push(certificado);
+			}
+		} else {
+			
+		this.messageAppletFirma(status,0);
+		}
+	}catch(e){ 	
+		this.showAlert(this.getAttributeTagLib(this.alertError),'', false);
+		return null;
+	}
+	return listaCertificados;
+			
+},			
+		
+// ---------- showPopUpCertificados   method ------------------------------------------------		
+showPopUpCertificados: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	this.crearListadoCertificados(100,100,700,'');
+			
+},			
+		
+// ---------- crearListadoCertificados   method ------------------------------------------------		
+crearListadoCertificados: function (x,y,width,height){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	this.width=width;
+	this.height=height;
+	tipo="";
+	_widthDoc=this.dom.getOut().body.clientWidth;
+	_heightDoc=this.dom.getOut().body.clientHeight;
+	_offsetMaskX=9;
+	_offsetMaskY=0;
+	if (x>(_widthDoc/2)){
+		if (y>(_heightDoc/2)){
+			tipo="bottomRightArrow";
+			_offsetX=-(this.width)-5;
+			_offsetY=-this.height+25;
+		}else{
+			tipo="topRightArrow";
+			_offsetX=-(this.width)-5;
+			_offsetY=-18;
+		}
+	}else{
+		if (y>(_heightDoc/2)){
+			tipo="bottomLeftArrow";
+			_offsetX=5;
+			_offsetY=-this.height+25;
+		}else{
+			tipo="topLeftArrow";
+			_offsetX=5;
+			_offsetY=-18;
+		}
+	}
+	if (!this.popupLayer){
+		this.popupLayer = this.dom.getOut().createElement("div");
+		this.popupMask = this.dom.getOut().createElement("iframe");
+		this.popupMask.setAttribute("src","javascript:''");
+		this.popupMask.setAttribute("frameBorder",0);
+		this.popupMask.setAttribute("scrolling","no");
+		this.popupLayer.style.width=this.width;
+		this.popupLayer.style.width=this.height;
+		this.popupMask.style.width=this.width-22;
+		this.popupMask.style.height=this.height;
+		this.popupMask.style.backgroundColor="#FFF";
+		this.popupLayer.className="CapaPopup";
+		this.popupLayer.style.zIndex=500;
+		this.popupLayer.style.backgroundColor="#FFF";
+		this.popupMask.style.zIndex=490;
+		
+		this.popupLayer.innerHTML=this.getTablaListadoCertificados(tipo);
+		this.popupLayer.style.position="absolute";
+		this.popupMask.style.position="absolute";
+		if (brw=='NN') {
+			y = y+_offsetY;
+			x = x+_offsetX;
+		}else{
+			y=y+_offsetY+this.dom.getOut().body.scrollTop;
+			x=x+_offsetX+this.dom.getOut().body.scrollLeft;
+		}
+		this.popupLayer.style.top=y;
+		this.popupLayer.style.left=x;
+		this.popupMask.style.top=y+_offsetMaskY;
+		this.popupMask.style.left=x+_offsetMaskX; this.dom.getOut().body.appendChild(this.popupLayer); this.dom.getOut().body.appendChild(this.popupMask);
+	}else{
+		
+		this.popupLayer.innerHTML=this.getTablaListadoCertificados(tipo);
+		if (brw=='NN') {
+			x = x+_offsetX;
+			y = y+_offsetY;
+		}else{
+			x = x+_offsetX+this.dom.getOut().body.scrollLeft;
+			y = y+_offsetY+this.dom.getOut().body.scrollTop;
+		}
+		this.popupLayer.style.top=y;
+		this.popupLayer.style.left=x;
+		this.popupMask.style.top=y+_offsetMaskY;
+		this.popupMask.style.left=x+_offsetMaskX;
+		this.popupLayer.style.width=this.width;
+		this.popupLayer.style.width=this.height;
+		this.popupMask.style.width=this.width-22;
+		this.popupMask.style.height=this.height;
+	}
+			
+},			
+		
+// ---------- getTablaListadoCertificados   method ------------------------------------------------		
+getTablaListadoCertificados: function (tipo){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var closeWin = this.getFullVarName() + '.cerrarVentanaLista()';
+	var _style='';
+	var tabla= new Array();
+	var mouseover = this.getFullVarName() + '.changeStyleRow(this,true)';
+	var mouseout = this.getFullVarName() + '.changeStyleRow(this,false)';
+	var length=this._listaCertificados.length;
+
+	_height=(brw=="NN")?this.height-25:this.height-10;
+	_leftPadding=this.width-17;
+	_leftPaddingIENN=(brw=="NN")?2:1;
+	_width=(brw=="NN")?this.width-34:this.width-60;
+	_indexList=25;
+	_borderSup=3;
+	_fileHeight=20;
+	_LeftArrow=(tipo.indexOf('bottomLeft')!=-1)?'':'NoArrow';
+	_RightArrow=(tipo.indexOf('bottomRight')!=-1)?'':'NoArrow'; 
+	_TopArrow=(tipo.indexOf('topRight')!=-1)?'NoArrow':'';
+	_paddingArrow=(tipo.indexOf('Right')!=-1)?'left:'+(_leftPadding-_leftPaddingIENN)+'px;':'left:1px;';
+	_paddingBorder=(tipo.indexOf('Left')!=-1)?'left:'+_leftPadding+'px;':'';
+	_paddingTopArrow=(tipo.indexOf('bottom')!=-1)?'top:'+(this.height-28)+'px':'';
+	_type=(tipo.indexOf('top')!=-1)?tipo:'Top';
+	_border=(tipo.indexOf('Left')!=-1)?'Right':'Left';
+
+	tabla.push('<div id="content" class="borderInt content" style="');
+	tabla.push('width:1123px;');
+	tabla.push('height:'+(_height-20)+'px">');
+	tabla.push('<div style="'+_style+'">');
+	tabla.push('<h1 id="Titulo">'+this.getAttributeTagLib(this.digitalTableTitle)+'</h1>');
+	tabla.push('<div id="Tabla" >');
+	tabla.push('<div id="resultados" >');
+	tabla.push('<table cellpadding="0" cellspacing="0"><caption>');
+	tabla.push('<caption>'+this.getAttributeTagLib(this.digitalTableInfo) + '</caption>');	
+	tabla.push('<thead><tr>');
+	tabla.push('<th class="first" title="' + this.getAttributeTagLib(this.digitalTableIssuer).split('|')[1] + '"><div>' + this.getAttributeTagLib(this.digitalTableIssuer).split('|')[0] + '</div></th>');
+	tabla.push('<th class="" title="' + this.getAttributeTagLib(this.digitalTableReceiver).split('|')[1] + '"><div>' + this.getAttributeTagLib(this.digitalTableReceiver).split('|')[0]+ '</div></th>');
+	tabla.push('<th class="" title="' + this.getAttributeTagLib(this.digitalTableIssuedate).split('|')[1] + '"><div>' + this.getAttributeTagLib(this.digitalTableIssuedate).split('|')[0] + '</div></th>');
+	tabla.push('<th class="" title="' + this.getAttributeTagLib(this.digitalTableExpirationdate).split('|')[1] + '"><div>' + this.getAttributeTagLib(this.digitalTableExpirationdate).split('|')[0] + '</div></th>');
+	tabla.push('<th class="" title="' + this.getAttributeTagLib(this.digitalTableVersion).split('|')[1] + '"><div>' + this.getAttributeTagLib(this.digitalTableVersion).split('|')[0] + '</div></th>');
+	tabla.push('<th class="last" title="' + this.getAttributeTagLib(this.digitalTableSerialnumber).split('|')[1] + '"><div>' + this.getAttributeTagLib(this.digitalTableSerialnumber).split('|')[0] + '</div></th>');
+	tabla.push('</tr></thead>');
+
+	_style='';
+
+	tabla.push('<tbody style="'+_style+'">');
+
+	for (var i=this.certificatePagBase;i<this.certificatePagBase + this.certificatePagSize;i++){
+		var styleTr = (i%2==0)?"par":"impar";
+		if (i<length) {
+			var click = this.getFullVarName() + '.seleccionaCertificadoLista('+i+')';
+			tabla.push('<tr class="'+styleTr+'" onclick="'+click+'" onmouseover="'+mouseover+'" onmouseout="'+mouseout+'">');
+			tabla.push('<td class="col0"><span title="'+this._listaCertificados[i].issuer+'">'+ this.formatValueListadoCertificados(1,this._listaCertificados[i].issuer) +'</span></td>');
+			tabla.push('<td class="col1"><span title="'+this._listaCertificados[i].subject+'">'+ this.formatValueListadoCertificados(2,this._listaCertificados[i].subject) +'</span></td>');
+			tabla.push('<td class="col2"><span title="'+this._listaCertificados[i].issuedDate+'">'+ this.formatValueListadoCertificados(3,this._listaCertificados[i].issuedDate) +'</span></td>');
+			tabla.push('<td class="col3"><span title="'+this._listaCertificados[i].expirationDate+'">'+ this.formatValueListadoCertificados(4,this._listaCertificados[i].expirationDate) +'</span></td>');
+			tabla.push('<td class="col4"><span title="'+this._listaCertificados[i].version+'">'+ this.formatValueListadoCertificados(5,this._listaCertificados[i].version) +'</span></td>');
+			tabla.push('<td class="col5"><span title="'+this._listaCertificados[i].serialNumber+'">'+ this.formatValueListadoCertificados(6,this._listaCertificados[i].serialNumber) +'</span></td>');
+			tabla.push('</tr>');
+		} else {
+			tabla.push('<tr class="'+styleTr+'" onmouseover="'+mouseover+'" onmouseout="'+mouseout+'">');
+			tabla.push('<td class="col0"><span>'+ '---' +'</span></td>');
+			tabla.push('<td class="col1"><span>'+ '---' +'</span></td>');
+			tabla.push('<td class="col2"><span>'+ '---' +'</span></td>');
+			tabla.push('<td class="col3"><span>'+ '---' +'</span></td>');
+			tabla.push('<td class="col4"><span>'+ '---' +'</span></td>');
+			tabla.push('<td class="col5"><span>'+ '---' +'</span></td>');
+			tabla.push('</tr>');
+		}
+	}
+
+	tabla.push('</tbody>');
+	tabla.push('</table>');
+	tabla.push('</div>');
+	tabla.push('</div>');
+	tabla.push('</div>');
+	tabla.push('<div id="PiePaginacion">');
+	tabla.push('<table class="tablaPaginacion"><tr>');
+	if(this._listaCertificados.length > this.certificatePagSize) {
+		if(this.certificatePagBase > 0) {
+			tabla.push('<td class="linkPaginacion"><a href="#" name="anadir" onclick="' + this.getFullVarName() + '.pagPrev()' + '">' + this.getAttributeTagLib(this.digitalTableLastPageArrow) + ' ' + this.certificatePagSize + ' ' + this.getAttributeTagLib(this.digitalTableLastPage) + '</a></td>');
+			if(this.certificatePagBase + this.certificatePagSize < this._listaCertificados.length) {
+				tabla.push('<td class="separadorLinkPaginacion">&nbsp;|&nbsp;</td>');
+			}
+		}
+		if(this.certificatePagBase + this.certificatePagSize < this._listaCertificados.length) {
+			tabla.push('<td class="linkPaginacion"><a href="#" name="anadir" onclick="' + this.getFullVarName() + '.pagNext()' + '">' + this.certificatePagSize + ' ' + this.getAttributeTagLib(this.digitalTableNextPage) + ' ' + this.getAttributeTagLib(this.digitalTableNextPageArrow) + '</a></td>');
+		}
+	} else {
+		tabla.push('<td class="linkPaginacion"><a href="#">'+ this.getAttributeTagLib(this.digitalTableLastPageArrow) + ' ' + this.certificatePagSize + ' ' + this.getAttributeTagLib(this.digitalTableLastPage) + '</a></td>');
+	}
+	tabla.push('</tr></table>');
+	tabla.push('</div>');
+	tabla.push('<div id="PieBotonera">');
+	tabla.push('<span>');
+	tabla.push('<a href="#" name="cancelar" onclick="'+closeWin+'">'+this.getAttributeTagLib(this.digitalTableCancel)+'</a>');
+	tabla.push('</span>');
+	tabla.push('</div>');
+	tabla.push('</div>');
+	
+	return tabla.join(' ');
+			
+},			
+		
+// ---------- pagNext   method ------------------------------------------------		
+pagNext: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	if(this.certificatePagBase < this._listaCertificados.length - 1) {
+		this.certificatePagBase+=this.certificatePagSize;
+		this.crearListadoCertificados(100,100,700,'');
+	}
+			
+},			
+		
+// ---------- pagPrev   method ------------------------------------------------		
+pagPrev: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	if(this.certificatePagBase > 0) {
+		this.certificatePagBase-=this.certificatePagSize;
+		this.crearListadoCertificados(100,100,700,'');
+	}
+			
+},			
+		
+// ---------- cerrarVentanaLista   method ------------------------------------------------		
+cerrarVentanaLista: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){}; this.dom.getOut().body.removeChild(this.popupLayer); this.dom.getOut().body.removeChild(this.popupMask);
+	this.popupLayer=null;
+	this.popupMask=null;
+			
+},			
+		
+// ---------- formatValueListadoCertificados   method ------------------------------------------------		
+formatValueListadoCertificados: function (col,valor){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var _texto='---';
+	var _puntos='...';
+	var val=new String(valor);
+	if(val.length>0){
+		switch (col){
+			case 1:
+				_texto=(val.length>25)? val.substring(0,25) + _puntos:val;
+				break;
+			case 2:
+				_texto=(val.length>40)? val.substring(0,40) + _puntos:val;
+				break;
+			case 3:
+				_texto=(val.length>10)? val.substring(0,10) + _puntos:val;
+				break;
+			case 4:
+				_texto=(val.length>10)? val.substring(0,10) + _puntos:val;
+				break;
+			case 5:
+				_texto=(val.length>3)? val.substring(0,3) + _puntos:val;
+				break;
+			case 6:
+				_texto=(val.length>20)? val.substring(0,20) + _puntos:val;
+				break;
+			default:
+				_texto=valor;
+		}
+	}
+	return _texto;
+			
+},			
+		
+// ---------- changeStyleRow   method ------------------------------------------------		
+changeStyleRow: function (tr,over){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	if (tr.className!="selected") {
+		if (over) {
+			tr.className="over";
+		} else {
+			if (tr.sectionRowIndex%2==0) {
+				tr.className="par";
+			} else {
+				tr.className="impar";
+			}
+		}
+	}
+			
+},			
+		
+// ---------- activexDigitalSignature   method ------------------------------------------------		
+activexDigitalSignature: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var sign=null;
+	try{
+		var activexParams=new Array();
+
+		var axSign = this.dom.getOut().getElementById(this.getId('AxSign'));
+
+		activexParams.push(this.getAttributeTagLib(this.digitalActivexParam0));
+		activexParams.push(this.getAttributeTagLib(this.digitalActivexParam1));
+		activexParams.push(this.getAttributeTagLib(this.digitalActivexParam2));
+		activexParams.push(this.getAttributeTagLib(this.digitalActivexParam3));
+		activexParams.push(this.getAttributeTagLib(this.digitalActivexParam4));
+
+		sign=axSign.SignAndEncode("",this._dataToBeSigned,this._dataToBeSigned.length,activexParams.join("#"));
+
+		if (sign==null || sign==''){
+			this.showAlert(this.getAttributeTagLib(this.alertError),'', false);
+		}else{ this.dom.getOut().getElementById('activexCertificate').value=this.getAttributeTagLib(this.digitalActivexOk);
+		}
+	}catch(e){
+		this.showAlert(this.getAttributeTagLib(this.alertError),'', false);
+	}
+	this.AxVSign=sign;
+			
+},			
+		
+// ---------- getAjaxObject   method ------------------------------------------------		
+getAjaxObject: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var ajaxObject;
+	if(window.XMLHttpRequest) {
+    	ajaxObject=new XMLHttpRequest();
+	}else {
+		try { 
+         	ajaxObject = new ActiveXObject("Msxml2.XMLHTTP"); 
+      	} catch (e) {
+         	try {
+            	ajaxObject = new ActiveXObject("Microsoft.XMLHTTP"); 
+	         } catch (e) {
+    	        ajaxObject = null; 
+	         }
+       }
+  	}
+  	return ajaxObject;
+			
+},			
+		
+// ---------- getApplication   method ------------------------------------------------		
+getApplication: function (command){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var originalUrl = new String(window.location);
+	var index = originalUrl.indexOf('?',0);
+	var index1 = originalUrl.indexOf('#',0);
+	var application = "";
+
+	if(index!=-1){
+		var fixedUrl = originalUrl.substring(0,index);
+		application = fixedUrl.substring(0,fixedUrl.lastIndexOf('.',fixedUrl.length));
+		application = application + ".scbto";
+	}else{
+	   if(index1!=-1){
+	   	   var fixedUrl = originalUrl.substring(0,index1);
+		   application = fixedUrl.substring(0,fixedUrl.lastIndexOf('.',fixedUrl.length));
+		   application = application + ".scbto";
+		}
+	    else{
+		   application = originalUrl + "driver.scbto";
+		}
+	}
+
+	application = application + "?cmd="+command;
+
+	return application;
+			
+},			
+		
+// ---------- getOtpSMS   method ------------------------------------------------		
+getOtpSMS: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var date= new Date();
+	var tiempo1=date.getTime(); this.dom.getOut().getElementById(this.getId('textoOTP')).innerHTML=this.getAttributeTagLib(this.smsSendingSMSMessage);
+
+	 this.dom.getOut().getElementById('input_1').disabled = "true";
+
+	try{
+		var http = this.getAjaxObject();
+		http.abort();
+		
+		var signatureCommand="OTP";
+		var uidParam="";
+		var aliasParam="";
+		var isSecondSignParam="";
+		var isERParam="";
+		
+		if (this._tokenParam == "") {
+			uidParam="&UID="+this.getUIDParam();
+			aliasParam="&alias="+this.getAliasParam();
+			isSecondSignParam="&isSecondSign="+this.isSecondSign;
+			isERParam="&isER="+this.isER;
+		}
+		
+		var req=signatureCommand + uidParam + aliasParam + isSecondSignParam + isERParam + this._tokenParam;
+		http.open("POST", this.getApplication(req) , true);
+		var fullVarName=eval(this.getFullVarName());
+
+		http.onreadystatechange=function() {
+			try{
+				if(http.readyState == 4) {
+					var msgObj = http.responseXML.getElementsByTagName('message')[0];
+					if(msgObj!=null){	
+						var msgsms=msgObj.firstChild.nodeValue;
+						
+						var type=msgObj.getAttribute('type');
+						date=new Date();
+						tiempo2=date.getTime();
+						var wait=fullVarName.messageTimeOTP-(tiempo2-tiempo1);
+						
+						fullVarName.waitOTP(msgsms,wait,type);
+						
+						
+						if (fullVarName.isShowMsgTimeSentOTPSMS){	
+							var timeWait = fullVarName.messageTimeSentOTP;
+							if((type == 'message') && (timeWait > 0)) {
+								var newMsj = fullVarName.getAttributeTagLib(fullVarName.smsSentSMSMessage,null, new Array(""+fullVarName.messageTimeSentOTP/1000));
+								var newChange="document.getElementById('"+fullVarName.getId('textoOTP')+"').innerHTML='"+newMsj+"';";
+								if (wait > 0){
+									timeWait += wait; 
+								}
+								window.setTimeout(newChange,timeWait);
+							}
+						}
+						
+					}
+				}
+			}catch(e){
+				fullVarName.showAlert(fullVarName.getAttributeTagLib(fullVarName.alertError),'', false);
+			}
+		};
+		http.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+		http.setRequestHeader("Cache-Control", "no-cache");
+		var valorConcepto =this.dom.getXmlValueAtName(this.dom.xmlNodes[this.xmltree],this.xpathConcepto)
+		http.send('concepto=' + valorConcepto);
+	}catch(ex){
+		this.showAlert(this.getAttributeTagLib(this.alertError),'', false);
+	}
+			
+},			
+		
+// ---------- displayOTPErrorMessage   method ------------------------------------------------		
+displayOTPErrorMessage: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	if(this._erroresOTP != null && this._erroresOTP.length>0) {
+		this.showAlert(this._erroresOTP[0].descripcion,'.', false);
+		return true;
+	} else {
+		return false;
+	}
+			
+},			
+		
+// ---------- otpCheck   method ------------------------------------------------		
+otpCheck: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	this.objOtpCheck=null;
+	try{
+		var http = this.getAjaxObject();
+		http.abort();
+	
+		var command = "OTPCheck";
+		var uidParam="";
+		var aliasParam="";
+		
+		if (this._tokenParam == "") {
+			uidParam="&UID="+this.getUIDParam();
+			aliasParam="&alias="+this.getAliasParam();
+		}
+		
+		var req=command + uidParam + aliasParam + this._tokenParam;
+		http.open("POST", this.getApplication(req), true);
+		
+		var fullVarName=eval(this.getFullVarName());
+		var doc=eval("document");
+
+		http.onreadystatechange=function() {
+			if(http.readyState == 4) {
+				fullVarName.objOtpCheck=http.responseXML;
+			}
+		};
+		
+		http.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+		http.setRequestHeader("Cache-Control", "no-cache");
+		http.send('');
+		
+		this.finalizeCheck();
+	}catch(ex){
+		this.showAlert(this.getAttributeTagLib(this.alertError),'', false);
+	}
+			
+},			
+		
+// ---------- finalizeCheck   method ------------------------------------------------		
+finalizeCheck: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	if (this.objOtpCheck!=null) {
+		var msgObj = this.objOtpCheck.getElementsByTagName('message')[0];
+		if(msgObj!=null) {
+			var type=msgObj.getAttribute('type');
+			var msgsms=msgObj.firstChild.nodeValue;
+			switch(type) {
+				case 'error':
+					this.showAlert(this.getAttributeTagLib(this.alertError),'', false);
+					
+					break;
+				case 'message':
+					var id=msgObj.getAttribute('id');
+					if (id=='needsOTP') {
+						this.getOtpSMS();
+					} else { this.dom.getOut().getElementById(this.getId('textoOTP')).innerHTML=msgsms;	
+					}
+					break;
+			}					
+		}
+	} else {
+		var fullVarName=this.getFullVarName();
+		window.setTimeout(fullVarName+".finalizeCheck()",500);
+	}
+			
+},			
+		
+// ---------- waitOTP   method ------------------------------------------------		
+waitOTP: function (msgsms,wait,type){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var change = null;
+	if (wait>0) {
+		if(type == 'message') {
+			change="document.getElementById('"+this.getId('textoOTP')+"').innerHTML='"+msgsms+"';";
+		} else {
+			
+			change = this.getFullVarName() + ".showAlert('" + msgsms + "','.',false);";
+		}
+		
+		change += "document.getElementById('input_1').disabled=''";
+		window.setTimeout(change,wait);
+	} else {
+		 this.dom.getOut().getElementById('input_1').disabled='';
+		if (type == 'message') { this.dom.getOut().getElementById(this.getId('textoOTP')).innerHTML=msgsms;
+		} else {
+			this.showAlert(msgsms,'.', false);
+		}
+	}
+			
+},			
+		
+// ---------- getOtpPush   method ------------------------------------------------		
+getOtpPush: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var date= new Date();
+	var tiempo1=date.getTime(); this.dom.getOut().getElementById(this.getId('textoOTPPush')).innerHTML=this.getAttributeTagLib(this.pushSendingPushMessage);
+	
+	 this.dom.getOut().getElementById('input_4').disabled = "true";
+
+	try {
+		var http = this.getAjaxObject();
+		http.abort();
+		
+		var signatureCommand="OTPPush";
+		var uidParam="";
+		var aliasParam="";
+		var isSecondSignParam="";
+		var isERParam="";
+		
+		if (this._tokenParam == "") {
+			uidParam="&UID="+this.getUIDParam();
+			aliasParam="&alias="+this.getAliasParam();
+			isSecondSignParam="&isSecondSign="+this.isSecondSign;
+			isERParam="&isER="+this.isER;
+		}
+		
+		var req=signatureCommand + uidParam + aliasParam + isSecondSignParam + isERParam + this._tokenParam;
+		http.open("POST", this.getApplication(req), true);
+		var fullVarName=eval(this.getFullVarName());
+
+		http.onreadystatechange=function() {
+			try {
+				if(http.readyState == 4) {
+					var msgObj = http.responseXML.getElementsByTagName('message')[0];
+					if (msgObj != null) {
+						var msgpush=msgObj.firstChild.nodeValue;
+						
+						var type=msgObj.getAttribute('type');
+						date=new Date();
+						tiempo2=date.getTime();
+						var wait=fullVarName.messageTimeOTPPush-(tiempo2-tiempo1);
+						
+						fullVarName.waitOTPPush(msgpush, wait, type);
+
+						
+						if (fullVarName.isShowMsgTimeSentOTPPush) {
+							var timeWait = fullVarName.messageTimeSentOTPPush;
+							if((type == 'message') && (timeWait > 0)) {
+								var newMsg = fullVarName.getAttributeTagLib(fullVarName.pushSentPushMessage, null, new Array(""+fullVarName.messageTimeSentOTPPush/1000));
+								var newChange="document.getElementById('"+fullVarName.getId('textoOTPPush')+"').innerHTML='"+newMsg+"';";
+								if (wait > 0) {
+									timeWait += wait; 
+								}
+								window.setTimeout(newChange,timeWait);
+							}
+						}
+					}
+				}
+			} catch(e) {
+				fullVarName.showAlert(fullVarName.getAttributeTagLib(fullVarName.alertError), '', false);
+			}
+		};
+		http.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+		http.setRequestHeader("Cache-Control", "no-cache");
+		var valorConcepto =this.dom.getXmlValueAtName(this.dom.xmlNodes[this.xmltree],this.xpathConcepto)
+		http.send('concepto=' + valorConcepto);
+	} catch(ex) {
+		this.showAlert(this.getAttributeTagLib(this.alertError),'', false);
+	}
+			
+},			
+		
+// ---------- displayOTPPushErrorMessage   method ------------------------------------------------		
+displayOTPPushErrorMessage: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	if(this._erroresOTPPush != null && this._erroresOTPPush.length>0){
+		this.showAlert(this._erroresOTPPush[0].descripcion,'.', false);
+		return true;
+	} else {
+		return false;
+	}
+			
+},			
+		
+// ---------- otpPushCheck   method ------------------------------------------------		
+otpPushCheck: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	this.objOtpPushCheck=null;
+	try{
+		var http = this.getAjaxObject();
+		http.abort();
+	
+		var command = "OTPPushCheck";
+		var uidParam="";
+		var aliasParam="";
+		
+		if (this._tokenParam == "") {
+			uidParam="&UID="+this.getUIDParam();
+			aliasParam="&alias="+this.getAliasParam();
+		}
+		
+		var req=command + uidParam + aliasParam + this._tokenParam;
+		http.open("POST", this.getApplication(req), true);
+		
+		var fullVarName=eval(this.getFullVarName());
+		var doc=eval("document");
+
+		http.onreadystatechange=function() {
+			if(http.readyState == 4) {
+				fullVarName.objOtpPushCheck=http.responseXML;
+			}
+		};
+		
+		http.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+		http.setRequestHeader("Cache-Control", "no-cache");
+		http.send('');
+		
+		this.finalizeOTPPushCheck();
+	}catch(ex){
+		this.showAlert(this.getAttributeTagLib(this.alertError),'', false);
+	}
+			
+},			
+		
+// ---------- finalizeOTPPushCheck   method ------------------------------------------------		
+finalizeOTPPushCheck: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	if (this.objOtpPushCheck!=null) {
+		var msgObj = this.objOtpPushCheck.getElementsByTagName('message')[0];
+		if(msgObj!=null) {
+			var type=msgObj.getAttribute('type');
+			var msgpush=msgObj.firstChild.nodeValue;
+			switch(type) {
+				case 'error':
+					this.showAlert(this.getAttributeTagLib(this.alertError),'', false);
+					break;
+				case 'message':
+					var id=msgObj.getAttribute('id');
+					if (id=='needsOTPPush') {
+						this.getOtpPush();
+					} else { this.dom.getOut().getElementById(this.getId('textoOTPPush')).innerHTML=msgpush;
+					}
+					break;
+			}
+		}
+	} else {
+		var fullVarName=this.getFullVarName();
+		window.setTimeout(fullVarName+".finalizeOTPPushCheck()",500);
+	}
+			
+},			
+		
+// ---------- waitOTPPush   method ------------------------------------------------		
+waitOTPPush: function (msgpush,wait,type){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var change = null;
+	if (wait>0) {
+		if(type == 'message') {
+			change="document.getElementById('"+this.getId('textoOTPPush')+"').innerHTML='"+msgpush+"';";
+		} else {
+			
+			change = this.getFullVarName() + ".showAlert('" + msgpush + "','.',false);";
+		}
+		
+		change += "document.getElementById('input_4').disabled=''";
+		window.setTimeout(change,wait);
+	} else {
+		 this.dom.getOut().getElementById('input_4').disabled='';
+		if (type == 'message') { this.dom.getOut().getElementById(this.getId('textoOTPPush')).innerHTML=msgpush;
+		} else {
+			this.showAlert(msgpush,'.', false);
+		}
+	}
+			
+},			
+		
+// ---------- getITAN   method ------------------------------------------------		
+getITAN: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var date= new Date();
+	var tiempo1=date.getTime(); this.dom.getOut().getElementById(this.getId('textoITAN')).innerHTML=this.getAttributeTagLib(this.itanCallingWebService);
+	
+	 this.dom.getOut().getElementById('input_2').disabled = "true";
+	
+	try{
+		var http = this.getAjaxObject();
+		http.abort();
+		var signatureCommand="ITAN";
+		var uidParam="";
+		var aliasParam="";
+		var isSecondSignParam="";
+		var isERParam="";
+		
+		if (this._tokenParam == "") {
+			uidParam="&UID="+this.getUIDParam();
+			aliasParam="&alias="+this.getAliasParam();
+			isSecondSignParam="&isSecondSign="+this.isSecondSign;
+			isERParam="&isER="+this.isER;
+		}
+		
+		var req=signatureCommand + uidParam + aliasParam + isSecondSignParam + isERParam + this._tokenParam;
+		http.open("POST", this.getApplication(req) , true);
+		
+		var fullVarName=eval(this.getFullVarName());
+		http.onreadystatechange=function() {
+			try{
+				if(http.readyState == 4) {
+					var msgObj = http.responseXML.getElementsByTagName('message')[0];
+					if(msgObj!=null){	
+						var msgsms = msgObj.firstChild.nodeValue;
+						
+						var resultCode = msgObj.getAttribute('resultCode');
+						var key = msgObj.getAttribute('key');
+						date = new Date();
+						tiempo2 = date.getTime();
+						var wait = fullVarName.messageTimeOTP-(tiempo2-tiempo1);
+						
+						fullVarName.waitITAN(msgsms,wait,resultCode,key);
+					}
+				}
+			} catch(e) {
+				fullVarName.showAlert(fullVarName.getAttributeTagLib(fullVarName.alertError),'', false);
+			}
+		};
+		http.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+		http.setRequestHeader("Cache-Control", "no-cache");
+		http.send('');
+	}catch(ex){
+		this.showAlert(this.getAttributeTagLib(this.alertError),'', false);
+	}
+			
+},			
+		
+// ---------- getOTPHW   method ------------------------------------------------		
+getOTPHW: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var date= new Date();
+	var tiempo1=date.getTime(); this.dom.getOut().getElementById(this.getId('textoOTPHW')).innerHTML=this.getAttributeTagLib(this.OTPHWCallingWebService);
+
+	 this.dom.getOut().getElementById('input_3').disabled = "true";
+
+	try{
+		var http = this.getAjaxObject();
+		http.abort();
+		http.aux = this;
+		var signatureCommand="OTPHW";
+		var uidParam="";
+		var aliasParam="";
+		var isSecondSignParam="";
+		var operationData="";
+		var isERParam="";
+		
+		if (this._tokenParam == "") {
+			uidParam="&UID="+this.getUIDParam();
+			aliasParam="&alias="+this.getAliasParam();
+			isSecondSignParam="&isSecondSign="+this.isSecondSign;
+			operationData="&operationData="+this.txtOperationData;
+			isERParam="&isER="+this.isER;
+		}
+
+		var req=signatureCommand + uidParam + aliasParam + isSecondSignParam + operationData + isERParam + this._tokenParam;
+		http.open("POST", this.getApplication(req) , true);
+
+		var fullVarName=eval(this.getFullVarName());
+		http.onreadystatechange=function() {
+			try {
+				if(http.readyState == 4) {
+					var msgObj = http.responseXML.getElementsByTagName('message')[0];
+					if (msgObj!=null) {	
+						var msgsms = "";	
+						var resultCode = msgObj.getAttribute('resultCode');
+						if(http.aux.txtInformativo == "" || http.aux.txtInformativo == null) {
+							msgsms = msgObj.firstChild.nodeValue;
+						} else
+							if (resultCode == 0) {
+								msgsms = http.aux.txtInformativo;
+							} else {
+								msgsms = msgObj.firstChild.nodeValue;
+							}
+						}
+						
+						var key = msgObj.getAttribute('key');
+						date = new Date();
+						tiempo2 = date.getTime();
+						var wait = fullVarName.messageTimeOTP-(tiempo2-tiempo1);
+						
+						fullVarName.waitOTPHW(msgsms,wait,resultCode,key);
+					}
+			} catch(e) {
+				fullVarName.showAlert(fullVarName.getAttributeTagLib(fullVarName.alertError),'', false);
+			}
+		};
+		http.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+		http.setRequestHeader("Cache-Control", "no-cache");
+		http.send('');
+	}catch(ex){
+		this.showAlert(this.getAttributeTagLib(this.alertError),'', false);
+	}
+			
+},			
+		
+// ---------- waitITAN   method ------------------------------------------------		
+waitITAN: function (msgitan,wait,resultCode,key){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	
+	if (resultCode == '0' || resultCode == '-1') {
+		
+		msgitan += ' ' + key;
+		if (wait>0) {
+			var change="document.getElementById('"+this.getId('textoITAN')+"').innerHTML='"+msgitan+"';";
+			
+			change += "document.getElementById('input_2').disabled=''";
+			window.setTimeout(change,wait);
+		} else { this.dom.getOut().getElementById(this.getId('textoITAN')).innerHTML=msgitan;
+			 this.dom.getOut().getElementById('input_2').disabled='';
+		}
+	} else {
+		
+		if (wait>0) {
+			var change= this.getFullVarName() + ".showAlert('" + msgitan + "','.',false);";
+			window.setTimeout(change,wait);
+		} else {
+			this.showAlert(msgitan,'.', false);
+		}
+	}
+			
+},			
+		
+// ---------- waitOTPHW   method ------------------------------------------------		
+waitOTPHW: function (msgotphw,wait,resultCode,key){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	
+	if (resultCode == '0' || resultCode == '-1') {
+		
+		msgotphw += ' ' + key;
+		if (wait>0){
+			var change="document.getElementById('"+this.getId('textoOTPHW')+"').innerHTML='"+msgotphw+"';";
+			
+			change += "document.getElementById('input_3').disabled=''";
+			window.setTimeout(change,wait);
+		}else{ this.dom.getOut().getElementById(this.getId('textoOTPHW')).innerHTML=msgotphw;
+			 this.dom.getOut().getElementById('input_3').disabled='';
+		}
+	} else {
+		
+		if (wait>0){
+			var change= this.getFullVarName() + ".showAlert('" + msgotphw + "','.',false);";
+			window.setTimeout(change,wait);
+		}else{
+			this.showAlert(msgotphw,'.', false);
+		}
+	}
+			
+},			
+		
+// ---------- getMessagePositions   method ------------------------------------------------		
+getMessagePositions: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var msg1='';
+	var msg2='';
+	var append='';
+	
+	if (this._positions!=null && this._positions.length>0){
+		this._positions.sort();
+		
+		for (var i=0;i < this._positions.length - 1;i++){
+			msg1+=append+this._positions[i];	
+			append=', ';
+		}
+		msg2=this._positions[this._positions.length-1];
+	}
+	
+	return this.getAttributeTagLib(this.positionInfo,null,new Array(msg1,msg2)); 
+			
+},			
+		
+// ---------- getInputPositions   method ------------------------------------------------		
+getInputPositions: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var s=new Array();
+	var keyDown='';
+	var click='';
+	var onfocus='';
+	if (this._isVirtualKeyboard){ 
+		keyDown='return '+this.getFullVarName()+'.pressKey(event.keyCode);';
+		click=this.getFullVarName()+'.tecladoVirtual._click=false;';
+		onfocus=this.getFullVarName()+'.tecladoVirtual.showKeyboard();';
+	}
+
+	for (var i=1;i<=this._totalNumberPositions;i++) { 
+		var pos = new String(i);
+		s.push('<div class="box">');
+		if (this.utils.indexOfArray(this._positions,pos)!=-1) {
+			s.push('<label for="'+this.getId(pos)+'">');
+			s.push('<strong>'+pos+'</strong>');
+			s.push('<input ');
+			s.push(' id="'+this.getId(pos)+'"');
+			s.push(' type="'+ this.fieldPositionType +'" ');
+			s.push(' size="'+this._fieldsPositions.maxlength+'"');
+			s.push(' maxlength="'+this._fieldsPositions.maxlength+'"');
+			s.push(' onkeydown="'+keyDown+'"');
+			s.push(' onclick="'+click+'"');
+			
+			s.push(' onkeyup="'+this.getFullVarName()+'.changePosition(this,event)" ');
+			s.push(' onfocus="'+onfocus+this.getFullVarName()+'.foco='+'\''+this.getId(pos)+'\'"');
+			s.push('/>');
+			s.push('</label>');
+		} else {
+			s.push('<label><strong>'+pos+'</strong></label>');
+			s.push('<p class="posHidden">'+this.getAttributeTagLib(this.positionHidden)+'</p>');
+		}
+		s.push('</div>');
+	}
+
+	return s.join('');
+			
+},			
+		
+// ---------- pressKey   method ------------------------------------------------		
+pressKey: function (strvalidar){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	if (this._isVirtualKeyboard) {
+		if (this.tecladoVirtual.mandatory && this.tecladoVirtual.mandatory!="false") {
+			return false;
+		} else {
+			return true;
+		}
+	}
+	return true;
+			
+},			
+		
+// ---------- virtualKey   method ------------------------------------------------		
+virtualKey: function (ev){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var comp = this.parent;
+	var elemnt = this.dom.getOut().getElementById(comp.foco);
+	var text = elemnt.value;
+
+	if(ev.isBackspace) {
+		elemnt.value='';
+		ev.keyCode=8;
+	} else if (ev.isCaps) {
+		ev.keyCode=9;
+		elemnt.focus();	
+	} else {
+		if(elemnt.maxLength == -1 || elemnt.maxLength > elemnt.value.length) {
+			elemnt.value=text+ev.keycode;
+		}
+	}
+
+	comp.changePosition(elemnt,ev);
+			
+},			
+		
+// ---------- validarTeclasPosiciones   method ------------------------------------------------		
+validarTeclasPosiciones: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+			
+},			
+		
+// ---------- erase   method ------------------------------------------------		
+erase: function (){
+	var inp;
+	if (this._verificationType != null && this._verificationType == this.CLAVE_POSICIONES) {
+		for (var i=this._positions.length-1;i>=0;i--) {
+			inp = this.dom.getOut().getElementById(this.getId(this._positions[i]));
+			if (inp.value.length!='') {
+				inp.value=''; this.dom.getOut().getElementById(this.getId(this._positions[i])).focus();
+				break;
+			} else { this.dom.getOut().getElementById(this.getId(this._positions[i])).focus();
+			}
+		}
+	 } else {
+	       if (this.foco) {
+			var elemnt = this.dom.getOut().getElementById(this.foco);
+			if (elemnt!=null) {
+				elemnt.value='';
+			}
+		}
+	 }
+			
+},			
+		
+// ---------- changePosition   method ------------------------------------------------		
+changePosition: function (obj,event){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var pos=obj.id;
+	var iPos=pos.substring(pos.length-1);
+	var keyCode=event.keyCode;
+
+	
+	if (this.utils.indexOfArray(this.excludedAutoPos,keyCode)==-1){
+		if (keyCode==8){
+			var iPosBack=this.utils.indexOfArray(this._positions,iPos)-1;
+			if (iPosBack>=0){
+				var idBack=this.getId(this._positions[iPosBack]); this.dom.getOut().getElementById(idBack).focus();
+				 this.dom.getOut().getElementById(idBack).value=this.dom.getOut().getElementById(idBack).value;
+			}
+		}else{
+			var iPosNext=this.utils.indexOfArray(this._positions,iPos)+1;
+			if (iPosNext<this._positions.length){
+				var idNext=""+this.getId(this._positions[iPosNext]); this.dom.getOut().getElementById(idNext).focus();
+			}
+		}
+	}
+			
+},			
+		
+// ---------- getHeadTitle   method ------------------------------------------------		
+getHeadTitle: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var headTittle="";
+	var title1=this.dom.getXmlValueAtName(this.dom.xmlNodes[this._root],this.headTitle[0]);
+	var title2=this.dom.getXmlValueAtName(this.dom.xmlNodes[this._root],this.headTitle2[0]);
+
+	if ((title1!=null && title1!="") && (title2!=null && title2!="")) {
+		headTittle=title1+" <strong>"+title2+"</strong>";
+	} else {
+		headTittle=this.headTitle[1]+" <strong>"+this.headTitle2[1]+"</strong>";
+		if (this.utils.indexOfArray(this.spa,this._idioma)!=-1) {
+			headTittle=this.headTitle[1]+" <strong>"+this.headTitle2[1]+"</strong>";
+		} else if (this.utils.indexOfArray(this.eng,this._idioma)!=-1) {
+			headTittle=this.headTitle[2]+" <strong>"+this.headTitle2[2]+"</strong>";
+		} else if (this.utils.indexOfArray(this.por,this._idioma)!=-1) {
+			headTittle=this.headTitle[3]+" <strong>"+this.headTitle2[3]+"</strong>";
+		} else if (this.utils.indexOfArray(this.ger,this._idioma)!=-1) {
+			headTittle=this.headTitle[4]+" <strong>"+this.headTitle2[4]+"</strong>";
+		}
+	}
+
+	return headTittle;
+			
+},			
+		
+// ---------- reset   method ------------------------------------------------		
+reset: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	if (this._verificationType != null && this._verificationType == this.CLAVE_POSICIONES) {
+		for (var i=0;i<this._positions.length;i++) {
+			if (this.dom.getOut().getElementById(this.getId(this._positions[i]))) { this.dom.getOut().getElementById(this.getId(this._positions[i])).value="";
+			}
+		}
+		if (this.dom.getOut().getElementById(this.getId(this._positions[0]))){
+			var fE = this.dom.getOut().getElementById(this.getId(this._positions[0]));
+			if (fE && !fE.disabled ) fE.focus();
+		}
+	}
+	if (this.dom.getOut().getElementById(this.getId(this._positions[0]))){
+		var fE = this.dom.getOut().getElementById(this.getId(this._positions[0]));
+		if (fE && !fE.disabled && this.dom.getOut().getElementById('clavePosiciones').style.display=='') fE.focus();
+	}
+
+	
+	this.resetFields();
+			
+},			
+		
+// ---------- getApplicationProtocol   method ------------------------------------------------		
+getApplicationProtocol: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var originalUrl = new String(window.location);
+	var appletPort = 0;
+
+	var index = originalUrl.indexOf(':',0);
+	
+	var protocolo = originalUrl.substring(0,index);
+
+	
+	var enServidor = this.codebase.indexOf('/Estatico/',0);
+	if (enServidor != -1) {
+		
+		
+		if (protocolo == 'HTTP' || protocolo == 'http') {
+			appletPort = 80;
+		} else {
+			appletPort = 443;
+		}
+	} else {
+		
+		
+		appletPort = window.location.port;
+	}
+	return appletPort;
+			
+},			
+		
+// ---------- loadApplets   method ------------------------------------------------		
+loadApplets: function (mode){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};	
+	switch(mode){		
+		case this.CERTIFICADO_DIGITAL:
+			
+			if (this.dom.getOut().getElementById(this.getId('AppletCD')) == null) {		
+				if (this._AcceptedCA!=null) {
+					
+					if (dom.runTime) {
+						
+						this.appletServerPort = this.getApplicationProtocol();
+
+						 this.dom.getOut().getElementById('containerAppletDNIe').innerHTML = "<applet id=\""+this.getId("AppletCD")+"\" codebase=\""+this.dom.getOut().location.protocol +"//" + this.dom.getOut().location.hostname +":"+ this.appletServerPort + this.codebase +"\" code=\"com.isb.rigel.applet.FirmaDigitalApplet\" archive=\"signatureApplet.jar\"" + " align=\"middle\" width=\"10\" height=\"10\"><param name=\"browser\" value=\"" + this._navegador +"\" /><param name=\"libPath\" value=\"" + this.dom.getOut().location.protocol + "//" + this.dom.getOut().location.hostname + ":" + this.appletServerPort + this.codebase + "\" /><param name=\"msgPwdFF\" value=\""+this.dom.getXmlValueAtName(this.dom.xmlNodes[this._root],'confirmation/appletMessages/ffMasterPwdMessages')+"\" /><param name=\"msgPinDnie\" value=\""+this.dom.getXmlValueAtName(this.dom.xmlNodes[this._root],'confirmation/appletMessages/dniePinMessages')+"\" /></applet>";
+					}					
+				} else {
+					 this.dom.getOut().getElementById(this.getId("activex")).innerHTML = "<object classid=\"clsid:AF547673-52DE-48BA-85FA-7A7E8D24FABE\" codebase=\""+this.codebaseAxSign+"\" id=\""+ this.getId("AxSign")+"\"></object>";				
+				}				
+			}			
+			break;
+		case this.DNI_E:
+			
+			if (this.dom.getOut().getElementById('AppletDNI') == null) {			
+				if (this._AcceptedCA!=null) {
+					
+					if (dom.runTime) {
+						
+						this.appletServerPort = this.getApplicationProtocol();
+							
+									
+						 this.dom.getOut().getElementById('containerAppletDNIe').innerHTML = "<applet id=\""+this.getId("AppletCD")+"\" codebase=\""+this.dom.getOut().location.protocol +"//" + this.dom.getOut().location.hostname +":"+ this.appletServerPort + this.codebase +"\" code=\"com.isb.rigel.applet.FirmaDigitalApplet\" archive=\"signatureApplet.jar\"" + " align=\"middle\" width=\"10\" height=\"10\"><param name=\"browser\" value=\"" + this._navegador +"\" /><param name=\"libPath\" value=\"" + this.dom.getOut().location.protocol + "//" + this.dom.getOut().location.hostname + ":" + this.appletServerPort + this.codebase + "\" /><param name=\"msgPwdFF\" value=\""+this.dom.getXmlValueAtName(this.dom.xmlNodes[this._root],'confirmation/appletMessages/ffMasterPwdMessages')+"\" /><param name=\"msgPinDnie\" value=\""+this.dom.getXmlValueAtName(this.dom.xmlNodes[this._root],'confirmation/appletMessages/dniePinMessages')+"\" /></applet>" + "<applet id=\"AppletDNI\" name=\"SCARD\" codebase=\"" + this.dom.getOut().location.protocol + "//" + this.dom.getOut().location.hostname + ":" + this.appletServerPort + this.codebase + "\" code=\"com.isban.smartcard.applet.SCardApplet\" archive=\"SCardApplet.jar\" width=\"0\" height=\"0\"><param name=\"browser\" value=\"" + this._navegador + "\" /></applet>";
+					}
+				} else {
+					 this.dom.getOut().getElementById(this.getId("activex")).innerHTML = "<object classid=\"clsid:AF547673-52DE-48BA-85FA-7A7E8D24FABE\" codebase=\""+this.codebaseAxSign+"\" id=\""+ this.getId("AxSign")+"\"></object>";
+				}
+			}				
+			break;
+	}
+			
+},			
+		
+// ---------- base64_encode   method ------------------------------------------------		
+base64_encode: function (input){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var _keyStr = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
+
+	var output = "";
+	var chr1, chr2, chr3, enc1, enc2, enc3, enc4;
+	var i = 0;
+
+	input = this.utf8_encode(input);
+
+	while (i < input.length) {
+		chr1 = input.charCodeAt(i++);
+		chr2 = input.charCodeAt(i++);
+		chr3 = input.charCodeAt(i++);
+
+		enc1 = chr1 >> 2;
+		enc2 = ((chr1 & 3) << 4) | (chr2 >> 4);
+		enc3 = ((chr2 & 15) << 2) | (chr3 >> 6);
+		enc4 = chr3 & 63;
+
+		if (isNaN(chr2)) {
+			enc3 = enc4 = 64;
+		} else if (isNaN(chr3)) {
+			enc4 = 64;
+		}
+
+		output = output +
+		_keyStr.charAt(enc1) + _keyStr.charAt(enc2) +
+		_keyStr.charAt(enc3) + _keyStr.charAt(enc4);
+	}
+
+	return output;
+			
+},			
+		
+// ---------- utf8_encode   method ------------------------------------------------		
+utf8_encode: function (string){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	string = string.replace(/\r\n/g,"\n");
+	var utftext = "";
+
+	for (var n = 0; n < string.length; n++) {
+		var c = string.charCodeAt(n);
+
+		if (c < 128) {
+			utftext += String.fromCharCode(c);
+		} else if ((c > 127) && (c < 2048)) {
+			utftext += String.fromCharCode((c >> 6) | 192);
+			utftext += String.fromCharCode((c & 63) | 128);
+		} else {
+			utftext += String.fromCharCode((c >> 12) | 224);
+			utftext += String.fromCharCode(((c >> 6) & 63) | 128);
+			utftext += String.fromCharCode((c & 63) | 128);
+		}
+	}
+
+	return utftext;
+			
+},			
+		
+// ---------- getChallenge   method ------------------------------------------------		
+getChallenge: function (signatureCommand){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	if (this._isNewSignatureVersion && !this._isCfgChallengeSaved) {	
+		try {
+			var fullVarName=eval(this.getFullVarName());
+			var http = this.getAjaxObject();
+			http.abort();
+
+			var uidParam="";
+			var aliasParam="";
+			var isSecondSignParam="";
+			var isERParam="";
+			
+			if (this._tokenParam == "") {
+				uidParam="&UID="+this.getUIDParam();
+				aliasParam="&alias="+this.getAliasParam();
+				isSecondSignParam="&isSecondSign="+this.isSecondSign;
+				isERParam="&isER="+this.isER;
+			}
+
+			var req=signatureCommand + uidParam + aliasParam + isSecondSignParam + isERParam + this._tokenParam;
+			http.open("POST", this.getApplication(req), false);
+			
+			http.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+			http.setRequestHeader("Cache-Control", "no-cache");
+			http.send('');
+			
+			var challengeXML = http.responseXML;
+
+			this.manageResultChallenge(signatureCommand,challengeXML);
+		} catch(ex) {
+			this.showAlert(this.getAttributeTagLib(this.alertError),'', false);
+		}
+	}
+			
+},			
+		
+// ---------- manageResultChallenge   method ------------------------------------------------		
+manageResultChallenge: function (signatureCommand,challengeXML){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var resultNode = challengeXML.getElementsByTagName('result');
+	var challengeNode = challengeXML.getElementsByTagName('challenge');
+	var informationNode = challengeXML.getElementsByTagName('information');
+
+	if (resultNode!=null) {
+		var result=resultNode[0].firstChild.nodeValue;
+		
+		var challenge=challengeNode[0].firstChild.nodeValue;
+		
+		var information="";
+
+		if (informationNode!=null && informationNode[0].firstChild!=null) {
+			information=informationNode[0].firstChild.nodeValue;
+		}
+
+		if (result==this.RESULT_CHALLENGE_OK) {
+			if (signatureCommand==this.COMMAND_CHALLENGE_POSITIONS) {
+				this._totalNumberPositions = parseInt(information,10);
+				
+				var positionsArrayStr=challenge.split(' ');
+				this._positions=new Array();
+				for (i=0;i<positionsArrayStr.length;i++) {
+					this._positions.push(parseInt(positionsArrayStr[i],10));
+				}
+			} else if (signatureCommand==this.COMMAND_CHALLENGE_DNIE || signatureCommand==this.COMMAND_CHALLENGE_DIGITAL_SIGNATURE) {
+				this._dataToBeSigned = challenge;
+			}
+		}
+	}
+			
+},			
+		
+// ---------- showPositions   method ------------------------------------------------		
+showPositions: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){}; this.dom.getOut().getElementById(this.getId('positionsForm')).innerHTML=this.getInputPositions();
+			
+},			
+		
+// ---------- checkSelectedMode   method ------------------------------------------------		
+checkSelectedMode: function (mode){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	if( mode!=null && mode!='' ) {
+		this.showMode(mode);
+	}
+			
+},			
+// ---------- drawHeader   method ------------------------------------------------		
+drawHeader: function () {			
+var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};			
+this.setText('Globales_Bhtcs_Seguridad_Firma_ER');			
+			
+var s = new Array();			
+this.utils = new Globales_Bhtcs_Seguridad_Utils_m("utils",this);	
+	
+	
+	
+	
+	
+this.tecladoVirtual = new Globales_Bhtcs_Seguridad_Plugins_TecladoVirtual_m("tecladoVirtual",this);	
+s.push(this.utils.drawHeader());this.tecladoVirtual.aliasRepository = this.getAliasParam();
+this.tecladoVirtual.divId = this.getId('TECLADO_VIRTUAL');
+this.tecladoVirtual.nodoBHTC = 'confirmation';
+this.tecladoVirtual.nameBHTC = 'BHTC_FIRMA_ER';
+this.tecladoVirtual.isER = this.isER;
+s.push(this.tecladoVirtual.drawHeader());this.initialize();			
+
+return s.join(' ');			
+},			
+		
+// ---------- drawBody   method ------------------------------------------------		
+drawBody: function (d,l) {return this.dom.getBodyValue(d,l,this);},		
+// ---------- paint   method ------------------------------------------------		
+paint: function (draw,init) {var s = new Array();
+	
+	this.visibility = true;
+s.push(this.utils.drawBody(false,true));		
+s.push("	<div class = \"Firma_ER\" style=\"width:");s.push( this.width );s.push(";height:");s.push( this.height );s.push(";\">");s.push("		<fieldset>");s.push("			<div id=\"alertas\" style=\"display:none\">");s.push("				<div class=\"alerta_seg\">");s.push("					<div class=\"imgAlerta\"></div>");s.push("					<div class=\"divBodyAlerta\">");s.push("						<div class=\"msg1\" id=\"alerta\">");s.push("						</div>");s.push("						<div class=\"msg2\" id=\"alertaDesc\">");s.push("						</div>");s.push("					</div>");s.push("				</div>");s.push("			</div>");s.push("			  <p class=\"titulo_componente\" id=\"cabecera_Firma_ER\">");s.push(this.getHeadTitle());s.push("			  </p>");s.push("			<div class=\"borderojo\" id=\"borde_rojo\"> ");s.push("				<div class=\"padding\">");s.push("					<div id=\"noAliasConfiguredFirmaER\" style=\"display:none\">");s.push("						<div class=\"title\">");s.push("							<strong>");s.push(this.getAttributeTagLib(this.noAliasERConfiguredError));s.push("							</strong>");s.push("						</div>");s.push("					</div>");s.push("					<div id=\"clavePosiciones\" style=\"display:none;padding:0px;margin:0px\">");s.push("						<div class=\"title\" id=\"posTitle\">");s.push("							<strong>");s.push(this.getAttributeTagLib(this.positionTitle));s.push("							</strong>");s.push("						</div>");s.push("						<div class=\"subtitle\" id=\"posSubtitle\">");s.push(this.getMessagePositions());s.push("							<p class=\"linkInformationArea_seg\" id=\"linkInformationArea\" style=\"display:none\">");s.push("								<a id=\"linkInformationAreaHref\" href=\"\" target=\"\"></a>");s.push("							</p>");s.push("						</div>");s.push("						<div class=\"box-validation\" id=\"");s.push(this.getId('positionsForm'));s.push("\">");s.push("						</div>");s.push("					</div>");s.push("					<div id=\"sms\" style=\"display:none\">");s.push("						<div class=\"title\" id=\"smsTitle\">");s.push("							<strong>");s.push(this.getAttributeTagLib(this.smsTitle));s.push("							</strong>");s.push("						</div>");s.push("						<div class=\"subtitle\" id=\"");s.push(this.getId('textoOTP'));s.push("\"></div>");s.push("						<div class=\"formSMS\" >");s.push("							<label for=\"input_1\" class=\"info\">");s.push(this.getAttributeTagLib(this.smsInfoKey));s.push("</label>");s.push("							<input type=\"");s.push(this.fieldOTPType);s.push("\" id=\"input_1\" />");s.push("						</div>");s.push("					</div>");s.push("					<div id=\"dnie\" style=\"display:none\">");s.push("						<div class=\"title\" id=\"dniTitle\">");s.push("							<strong>");s.push(this.getAttributeTagLib(this.dnieTitle));s.push("							</strong>");s.push("						</div>");s.push("						<div class=\"dni\">");s.push("							<div class=\"imgDni\"></div>");s.push("							<div class=\"divBodyDni\">");s.push("								<div class=\"linea1\">");s.push("									<label for=\"emisorDniCa\" class=\"infoDni\" >");s.push(this.getAttributeTagLib(this.dnieIssuer));s.push("									</label>");s.push("									<p class=\"textDni\" id=\"emisorDniCa\">&nbsp;</p>");s.push("								</div>");s.push("								<div class=\"linea2\">");s.push("									<label for=\"receiver\" class=\"infoDni\">");s.push(this.getAttributeTagLib(this.dnieReceiver));s.push("									</label>");s.push("									<p class=\"textDni\" id=\"usuarioDniCa\">&nbsp;</p>");s.push("								</div>");s.push("							</div>");s.push("						</div>");s.push("					</div>");s.push("					<div id=\"dnie2\" style=\"display:none\">");s.push("						<div class=\"title\" id=\"dniDetectTitle\">");s.push("							<strong>");s.push(this.getAttributeTagLib(this.dnieTitle));s.push("							</strong>");s.push("						</div>");s.push("						<div class=\"dni2\">");s.push("							<div class=\"imgDni\"></div>");s.push("							<div class=\"subtitle\" id=\"");s.push(this.getId('textoDNIE'));s.push("\"></div>");s.push("						</div>");s.push("					</div>");s.push("					<div id=\"certificadoDigital\" style=\"display:none\">");s.push("						<div class=\"title\" id=\"cerTitle\">");s.push("							<strong>");s.push(this.getAttributeTagLib(this.digitalTitle));s.push("							</strong>");s.push("						</div>");s.push("						<div id=\"unCertificado\" style=\"display:none\">");s.push("							<div class=\"certifates\">");s.push("								<label for=\"issuer\" class=\"infoCert\" >");s.push(this.getAttributeTagLib(this.digitalIssuer));s.push("								</label>");s.push("								<p class=\"left\" id=\"issuer\"></p>");s.push("							</div>");s.push("							<div class=\"certifates\">");s.push("								<label for=\"receiver\" class=\"infoCert\" >");s.push(this.getAttributeTagLib(this.digitalReceiver));s.push("								</label>");s.push("								<p class=\"left\" id=\"receiver\"></p>");s.push("							</div>");s.push("						</div>");s.push("						<div id=\"nCertificados\" style=\"display:none\">");s.push("							<div class=\"title\" id=\"cerSubtitle1\">");s.push(this.getAttributeTagLib(this.digitalInfo));s.push("							</div>");s.push("							<div class=\"certifates\">");s.push("								<label for=\"selectedIssuer\" class=\"infoCert\">");s.push(this.getAttributeTagLib(this.digitalIssuer));s.push("								</label>");s.push("								<div class=\"leftEnd\">");s.push("									<input type=\"text\" class=\"disabled\" readonly=\"readonly\" id=\"selectedIssuer\" />");s.push("								</div>");s.push("								<div class=\"left\">");s.push("									<div class=\"iconoLupa\" onclick=\"");s.push(this.getFullVarName());s.push(".showPopUpCertificados();\">");s.push("									</div>");s.push("								</div>");s.push("								<label for=\"selectedReceiver\" class=\"infoCert\">");s.push(this.getAttributeTagLib(this.digitalReceiver));s.push("								</label>");s.push("								<div class=\"left\">");s.push("									<input type=\"text\" class=\"disabled\" readonly=\"readonly\" id=\"selectedReceiver\"/>");s.push("								</div>");s.push("							</div>");s.push("						</div>");s.push("						<div id=\"activex\" style=\"display:none\">");s.push("							<div class=\"title\" id=\"cerSubtitle2\">");s.push(this.getAttributeTagLib(this.digitalInfo));s.push("							</div>");s.push("							<div>");s.push("								<label for=\"activexCertificate\" class=\"infoCert\">");s.push(this.getAttributeTagLib(this.digitalIssuer));s.push("								</label>");s.push("								<div class=\"left\">");s.push("									<input type=\"text\" class=\"disabled\" readonly=\"readonly\" id=\"activexCertificate\" />");s.push("								</div>");s.push("								<div class=\"leftWithImg\">");s.push("									<input alt=\"");s.push(this.getAttributeTagLib(this.digitalInfo));s.push("\" title=\"");s.push(this.getAttributeTagLib(this.digitalInfo));s.push("\" onclick=\"");s.push(this.getFullVarName());s.push(".activexDigitalSignature();\" />");s.push("								</div>");s.push("							</div>");s.push("						</div>");s.push("					</div>");s.push("					<div id=\"itan\" style=\"display:none\">");s.push("						<div class=\"title\" id=\"itanTitle\">");s.push("							<strong>");s.push(this.getAttributeTagLib(this.itanTitle));s.push("							</strong>");s.push("						</div>");s.push("						<div class=\"subtitle\" id=\"");s.push(this.getId('textoITAN'));s.push("\"></div>");s.push("						<div class=\"formITAN\" >");s.push("							<label for=\"input_2\" class=\"info\">");s.push(this.getAttributeTagLib(this.itanInfoKey));s.push("							</label>");s.push("							<input type=\"");s.push(this.fieldiTANType);s.push("\" id=\"input_2\" />");s.push("						</div>");s.push("					</div>");s.push("					<div id=\"OTPHW\" style=\"display:none\">");s.push("						<div class=\"title\" id=\"OTPHWTitle\">");s.push("							 <strong>");s.push(this.getAttributeTagLib(this.OTPHWTitle));s.push("							</strong>");s.push("						</div>");s.push("						<div class=\"subtitle\" id=\"");s.push(this.getId('textoOTPHW'));s.push("\"></div>");s.push("						<div class=\"formOTPHW\" >");s.push("							<label for=\"input_3\" class=\"info\">");s.push(this.getAttributeTagLib(this.OTPHWInfoKey));s.push("							</label>");s.push("							<input type=\"");s.push(this.fieldOTPHWType);s.push("\" id=\"input_3\" />");s.push("						</div>");s.push("					</div>");s.push("					<div id=\"paperSignature\" style=\"display:none\">");s.push("						<div class=\"title\" id=\"paperSigTitle\">");s.push("							 <strong>");s.push(this.getAttributeTagLib(this.paperSignatureTitle));s.push("							</strong>");s.push("						</div>");s.push("						<div class=\"divBodyPaperSignature\" id=\"paperSigText\">");s.push(this.getAttributeTagLib(this.paperSignatureInfo));s.push("						</div>");s.push("					</div>");s.push("					<div id=\"push\" style=\"display:none\">");s.push("						<div class=\"title\" id=\"pushTitle\">");s.push("							<strong>");s.push(this.getAttributeTagLib(this.pushTitle));s.push("							</strong>");s.push("						</div>");s.push("						<div class=\"subtitle\" id=\"");s.push(this.getId('textoOTPPush'));s.push("\"></div>");s.push("						<div class=\"formPUSH\" >");s.push("							<label for=\"input_4\" class=\"info\">");s.push(this.getAttributeTagLib(this.pushInfoKey));s.push("</label>");s.push("							<input type=\"");s.push(this.fieldOTPPushType);s.push("\" id=\"input_4\" />");s.push("						</div>");s.push("					</div>");s.push("					<div id=\"cambiaModo\" style=\"display:none\">");s.push("						<div class=\"title\">");s.push("							<strong>");s.push(this.getAttributeTagLib(this.changesignTitle));s.push("							</strong>");s.push("						</div>");s.push("						<div class=\"cambioModo\">");s.push("							<label for=\"changeSelect\" class=\"info\" >");s.push(this.getAttributeTagLib(this.changesignSelectionInfo));s.push("							</label>");s.push("							<select id=\"changeSelect\">");s.push(this.getComboSeleccion());s.push("							</select>");s.push("							<input class=\"changeSelectButton\" value=\"");s.push(this.getAttributeTagLib(this.changesignSubmit));s.push("\" type=\"button\" onclick=\"");s.push(this.getFullVarName() + '.checkSelectedMode(doc'+'ument.getElementById(\'changeSelect\').value)');s.push(";\" />");s.push("						</div>");s.push("					</div>	");s.push("					<div class=\"enlace_seg\" id=\"cambiaModoLink\"  style=\"display:none\">");s.push("						<a href=\"#\" title=\"\" onclick=\"");s.push( this.getFullVarName());s.push(".showMode('");s.push(this.CAMBIO_MODO);s.push("');\">");s.push(this.getAttributeTagLib(this.changesignLink));s.push("</a>");s.push("					</div>");s.push("				</div>");s.push("		</fieldset>");s.push("		<div id=\"helpArea_seg\" style=\"display:none\">");s.push("			<div class=\"helpArea_seg\">");s.push("				<div class=\"imgHelpArea_seg\"></div>");s.push("				<div class=\"imgHelpBody\">");s.push("					<div class=\"helpAreaDesc_seg\" id=\"helpAreaDesc_seg\"></div>");s.push("					<div class=\"helpAreaLink_seg\">");s.push(this.getAttributeTagLib(this.helpareaKeySignatureLinkNota));s.push(" <a id=\"helpAreaLinkUrl_seg\" href=\"#\" target=\"_blank\"></a>");s.push("					</div>");s.push("					<div class=\"helpAreaLinkImg_seg\"></div>");s.push("				</div>");s.push("			</div>");s.push("		</div>");
+	if (this._AcceptedCA!=null){
+		
+		if (this.utils.indexOfArray(this._availableSignatures,this.CERTIFICADO_DIGITAL)!=-1 ||
+			this.utils.indexOfArray(this._availableSignatures,this.DNI_E)!=-1){ 
+			if (dom.runTime){
+s.push(" 		<div class=\"segApplet\" id=\"containerAppletDNIe\"></div>");
+			}
+		}
+	}else{
+s.push("		<div class=\"segApplet\" id=\"");s.push(this.getId("activex"));s.push("\"></div>");
+	}
+s.push("	</div>");
+	if (this._isVirtualKeyboard){
+s.push("	<div id=\"");s.push(this.getId("TECLADO_VIRTUAL") );s.push("\" style=\"display:none;\">");this.tecladoVirtual.evKeypressed = this.virtualKey;			
+s.push(this.tecladoVirtual.drawBody(true,true));		
+s.push("	</div>");
+	}
+return this.dom.paint(draw,init,this,s.join(''));			
+}			
+
+}
+
+;
+
+
+/*110613*/
+function Globales_Bhtcs_Seguridad_Plugins_TecladoVirtual_m (id,parent,l,s,m) {	
+this.main=parent.main;this.dom=this.main.dom;this.dom.setLocation(this,l);	
+this._M1='Globales_Bhtcs_Seguridad_Plugins_TecladoVirtual';this.jsVarName = id;	
+this.parent = parent;	
+this.text = new Array();this.setText = this.base.setText;this.getFullVarName = this.base.getFullVarName;this.getId = this.base.getId;this.getDataText = this.base.getDataText;this.getMain = this.base.getMain;this.openWindowPopup = this.base.openWindowPopup;this.dom.getLinks(['Globales_Styles_TecladoVirtual_css'],'Globales_Bhtcs_Seguridad_Plugins_TecladoVirtual'+id,true);	
+this._CVSRevision = '$Revision: 1.3.2.20 $';	
+this.xpathVirtualKeyboard = 'virtualKeyboard';	
+this.xpathmovable = '/movable';	
+this.xpathHideKey = '/hideKey';	
+this.xpathMandatory = '/mandatory';	
+this.xpathNumeric = '/numeric';	
+this.xpathKeyboard = '/keyboard';	
+this.xpathDontShowMsg = '/dontShowMsg';	
+this.xpathDelKey = '/delKey';	
+this.xpathCaseKey = '/caseKey';	
+this.xpathKey = '/key';	
+this.xpathUpperKey = '/uppercase';	
+this.xpathLowerKey = '/lowercase';	
+this.xpathUpperDel = '/uppercase';	
+this.xpathLowerDel = '/lowercase';	
+this.xpathUpperCase = '/uppercase';	
+this.xpathLowerCase = '/lowercase';	
+this.movable = true;	
+this.hideKey = false;	
+this.mandatory = false;	
+this.titleMsg = ['virtualKeyboard/keyboard/titleMsg','Teclado virtual','Virtual Keyboard','Teclado virtual','Teclado virtual'];	
+this.helpMsg = ['virtualKeyboard/keyboard/helpMsg','El Teclado Virtual es una precaución introducida por la entidad que reemplaza el teclado físico, evitando posibles fraudes derivados de la captura de información introducida por el teclado.','The Virtual Keyboard is a precautionary measure introduced by the bank to replace the physical keyboard in order to prevent against possible frauds from occurring as a result of capturing the information that has been entered using the keyboard.','El Teclado Virtual es una precaución introducida por la entidad que reemplaza el teclado físico, evitando posibles fraudes derivados de la captura de información introducida por el teclado.','El Teclado Virtual es una precaución introducida por la entidad que reemplaza el teclado físico, evitando posibles fraudes derivados de la captura de información introducida por el teclado.'];	
+this.backMsg = ['virtualKeyboard/keyboard/backMsg','Volver al Teclado Virtual','Return to Virtual Keyboard','Volver al Teclado Virtual','Volver al Teclado Virtual'];	
+this.dontShowMsg = ['virtualKeyboard/keyboard/dontShowMsg','No volver a mostrar.','Do not show again','No volver a mostrar.','No volver a mostrar.'];	
+this.spa = ['spa','es-ES','spa-ES'];	
+this.eng = ['eng','en-UK','en-GB','eng-GB'];	
+this.por = ['por','pt-PT','por-PT'];	
+this.ger = ['ger','deu','de-DE','ger-DE','deu-DE'];	
+this.keyboard = [];	
+this.specialkeys = [];	
+this.styleResources = this.dom.getRPath(this._M1,id,'css');	
+this.printMode = 'noGr';	
+this.uppercase = false;	
+this.isER = false;	
+this.aliasRepository = '';	
+this.cmdAliasCfg = 'BHTCCFG';	
+this.foco = null;	
+this.divId = null;	
+this.showCookie = true;	
+this.Qualification_name = 'root';	
+this.helpText = '';	
+this.nameBHTC = '';	
+this.nodoBHTC = '';	
+this.evKeypressed = dom.getInstanceBase().nullEventRaiser;
+}
+Globales_Bhtcs_Seguridad_Plugins_TecladoVirtual_m.prototype = { base: dom.getInstanceBase(),			
+		
+// ---------- onload   method ------------------------------------------------		
+onload: function () {},			
+		
+// ---------- getAttributeTagLib   method ------------------------------------------------		
+getAttributeTagLib: function (att,params){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var valor='';
+		
+	if (att!=null && att.length>=2){
+		var valTagLib=this.dom.getXmlValueAtName(this.dom.xmlNodes[this._root],att[0]);
+
+		if (valTagLib!=null && valTagLib!=''){
+			valor=valTagLib;
+		}else{
+			valor=att[1];
+			if (this.indexOfArray(this.spa,this._idioma)!=-1){
+				valor=att[1];
+			}else if (this.indexOfArray(this.eng,this._idioma)!=-1){
+				valor=att[2];
+			}else if (this.indexOfArray(this.por,this._idioma)!=-1){
+				valor=att[3];
+			}else if (this.indexOfArray(this.ger,this._idioma)!=-1){
+				valor=att[4];
+			}
+		}
+	}
+
+	if (params!=null && params.length>0){
+		valor=this.replaceValAtt(valor,params);
+	}
+	
+	return valor;
+			
+},			
+		
+// ---------- replaceValAtt   method ------------------------------------------------		
+replaceValAtt: function (valAtt,params){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var valor='';
+	var index=0;
+	var index2=0;
+	while (valAtt.indexOf('($')>0){
+		index=parseInt(valAtt.indexOf('($'));
+		index2=parseInt(valAtt.indexOf('$)'));
+		var indexParam=valAtt.substring(index+2,index2);
+		var st='';
+
+		if (params[indexParam]!=null) st=params[indexParam];
+		
+		valor+=valAtt.substring(0,index)+st;
+		valAtt=valAtt.substring(index2+2);
+	}
+	valor += valAtt;
+
+	return valor;
+			
+},			
+		
+// ---------- indexOfArray   method ------------------------------------------------		
+indexOfArray: function (array,value){
+	for (var i=0;i<array.length;i++){
+		if(array[i] == value) {
+			return i;
+		}
+	}
+	return -1;
+			
+},			
+		
+// ---------- pushChar   method ------------------------------------------------		
+pushChar: function (char){
+
+	var keycode = this.URLDecode(char);
+	var e = this.dom.getInstanceEvent(this,"evKeypressed");
+	e.keycode=keycode;
+	e.isCaps=false;
+	e.isBackspace=false;
+	e.raise();
+			
+},			
+		
+// ---------- pushCaps   method ------------------------------------------------		
+pushCaps: function (){
+	this.uppercase=!this.uppercase;
+	this.repaint();
+	var e = this.dom.getInstanceEvent(this,"evKeypressed");
+	e.keycode='caps';
+	e.isCaps=true;
+	e.isBackspace=false;
+	e.raise();
+			
+},			
+		
+// ---------- pushBackSpace   method ------------------------------------------------		
+pushBackSpace: function (){
+	var e = this.dom.getInstanceEvent(this,"evKeypressed");
+	e.keycode='backSpace';
+	e.isCaps=false;
+	e.isBackspace=true;
+	e.raise();
+			
+},			
+		
+// ---------- repaint   method ------------------------------------------------		
+repaint: function (){
+	dom.getOut().getElementById(this.getId("repaint")).parentNode.innerHTML=this.paint(true,true);
+			
+},			
+		
+// ---------- URLDecode   method ------------------------------------------------		
+URLDecode: function (hex){
+   var HEXCHARS = "0123456789ABCDEFabcdef"; 
+   var encoded = hex;
+   var plaintext = "";
+   var i = 0;
+   while (i < encoded.length) {
+       var ch = encoded.charAt(i);
+	   if (ch == "%") {
+			if (i < (encoded.length-2) && HEXCHARS.indexOf(encoded.charAt(i+1)) != -1 && HEXCHARS.indexOf(encoded.charAt(i+2)) != -1 ) {
+				plaintext += unescape( encoded.substr(i,3) );
+				i += 3;
+			} else {
+				plaintext = "";
+				i++;
+			}
+		} else {
+		   plaintext += ch;
+		   i++;
+		}
+	}
+   return plaintext;
+			
+},			
+		
+// ---------- escapeEntities   method ------------------------------------------------		
+escapeEntities: function (text){ 
+  	return text.replace('&', '&amp;').replace('<', '&lt;').replace('>','&gt;');
+			
+},			
+		
+// ---------- showKeyboard   method ------------------------------------------------		
+showKeyboard: function (){
+if(this.getCookieVal()==0){
+	if(this.divId){
+		this.helpKeyboard(false);
+	    var elem = this.dom.getOut().getElementsByTagName("div");
+	    this._arr = new Array();
+	    for(i = 0,iarr = 0; i < elem.length; i++) {
+	         att = elem[i].getAttribute("id");
+	         if(att == 'this.getId("TECLADO_VIRTUAL") ') {
+	              this._arr[iarr] = elem[i];
+	              iarr++;
+ 	         }
+	    }
+	    for(j=0;j<this._arr.length;j++){
+	    	var div= this._arr[j];
+	    	div.style.display="none";
+	    } this.dom.getOut().getElementById(this.divId).style.display="block";
+		this.movePosition();
+        var cuerpo = this.dom.getOut().getElementsByTagName("body")[0]; 
+ 		var keyboard = this.dom.getOut().getElementById(this.getId("tecladoVirtual_extension"));
+        var ruta= this.getFullVarName();
+        cuerpo.onclick= Function(ruta+'.bodyClick()'); 
+        keyboard.onclick= Function(ruta+'.keyboardClick()');
+        this._click=false; 
+	}
+}
+			
+},			
+		
+// ---------- bodyClick   method ------------------------------------------------		
+bodyClick: function (){
+ if(this._click){
+ 	this.closeKeyboard();
+    this._click=false;
+   }else{
+   	this._click=true;
+   }
+			
+},			
+		
+// ---------- keyboardClick   method ------------------------------------------------		
+keyboardClick: function (){
+ this._click=false;
+			
+},			
+		
+// ---------- closeKeyboard   method ------------------------------------------------		
+closeKeyboard: function (){
+	var notShow= false;
+	if(this.dom.getOut().getElementById(this.getId("checkNotShow"))) notShow =this.dom.getOut().getElementById(this.getId("checkNotShow")).checked;
+	if(this.divId){
+		if(notShow) this.insertCookie("notShowKeyboard");
+		this.helpKeyboard(false); this.dom.getOut().getElementById(this.divId).style.display="none";
+		
+		var cuerpo = this.dom.getOut().getElementsByTagName("body")[0];       
+        cuerpo.onclick="";
+	}
+	 this._click=false;
+			
+},			
+		
+// ---------- helpKeyboard   method ------------------------------------------------		
+helpKeyboard: function (show){
+	if(show){ this.dom.getOut().getElementById(this.getId("keyboardForm")).style.display="none"; this.dom.getOut().getElementById(this.getId("notShowMns")).style.display="none"; this.dom.getOut().getElementById(this.getId("helpInformation")).style.display="block";	
+	}else{ this.dom.getOut().getElementById(this.getId("helpInformation")).style.display="none"; this.dom.getOut().getElementById(this.getId("keyboardForm")).style.display="block"; this.dom.getOut().getElementById(this.getId("notShowMns")).style.display="block";	
+	}
+			
+},			
+		
+// ---------- movePosition   method ------------------------------------------------		
+movePosition: function (){
+var crdXat;
+var crdYat;
+if(!(!this.movable || this.movable=="false")){
+
+	if(this._dire) var dirAct = this._dire;
+	do{
+		this._dire = Math.random();	
+		this._dire = parseInt(this._dire*4)+1;
+	}while(this._dire==dirAct);
+	
+	this.repaint();
+	
+	switch(this._dire){
+		case 1: 
+			crdXat = 0;crdYat = 0;
+			break;
+		case 2: 
+			crdXat = 45;crdYat = 0;
+			break;
+		case 3: 
+			crdXat = 0;crdYat = 39;
+			break;
+		case 4: 
+			crdXat = 45;crdYat = 39;
+			break;										
+	}
+	dom.getOut().getElementById(this.getId("tecladoVirtual")).style.left= crdXat+"px";
+	dom.getOut().getElementById(this.getId("tecladoVirtual")).style.top= crdYat+"px";
+}
+var cuerpo = this.dom.getOut().getElementsByTagName("body")[0]; 
+var keyboard = this.dom.getOut().getElementById(this.getId("tecladoVirtual_extension"));
+var ruta= this.getFullVarName();
+cuerpo.onclick= Function(ruta+'.bodyClick()'); 
+keyboard.onclick= Function(ruta+'.keyboardClick()'); 
+			
+},			
+		
+// ---------- getCookieVal   method ------------------------------------------------		
+getCookieVal: function (){
+	var a = this.dom.getOut().cookie.split(';');
+	for (var i=0;i<a.length;i++){
+		var s=a[i].split('$$');
+		var check=[];
+		for(var j=0;j<s.length;j++){
+			check[j]=s[j].split('=');
+		}
+		if((check[0][0]=="notShowKeyboard")&&(check[1][1]=="tecladoVirtual")&&(check[2][1]=="true")){
+			return 1;
+		}
+	}
+	return 0;
+			
+},			
+		
+// ---------- removeCookie   method ------------------------------------------------		
+removeCookie: function (){
+	var sname='notShowKeyboard';
+	var exp=new Date();
+	exp.setTime(exp.getTime()-1);
+	var cval=false; this.dom.getOut().cookie=sname+'='+cval+';expires='+exp.toGMTString();
+			
+},			
+		
+// ---------- insertCookie   method ------------------------------------------------		
+insertCookie: function (sname){ this.dom.getOut().cookie=sname+'=' + '$$name=tecladoVirtual$$show=true$$domain=' + this.dom.getOut().location.href.replace(/=/g,'¬¬')+';'+this.dom.getOut().cookie;
+			
+},			
+		
+// ---------- paintForm   method ------------------------------------------------		
+paintForm: function (){
+var s=[];
+var char="";
+var caps=0;
+
+if(!this.uppercase) caps=1;
+if(this.dom.getXmlNumChildrenAtName(this.dom.xmlNodes[this._root],this.xpathVirtualKeyboard) > 0){
+s.push('<div id="'+this.getId("tecladoVirtual")+'" class="TecladoVirtual '+this.printMode+'">');
+	s.push('<div id="'+this.getId("tecladoVirtual_extension")+'" class="ext">');
+		s.push('<div class="cab">');
+			s.push('<div class="cabText"><span>'+this._titleMsg+'</span></div>');	
+			s.push('<div class="cabHelp" onclick="'+this.getFullVarName()+'.helpKeyboard(true);"><span></span></div>');	
+			s.push('<div class="cabClose" onclick="'+this.getFullVarName()+'.closeKeyboard();"><span></span></div>');	
+			s.push('</div>');			
+			s.push('<div id="'+this.getId("keyboardForm")+'" class="tecExt">');
+			s.push('<div class="tecInt">');
+				for(i=1;i<this.keyboard.length;i++){
+					if (i == 1) {
+						s.push('<ul class="keyboardnum_row">');
+					}else {
+						s.push('<ul class="keyboard_row">');
+					}
+					for(j=1;j<this.keyboard[i].length;j++){
+						if(this.keyboard[i][j]){
+							char= this.URLDecode(this.keyboard[i][j][caps]);
+							var show='this.innerHTML=\''+this.escapeEntities(char)+'\'';
+							var hide = 'this.innerHTML=\'\'';
+							if(!this.hideKey || this.hideKey=="false") {hide="";show="";}
+							s.push('<li><a href="#" id="'+this.getId("hide_key_"+i+"_"+j)+'" class="key" onmouseover="'+hide+'" onmouseout="'+show+'" onclick="'+this.getFullVarName()+'.pushChar(\''+this.keyboard[i][j][caps]+'\');'+this.getFullVarName()+'.movePosition(); return false;">'+this.escapeEntities(char)+'</a></li>');
+						}else{
+							s.push('<li class="keyin"></li>');
+						}
+					}
+					if(i==1 && this.numeric=="false"){
+					  s.push('<li class="keyin"></li>');
+					  s.push('<li class="keyin"></li>');
+					  
+					}else if (i == 1 && this.numeric && this.numeric=="true") {
+						s.push('<li><a class="keytwo" onclick="'+this.getFullVarName()+'.pushBackSpace();'+this.getFullVarName()+'.movePosition(); return false;" href="#" id="'+this.getId("key_del")+'">'+this.URLDecode(this.specialkeys[0+caps])+'</a></li>');	
+					}
+					s.push('</ul>');
+				}
+				if(!this.numeric || this.numeric=="false")
+				{
+				  s.push('<ul class="keyboard_specialkeys">');
+				  s.push('<li><a class="keytwo" onclick="'+this.getFullVarName()+'.pushCaps();'+this.getFullVarName()+'.movePosition(); return false;" href="#" id="'+this.getId("key_caps")+'">'+this.URLDecode(this.specialkeys[2+caps])+'</a></li>');		
+				  s.push('<li><a class="keyspace" onclick="'+this.getFullVarName()+'.pushChar(\' \');'+this.getFullVarName()+'.movePosition(); return false;" href="#"><span></span></a></li>');	
+				  s.push('<li><a class="keytwo" onclick="'+this.getFullVarName()+'.pushBackSpace();'+this.getFullVarName()+'.movePosition(); return false;" href="#" id="'+this.getId("key_del")+'">'+this.URLDecode(this.specialkeys[0+caps])+'</a></li>');	
+				  s.push('</ul>');
+				}
+				
+			s.push('</div>');	
+			s.push('</div>');
+			s.push('<div id="'+this.getId("notShowMns")+'" class="mens">');
+				if(!this.mandatory || this.mandatory=="false") {
+					s.push('<ul><li><input id="'+this.getId("checkNotShow")+'" type="checkbox" name="notshow" value="notshow" /></li><li><label for="'+this.getId("checkNotShow")+'">'+this._dontShowMsg+'</label></li>');
+				}			
+			s.push('</div>');
+			s.push('<div  id="'+this.getId("helpInformation")+'" class="helpExt" style="display:none;">');
+			s.push('<div class="helpMens">');
+				s.push('<span>'+this._helpMsg+'</span>');					
+			s.push('</div>');			
+			s.push('<div align="center" class="helpReturn">');
+				s.push('<span><a onclick="'+this.getFullVarName()+'.helpKeyboard(false);" href="#"  >'+this._backMsg+'</a></span>');						
+			s.push('</div>');	
+		s.push('</div>');
+	s.push('</div>');
+s.push('</div>');
+}
+return s.join('');
+			
+},			
+		
+// ---------- setValueIsER   method ------------------------------------------------		
+setValueIsER: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	
+	this._root = 'dynamicConfigurationER.BHTC_TECLADOVIRTUAL_V2';
+	var root_noisER = 'dynamicConfiguration.BHTC_TECLADOVIRTUAL_V2';
+	this.isER = true;
+	
+	
+	var isERRoot = dom.getXmlNode(dom.xmlNodes[this._root],'virtualKeyboard')
+	
+	if(isERRoot == null) {
+		this.isER = false;
+		this._root = root_noisER;
+	}
+			
+},			
+		
+// ---------- getAliasParam   method ------------------------------------------------		
+getAliasParam: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	return this.aliasRepository;
+			
+},			
+		
+// ---------- getCsrfToken   method ------------------------------------------------		
+getCsrfToken: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var tokenParam= "";
+	var csrfToken = this.dom.getXmlValueAtName(this.dom.xmlNodes[this._root],'csrfToken');
+	if (csrfToken != null && csrfToken != ""){
+		tokenParam = "&csrfToken=" + csrfToken;
+	}
+
+	return tokenParam;
+			
+},			
+		
+// ---------- getAjaxObject   method ------------------------------------------------		
+getAjaxObject: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var ajaxObject;
+	if(window.XMLHttpRequest) {
+    	ajaxObject=new XMLHttpRequest();
+	}else {
+		try { 
+         	ajaxObject = new ActiveXObject("Msxml2.XMLHTTP"); 
+      	} catch (e) {
+         	try {
+            	ajaxObject = new ActiveXObject("Microsoft.XMLHTTP"); 
+	         } catch (e) {
+    	        ajaxObject = null; 
+	         }
+       }
+  	}
+  	return ajaxObject;
+			
+},			
+		
+// ---------- getApplication   method ------------------------------------------------		
+getApplication: function (command){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var originalUrl = new String(window.location);
+	var index = originalUrl.indexOf('?',0);
+	var index1 = originalUrl.indexOf('#',0);
+	var application = "";
+	
+	if(index!=-1){
+		var fixedUrl = originalUrl.substring(0,index);
+		application = fixedUrl.substring(0,fixedUrl.lastIndexOf('.',fixedUrl.length));
+		application = application + ".scbto";
+	}else{
+	   if(index1!=-1){
+	   	   var fixedUrl = originalUrl.substring(0,index1);
+		   application = fixedUrl.substring(0,fixedUrl.lastIndexOf('.',fixedUrl.length));
+		   application = application + ".scbto";
+		}
+	    else{
+		   application = originalUrl + "driver.scbto";
+		}
+	}
+	
+	
+	application = application + "?cmd="+command;
+	
+	return application;
+			
+},			
+		
+// ---------- setCfgAJAX   method ------------------------------------------------		
+setCfgAJAX: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+	var cfg=null;
+	var ajaxName=this.dom.getXmlValueAtName(this.dom.xmlNodes[this._root],'ajaxBhtcName');
+	if (ajaxName!=null && ajaxName!=""){
+		try{
+			var http = this.getAjaxObject();
+			http.abort();
+			
+			var cmd=this.cmdAliasCfg;
+			var bhtcNameParam="&bhtcName="+ajaxName;
+			var isERParam="&isER="+this.isER;
+			var aliasParam="&alias="+this.getAliasParam();
+			var tokenParam = this.getCsrfToken();
+
+			http.open("POST", this.getApplication(cmd+bhtcNameParam+isERParam+aliasParam+tokenParam), false);
+			http.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+			http.send('');
+					
+			cfg=http.responseXML;
+		}catch(ex){
+			cfg=null;	
+		}
+		
+		if (cfg!=null && cfg.getElementsByTagName('COMPONENT')[0]!=null) {
+			var newRoot="SCBTO_"+this._root;
+			dom.xmlNodes[newRoot]=cfg.getElementsByTagName('COMPONENT')[0];
+			this._root=newRoot;
+		}
+	}
+			
+},			
+		
+// ---------- initialize   method ------------------------------------------------		
+initialize: function (){
+	this._idioma=dom.lang;
+	this.keyboard=[];
+	var row, col;
+	
+	this.setValueIsER();	
+	
+  	if(this.Qualification_name=='root'){
+		if(this.isER==true){
+			this._root='dynamicConfigurationER.BHTC_TECLADOVIRTUAL_V2';
+			this.dynamicConfig='dynamicConfigurationER.'
+		}else{
+			this._root='dynamicConfiguration.BHTC_TECLADOVIRTUAL_V2';
+			this.dynamicConfig='dynamicConfiguration.'
+		}
+	}else{
+		if(this.isER==true){
+			this._root='dynamicConfigurationER.BHTC_TECLADOVIRTUAL_V2';
+			this.dynamicConfig='dynamicConfigurationER.'
+		}else{
+			this._root='dynamicConfiguration.BHTC_TECLADOVIRTUAL_V2';
+			this.dynamicConfig='dynamicConfiguration.'
+		}	
+	}
+	
+	
+	this.setCfgAJAX();
+	
+	this.pathBHTC= this.nodoBHTC+'/typeVirtualKeyboard';
+	this.rootBHTC=this.dynamicConfig+this.nameBHTC;
+	this.valueType=this.dom.getXmlValueAtName(this.dom.xmlNodes[this.rootBHTC],this.pathBHTC)
+	if(!this.valueType || this.valueType=="alphanumeric"){
+	   this.numeric="false";
+	   this.pathNumeric='';
+	}else{
+	   this.numeric="true";
+	   this.pathNumeric='/numeric';
+	}
+	
+	if(this.dom.getXmlNumChildrenAtName(this.dom.xmlNodes[this._root],this.xpathVirtualKeyboard) > 0){
+		this.movable=this.dom.getXmlValueAtName(this.dom.xmlNodes[this._root],this.xpathVirtualKeyboard + '/' + this.xpathmovable)
+		this.hideKey=this.dom.getXmlValueAtName(this.dom.xmlNodes[this._root],this.xpathVirtualKeyboard + '/' + this.xpathHideKey)
+		this.mandatory=this.dom.getXmlValueAtName(this.dom.xmlNodes[this._root],this.xpathVirtualKeyboard + '/' + this.xpathMandatory)	
+		//this.numeric=this.dom.getXmlValueAtName(this.dom.xmlNodes[this._root],this.xpathVirtualKeyboard + '/' + this.xpathNumeric)
+
+		//this.dontShowMsg=this.dom.getXmlValueAtName(this.dom.xmlNodes[this._root],this.xpathVirtualKeyboard + '/' + this.xpathKeyboard + '/' + this.xpathDontShowMsg)	
+		//this.titleMsg=this.dom.getXmlValueAtName(this.dom.xmlNodes[this._root],this.xpathVirtualKeyboard + '/' + this.xpathKeyboard + '/' + this.xpathTitleMsg)			
+		//this.helpMsg=this.dom.getXmlValueAtName(this.dom.xmlNodes[this._root],this.xpathVirtualKeyboard + '/' + this.xpathKeyboard + '/' + this.xpathHelpMsg)	
+		//this.backMsg=this.dom.getXmlValueAtName(this.dom.xmlNodes[this._root],this.xpathVirtualKeyboard + '/' + this.xpathKeyboard + '/' + this.xpathBackMsg)	
+		this._dontShowMsg=this.getAttributeTagLib(this.dontShowMsg);
+		this._titleMsg=this.getAttributeTagLib(this.titleMsg);
+		this._helpMsg=this.getAttributeTagLib(this.helpMsg);
+		this._backMsg=this.getAttributeTagLib(this.backMsg);
+		
+		var fea_Root38 = this.dom.getXmlNodes(this.dom.xmlNodes[this._root],this.xpathVirtualKeyboard + '/' + this.xpathKeyboard + '/' + this.pathNumeric + '/' + this.xpathKey);			
+for(var ind=0;ind<fea_Root38.length;ind++) {			
+var fea_Node38 = fea_Root38[ind];			
+
+			try{
+	
+  			row= this.dom.getXmlValueAtName(fea_Node38, '@row')			
+;
+				col= this.dom.getXmlValueAtName(fea_Node38, '@col')			
+
+                if(!this.keyboard[row])this.keyboard[row]=new Array();
+				this.keyboard[row][col]=new Array();
+				this.keyboard[row][col][0]=this.dom.getXmlValueAtName(fea_Node38, this.xpathUpperKey)			
+;
+				this.keyboard[row][col][1]=this.dom.getXmlValueAtName(fea_Node38, this.xpathLowerKey)			
+;
+
+			}catch(e){}
+		}			
+
+		this.specialkeys[0]=this.dom.getXmlValueAtName(this.dom.xmlNodes[this._root],this.xpathVirtualKeyboard + '/' + this.xpathKeyboard + '/' + this.xpathDelKey + '/' + this.xpathUpperDel)
+		this.specialkeys[1]=this.dom.getXmlValueAtName(this.dom.xmlNodes[this._root],this.xpathVirtualKeyboard + '/' + this.xpathKeyboard + '/' + this.xpathDelKey + '/' + this.xpathLowerDel)
+		this.specialkeys[2]=this.dom.getXmlValueAtName(this.dom.xmlNodes[this._root],this.xpathVirtualKeyboard + '/' + this.xpathKeyboard + '/' + this.xpathCaseKey + '/' + this.xpathUpperCase)
+		this.specialkeys[3]=this.dom.getXmlValueAtName(this.dom.xmlNodes[this._root],this.xpathVirtualKeyboard + '/' + this.xpathKeyboard + '/' + this.xpathCaseKey + '/' + this.xpathLowerCase)
+	}
+			
+},			
+// ---------- drawHeader   method ------------------------------------------------		
+drawHeader: function () {			
+var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};			
+this.setText('Globales_Bhtcs_Seguridad_Plugins_TecladoVirtual');			
+			
+var s = new Array();			
+this.initialize();			
+
+return s.join(' ');			
+},			
+		
+// ---------- drawBody   method ------------------------------------------------		
+drawBody: function (d,l) {return this.dom.getBodyValue(d,l,this);},		
+// ---------- paint   method ------------------------------------------------		
+paint: function (draw,init) {var s = new Array();if(this.getCookieVal()==0){s.push("<div id=\"");s.push( this.getId('repaint') );s.push("\" style=\"position:absolute;\">");s.push( this.paintForm() );s.push("</div>"); } return this.dom.paint(draw,init,this,s.join(''));			
+}			
+
+}
+
+;dom.onLoaded('Globales_Bhtcs_Seguridad_Plugins_TecladoVirtual');dom.onLoaded('Globales_Bhtcs_Seguridad_Firma_ER');

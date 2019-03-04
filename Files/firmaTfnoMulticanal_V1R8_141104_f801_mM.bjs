@@ -1,0 +1,188 @@
+
+var _M1 ='ALP_AREPER_Tfno_MulticanalPres_E_Bhtcs_cambioTfnoMulticanal_firmaTfnoMulticanal';
+dom.getImports(['Globales_Bhtcs_Util_Layout_v2','Globales_Bhtcs_Internet_Nav_Barra','Globales_Bhtcs_Info_Texto','Globales_Bhtcs_Info_infoMsg','Globales_Bhtcs_Seguridad_Firma_ER','Globales_Bhtcs_Util_BPG','Globales_Bhtcs_Internet_AT_TituloPagina','Globales_Bhtcs_Internet_AT_DatosContexto','Globales_Bhtcs_Arq_FormArqMira_V01','Globales_Bhtcs_Internet_Nav_PiePaginaV2'],this._M1,false);
+/*110613*/
+
+function ALP_AREPER_Tfno_MulticanalPres_E_Bhtcs_cambioTfnoMulticanal_firmaTfnoMulticanal_m(id,parent) {	
+this.main=this;this.dom = 	getMainDom(_M1);			
+this._M1=_M1;	
+this.jsVarName = id;	
+this.parent = parent;	
+this.text = new Array();this.setText = this.base.setText;this.getFullVarName = this.base.getFullVarName;this.getId = this.base.getId;this.getDataText = this.base.getDataText;this.getMain = this.base.getMain;this.openWindowPopup = this.base.openWindowPopup;	
+	
+this.res = [1024,768];	
+this.resizeAllowed = true;	
+this.miraLang = 'spa';	
+this.miraDirLang = 'ltr';}
+ALP_AREPER_Tfno_MulticanalPres_E_Bhtcs_cambioTfnoMulticanal_firmaTfnoMulticanal_m.prototype = { base: dom.getInstanceBase(),	
+		
+// ---------- onload   method ------------------------------------------------		
+onload: function () {this.bPG_1.onload();this.dtcDatosTfno.onload();this.piePrincipal.onload();this.barra_1.onload();this.tituloPagina_1.onload();this.lytPrincipal.onload();this.lytInfoMsg.onload();this.infoMsg.onload();this.txtErrorFirma.onload();this.firma_ER_1.onload();this.texto.onload();this.formArqMira_V01_1.onload();this.formArqMira_V01_2.onload();	
+},	
+		
+// ---------- loadCtx   method ------------------------------------------------		
+loadCtx: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+var a = ['$datosFirma',['CONFIRMATION_TYPE','$KEY_SIGNATURE',['POSITIONS','POSITION_VALUES'],'DIGITAL_SIGNATURE','OTP','UNIVERSAL_SIGNATURE'],'$datosInternos',['tlfMovilNuevo']];this.dom.parseArray(a,"root");
+			
+},			
+		
+// ---------- initialize   method ------------------------------------------------		
+initialize: function (){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+			
+},			
+		
+// ---------- evButtonClickpiePrincipal   method ------------------------------------------------		
+evButtonClickpiePrincipal: function (event){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+
+
+switch( event.id){
+case 'idConfirmar': 
+	main.firma_ER_1.uploadDataToContext();
+	break; 
+case 'idCancelar': 
+	main.formArqMira_V01_2.event='cancelar';
+	main.formArqMira_V01_2.submit(); 
+	break; 
+}
+
+
+			
+
+event.source = this;
+dom.getDomManager().EvHandler.handle(event);
+},			
+		
+// ---------- evVALIDACION_OKfirma_ER_1   method ------------------------------------------------		
+evVALIDACION_OKfirma_ER_1: function (event){var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};
+dom.setValueNode('root', '/datosFirma[0]/CONFIRMATION_TYPE', 'positionsAndCertificate');
+
+var posiciones = dom.getValueNode('root', '/datosFirma[0]/KEY_SIGNATURE[0]/POSITIONS');
+var posicionesValores = dom.getValueNode('root', '/datosFirma[0]/KEY_SIGNATURE[0]/POSITION_VALUES');
+		main.infoMsg.Content = []; 
+
+if (posiciones.length != posicionesValores.length) {
+	main.infoMsg.setVisibility(true);
+	main.infoMsg.Content.push(main.txtErrorFirma); 
+	main.lytInfoMsg.repaint();
+} else {
+	main.formArqMira_V01_1.event = 'confirmar';
+	main.formArqMira_V01_1.submit();
+}
+			
+},			
+// ---------- drawHeader   method ------------------------------------------------		
+drawHeader: function () {			
+var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};			
+this.setText(this._M1);			
+			
+var s = new Array();			
+	
+s['scrXMLPlantilla']=true;	
+this.bPG_1 = new Globales_Bhtcs_Util_BPG_m("bPG_1",this,[,,631,200,5],s,['scrXMLPlantilla']);	
+this.bPG_1.errorTexts = [this.main.text['bPG_1_errorTexts_0'],this.main.text['bPG_1_errorTexts_1'],this.main.text['bPG_1_errorTexts_2'],this.main.text['bPG_1_errorTexts_3']];	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+this.dtcDatosTfno = new Globales_Bhtcs_Internet_AT_DatosContexto_m("dtcDatosTfno",this,[0,0,60,60,1],s,[]);	
+	
+	
+	
+this.piePrincipal = new Globales_Bhtcs_Internet_Nav_PiePaginaV2_m("piePrincipal",this,[0,0,500,22,1],s,[]);	
+	
+	
+	
+this.barra_1 = new Globales_Bhtcs_Internet_Nav_Barra_m("barra_1",this,[0,0,591,17,1],s,[]);	
+	
+	
+this.tituloPagina_1 = new Globales_Bhtcs_Internet_AT_TituloPagina_m("tituloPagina_1",this,[0,0,60,60,1],s,[]);	
+	
+	
+this.lytPrincipal = new Globales_Bhtcs_Util_Layout_v2_m("lytPrincipal",this,[0,0,631,200,1],s,[]);	
+	
+	
+	
+this.lytInfoMsg = new Globales_Bhtcs_Util_Layout_v2_m("lytInfoMsg",this,[0,0,400,200,1],s,[]);	
+this.infoMsg = new Globales_Bhtcs_Info_infoMsg_m("infoMsg",this,[0,0,60,60,1],s,[]);	
+this.infoMsg.subTitle = this.getDataText('infoMsg_subTitle_0',this.infoMsg);this.infoMsg.mainTitle = this.getDataText('infoMsg_mainTitle_1',this.infoMsg);	
+this.txtErrorFirma = new Globales_Bhtcs_Info_Texto_m("txtErrorFirma",this,[0,0,60,60,1],s,[]);	
+	
+	
+	
+	
+	
+	
+this.firma_ER_1 = new Globales_Bhtcs_Seguridad_Firma_ER_m("firma_ER_1",this,[0,0,60,60,1],s,[]);	
+	
+this.texto = new Globales_Bhtcs_Info_Texto_m("texto",this,[0,0,60,60,1],s,[]);	
+	
+	
+	
+this.formArqMira_V01_1 = new Globales_Bhtcs_Arq_FormArqMira_V01_m("formArqMira_V01_1",this,[,,60,60,5],s,[]);	
+	
+this.formArqMira_V01_2 = new Globales_Bhtcs_Arq_FormArqMira_V01_m("formArqMira_V01_2",this,[,,60,60,5],s,[]);	
+this.bPG_1.numWorkArea = [main.lytPrincipal];
+	
+this.bPG_1.scrXMLPlantilla = dom.getRPath('ALP_AREPER_Tfno_MulticanalPres_E_Html_Plantilla01_Supernet_xml',this._M1,'url');s.push(this.bPG_1.drawHeader());this.dtcDatosTfno.xpathvalues = ['/datosInternos/tlfMovilNuevo'];
+this.dtcDatosTfno.width = [['','']];
+this.dtcDatosTfno.colspan = [[]];
+this.dtcDatosTfno.xmltree = 'root';
+this.dtcDatosTfno.columns = [[[this.main.text['dtcDatosTfno_columns_0'],,,,,]]];this.dtcDatosTfno.className = 'DatosContexto_confirm2';
+this.dtcDatosTfno.estructura = 'auto';
+this.dtcDatosTfno.title = this.main.text['dtcDatosTfno_title_0'];this.dtcDatosTfno.subtitle = this.main.text['dtcDatosTfno_subtitle_0'];this.dtcDatosTfno.colTooltips = [[]];this.dtcDatosTfno.colTooltipsValue = [[]];s.push(this.dtcDatosTfno.drawHeader());this.piePrincipal.buttonsTxt = [[this.main.text['piePrincipal_buttonsTxt_0'],this.main.text['piePrincipal_buttonsTxt_1'],],[this.main.text['piePrincipal_buttonsTxt_2'],this.main.text['piePrincipal_buttonsTxt_3'],]];this.piePrincipal.className = 'PiePagina';
+this.piePrincipal.buttons = [['idCancelar',true,0,''],['idConfirmar',true,0,'']];
+s.push(this.piePrincipal.drawHeader());this.barra_1.options = [];
+this.barra_1.optionsTxt = [];this.barra_1.optionsUrl = [];s.push(this.barra_1.drawHeader());this.tituloPagina_1.subtitle = this.getDataText('tituloPagina_1_subtitle_0',this.tituloPagina_1);this.tituloPagina_1.title = this.getDataText('tituloPagina_1_title_0',this.tituloPagina_1);s.push(this.tituloPagina_1.drawHeader());this.lytPrincipal.type = 'V';
+this.lytPrincipal.contents = [[0,main.barra_1,'',true],[0,main.tituloPagina_1,'',true],[0,main.lytInfoMsg,'',true],[0,main.texto,'',true],[0,main.dtcDatosTfno,'',true],[0,main.firma_ER_1,'',true],[0,main.piePrincipal,'',true]];
+s.push(this.lytPrincipal.drawHeader());this.lytInfoMsg.contents = [[0,main.infoMsg,'',true]];
+this.lytInfoMsg.rows = 1;
+this.lytInfoMsg.cols = 1;
+s.push(this.lytInfoMsg.drawHeader());s.push(this.infoMsg.drawHeader());this.txtErrorFirma.bodyTexto = this.getDataText('txtErrorFirma_bodyTexto_0',this.txtErrorFirma);s.push(this.txtErrorFirma.drawHeader());this.firma_ER_1.xpathUniversalSignature = '/datosFirma/UNIVERSAL_SIGNATURE';
+this.firma_ER_1.xpathDynPositionsValidate = '/datosFirma/KEY_SIGNATURE/POSITIONS';
+this.firma_ER_1.xpathType = '/datosFirma/CONFIRMATION_TYPE';
+this.firma_ER_1.xpathSignedDataValidate = '/datosFirma/DIGITAL_SIGNATURE';
+this.firma_ER_1.xpathValidateOTP = '/datosFirma/OTP';
+this.firma_ER_1.xpathPositionsValidate = '/datosFirma/KEY_SIGNATURE/POSITION_VALUES';
+s.push(this.firma_ER_1.drawHeader());this.texto.bodyTexto = this.getDataText('texto_bodyTexto_0',this.texto);s.push(this.texto.drawHeader());this.formArqMira_V01_1.updateComponents = [main.firma_ER_1];
+this.formArqMira_V01_1.xpaths = ['/datosFirma/CONFIRMATION_TYPE','/datosFirma/DIGITAL_SIGNATURE','/datosFirma/KEY_SIGNATURE/POSITION_VALUES','/datosFirma/KEY_SIGNATURE/POSITIONS'];
+this.formArqMira_V01_1.icollActionType = [];
+s.push(this.formArqMira_V01_1.drawHeader());this.formArqMira_V01_2.icollActionType = [];
+s.push(this.formArqMira_V01_2.drawHeader());this.initialize();			
+
+this.dom.getLinks([],null,false);return s.join(' ');			
+},			
+		
+// ---------- drawBody   method ------------------------------------------------		
+drawBody: function () {			
+s = new Array();this.dom.nTopLeft=null;var j =this.paint().join('');			
+return j;},			
+		
+// ---------- paint   method ------------------------------------------------		
+paint: function () {var main=this.main;var dom=this.dom;try{var window=(dom.brw =='NN')?dom.getOut().defaultView:dom.getOut().parentWindow;var event=(event==null)?window.event:event;}catch(e){};			
+var t = new Array();t.push("<body scroll=\"auto\" onload=\"main.onload();\">");			
+s.push(this.bPG_1.drawBody(true,true));		
+s.push(this.dtcDatosTfno.drawBody(false,false));		
+this.piePrincipal.evButtonClick = this.evButtonClickpiePrincipal;			
+s.push(this.piePrincipal.drawBody(false,false));		
+s.push(this.barra_1.drawBody(false,false));		
+s.push(this.tituloPagina_1.drawBody(false,false));		
+s.push(this.lytPrincipal.drawBody(false,false));		
+s.push(this.lytInfoMsg.drawBody(false,false));		
+s.push(this.infoMsg.drawBody(false,false));		
+s.push(this.txtErrorFirma.drawBody(false,false));		
+this.firma_ER_1.evVALIDACION_OK = this.evVALIDACION_OKfirma_ER_1;			
+s.push(this.firma_ER_1.drawBody(false,false));		
+s.push(this.texto.drawBody(false,false));		
+s.push(this.formArqMira_V01_1.drawBody(true,true));		
+s.push(this.formArqMira_V01_2.drawBody(true,true));		
+t.push(s.join(''));t.push("</body>");			
+return t;			
+}			
+};
+if(typeof dom.getObjById(_M1)=='undefined'){dom.setObjById(_M1 , eval('new '+_M1+"_m('main')"));dom.onLoaded(_M1);}	
