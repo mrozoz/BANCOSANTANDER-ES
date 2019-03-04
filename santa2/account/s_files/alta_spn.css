@@ -1,0 +1,96 @@
+.tabla-blanca {
+	background-color: #FFFFFF;
+}
+
+.tabla-roja {
+	background-color: #FF0000;
+}
+
+.tabla-gris {
+	background-color: #F3F3F3;
+}
+
+.texto {
+	font-family: Verdana, Arial, sans-serif;
+	font-size: 10px;
+	color: 000000;
+	font-style: normal;
+	font-weight: normal
+}
+
+.texto A {
+	font-family: Verdana, Arial, sans-serif;
+	font-size: 10px;
+	color: 000000;
+	font-style: normal;
+	font-weight: normal
+}
+
+.comentario {
+	font-family: Verdana, Arial, sans-serif;
+	font-size: 10px;
+	color: 666666;
+	font-style: normal;
+	font-weight: normal
+}
+
+.comentario A {
+	font-family: Verdana, Arial, sans-serif;
+	font-size: 10px;
+	color: 666666;
+	font-style: normal;
+	font-weight: normal
+}
+
+.texto-rojo {
+	font-family: Verdana, Arial, sans-serif;
+	font-size: 10px;
+	color: FF0000;
+	font-style: normal;
+	font-weight: bold
+}
+
+.texto-rojo A {
+	font-family: Verdana, Arial, sans-serif;
+	font-size: 10px;
+	color: FF0000;
+	font-style: normal;
+	font-weight: bold
+}
+
+.titulo {
+	font-family: Verdana, Arial, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: FF0000
+}
+
+.campo {
+	font-family: Verdana, Arial, sans-serif;
+	font-size: 10px;
+	color: 666666;
+	font-style: normal;
+	font-weight: normal
+}
+
+.boton {
+	font-family: Verdana, Arial, sans-serif;
+	font-size: 10px;
+	color: 000000;
+	font-style: normal;
+	font-weight: normal
+}
+
+.procesando {
+	font-family: Verdana, Arial, sans-serif;
+	font-size: 15px;
+	color: 000000;
+	font-style: normal;
+	font-weight: normal
+}
+
+.opblack {
+	font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #000000;
+}

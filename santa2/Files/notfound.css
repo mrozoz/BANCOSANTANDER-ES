@@ -1,0 +1,197 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+	<title>Home Banking Error en el servidor</title>
+	<meta name="description" content="">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=yes">
+	<link rel="icon" href="/errorParticulares/home/favicon.ico">
+	<style>
+		.html{
+		  background-color:#fafafa;
+		}
+		body,html,main,p{
+		  margin:0;
+		  font-family:lato;
+		}
+		@font-face{
+		  font-family: lato;
+		  font-style:normal;
+		  font-weight:400;
+		  src:url(/errorParticulares/login/errors/fonts/Lato-Regular.eot);
+		  src:url(/errorParticulares/login/errors/fonts/Lato-Regular.eot?#iefix) 
+			format("eot"),url(/errorParticulares/login/errors/fonts/Lato-Regular.woff) 
+			format("woff"),url(/errorParticulares/login/errors/fonts/Lato-Regular.ttf) 
+			format("truetype"),url(/errorParticulares/login/errors/fonts/Lato-Regular.svg) 
+			format("svg")}
+		@font-face {
+		  font-family: 'ico_error';
+		  src:
+			url(/errorParticulares/login/errors/fonts/ico_error.ttf) format('truetype'),
+			url(/errorParticulares/login/errors/fonts/ico_error.woff) format('woff'),
+			url(/errorParticulares/login/errors/fonts/ico_error.svg#ico_error) format('svg');
+		  font-weight: normal;
+		  font-style: normal;
+		}
+
+		[class^="i-"], [class*=" i-"] {
+
+		  font-family: 'ico_error' !important;
+		  speak: none;
+		  font-style: normal;
+		  font-weight: normal;
+		  font-variant: normal;
+		  text-transform: none;
+		  line-height: 1;
+
+
+		  -webkit-font-smoothing: antialiased;
+		  -moz-osx-font-smoothing: grayscale;
+		}		
+		.logo-cont{
+		  max-width: 1140px;
+		  margin:0 auto;
+		}
+		.i-logo-ret:before {
+		  content: "\e920";
+		  line-height: 3.2rem;
+		  color: #fff;
+		  font-size: 2.2rem
+		}
+		.i-404:before {
+		  content: "\e900";
+		}	
+		.light-grey{
+		  
+		}
+		.main-header{
+		  padding:0;
+		  background:#ec0000;
+		  background:linear-gradient(to right,#ca0000 1%,#ec0000 100%);
+		  filter:progid:DXImageTransform.Microsoft.gradient( startColorstr='#ca0000', endColorstr='#ec0000', GradientType=1 );
+		  height:4.1rem;
+		  line-height: 4.1rem;
+		}
+		.service-error{
+		  margin:8rem auto 3rem;
+		  max-width:35rem;
+		  text-align:center;
+		}
+		.i-404{
+		  font-size:3rem;
+		  color:#ec0000;
+		}
+		#title{		  
+		  font-weight: normal;
+		  color:#4a4a4a;
+		  margin-bottom: 0.4rem;
+		}
+		footer{
+		  margin-top:32px
+		}
+		.md-button{
+		  display:block;
+		  position:relative;
+		  cursor:pointer;
+		  min-height:36px;
+		  max-width:230px;
+		  line-height:36px;
+		  vertical-align:middle;
+		  -webkit-box-align:center;
+		  -webkit-align-items:center;
+		  align-items:center;
+		  text-align:center;
+		  box-sizing:border-box;
+		  -webkit-user-select:none;
+		  -moz-user-select:none;
+		  -ms-user-select:none;
+		  user-select:none;
+		  outline:0;
+		  border:0;
+		  margin:6px auto;
+		  background:#ec0000;
+		  white-space:nowrap;
+		  text-transform:uppercase;
+		  font-size:14px;
+		  font-style:inherit;
+		  font-variant:inherit;
+		  font-family:inherit;
+		  text-decoration:none;
+		  overflow:hidden;
+		  padding:0 30px;
+		  font-weight:400;
+		  color:#fff;
+		  border-radius:20px
+		}
+		.md-button.catCaption{
+		  max-width: 255px;
+		}
+		#paragraph1{
+		  color:#8e8e8e;
+		}
+	</style>
+  </head>
+  <body>
+  <script type="text/javascript">	 
+	var lang={
+	  es:{
+		title:'Lo sentimos, la página solicitada no está disponible',
+		paragraph1:'Es posible que el enlace no sea correcto o que la página haya sido eliminada',
+		buttonCaption:'Ir a la página principal'
+	  },
+	  ca:{
+		title:'Ho sentim, la pàgina sol.licitada no està disponible',
+		paragraph1:'És possible que l\'enllaç no sigui correcte o que la pàgina ha sigut eliminada',
+		buttonCaption:'Anar a la pàgina principal'
+	  },
+	  en:{
+		title:'Sorry, the requested page is not available',
+		paragraph1:'The link may not be correct or the page may have been deleted',
+		buttonCaption:'Go to the main page'
+	  }		
+	};
+	document.addEventListener("DOMContentLoaded", function(event) {
+		if(window.navigator.languages){
+				var userLang = window.navigator.languages[0]; 
+		}else{
+				var userLang = window.navigator.language.substring(0,2); 
+		}
+	  var activeLanguage='es';
+	  if(userLang!==null && typeof(userLang)!=='undefined'){
+		for(var i in lang){
+		  if(i===userLang){
+			activeLanguage=i;			
+		  }
+		}
+	  }
+	  document.getElementById('title').innerHTML=lang[activeLanguage].title;
+	  document.getElementById('paragraph1').innerHTML=lang[activeLanguage].paragraph1;
+	  if (activeLanguage==='ca'){
+		document.getElementById('buttonCaption').className='md-primary button-red md-button catCaption';
+	  }else{
+		document.getElementById('buttonCaption').className = 'md-primary button-red md-button';
+	  }
+	  document.getElementById('buttonCaption').innerHTML=lang[activeLanguage].buttonCaption;
+	});
+	
+  </script>
+	<main>
+		<section class="main-header">
+		  <div class="logo-cont">
+				<i class="i-logo-ret"></i>
+		  </div>
+		</section>
+		<section class="service-error">
+		  <header>
+			  <i class="i-404"></i>
+		  </header>
+		  <div class="service-error-cont">
+			  <h2 id="title">Lo sentimos, la página solicitada no está disponible</h2>
+			  <p id="paragraph1" class="light-grey">Es posible que el enlace no sea correcto o que la página haya sido eliminada</p>			 
+		  </div>
+		 <footer>
+			  <a id="buttonCaption" type="button" href="https://particulares.gruposantander.es/SUPFPA_ENS/Estatico/ALP_SUPFPA_Spnacceso/Html/inicio.html" aria-label="" class="md-primary button-red md-button">Ir a la página principal</a>
+		  </footer>
+		</section>
+	</main>
+  
+<span style="margin: 0px auto; border: 2px dotted rgb(0, 0, 0); position: absolute; z-index: 2147483647; visibility: hidden; left: 562px; width: 0px; top: 222px; height: 0px;"></span><span style="z-index: 2147483647; position: absolute; visibility: hidden; left: 547px; width: 50px; top: 207px; height: 20px; font-size: 10px; color: black;"></span></body></html>
